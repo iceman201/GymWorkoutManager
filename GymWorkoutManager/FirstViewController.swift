@@ -10,6 +10,11 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+    @IBOutlet var repeatTimer: UILabel!
+    @IBOutlet var totalWorkoutTimer: UILabel!
+    @IBOutlet var aroundNumber: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
