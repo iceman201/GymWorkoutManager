@@ -9,12 +9,18 @@
 import UIKit
 
 class FirstViewController: UIViewController {
-
+    
+    // MARK: - IBOutlets
+    
     @IBOutlet var repeatTimer: UILabel!
     @IBOutlet var totalWorkoutTimer: UILabel!
     @IBOutlet var aroundNumber: UILabel!
+    @IBOutlet var startButton: UIButton!
     
+    // MARK: - Variables
+    let receivedTime : [String] = []
     
+    // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

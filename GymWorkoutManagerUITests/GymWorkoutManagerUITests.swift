@@ -36,24 +36,7 @@ class GymWorkoutManagerUITests: XCTestCase {
     func testAddAnItemGoToDetailsThenDeleteIt() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        
-        let app = XCUIApplication()
-        let masterNavigationBar = app.navigationBars["Master"]
-        masterNavigationBar.buttons["Add"].tap()
-        
-        let tablesQuery = app.tables
-        let firstElemQuery = tablesQuery.cells.elementBoundByIndex(0)
-        firstElemQuery.tap()
-        app.navigationBars.matchingIdentifier("Detail").buttons["Master"].tap()
-        masterNavigationBar.buttons["Edit"].tap()
-        
-        firstElemQuery.buttons.elementBoundByIndex(0).tap()
-        firstElemQuery.buttons["Delete"].tap()
-        
-        masterNavigationBar.buttons["Done"].tap()
-        
-        XCTAssert(tablesQuery.cells.count == 0)
+
     }
     
 }
