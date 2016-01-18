@@ -1,1 +1,1 @@
-# GymWorkoutManager [![Swift 2.1](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/) 
+# GymWorkoutManager [![Swift 2.1](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/) [![](https://www.bitrise.io/app/22a3ba6d2647d80c.svg?token=-lqFNgmzTN1Z6zjOxDgqGg&branch=master)]()
