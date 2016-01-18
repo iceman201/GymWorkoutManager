@@ -62,7 +62,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <state key="normal" title="Set Time"/>
                                 <connections>
-                                    <segue destination="i9H-gI-UmR" kind="presentation" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="Wn3-yq-aKP"/>
+                                    <segue destination="i9H-gI-UmR" kind="presentation" identifier="setTime" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="Wn3-yq-aKP"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Around" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb3-Ob-MLU">
@@ -116,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="709" y="-354"/>
         </scene>
-        <!--View Controller-->
+        <!--Time Setup View Controller-->
         <scene sceneID="18K-hz-O2s">
             <objects>
-                <viewController id="i9H-gI-UmR" sceneMemberID="viewController">
+                <viewController id="i9H-gI-UmR" customClass="TimeSetupViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TGg-MQ-yIH"/>
                         <viewControllerLayoutGuide type="bottom" id="kV7-Tt-N87"/>
@@ -128,28 +128,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ccn-OK-vKa">
+                                <rect key="frame" x="279" y="238" width="42" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="7da-oM-pe0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Number of round" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCO-y9-CnH">
+                                <rect key="frame" x="216" y="196" width="169" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kH-jg-06m">
+                                <rect key="frame" x="170" y="62" width="261" height="126"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="126" id="Gap-lP-7tf"/>
+                                    <constraint firstAttribute="width" constant="261" id="a6m-N9-rXA"/>
+                                </constraints>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selete your time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJg-Mz-oEc">
+                                <rect key="frame" x="196" y="20" width="208" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="208" id="sdT-Kl-uD2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="0.0" green="1" blue="0.09229462986623993" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-aC-azw">
-                                <rect key="frame" x="262" y="252" width="77" height="47"/>
+                                <rect key="frame" x="262" y="276" width="77" height="47"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <state key="normal" title="Done!"/>
+                                <connections>
+                                    <action selector="confirmButton:" destination="i9H-gI-UmR" eventType="touchUpInside" id="v9W-oY-M3v"/>
+                                </connections>
                             </button>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="countDownTimer" countDownDuration="-1" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="KVB-O7-4po">
-                                <rect key="frame" x="0.0" y="28" width="600" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="474798456.18832302">
-                                    <!--2016-01-18 08:27:36 +0000-->
-                                </date>
-                                <locale key="locale" localeIdentifier="en_NZ"/>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Rwf-aC-azw" firstAttribute="top" secondItem="KVB-O7-4po" secondAttribute="bottom" constant="8" symbolic="YES" id="FFZ-te-w4d"/>
-                            <constraint firstItem="KVB-O7-4po" firstAttribute="centerX" secondItem="Rwf-aC-azw" secondAttribute="centerX" id="Lnb-Yi-dP3"/>
-                            <constraint firstItem="KVB-O7-4po" firstAttribute="top" secondItem="TGg-MQ-yIH" secondAttribute="bottom" constant="8" symbolic="YES" id="hGg-Wn-7MV"/>
-                            <constraint firstItem="KVB-O7-4po" firstAttribute="leading" secondItem="M3D-jv-efz" secondAttribute="leading" id="jUs-0S-UIk"/>
-                            <constraint firstAttribute="trailing" secondItem="KVB-O7-4po" secondAttribute="trailing" id="vE1-tH-5fU"/>
+                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="centerX" secondItem="QCO-y9-CnH" secondAttribute="centerX" id="3hH-wL-sh7"/>
+                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="centerX" secondItem="9kH-jg-06m" secondAttribute="centerX" id="77m-0Y-WeW"/>
+                            <constraint firstItem="FJg-Mz-oEc" firstAttribute="centerX" secondItem="9kH-jg-06m" secondAttribute="centerX" id="7O7-vb-afO"/>
+                            <constraint firstItem="Rwf-aC-azw" firstAttribute="centerX" secondItem="Ccn-OK-vKa" secondAttribute="centerX" id="8XO-3l-qP6"/>
+                            <constraint firstItem="9kH-jg-06m" firstAttribute="top" secondItem="FJg-Mz-oEc" secondAttribute="bottom" constant="8" symbolic="YES" id="DfQ-vk-QLV"/>
+                            <constraint firstItem="FJg-Mz-oEc" firstAttribute="top" secondItem="M3D-jv-efz" secondAttribute="top" constant="20" symbolic="YES" id="LNZ-Wu-GFG"/>
+                            <constraint firstItem="FJg-Mz-oEc" firstAttribute="centerX" secondItem="M3D-jv-efz" secondAttribute="centerX" id="lq7-Ej-KVt"/>
+                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="top" secondItem="M3D-jv-efz" secondAttribute="top" constant="238" id="nm6-Zb-VHr"/>
+                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="top" secondItem="QCO-y9-CnH" secondAttribute="bottom" constant="8" symbolic="YES" id="rmB-9N-Vlf"/>
+                            <constraint firstItem="Rwf-aC-azw" firstAttribute="top" secondItem="Ccn-OK-vKa" secondAttribute="bottom" constant="8" symbolic="YES" id="vak-q5-mnC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="numberOfRounds" destination="Ccn-OK-vKa" id="Efi-up-HBC"/>
+                        <outlet property="timePicker" destination="9kH-jg-06m" id="zfM-28-sTn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jbo-14-yvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
