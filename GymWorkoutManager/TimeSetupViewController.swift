@@ -13,7 +13,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     // MARK: - Variables
     let seconds = Array(0...59)
     let minutes = Array(0...59)
-    var result : [String] = ["","",""]
+    var result : [String] = ["","",""] // Formate : [Mins : secs : rounds]
     
     // MARK: - IBOutlet
     
