@@ -8,20 +8,44 @@
 
 import UIKit
 
+
+protocol TimeSetupViewControllerDelegate: NSObjectProtocol {
+    func timeSetupFinish(timeSetupViewController: TimeSetupViewController, result: [String])
+}
+
 class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource {
     
     // MARK: - Variables
     let seconds = Array(0...59)
     let minutes = Array(0...59)
-    var result : [String] = ["","",""] // Formate : [Mins : secs : rounds]
+    var result : [String] = ["0","0","0"] // Formate : [Mins : secs : rounds]
+    weak var delegate : TimeSetupViewControllerDelegate? = nil
+    weak internal var timerDelegate : TimeSetupViewControllerDelegate? {
+        get {
+            return self.delegate
+        }
+        set {
+            self.delegate = newValue
+        }
+    }
     
     // MARK: - IBOutlet
     
     @IBOutlet var numberOfRounds: UITextField!
     @IBOutlet var timePicker: UIPickerView!
     @IBAction func confirmButton(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true) { () -> Void in
+        if self.numberOfRounds.text == "" {
+            self.result[2] = "0"
+        } else {
             self.result[2] = self.numberOfRounds.text!
+        }
+        
+        self.view.endEditing(true);
+        if let del = delegate {
+            del.timeSetupFinish(self, result: self.result)
+        }
+        
+        self.dismissViewControllerAnimated(true) { () -> Void in
             //TODO : pass date to FirstViewController
             print(self.result)
         }
@@ -72,21 +96,25 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         self.timePicker.dataSource = self
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    
     /*
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
