@@ -10,8 +10,8 @@
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
 		E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */; };
-		E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */; };
-		E6AD9D8D1C4C5F28004F6437 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8C1C4C5F28004F6437 /* SecondViewController.swift */; };
+		E6AD9D8B1C4C5F28004F6437 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8A1C4C5F28004F6437 /* TimerViewController.swift */; };
+		E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */; };
 		E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D8E1C4C5F28004F6437 /* Main.storyboard */; };
 		E6AD9D921C4C5F28004F6437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D911C4C5F28004F6437 /* Assets.xcassets */; };
 		E6AD9D951C4C5F28004F6437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D931C4C5F28004F6437 /* LaunchScreen.storyboard */; };
@@ -70,8 +70,8 @@
 		BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E6AD9D851C4C5F28004F6437 /* GymWorkoutManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymWorkoutManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		E6AD9D8C1C4C5F28004F6437 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		E6AD9D8A1C4C5F28004F6437 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		E6AD9D8F1C4C5F28004F6437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6AD9D911C4C5F28004F6437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6AD9D941C4C5F28004F6437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -182,8 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */,
-				E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */,
-				E6AD9D8C1C4C5F28004F6437 /* SecondViewController.swift */,
+				E6AD9D8A1C4C5F28004F6437 /* TimerViewController.swift */,
+				E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */,
 				05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */,
 				E6AD9D8E1C4C5F28004F6437 /* Main.storyboard */,
 				E6AD9D911C4C5F28004F6437 /* Assets.xcassets */,
@@ -485,9 +485,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6AD9D8D1C4C5F28004F6437 /* SecondViewController.swift in Sources */,
+				E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */,
 				E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */,
-				E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */,
+				E6AD9D8B1C4C5F28004F6437 /* TimerViewController.swift in Sources */,
 				05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

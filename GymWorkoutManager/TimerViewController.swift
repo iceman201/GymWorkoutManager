@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
+class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     // MARK: - IBOutlets
     
