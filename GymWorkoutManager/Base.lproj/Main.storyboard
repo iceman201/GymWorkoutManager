@@ -56,6 +56,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="57"/>
                                 <state key="normal" title="GO!"/>
+                                <connections>
+                                    <action selector="startButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="tXh-x5-wup"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7i3-hH-bDh">
                                 <rect key="frame" x="257" y="343" width="87" height="39"/>
@@ -108,7 +111,6 @@
                     <connections>
                         <outlet property="aroundNumber" destination="8jM-zA-QmR" id="ez0-f2-qCU"/>
                         <outlet property="repeatTimer" destination="tlX-rO-uHH" id="43F-5c-wpj"/>
-                        <outlet property="startButton" destination="GWR-AC-4CY" id="d1r-z6-q7F"/>
                         <outlet property="totalWorkoutTimer" destination="mih-Vh-993" id="fbD-nP-oOY"/>
                     </connections>
                 </viewController>
