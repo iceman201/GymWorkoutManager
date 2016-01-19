@@ -17,7 +17,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     var timerRuning = NSTimer()
     var timerCountdown = NSTimer()
     // MARK: - IBOutlets
-    
+    let hah = NSDate()
     @IBOutlet var repeatTimer: UILabel!
     @IBOutlet var totalWorkoutTimer: UILabel!
     @IBOutlet var aroundNumber: UILabel!
@@ -51,14 +51,13 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     func timeCountdown() {
         let dateFormatter = NSDateFormatter();
         
-        dateFormatter.dateFormat = NSDateFormatter.dateFormatFromTemplate("mm:ss:zzZ", options: 0, locale: NSLocale.currentLocale())
+        dateFormatter.dateFormat = "mm:ss:zz"
         
         let haha = dateFormatter.dateFromString(repeatTimer.text!)
 
-        let cTime = NSDate().timeIntervalSinceDate(haha!)
+        let cTime = hah.timeIntervalSinceDate(haha!)
         
-        
-        var elapsedTime: NSTimeInterval = cTime + startCountdownTime
+        var elapsedTime: NSTimeInterval = cTime + startCountdownTime//now
         
         let minutes = UInt8(elapsedTime / 60.0)
         elapsedTime += (NSTimeInterval(minutes) * 60)
