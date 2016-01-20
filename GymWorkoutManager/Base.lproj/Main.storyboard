@@ -26,8 +26,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlX-rO-uHH">
-                                <rect key="frame" x="225" y="81" width="151" height="42"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00.000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlX-rO-uHH">
+                                <rect key="frame" x="216" y="81" width="170" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -56,6 +56,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="57"/>
                                 <state key="normal" title="GO!"/>
+                                <connections>
+                                    <action selector="counter:" destination="9pv-A4-QxB" eventType="touchUpInside" id="l83-iR-vUq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7i3-hH-bDh">
                                 <rect key="frame" x="257" y="343" width="87" height="39"/>
@@ -87,15 +90,15 @@
                             <constraint firstItem="CrC-ty-8pf" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="3Uw-sC-Ktr"/>
                             <constraint firstItem="mih-Vh-993" firstAttribute="top" secondItem="tlX-rO-uHH" secondAttribute="bottom" constant="138" id="559-la-W4e"/>
                             <constraint firstItem="8jM-zA-QmR" firstAttribute="top" secondItem="vb3-Ob-MLU" secondAttribute="bottom" constant="8" id="DsD-rY-vTz"/>
-                            <constraint firstItem="mih-Vh-993" firstAttribute="leading" secondItem="tlX-rO-uHH" secondAttribute="leading" id="F60-Ii-Bkt"/>
+                            <constraint firstItem="mih-Vh-993" firstAttribute="leading" secondItem="tlX-rO-uHH" secondAttribute="leading" constant="9" id="F60-Ii-Bkt"/>
                             <constraint firstItem="vb3-Ob-MLU" firstAttribute="top" secondItem="CrC-ty-8pf" secondAttribute="bottom" constant="80" id="HkF-gB-jIa"/>
                             <constraint firstItem="9Ib-EG-db3" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="247" id="Jrd-Ng-rPQ"/>
                             <constraint firstItem="7i3-hH-bDh" firstAttribute="top" secondItem="9Ib-EG-db3" secondAttribute="bottom" constant="75" id="KjU-6b-pt4"/>
                             <constraint firstItem="mih-Vh-993" firstAttribute="centerX" secondItem="GWR-AC-4CY" secondAttribute="centerX" id="Q7s-eh-eD8"/>
                             <constraint firstItem="CrC-ty-8pf" firstAttribute="centerX" secondItem="8jM-zA-QmR" secondAttribute="centerX" id="R70-fu-bR1"/>
-                            <constraint firstItem="mih-Vh-993" firstAttribute="trailing" secondItem="tlX-rO-uHH" secondAttribute="trailing" id="RIv-gj-che"/>
+                            <constraint firstItem="mih-Vh-993" firstAttribute="trailing" secondItem="tlX-rO-uHH" secondAttribute="trailing" constant="-10" id="RIv-gj-che"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="GWR-AC-4CY" secondAttribute="bottom" constant="16" id="aWf-Zg-KH4"/>
-                            <constraint firstItem="tlX-rO-uHH" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="e9v-39-7c9"/>
+                            <constraint firstItem="tlX-rO-uHH" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" constant="1" id="e9v-39-7c9"/>
                             <constraint firstItem="9Ib-EG-db3" firstAttribute="top" secondItem="tlX-rO-uHH" secondAttribute="bottom" constant="124" id="fBj-yQ-27d"/>
                             <constraint firstItem="7i3-hH-bDh" firstAttribute="top" secondItem="mih-Vh-993" secondAttribute="bottom" constant="3" id="ika-fK-Qk0"/>
                             <constraint firstItem="8jM-zA-QmR" firstAttribute="leading" secondItem="vb3-Ob-MLU" secondAttribute="leading" id="jDY-G9-m04"/>
