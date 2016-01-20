@@ -18,7 +18,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     // MARK: - Variables
     let seconds = Array(0...59)
     let minutes = Array(0...59)
-    var result : [String] = ["0","0","0","0"] // Formate : [Mins : secs : rounds]
+    var result : [String] = ["0","0","0"] // Formate : [Mins : secs : rounds]
     weak var delegate : TimeSetupViewControllerDelegate? = nil
     weak internal var timerDelegate : TimeSetupViewControllerDelegate? {
         get {
@@ -35,9 +35,9 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     @IBOutlet var timePicker: UIPickerView!
     @IBAction func confirmButton(sender: AnyObject) {
         if self.numberOfRounds.text == "" {
-            self.result[3] = "0"
+            self.result[2] = "0"
         } else {
-            self.result[3] = self.numberOfRounds.text!
+            self.result[2] = self.numberOfRounds.text!
         }
         
         self.view.endEditing(true);
