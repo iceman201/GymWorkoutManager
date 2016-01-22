@@ -16,72 +16,53 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     @IBOutlet var totalWorkoutTimer: UILabel!
     @IBOutlet var aroundNumber: UILabel!
     @IBOutlet var startButton: UIButton!
-    // MARK: - Variables
-    var receivedTime : [String] = ["0", "0", "0"]
-    var time: NSDate = NSDate()
-    var totalTime: NSDate = NSDate();
     
-    var startRuningTime = NSTimeInterval()
-    var timerRuning = NSTimer()
-    var timerCountdown = NSTimer()
+    // MARK: - Variables
+    let millisecond = 0.01
+    var receivedTime : [String] = ["0", "0", "0"]
+    var time : NSDate = NSDate()
+    var totalTime : NSDate = NSDate()
+    var timerRuning : NSTimer = NSTimer()
+    var timerCountdown : NSTimer = NSTimer()
     var round = "0"
 
     
     @IBAction func counter(sender: AnyObject) {
         if startButton.currentTitle != "Stop" {
             startButton.setTitle("Stop", forState: .Normal)
-            
-            self.timerCountdown = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("timeCountdown"), userInfo: nil, repeats: true)
+            timerCountdown = NSTimer.scheduledTimerWithTimeInterval(millisecond, target: self, selector: Selector("timeCountdown"), userInfo: nil, repeats: true)
         } else {
             startButton.setTitle("GO!", forState: .Normal)
-            
             timerCountdown.invalidate()
         }
     }
     
-    func timeRuning() {
-        let currentTime = NSDate.timeIntervalSinceReferenceDate()
-        var elapsedTime: NSTimeInterval = currentTime - startRuningTime
-        let minutes = UInt8(elapsedTime / 60.0)
-        elapsedTime -= (NSTimeInterval(minutes) * 60)
-        let seconds = UInt8(elapsedTime)
-        elapsedTime -= NSTimeInterval(seconds)
-        let fraction = UInt8(elapsedTime * 100)
-        let strMinutes = String(format: "%02d", minutes)
-        let strSeconds = String(format: "%02d", seconds)
-        let strFraction = String(format: "%02d", fraction)
-        
-        self.totalWorkoutTimer.text = "\(strMinutes):\(strSeconds):\(strFraction)"
-    }
-    
     func timeCountdown() {
-        if self.round == "0" {
-            self.repeatTimer.text = "00:00:00"
-            self.startButton.setTitle("GO!", forState: UIControlState.Normal)
+        if round == "0" {
+            repeatTimer.text = "00:00:00"
+            startButton.setTitle("GO!", forState: UIControlState.Normal)
+            timerCountdown.invalidate()
+            timerRuning.invalidate()
             
-            self.timerCountdown.invalidate()
-            self.timerRuning.invalidate()
-        } else if self.timeString(self.time) == "00:00.00" {
-            self.time = self.timeDate(self.receivedTime)
-            self.round = String(NSNumberFormatter().numberFromString(self.round)!.intValue - 1)
+        } else if timeString(time) == "00:00.00" {
+            time = timeDate(receivedTime)
+            round = String(NSNumberFormatter().numberFromString(round)!.intValue - 1)
+            repeatTimer.text = timeString(time)
+            aroundNumber.text = round
             
-            self.repeatTimer.text = self.timeString(self.time)
-            self.aroundNumber.text = self.round
         } else {
-            self.time = self.time.dateByAddingTimeInterval(-0.01)
-            self.totalTime = self.totalTime.dateByAddingTimeInterval(0.01)
-            
-            self.repeatTimer.text = self.timeString(self.time).stringByReplacingOccurrencesOfString(".", withString: ":")
-            self.totalWorkoutTimer.text = self.timeString(self.totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
+            time = time.dateByAddingTimeInterval(-millisecond)
+            totalTime = totalTime.dateByAddingTimeInterval(millisecond)
+            repeatTimer.text = self.timeString(time).stringByReplacingOccurrencesOfString(".", withString: ":")
+            totalWorkoutTimer.text = self.timeString(totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
         }
     }
     
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.time = self.timeDate(self.receivedTime)
-        self.totalTime = self.timeDate(self.receivedTime)
+        self.time = timeDate(receivedTime)
+        self.totalTime = timeDate(receivedTime)
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,12 +75,11 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     func timeSetupFinish(timeSetupViewController: TimeSetupViewController, result: [String]) {
         self.receivedTime = result
         self.round = result[2]
-        self.time = self.timeDate(result)
-        self.totalTime = self.timeDate(["0", "0", "0"])
-        
+        self.time = timeDate(result)
+        self.totalTime = timeDate(["0", "0", "0"])
         self.repeatTimer.text = self.timeString(result).stringByReplacingOccurrencesOfString(".", withString: ":")
-        self.totalWorkoutTimer.text = self.timeString(self.totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
-        self.aroundNumber.text = self.round
+        self.totalWorkoutTimer.text = self.timeString(totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
+        self.aroundNumber.text = round
     }
     
     // MARK: - Private Method
