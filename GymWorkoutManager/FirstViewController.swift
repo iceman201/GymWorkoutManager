@@ -61,6 +61,9 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+        startButton.layer.cornerRadius = 16
+        startButton.layer.borderWidth = 1
+        
         self.time = timeDate(receivedTime)
         self.totalTime = timeDate(receivedTime)
     }

@@ -33,6 +33,9 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     
     @IBOutlet var numberOfRounds: UITextField!
     @IBOutlet var timePicker: UIPickerView!
+    
+    @IBOutlet weak var doneButton: UIButton!
+    
     @IBAction func confirmButton(sender: AnyObject) {
         if self.numberOfRounds.text == "" {
             self.result[2] = "0"
@@ -68,18 +71,20 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         }
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let attributedString : NSAttributedString
         if component == 0 {
-            return String("Mins")
+            attributedString = NSAttributedString(string: "Mins", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         } else if component == 1 {
-            return String(minutes[row])
+            attributedString = NSAttributedString(string: String(minutes[row]), attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         } else if component == 2 {
-            return String("Sec")
+            attributedString = NSAttributedString(string: "Sec", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         } else {
-            return String(seconds[row])
+            attributedString = NSAttributedString(string: String(seconds[row]), attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
         }
+        return attributedString
     }
-    
+
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 1 {
             result[0] = String(minutes[row])
@@ -94,6 +99,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         super.viewDidLoad()
         self.timePicker.delegate = self
         self.timePicker.dataSource = self
+        doneButton.layer.cornerRadius = 16
         // Do any additional setup after loading the view.
     }
     
