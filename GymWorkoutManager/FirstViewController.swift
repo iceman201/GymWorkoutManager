@@ -67,6 +67,9 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
             
             self.repeatTimer.text = self.timeString(self.time)
             self.aroundNumber.text = self.round
+            if self.round != "0" {
+                self.startButton .sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+            }
         } else {
             self.time = self.time.dateByAddingTimeInterval(-0.01)
             self.totalTime = self.totalTime.dateByAddingTimeInterval(0.01)
