@@ -1,0 +1,23 @@
+{
+  "name": "GradientCircularProgress",
+  "version": "3.1.0",
+  "summary": "",
+  "homepage": "https://github.com/keygx/GradientCircularProgress",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "keygx": "y.kagiyama@gmail.com"
+  },
+  "social_media_url": "http://twitter.com/keygx",
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/keygx/GradientCircularProgress.git",
+    "tag": "3.1.0"
+  },
+  "source_files": "Source/*",
+  "requires_arc": true
+}

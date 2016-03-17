@@ -1,4 +1,12 @@
 PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Charts (2.2.3):
+    - Charts/Core (= 2.2.3)
+  - Charts/Core (2.2.3)
+  - EasyAnimation (1.0.4)
+  - GradientCircularProgress (3.1.0)
   - Realm (0.97.0):
     - Realm/Headers (= 0.97.0)
   - Realm/Headers (0.97.0)
@@ -6,9 +14,26 @@ PODS:
     - Realm (= 0.97.0)
 
 DEPENDENCIES:
+  - ChameleonFramework/Swift
+  - Charts
+  - EasyAnimation
+  - GradientCircularProgress (from `https://github.com/keygx/GradientCircularProgress`)
   - RealmSwift
 
+EXTERNAL SOURCES:
+  GradientCircularProgress:
+    :git: https://github.com/keygx/GradientCircularProgress
+
+CHECKOUT OPTIONS:
+  GradientCircularProgress:
+    :commit: 975d13a884bcd9395318cfb1647d7bdde4ba3257
+    :git: https://github.com/keygx/GradientCircularProgress
+
 SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Charts: f54267bb3f0f0e74520c6f248517cf5074dfd6fc
+  EasyAnimation: 4aabd439b4038f48d72939cc19d6220363b3206e
+  GradientCircularProgress: 7997493ecbe6f6b84694c66aefe43ff7b9de4b6a
   Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
   RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
 
