@@ -6,6 +6,7 @@ pod 'GradientCircularProgress', :git => 'https://github.com/keygx/GradientCircul
 pod 'EasyAnimation'
 pod 'ChameleonFramework/Swift'
 pod 'Charts'
+pod 'JVFloatLabeledTextField'
 
 target 'GymWorkoutManager' do
 

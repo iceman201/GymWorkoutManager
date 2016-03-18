@@ -7,6 +7,7 @@ PODS:
   - Charts/Core (2.2.3)
   - EasyAnimation (1.0.4)
   - GradientCircularProgress (3.1.0)
+  - JVFloatLabeledTextField (1.1.0)
   - Realm (0.97.0):
     - Realm/Headers (= 0.97.0)
   - Realm/Headers (0.97.0)
@@ -18,6 +19,7 @@ DEPENDENCIES:
   - Charts
   - EasyAnimation
   - GradientCircularProgress (from `https://github.com/keygx/GradientCircularProgress`)
+  - JVFloatLabeledTextField
   - RealmSwift
 
 EXTERNAL SOURCES:
@@ -34,6 +36,7 @@ SPEC CHECKSUMS:
   Charts: f54267bb3f0f0e74520c6f248517cf5074dfd6fc
   EasyAnimation: 4aabd439b4038f48d72939cc19d6220363b3206e
   GradientCircularProgress: 7997493ecbe6f6b84694c66aefe43ff7b9de4b6a
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
   RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
 
