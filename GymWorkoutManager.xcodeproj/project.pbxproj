@@ -19,33 +19,23 @@
 		E6AD9D951C4C5F28004F6437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D931C4C5F28004F6437 /* LaunchScreen.storyboard */; };
 		E6AD9DA01C4C5F28004F6437 /* GymWorkoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D9F1C4C5F28004F6437 /* GymWorkoutManagerTests.swift */; };
 		E6AD9DAB1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9DAA1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift */; };
-		E6D0A0F91C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0DC1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt.png */; };
-		E6D0A0FA1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0DD1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt@2x.png */; };
-		E6D0A0FB1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0DE1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt.png */; };
-		E6D0A0FC1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0DF1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt@2x.png */; };
-		E6D0A0FD1C4C6B2200F43DB5 /* iPad_Pro_App_iOS9_83.5pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E01C4C6B2200F43DB5 /* iPad_Pro_App_iOS9_83.5pt@2x.png */; };
-		E6D0A0FE1C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E11C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt.png */; };
-		E6D0A0FF1C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E21C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt@2x.png */; };
-		E6D0A1001C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E31C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt.png */; };
-		E6D0A1011C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E41C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt@2x.png */; };
-		E6D0A1021C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E51C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt.png */; };
-		E6D0A1031C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E61C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt@2x.png */; };
-		E6D0A1041C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E81C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt.png */; };
-		E6D0A1051C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0E91C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt@2x.png */; };
-		E6D0A1061C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0EA1C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@2x.png */; };
-		E6D0A1071C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0EB1C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@3x.png */; };
-		E6D0A1081C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0EC1C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@2x.png */; };
-		E6D0A1091C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0ED1C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@3x.png */; };
-		E6D0A10A1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS5-6_29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0EE1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS5-6_29pt.png */; };
-		E6D0A10B1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0EF1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@2x.png */; };
-		E6D0A10C1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F01C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@3x.png */; };
-		E6D0A10D1C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F21C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@2x.png */; };
-		E6D0A10E1C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F31C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@3x.png */; };
-		E6D0A10F1C4C6B2200F43DB5 /* AppleWatch_HomeScreen_40pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F41C4C6B2200F43DB5 /* AppleWatch_HomeScreen_40pt@2x.png */; };
-		E6D0A1101C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_38mm_24pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F51C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_38mm_24pt@2x.png */; };
-		E6D0A1111C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_42mm_27.5pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F61C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_42mm_27.5pt@2x.png */; };
-		E6D0A1121C4C6B2200F43DB5 /* AppleWatch_ShortLook_38mm_86pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F71C4C6B2200F43DB5 /* AppleWatch_ShortLook_38mm_86pt@2x.png */; };
-		E6D0A1131C4C6B2200F43DB5 /* AppleWatch_ShortLook_42mm_98pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6D0A0F81C4C6B2200F43DB5 /* AppleWatch_ShortLook_42mm_98pt@2x.png */; };
+		E6DCF9A61C9B8D1100C3668E /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */; };
+		E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */; };
+		E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */; };
+		E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A51C9B8D1100C3668E /* Icon-60@3x.png */; };
+		E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AA1C9B8D1B00C3668E /* Icon-Small@2x.png */; };
+		E6DCF9AD1C9B8D1B00C3668E /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AB1C9B8D1B00C3668E /* Icon-Small@3x.png */; };
+		E6DCF9B61C9B8D4800C3668E /* Icon-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AE1C9B8D4800C3668E /* Icon-24@2x.png */; };
+		E6DCF9B71C9B8D4800C3668E /* Icon-27.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AF1C9B8D4800C3668E /* Icon-27.5@2x.png */; };
+		E6DCF9B81C9B8D4800C3668E /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B01C9B8D4800C3668E /* Icon-29@2x.png */; };
+		E6DCF9B91C9B8D4800C3668E /* Icon-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B11C9B8D4800C3668E /* Icon-29@3x.png */; };
+		E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B21C9B8D4800C3668E /* Icon-40@2x.png */; };
+		E6DCF9BB1C9B8D4800C3668E /* Icon-44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B31C9B8D4800C3668E /* Icon-44@2x.png */; };
+		E6DCF9BC1C9B8D4800C3668E /* Icon-86@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B41C9B8D4800C3668E /* Icon-86@2x.png */; };
+		E6DCF9BD1C9B8D4800C3668E /* Icon-98@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B51C9B8D4800C3668E /* Icon-98@2x.png */; };
+		E6DCF9C11C9B8D5B00C3668E /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */; };
+		E6DCF9C21C9B8D5B00C3668E /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */; };
+		E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,33 +76,23 @@
 		E6AD9DA61C4C5F28004F6437 /* GymWorkoutManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymWorkoutManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6AD9DAA1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutManagerUITests.swift; sourceTree = "<group>"; };
 		E6AD9DAC1C4C5F28004F6437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6D0A0DC1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_App_iOS5-6_72pt.png"; sourceTree = "<group>"; };
-		E6D0A0DD1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_App_iOS5-6_72pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0DE1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_App_iOS7-9_76pt.png"; sourceTree = "<group>"; };
-		E6D0A0DF1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_App_iOS7-9_76pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0E01C4C6B2200F43DB5 /* iPad_Pro_App_iOS9_83.5pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_Pro_App_iOS9_83.5pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0E11C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_Settings_iOS5-9_29pt.png"; sourceTree = "<group>"; };
-		E6D0A0E21C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_Settings_iOS5-9_29pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0E31C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_Spotlight_iOS5-6_50pt.png"; sourceTree = "<group>"; };
-		E6D0A0E41C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_Spotlight_iOS5-6_50pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0E51C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_Spotlight_iOS7-9_40pt.png"; sourceTree = "<group>"; };
-		E6D0A0E61C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad_Spotlight_iOS7-9_40pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0E81C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS5-6_57pt.png"; sourceTree = "<group>"; };
-		E6D0A0E91C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS5-6_57pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0EA1C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS7-9_60pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0EB1C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS7-9_60pt@3x.png"; sourceTree = "<group>"; };
-		E6D0A0EC1C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Settings_iOS5-9_29pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0ED1C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Settings_iOS5-9_29pt@3x.png"; sourceTree = "<group>"; };
-		E6D0A0EE1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS5-6_29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Spotlight_iOS5-6_29pt.png"; sourceTree = "<group>"; };
-		E6D0A0EF1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Spotlight_iOS7-9_40pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0F01C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Spotlight_iOS7-9_40pt@3x.png"; sourceTree = "<group>"; };
-		E6D0A0F21C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleWatch_CompanionSettings_29pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0F31C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleWatch_CompanionSettings_29pt@3x.png"; sourceTree = "<group>"; };
-		E6D0A0F41C4C6B2200F43DB5 /* AppleWatch_HomeScreen_40pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleWatch_HomeScreen_40pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0F51C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_38mm_24pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleWatch_NotificationCenter_38mm_24pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0F61C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_42mm_27.5pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleWatch_NotificationCenter_42mm_27.5pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0F71C4C6B2200F43DB5 /* AppleWatch_ShortLook_38mm_86pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleWatch_ShortLook_38mm_86pt@2x.png"; sourceTree = "<group>"; };
-		E6D0A0F81C4C6B2200F43DB5 /* AppleWatch_ShortLook_42mm_98pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppleWatch_ShortLook_42mm_98pt@2x.png"; sourceTree = "<group>"; };
+		E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
+		E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		E6DCF9A51C9B8D1100C3668E /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		E6DCF9AA1C9B8D1B00C3668E /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		E6DCF9AB1C9B8D1B00C3668E /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
+		E6DCF9AE1C9B8D4800C3668E /* Icon-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-24@2x.png"; sourceTree = "<group>"; };
+		E6DCF9AF1C9B8D4800C3668E /* Icon-27.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-27.5@2x.png"; sourceTree = "<group>"; };
+		E6DCF9B01C9B8D4800C3668E /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		E6DCF9B11C9B8D4800C3668E /* Icon-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@3x.png"; sourceTree = "<group>"; };
+		E6DCF9B21C9B8D4800C3668E /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		E6DCF9B31C9B8D4800C3668E /* Icon-44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-44@2x.png"; sourceTree = "<group>"; };
+		E6DCF9B41C9B8D4800C3668E /* Icon-86@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-86@2x.png"; sourceTree = "<group>"; };
+		E6DCF9B51C9B8D4800C3668E /* Icon-98@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-98@2x.png"; sourceTree = "<group>"; };
+		E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-83.5@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,43 +216,24 @@
 		E6D0A0DA1C4C6B2200F43DB5 /* Icon */ = {
 			isa = PBXGroup;
 			children = (
-				E6D0A0DB1C4C6B2200F43DB5 /* iPad */,
 				E6D0A0E71C4C6B2200F43DB5 /* iPhone */,
 				E6D0A0F11C4C6B2200F43DB5 /* iWatch */,
 			);
 			path = Icon;
 			sourceTree = "<group>";
 		};
-		E6D0A0DB1C4C6B2200F43DB5 /* iPad */ = {
-			isa = PBXGroup;
-			children = (
-				E6D0A0DC1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt.png */,
-				E6D0A0DD1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt@2x.png */,
-				E6D0A0DE1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt.png */,
-				E6D0A0DF1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt@2x.png */,
-				E6D0A0E01C4C6B2200F43DB5 /* iPad_Pro_App_iOS9_83.5pt@2x.png */,
-				E6D0A0E11C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt.png */,
-				E6D0A0E21C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt@2x.png */,
-				E6D0A0E31C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt.png */,
-				E6D0A0E41C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt@2x.png */,
-				E6D0A0E51C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt.png */,
-				E6D0A0E61C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt@2x.png */,
-			);
-			path = iPad;
-			sourceTree = "<group>";
-		};
 		E6D0A0E71C4C6B2200F43DB5 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				E6D0A0E81C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt.png */,
-				E6D0A0E91C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt@2x.png */,
-				E6D0A0EA1C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@2x.png */,
-				E6D0A0EB1C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@3x.png */,
-				E6D0A0EC1C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@2x.png */,
-				E6D0A0ED1C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@3x.png */,
-				E6D0A0EE1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS5-6_29pt.png */,
-				E6D0A0EF1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@2x.png */,
-				E6D0A0F01C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@3x.png */,
+				E6DCF9AA1C9B8D1B00C3668E /* Icon-Small@2x.png */,
+				E6DCF9AB1C9B8D1B00C3668E /* Icon-Small@3x.png */,
+				E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */,
+				E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */,
+				E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */,
+				E6DCF9A51C9B8D1100C3668E /* Icon-60@3x.png */,
+				E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */,
+				E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */,
+				E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */,
 			);
 			path = iPhone;
 			sourceTree = "<group>";
@@ -280,13 +241,14 @@
 		E6D0A0F11C4C6B2200F43DB5 /* iWatch */ = {
 			isa = PBXGroup;
 			children = (
-				E6D0A0F21C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@2x.png */,
-				E6D0A0F31C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@3x.png */,
-				E6D0A0F41C4C6B2200F43DB5 /* AppleWatch_HomeScreen_40pt@2x.png */,
-				E6D0A0F51C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_38mm_24pt@2x.png */,
-				E6D0A0F61C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_42mm_27.5pt@2x.png */,
-				E6D0A0F71C4C6B2200F43DB5 /* AppleWatch_ShortLook_38mm_86pt@2x.png */,
-				E6D0A0F81C4C6B2200F43DB5 /* AppleWatch_ShortLook_42mm_98pt@2x.png */,
+				E6DCF9AE1C9B8D4800C3668E /* Icon-24@2x.png */,
+				E6DCF9AF1C9B8D4800C3668E /* Icon-27.5@2x.png */,
+				E6DCF9B01C9B8D4800C3668E /* Icon-29@2x.png */,
+				E6DCF9B11C9B8D4800C3668E /* Icon-29@3x.png */,
+				E6DCF9B21C9B8D4800C3668E /* Icon-40@2x.png */,
+				E6DCF9B31C9B8D4800C3668E /* Icon-44@2x.png */,
+				E6DCF9B41C9B8D4800C3668E /* Icon-86@2x.png */,
+				E6DCF9B51C9B8D4800C3668E /* Icon-98@2x.png */,
 			);
 			path = iWatch;
 			sourceTree = "<group>";
@@ -398,36 +360,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6D0A1041C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt.png in Resources */,
 				E6AD9D951C4C5F28004F6437 /* LaunchScreen.storyboard in Resources */,
-				E6D0A1071C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@3x.png in Resources */,
-				E6D0A10E1C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@3x.png in Resources */,
+				E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */,
+				E6DCF9A61C9B8D1100C3668E /* Icon-40@2x.png in Resources */,
+				E6DCF9C21C9B8D5B00C3668E /* Icon-76@2x.png in Resources */,
+				E6DCF9B71C9B8D4800C3668E /* Icon-27.5@2x.png in Resources */,
 				E6AD9D921C4C5F28004F6437 /* Assets.xcassets in Resources */,
-				E6D0A0FB1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt.png in Resources */,
+				E6DCF9B81C9B8D4800C3668E /* Icon-29@2x.png in Resources */,
+				E6DCF9BB1C9B8D4800C3668E /* Icon-44@2x.png in Resources */,
+				E6DCF9B61C9B8D4800C3668E /* Icon-24@2x.png in Resources */,
+				E6DCF9BD1C9B8D4800C3668E /* Icon-98@2x.png in Resources */,
+				E6DCF9B91C9B8D4800C3668E /* Icon-29@3x.png in Resources */,
+				E6DCF9AD1C9B8D1B00C3668E /* Icon-Small@3x.png in Resources */,
 				E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */,
-				E6D0A1101C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_38mm_24pt@2x.png in Resources */,
-				E6D0A10C1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@3x.png in Resources */,
-				E6D0A1091C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@3x.png in Resources */,
-				E6D0A10D1C4C6B2200F43DB5 /* AppleWatch_CompanionSettings_29pt@2x.png in Resources */,
-				E6D0A0FC1C4C6B2200F43DB5 /* iPad_App_iOS7-9_76pt@2x.png in Resources */,
-				E6D0A1131C4C6B2200F43DB5 /* AppleWatch_ShortLook_42mm_98pt@2x.png in Resources */,
-				E6D0A10B1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS7-9_40pt@2x.png in Resources */,
-				E6D0A1121C4C6B2200F43DB5 /* AppleWatch_ShortLook_38mm_86pt@2x.png in Resources */,
-				E6D0A1001C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt.png in Resources */,
-				E6D0A0FE1C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt.png in Resources */,
-				E6D0A1061C4C6B2200F43DB5 /* iPhone_App_iOS7-9_60pt@2x.png in Resources */,
-				E6D0A0FF1C4C6B2200F43DB5 /* iPad_Settings_iOS5-9_29pt@2x.png in Resources */,
-				E6D0A10F1C4C6B2200F43DB5 /* AppleWatch_HomeScreen_40pt@2x.png in Resources */,
-				E6D0A1081C4C6B2200F43DB5 /* iPhone_Settings_iOS5-9_29pt@2x.png in Resources */,
-				E6D0A1111C4C6B2200F43DB5 /* AppleWatch_NotificationCenter_42mm_27.5pt@2x.png in Resources */,
-				E6D0A0F91C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt.png in Resources */,
-				E6D0A1011C4C6B2200F43DB5 /* iPad_Spotlight_iOS5-6_50pt@2x.png in Resources */,
-				E6D0A1021C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt.png in Resources */,
-				E6D0A1031C4C6B2200F43DB5 /* iPad_Spotlight_iOS7-9_40pt@2x.png in Resources */,
-				E6D0A0FD1C4C6B2200F43DB5 /* iPad_Pro_App_iOS9_83.5pt@2x.png in Resources */,
-				E6D0A1051C4C6B2200F43DB5 /* iPhone_App_iOS5-6_57pt@2x.png in Resources */,
-				E6D0A0FA1C4C6B2200F43DB5 /* iPad_App_iOS5-6_72pt@2x.png in Resources */,
-				E6D0A10A1C4C6B2200F43DB5 /* iPhone_Spotlight_iOS5-6_29pt.png in Resources */,
+				E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */,
+				E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */,
+				E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */,
+				E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */,
+				E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */,
+				E6DCF9BC1C9B8D4800C3668E /* Icon-86@2x.png in Resources */,
+				E6DCF9C11C9B8D5B00C3668E /* Icon-76.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -654,7 +606,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liguo-Jiao.GymWorkoutManager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -669,7 +621,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Liguo-Jiao.GymWorkoutManager";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
