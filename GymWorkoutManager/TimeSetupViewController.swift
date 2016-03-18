@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ChameleonFramework
 
 protocol TimeSetupViewControllerDelegate: NSObjectProtocol {
     func timeSetupFinish(timeSetupViewController: TimeSetupViewController, result: [String])
