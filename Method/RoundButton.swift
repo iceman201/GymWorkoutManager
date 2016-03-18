@@ -12,8 +12,7 @@ class RoundButton: UIButton {
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.blueColor().CGColor
-        self.setTitleColor(UIColor.flatBlueColor(), forState: UIControlState.Normal)
+        self.layer.borderColor = self.tintColor.CGColor
         self.layer.cornerRadius = 0.5 * self.bounds.size.width
     }
 }

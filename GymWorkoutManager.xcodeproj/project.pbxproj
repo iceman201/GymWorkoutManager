@@ -121,6 +121,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		051F4C3B1C9C008A004EA632 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */,
+				E6AD9D8C1C4C5F28004F6437 /* SecondViewController.swift */,
+				05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */,
+				E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		9362B02994748E37E71F65CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,13 +185,10 @@
 		E6AD9D871C4C5F28004F6437 /* GymWorkoutManager */ = {
 			isa = PBXGroup;
 			children = (
+				051F4C3B1C9C008A004EA632 /* ViewControllers */,
 				E63130F01C9BA51200C8E5AC /* Method */,
-				E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */,
-				E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */,
-				E6AD9D8C1C4C5F28004F6437 /* SecondViewController.swift */,
-				05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */,
-				E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */,
 				E6AD9D8E1C4C5F28004F6437 /* Main.storyboard */,
+				E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */,
 				E6AD9D911C4C5F28004F6437 /* Assets.xcassets */,
 				E6AD9D931C4C5F28004F6437 /* LaunchScreen.storyboard */,
 				E6AD9D961C4C5F28004F6437 /* Info.plist */,
