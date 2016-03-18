@@ -4,40 +4,127 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ChameleonFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>Charts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>EasyAnimation.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>GradientCircularProgress.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>Pods-GymWorkoutManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>Pods-GymWorkoutManager.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>Pods-GymWorkoutManagerTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Pods-GymWorkoutManagerTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
 		</dict>
 		<key>Pods-GymWorkoutManagerUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-GymWorkoutManagerUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>Pods.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
 		</dict>
 		<key>Realm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>Realm.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
 		</dict>
 		<key>RealmSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>RealmSwift.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>11B4E9D5D56CC9ABD73522562B1F42E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>35D0AB6FBE6A11C3D59786E9F43BBACE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3A8610C88F4C8CAA41643562438BEBFE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>430C9B60656902E333852924D979E27B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4FCDAF2684F057BAC25AA7ECCA121828</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5172ACAB7FEA22813859DC97CA0AA16F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -48,6 +135,11 @@
 			<true/>
 		</dict>
 		<key>67F263628EB080A3BB17D5BB0A13DEDD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>74EAE3CE869D8DF66EC8E3547E433F2B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,6 +155,26 @@
 			<true/>
 		</dict>
 		<key>96ACFDDD73AAB5C06C6EACDAF9776BA0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A376E868ED408EE8EEBD1DDBCE639EF5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C6828C2508515BC0428D6BDAA1292DC9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C910A9458940EDAC600B3112D96919F0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F764759A90812814CEDC687662D995E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
