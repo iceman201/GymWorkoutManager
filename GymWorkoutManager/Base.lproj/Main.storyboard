@@ -144,7 +144,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <exit id="KU8-nt-hM8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="709" y="-354"/>
+            <point key="canvasLocation" x="704" y="-354"/>
         </scene>
         <!--Time Setup View Controller-->
         <scene sceneID="18K-hz-O2s">
@@ -158,8 +158,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ccn-OK-vKa">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ccn-OK-vKa">
                                 <rect key="frame" x="186" y="238" width="42" height="30"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="7da-oM-pe0"/>
                                 </constraints>
@@ -188,11 +189,11 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-aC-azw">
-                                <rect key="frame" x="158" y="283" width="99" height="53"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-aC-azw" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="158" y="305" width="99" height="99"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="53" id="rLh-Cy-XSc"/>
+                                    <constraint firstAttribute="height" constant="99" id="rLh-Cy-XSc"/>
                                     <constraint firstAttribute="width" constant="99" id="uEg-4L-nxH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
@@ -213,7 +214,7 @@
                             <constraint firstItem="FJg-Mz-oEc" firstAttribute="centerX" secondItem="M3D-jv-efz" secondAttribute="centerX" id="lq7-Ej-KVt"/>
                             <constraint firstItem="Ccn-OK-vKa" firstAttribute="top" secondItem="M3D-jv-efz" secondAttribute="top" constant="238" id="nm6-Zb-VHr"/>
                             <constraint firstItem="Ccn-OK-vKa" firstAttribute="top" secondItem="QCO-y9-CnH" secondAttribute="bottom" constant="8" symbolic="YES" id="rmB-9N-Vlf"/>
-                            <constraint firstItem="Rwf-aC-azw" firstAttribute="top" secondItem="Ccn-OK-vKa" secondAttribute="bottom" constant="15" id="vak-q5-mnC"/>
+                            <constraint firstItem="Rwf-aC-azw" firstAttribute="top" secondItem="Ccn-OK-vKa" secondAttribute="bottom" constant="37" id="vak-q5-mnC"/>
                         </constraints>
                     </view>
                     <connections>
@@ -237,11 +238,29 @@
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvD-4Y-eXT" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5tf-zt-nAh"/>
+                                    <constraint firstAttribute="width" constant="60" id="b4q-4F-Es6"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="Jgm-d0-MKu" kind="unwind" unwindAction="unwindToMainView:" id="Qc1-h8-yAr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="hvD-4Y-eXT" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="PeQ-nO-Ave"/>
+                            <constraint firstItem="hvD-4Y-eXT" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="t1d-WK-OvF"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Record" image="second" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
+                <exit id="Jgm-d0-MKu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="709" y="465"/>
         </scene>
@@ -264,6 +283,9 @@
                                     <constraint firstAttribute="width" secondItem="9QW-74-bkf" secondAttribute="height" multiplier="1:1" id="tbC-Y6-w0A"/>
                                 </constraints>
                                 <state key="normal" title="Self Challenge"/>
+                                <connections>
+                                    <segue destination="0l4-Pi-aWU" kind="show" id="jtn-8x-30h"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-hZ-bWH">
                                 <rect key="frame" x="207" y="484" width="125" height="125"/>
@@ -273,6 +295,9 @@
                                     <constraint firstAttribute="width" secondItem="xFT-hZ-bWH" secondAttribute="height" multiplier="1:1" id="mPt-1b-WuB"/>
                                 </constraints>
                                 <state key="normal" title="Analysis"/>
+                                <connections>
+                                    <segue destination="gQr-VY-FeM" kind="presentation" modalPresentationStyle="formSheet" modalTransitionStyle="coverVertical" id="bLa-qC-XNk"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VUo-Vf-ltH">
                                 <rect key="frame" x="82" y="484" width="125" height="125"/>
@@ -282,6 +307,9 @@
                                     <constraint firstAttribute="width" secondItem="VUo-Vf-ltH" secondAttribute="height" multiplier="1:1" id="kRM-AH-Dav"/>
                                 </constraints>
                                 <state key="normal" title="  Personal Information"/>
+                                <connections>
+                                    <segue destination="VHl-aa-cQO" kind="presentation" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="kWY-qB-IUV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAC-21-580">
                                 <rect key="frame" x="207" y="123" width="125" height="125"/>
@@ -333,6 +361,114 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N47-KB-GAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-125" y="-59"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="k0a-rt-spC">
+            <objects>
+                <viewController id="VHl-aa-cQO" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DFo-ET-wsb"/>
+                        <viewControllerLayoutGuide type="bottom" id="KUU-ff-TgG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LYV-3F-pks">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Wc-gW-KSU" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="CYs-Fe-0N7"/>
+                                    <constraint firstAttribute="height" constant="60" id="iU1-uE-hYn"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="DVf-AP-5tA" kind="unwind" unwindAction="unwindToMainView:" id="ajr-rn-xQf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="1Wc-gW-KSU" firstAttribute="leading" secondItem="LYV-3F-pks" secondAttribute="leadingMargin" id="i1H-K4-cbb"/>
+                            <constraint firstItem="1Wc-gW-KSU" firstAttribute="top" secondItem="LYV-3F-pks" secondAttribute="top" constant="20" symbolic="YES" id="lbM-W2-aVn"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lzx-Rw-Ml5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="DVf-AP-5tA" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-760" y="869"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="TSM-5e-YtP">
+            <objects>
+                <viewController id="gQr-VY-FeM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VLJ-LB-UDg"/>
+                        <viewControllerLayoutGuide type="bottom" id="xfk-wH-Hei"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8De-rC-Zp9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlE-fF-o7e" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="1qy-Kf-vr3"/>
+                                    <constraint firstAttribute="height" constant="60" id="Thv-KE-As7"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="YPE-rb-yW3" kind="unwind" unwindAction="unwindToMainView:" id="Unv-G4-bnS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="BlE-fF-o7e" firstAttribute="leading" secondItem="8De-rC-Zp9" secondAttribute="leadingMargin" id="WD4-Z7-8th"/>
+                            <constraint firstItem="BlE-fF-o7e" firstAttribute="top" secondItem="8De-rC-Zp9" secondAttribute="top" constant="20" symbolic="YES" id="nUT-Xn-8tI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t27-72-SqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="YPE-rb-yW3" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-163" y="1020"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QIc-za-0cE">
+            <objects>
+                <viewController id="0l4-Pi-aWU" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="If1-1j-pFv"/>
+                        <viewControllerLayoutGuide type="bottom" id="xOS-85-TGx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="T4q-8S-J5Q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2B-xP-5Nl" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="H9m-cx-Wst"/>
+                                    <constraint firstAttribute="height" constant="60" id="YWv-VU-9bm"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="JQW-ZI-8Ru" kind="unwind" unwindAction="unwindToMainView:" id="heD-O2-qIj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="J2B-xP-5Nl" firstAttribute="top" secondItem="If1-1j-pFv" secondAttribute="bottom" id="3Kr-43-sGq"/>
+                            <constraint firstItem="J2B-xP-5Nl" firstAttribute="leading" secondItem="T4q-8S-J5Q" secondAttribute="leadingMargin" id="Mkp-hY-ox9"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rfc-e8-an1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="JQW-ZI-8Ru" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="413" y="966"/>
         </scene>
     </scenes>
     <resources>
