@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class SecondViewController: UIViewController {
 

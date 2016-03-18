@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import ChameleonFramework
 
 class MainInterfaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.view.backgroundColor = UIColor(gradientStyle:UIGradientStyle, withFrame:CGRect, andColors:[UIColor])
     }
     
     override func didReceiveMemoryWarning() {
