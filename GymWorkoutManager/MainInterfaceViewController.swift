@@ -12,13 +12,23 @@ import ChameleonFramework
 class MainInterfaceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.view.backgroundColor = UIColor(gradientStyle:UIGradientStyle, withFrame:CGRect, andColors:[UIColor])
+        let colorset:[UIColor] = [
+            UIColor.flatYellowColor(),
+            UIColor.flatYellowColorDark(),
+            UIColor.flatLimeColor(),
+            UIColor.flatLimeColorDark(),
+            UIColor.flatGreenColor(),
+            UIColor.flatGreenColorDark()
+        ]
+        self.view.backgroundColor = GradientColor(.TopToBottom, frame: self.view.frame, colors: colorset)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func unwindToMainView(segue: UIStoryboardSegue){
+        
+    }
 }

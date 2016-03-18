@@ -10,6 +10,7 @@
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
 		E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */; };
+		E63130F21C9BA57100C8E5AC /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63130F11C9BA57100C8E5AC /* RoundButton.swift */; };
 		E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */; };
 		E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */; };
 		E6AD9D8D1C4C5F28004F6437 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8C1C4C5F28004F6437 /* SecondViewController.swift */; };
@@ -70,6 +71,7 @@
 		5EF9819A6B2B4D25EAAD9811 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
+		E63130F11C9BA57100C8E5AC /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = Method/RoundButton.swift; sourceTree = "<group>"; };
 		E6AD9D851C4C5F28004F6437 /* GymWorkoutManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymWorkoutManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E63130F01C9BA51200C8E5AC /* Method */ = {
+			isa = PBXGroup;
+			children = (
+				E63130F11C9BA57100C8E5AC /* RoundButton.swift */,
+			);
+			name = Method;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		E6AD9D7C1C4C5F28004F6437 = {
 			isa = PBXGroup;
 			children = (
@@ -183,6 +194,7 @@
 		E6AD9D871C4C5F28004F6437 /* GymWorkoutManager */ = {
 			isa = PBXGroup;
 			children = (
+				E63130F01C9BA51200C8E5AC /* Method */,
 				E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */,
 				E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */,
 				E6AD9D8C1C4C5F28004F6437 /* SecondViewController.swift */,
@@ -488,6 +500,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E63130F21C9BA57100C8E5AC /* RoundButton.swift in Sources */,
 				E6AD9D8D1C4C5F28004F6437 /* SecondViewController.swift in Sources */,
 				E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */,
 				E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */,
