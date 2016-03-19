@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -520,41 +519,12 @@
                                     <action selector="selectGender:" destination="VHl-aa-cQO" eventType="valueChanged" id="vbz-6G-k6q"/>
                                 </connections>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uC7-op-YSI">
-                                <rect key="frame" x="87" y="488" width="240" height="240"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="0qN-vd-V0H"/>
-                                    <constraint firstAttribute="height" constant="240" id="1Sr-d5-2BM"/>
-                                </constraints>
-                                <string key="text">Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
-
-
-Your BMR is the amount of energy your body needs to function. We use about 60% of the calories we consume each day for basic bodily functions such as breathing.</string>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCN-ZS-Kbh">
-                                <rect key="frame" x="119" y="361" width="176" height="39"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzu-Vi-Ppe">
-                                <rect key="frame" x="119" y="408" width="176" height="39"/>
+                                <rect key="frame" x="119" y="390" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cTs-Cc-shJ">
-                                <rect key="frame" x="69" y="408" width="42" height="39"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="5U8-SW-QYM"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="39" id="8cm-VQ-hwT"/>
-                                    <constraint firstAttribute="width" constant="42" id="yhy-gs-tIg"/>
+                                    <constraint firstAttribute="width" constant="176" id="JOD-YB-1Ib"/>
+                                    <constraint firstAttribute="height" constant="39" id="LCY-ys-oUN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -589,52 +559,69 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BMI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LU-Od-ubG">
-                                <rect key="frame" x="69" y="361" width="42" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8f-Qz-Pza" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="69" y="389" width="42" height="42"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="FO1-mk-YBY"/>
-                                    <constraint firstAttribute="width" constant="42" id="Nto-3p-CUj"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="39" id="oHe-PK-pQ1"/>
+                                    <constraint firstAttribute="height" constant="42" id="bnF-1s-9RA"/>
+                                    <constraint firstAttribute="width" constant="42" id="tRe-HL-Fi5"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="BMR"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5TW-yM-SJw" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="303" y="389" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="26l-jp-nrK"/>
+                                    <constraint firstAttribute="height" constant="42" id="y6S-z7-PBf"/>
+                                </constraints>
+                                <state key="normal" title="BMI"/>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uC7-op-YSI">
+                                <rect key="frame" x="87" y="497" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="0qN-vd-V0H"/>
+                                    <constraint firstAttribute="height" constant="240" id="1Sr-d5-2BM"/>
+                                </constraints>
+                                <string key="text">Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
+
+
+Your BMR is the amount of energy your body needs to function. We use about 60% of the calories we consume each day for basic bodily functions such as breathing.</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="QlY-DT-hF5" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="3pG-a1-kXe"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="leading" secondItem="9ei-JE-y6Q" secondAttribute="leading" id="3uq-Xy-Gne"/>
                             <constraint firstItem="WbE-si-lbs" firstAttribute="leading" secondItem="cty-ZZ-7ag" secondAttribute="leading" id="4tV-d2-PH4"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="bottom" secondItem="R8f-Qz-Pza" secondAttribute="bottom" constant="-2" id="58D-tq-w8t"/>
+                            <constraint firstItem="5TW-yM-SJw" firstAttribute="leading" secondItem="vzu-Vi-Ppe" secondAttribute="trailing" constant="8" symbolic="YES" id="5PZ-bI-Rbo"/>
+                            <constraint firstItem="5TW-yM-SJw" firstAttribute="bottom" secondItem="R8f-Qz-Pza" secondAttribute="bottom" id="9KM-mq-Epx"/>
                             <constraint firstItem="WbE-si-lbs" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="9Zc-H5-4KJ"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="AMx-H9-qDI"/>
-                            <constraint firstItem="7LU-Od-ubG" firstAttribute="leading" secondItem="cTs-Cc-shJ" secondAttribute="leading" id="B9E-pT-fdZ"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="leading" secondItem="cty-ZZ-7ag" secondAttribute="leading" id="BX0-Zx-6jg"/>
-                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="8" symbolic="YES" id="BZY-6L-rjO"/>
-                            <constraint firstItem="eCN-ZS-Kbh" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="64" id="Cug-bg-Gjh"/>
+                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="BZY-6L-rjO"/>
                             <constraint firstItem="cty-ZZ-7ag" firstAttribute="top" secondItem="9ei-JE-y6Q" secondAttribute="bottom" constant="8" id="H96-xf-Abt"/>
-                            <constraint firstItem="cTs-Cc-shJ" firstAttribute="baseline" secondItem="vzu-Vi-Ppe" secondAttribute="baseline" id="JE8-Np-g9O"/>
                             <constraint firstItem="1Zo-ys-11E" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="MIp-Fa-4Vp"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="MOM-Yt-tIR"/>
+                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="NR3-t3-eet"/>
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="trailing" secondItem="WbE-si-lbs" secondAttribute="trailing" id="NeP-K3-9G0"/>
-                            <constraint firstItem="eCN-ZS-Kbh" firstAttribute="trailing" secondItem="vzu-Vi-Ppe" secondAttribute="trailing" id="PNA-r8-wHc"/>
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="8" symbolic="YES" id="R7I-6f-c3Z"/>
-                            <constraint firstItem="cTs-Cc-shJ" firstAttribute="top" secondItem="7LU-Od-ubG" secondAttribute="bottom" constant="8" symbolic="YES" id="RxR-xs-FVL"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="leading" secondItem="R8f-Qz-Pza" secondAttribute="trailing" constant="8" symbolic="YES" id="Sxh-j6-75R"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="TMA-dc-lFL"/>
                             <constraint firstItem="WbE-si-lbs" firstAttribute="top" secondItem="cty-ZZ-7ag" secondAttribute="bottom" constant="8" symbolic="YES" id="UUm-U5-yO5"/>
-                            <constraint firstItem="eCN-ZS-Kbh" firstAttribute="leading" secondItem="vzu-Vi-Ppe" secondAttribute="leading" id="aJJ-Ig-N3h"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="top" secondItem="1Wc-gW-KSU" secondAttribute="top" constant="61" id="agx-Ii-FDg"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="b3a-sV-MxA"/>
-                            <constraint firstItem="eCN-ZS-Kbh" firstAttribute="trailing" secondItem="WbE-si-lbs" secondAttribute="trailing" id="bmh-0c-xZa"/>
-                            <constraint firstItem="eCN-ZS-Kbh" firstAttribute="leading" secondItem="WbE-si-lbs" secondAttribute="leading" id="cHn-1M-roE"/>
                             <constraint firstItem="1Zo-ys-11E" firstAttribute="top" secondItem="fct-rl-QZT" secondAttribute="bottom" constant="8" symbolic="YES" id="fVv-9b-Eeh"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="top" secondItem="QlY-DT-hF5" secondAttribute="bottom" constant="46" id="hva-jp-NCS"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="leading" secondItem="LYV-3F-pks" secondAttribute="leadingMargin" id="i1H-K4-cbb"/>
-                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="firstBaseline" secondItem="cTs-Cc-shJ" secondAttribute="firstBaseline" id="iDF-IV-NbR"/>
                             <constraint firstItem="cty-ZZ-7ag" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="iDL-pT-p8V"/>
-                            <constraint firstItem="eCN-ZS-Kbh" firstAttribute="leading" secondItem="7LU-Od-ubG" secondAttribute="trailing" constant="8" symbolic="YES" id="jUZ-Oo-NH7"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="top" secondItem="LYV-3F-pks" secondAttribute="top" constant="20" symbolic="YES" id="lbM-W2-aVn"/>
+                            <constraint firstItem="5TW-yM-SJw" firstAttribute="bottom" secondItem="R8f-Qz-Pza" secondAttribute="bottom" id="ocV-zO-od1"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="top" secondItem="1Zo-ys-11E" secondAttribute="bottom" constant="8" symbolic="YES" id="q8n-0s-Vqa"/>
-                            <constraint firstItem="7LU-Od-ubG" firstAttribute="baseline" secondItem="eCN-ZS-Kbh" secondAttribute="baseline" id="qSB-Ky-dDt"/>
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="leading" secondItem="WbE-si-lbs" secondAttribute="leading" id="sWG-Cd-pm4"/>
-                            <constraint firstItem="eCN-ZS-Kbh" firstAttribute="firstBaseline" secondItem="7LU-Od-ubG" secondAttribute="firstBaseline" id="vzM-NT-rsD"/>
                         </constraints>
                     </view>
                     <connections>
