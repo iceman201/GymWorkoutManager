@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymWorkoutManager/PersonalInformation.swift"
-            timestampString = "480000157.942125"
+            timestampString = "480049178.319677"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
             landmarkName = "PersonalInformation"
             landmarkType = "3">
          </BreakpointContent>
