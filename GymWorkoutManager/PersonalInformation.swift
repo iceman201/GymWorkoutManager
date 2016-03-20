@@ -37,6 +37,12 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func BMRCalculation(sender: AnyObject) {
+    }
+    
+    @IBAction func BMICalculation(sender: AnyObject) {
+    }
+    
     private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{
         //Harris Benedict Method
         /*BMR Men: BMR = 66.5 + ( 13.75 x weight in kg ) + ( 5.003 x height in cm ) – ( 6.755 x age in years )
