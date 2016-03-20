@@ -160,7 +160,7 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ccn-OK-vKa">
                                 <rect key="frame" x="186" y="238" width="42" height="30"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="42" id="7da-oM-pe0"/>
                                 </constraints>
@@ -227,10 +227,10 @@
             </objects>
             <point key="canvasLocation" x="1382" y="-354"/>
         </scene>
-        <!--Record-->
+        <!--Record View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="SecondViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8rJ-Kc-sve" customClass="RecordViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -250,6 +250,13 @@
                                     <segue destination="Jgm-d0-MKu" kind="unwind" unwindAction="unwindToMainView:" id="Qc1-h8-yAr"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2eg-xj-MBP" customClass="JVFloatLabeledTextView">
+                                <rect key="frame" x="87" y="86" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -257,12 +264,11 @@
                             <constraint firstItem="hvD-4Y-eXT" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="t1d-WK-OvF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Record" image="second" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <exit id="Jgm-d0-MKu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="709" y="465"/>
+            <point key="canvasLocation" x="937" y="465"/>
         </scene>
         <!--Main Interface View Controller-->
         <scene sceneID="Foo-Ss-rOZ">
@@ -362,10 +368,10 @@
             </objects>
             <point key="canvasLocation" x="-125" y="-59"/>
         </scene>
-        <!--View Controller-->
+        <!--Personal Information-->
         <scene sceneID="k0a-rt-spC">
             <objects>
-                <viewController id="VHl-aa-cQO" sceneMemberID="viewController">
+                <viewController id="VHl-aa-cQO" customClass="PersonalInformation" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DFo-ET-wsb"/>
                         <viewControllerLayoutGuide type="bottom" id="KUU-ff-TgG"/>
@@ -385,13 +391,253 @@
                                     <segue destination="DVf-AP-5tA" kind="unwind" unwindAction="unwindToMainView:" id="ajr-rn-xQf"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="fct-rl-QZT" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="119" y="81" width="176" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="176" id="4oU-mx-j34"/>
+                                    <constraint firstAttribute="height" constant="39" id="adG-Wf-37L"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="hyE-wT-eae"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9ei-JE-y6Q" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="119" y="164" width="176" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="3VH-WX-zqS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height (CM)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cty-ZZ-7ag" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="119" y="211" width="176" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="9Fe-YU-RGA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WbE-si-lbs" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="119" y="258" width="176" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="Zf8-Hb-KYY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Zo-ys-11E">
+                                <rect key="frame" x="149" y="128" width="117" height="29"/>
+                                <segments>
+                                    <segment title="Male"/>
+                                    <segment title="Female"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectGender:" destination="VHl-aa-cQO" eventType="valueChanged" id="vbz-6G-k6q"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzu-Vi-Ppe">
+                                <rect key="frame" x="119" y="390" width="176" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="176" id="JOD-YB-1Ib"/>
+                                    <constraint firstAttribute="height" constant="39" id="LCY-ys-oUN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Body Fat %" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QlY-DT-hF5" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="119" y="305" width="176" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="3kN-MW-OYd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5TW-yM-SJw" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="303" y="389" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="26l-jp-nrK"/>
+                                    <constraint firstAttribute="height" constant="42" id="y6S-z7-PBf"/>
+                                </constraints>
+                                <state key="normal" title="BMI"/>
+                                <connections>
+                                    <action selector="BMICalculation:" destination="VHl-aa-cQO" eventType="touchUpInside" id="tUv-gX-Q7C"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uC7-op-YSI">
+                                <rect key="frame" x="87" y="497" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="0qN-vd-V0H"/>
+                                    <constraint firstAttribute="height" constant="240" id="1Sr-d5-2BM"/>
+                                </constraints>
+                                <string key="text">Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
+
+
+Your BMR is the amount of energy your body needs to function. We use about 60% of the calories we consume each day for basic bodily functions such as breathing.</string>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8f-Qz-Pza" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="69" y="389" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="bnF-1s-9RA"/>
+                                    <constraint firstAttribute="width" constant="42" id="tRe-HL-Fi5"/>
+                                </constraints>
+                                <state key="normal" title="BMR"/>
+                                <connections>
+                                    <action selector="BMRCalculation:" destination="VHl-aa-cQO" eventType="touchUpInside" id="qDQ-Z4-iT4"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="QlY-DT-hF5" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="3pG-a1-kXe"/>
+                            <constraint firstItem="fct-rl-QZT" firstAttribute="leading" secondItem="9ei-JE-y6Q" secondAttribute="leading" id="3uq-Xy-Gne"/>
+                            <constraint firstItem="WbE-si-lbs" firstAttribute="leading" secondItem="cty-ZZ-7ag" secondAttribute="leading" id="4tV-d2-PH4"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="bottom" secondItem="R8f-Qz-Pza" secondAttribute="bottom" constant="-2" id="58D-tq-w8t"/>
+                            <constraint firstItem="5TW-yM-SJw" firstAttribute="leading" secondItem="vzu-Vi-Ppe" secondAttribute="trailing" constant="8" symbolic="YES" id="5PZ-bI-Rbo"/>
+                            <constraint firstItem="5TW-yM-SJw" firstAttribute="bottom" secondItem="R8f-Qz-Pza" secondAttribute="bottom" id="9KM-mq-Epx"/>
+                            <constraint firstItem="WbE-si-lbs" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="9Zc-H5-4KJ"/>
+                            <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="AMx-H9-qDI"/>
+                            <constraint firstItem="9ei-JE-y6Q" firstAttribute="leading" secondItem="cty-ZZ-7ag" secondAttribute="leading" id="BX0-Zx-6jg"/>
+                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="BZY-6L-rjO"/>
+                            <constraint firstItem="cty-ZZ-7ag" firstAttribute="top" secondItem="9ei-JE-y6Q" secondAttribute="bottom" constant="8" id="H96-xf-Abt"/>
+                            <constraint firstItem="1Zo-ys-11E" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="MIp-Fa-4Vp"/>
+                            <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="MOM-Yt-tIR"/>
+                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="NR3-t3-eet"/>
+                            <constraint firstItem="QlY-DT-hF5" firstAttribute="trailing" secondItem="WbE-si-lbs" secondAttribute="trailing" id="NeP-K3-9G0"/>
+                            <constraint firstItem="QlY-DT-hF5" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="8" symbolic="YES" id="R7I-6f-c3Z"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="leading" secondItem="R8f-Qz-Pza" secondAttribute="trailing" constant="8" symbolic="YES" id="Sxh-j6-75R"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="TMA-dc-lFL"/>
+                            <constraint firstItem="WbE-si-lbs" firstAttribute="top" secondItem="cty-ZZ-7ag" secondAttribute="bottom" constant="8" symbolic="YES" id="UUm-U5-yO5"/>
+                            <constraint firstItem="fct-rl-QZT" firstAttribute="top" secondItem="1Wc-gW-KSU" secondAttribute="top" constant="61" id="agx-Ii-FDg"/>
+                            <constraint firstItem="9ei-JE-y6Q" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="b3a-sV-MxA"/>
+                            <constraint firstItem="1Zo-ys-11E" firstAttribute="top" secondItem="fct-rl-QZT" secondAttribute="bottom" constant="8" symbolic="YES" id="fVv-9b-Eeh"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="top" secondItem="QlY-DT-hF5" secondAttribute="bottom" constant="46" id="hva-jp-NCS"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="leading" secondItem="LYV-3F-pks" secondAttribute="leadingMargin" id="i1H-K4-cbb"/>
+                            <constraint firstItem="cty-ZZ-7ag" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="iDL-pT-p8V"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="top" secondItem="LYV-3F-pks" secondAttribute="top" constant="20" symbolic="YES" id="lbM-W2-aVn"/>
+                            <constraint firstItem="5TW-yM-SJw" firstAttribute="bottom" secondItem="R8f-Qz-Pza" secondAttribute="bottom" id="ocV-zO-od1"/>
+                            <constraint firstItem="9ei-JE-y6Q" firstAttribute="top" secondItem="1Zo-ys-11E" secondAttribute="bottom" constant="8" symbolic="YES" id="q8n-0s-Vqa"/>
+                            <constraint firstItem="QlY-DT-hF5" firstAttribute="leading" secondItem="WbE-si-lbs" secondAttribute="leading" id="sWG-Cd-pm4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="age" destination="9ei-JE-y6Q" id="IfX-uW-YPq"/>
+                        <outlet property="bodyFat" destination="QlY-DT-hF5" id="eqh-ic-eqT"/>
+                        <outlet property="gender" destination="1Zo-ys-11E" id="LEf-rP-cRd"/>
+                        <outlet property="height" destination="cty-ZZ-7ag" id="oSI-rj-Smt"/>
+                        <outlet property="name" destination="fct-rl-QZT" id="HII-B1-szL"/>
+                        <outlet property="weight" destination="WbE-si-lbs" id="BtJ-T0-vif"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lzx-Rw-Ml5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DVf-AP-5tA" userLabel="Exit" sceneMemberID="exit"/>
@@ -432,7 +678,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t27-72-SqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YPE-rb-yW3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-163" y="1020"/>
+            <point key="canvasLocation" x="-169" y="956"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QIc-za-0cE">
@@ -473,6 +719,5 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

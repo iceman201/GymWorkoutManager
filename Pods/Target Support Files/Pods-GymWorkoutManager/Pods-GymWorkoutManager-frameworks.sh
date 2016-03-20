@@ -88,6 +88,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-GymWorkoutManager/Charts.framework"
   install_framework "Pods-GymWorkoutManager/EasyAnimation.framework"
   install_framework "Pods-GymWorkoutManager/GradientCircularProgress.framework"
+  install_framework "Pods-GymWorkoutManager/JVFloatLabeledTextField.framework"
   install_framework "Pods-GymWorkoutManager/Realm.framework"
   install_framework "Pods-GymWorkoutManager/RealmSwift.framework"
 fi
@@ -96,6 +97,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-GymWorkoutManager/Charts.framework"
   install_framework "Pods-GymWorkoutManager/EasyAnimation.framework"
   install_framework "Pods-GymWorkoutManager/GradientCircularProgress.framework"
+  install_framework "Pods-GymWorkoutManager/JVFloatLabeledTextField.framework"
   install_framework "Pods-GymWorkoutManager/Realm.framework"
   install_framework "Pods-GymWorkoutManager/RealmSwift.framework"
 fi

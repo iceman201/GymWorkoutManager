@@ -1,1 +1,1 @@
-../../../../Realm/include/realm/RLMSchema_Private.hpp
+../../../../Realm/include/Realm/RLMSchema_Private.hpp

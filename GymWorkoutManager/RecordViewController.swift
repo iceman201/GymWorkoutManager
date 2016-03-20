@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  RecordViewController.swift
 //  GymWorkoutManager
 //
 //  Created by Liguo Jiao on 18/01/16.
@@ -9,7 +9,8 @@
 import UIKit
 import ChameleonFramework
 
-class SecondViewController: UIViewController {
+
+class RecordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
