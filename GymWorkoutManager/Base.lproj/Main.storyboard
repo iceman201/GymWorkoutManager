@@ -678,7 +678,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t27-72-SqL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="YPE-rb-yW3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-169" y="956"/>
+            <point key="canvasLocation" x="-174" y="896"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QIc-za-0cE">
