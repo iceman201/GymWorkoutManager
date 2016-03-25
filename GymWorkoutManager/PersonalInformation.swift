@@ -41,6 +41,11 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func BMICalculation(sender: AnyObject) {
+        let result = BMICalculator(Float(weight.text ?? "") ?? 0.0, heights: Float(height.text ?? "") ?? 0.0)
+        let alert = UIAlertController(title: "BMI Index", message: "\(result)%", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{
@@ -57,7 +62,7 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
         }
         return result
     }
-    private func BMRCalculation2(age:Int, weight:Float, height:Float, gender:String, bodyFat:String) {
+    private func BMRCalculation2(age:Int, weights:Float, bodyFat:Float) -> Float {
         //Katch & McArdle Method
         /*
         BMR (Men + Women) = 370 + (21.6 * Lean Mass in kg)
@@ -65,6 +70,15 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
         Lean Mass = weight in kg – (weight in kg * body fat %)
         1 kg = 2.2 pounds, so divide your weight by 2.2 to get your weight in kg
         */
+        var result : Float = 0.0
+        var leanMass : Float = 0.0
+        leanMass = weights - (weights * bodyFat)
+        result = 370 + (21.6 * leanMass)
+        return result
     }
-
+    private func BMICalculator(weights:Float, heights:Float) -> Float {
+        // Metric Units: BMI = Weight (kg) / (Height (m) x Height (m))
+        let result = 10000*(weights / (heights * heights))
+        return result
+    }
 }
