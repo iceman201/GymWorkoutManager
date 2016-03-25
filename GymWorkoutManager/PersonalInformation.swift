@@ -41,6 +41,11 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func BMICalculation(sender: AnyObject) {
+        let result = BMICalculator(Float(weight.text ?? "") ?? 0.0, heights: Float(height.text ?? "") ?? 0.0)
+        let alert = UIAlertController(title: "BMI Index", message: "\(result)%", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+        
     }
     
     private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{
@@ -71,5 +76,9 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
         result = 370 + (21.6 * leanMass)
         return result
     }
-
+    private func BMICalculator(weights:Float, heights:Float) -> Float {
+        // Metric Units: BMI = Weight (kg) / (Height (m) x Height (m))
+        let result = 10000*(weights / (heights * heights))
+        return result
+    }
 }
