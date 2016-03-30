@@ -19,6 +19,8 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     @IBOutlet var weight: JVFloatLabeledTextField!
     @IBOutlet var height: JVFloatLabeledTextField!
     
+    @IBOutlet weak var indexDisplayLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         name.delegate = self
@@ -42,10 +44,7 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     
     @IBAction func BMICalculation(sender: AnyObject) {
         let result = BMICalculator(Float(weight.text ?? "") ?? 0.0, heights: Float(height.text ?? "") ?? 0.0)
-        let alert = UIAlertController(title: "BMI Index", message: "\(result)%", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Got it", style: UIAlertActionStyle.Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
-        
+        indexDisplayLabel.text = String(result)
     }
     
     private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{

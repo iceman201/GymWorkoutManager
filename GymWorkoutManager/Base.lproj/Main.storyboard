@@ -635,6 +635,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                         <outlet property="bodyFat" destination="QlY-DT-hF5" id="eqh-ic-eqT"/>
                         <outlet property="gender" destination="1Zo-ys-11E" id="LEf-rP-cRd"/>
                         <outlet property="height" destination="cty-ZZ-7ag" id="oSI-rj-Smt"/>
+                        <outlet property="indexDisplayLabel" destination="vzu-Vi-Ppe" id="INW-hj-TKx"/>
                         <outlet property="name" destination="fct-rl-QZT" id="HII-B1-szL"/>
                         <outlet property="weight" destination="WbE-si-lbs" id="BtJ-T0-vif"/>
                     </connections>
