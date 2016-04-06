@@ -8,6 +8,9 @@
 
 import UIKit
 import ChameleonFramework
+import AudioToolbox
+import AVFoundation
+
 
 class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     
@@ -26,12 +29,12 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     var timerRuning : NSTimer = NSTimer()
     var timerCountdown : NSTimer = NSTimer()
     var round = "0"
-
+    var audioPlayer = AVAudioPlayer()
     
     @IBAction func counter(sender: AnyObject) {
         if startButton.currentTitle != "Stop" {
             startButton.setTitle("Stop", forState: .Normal)
-            timerCountdown = NSTimer.scheduledTimerWithTimeInterval(millisecond, target: self, selector: Selector("timeCountdown"), userInfo: nil, repeats: true)
+            timerCountdown = NSTimer.scheduledTimerWithTimeInterval(millisecond, target: self, selector: #selector(FirstViewController.timeCountdown), userInfo: nil, repeats: true)
         } else {
             startButton.setTitle("GO!", forState: .Normal)
             timerCountdown.invalidate()
@@ -40,12 +43,22 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     func timeCountdown() {
         if round == "0" {
+            let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Done_total_set", ofType: "mp3")!)
             repeatTimer.text = "00:00:00"
             startButton.setTitle("GO!", forState: UIControlState.Normal)
             timerCountdown.invalidate()
             timerRuning.invalidate()
+            audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
             
         } else if timeString(time) == "00:00.00" {
+            if round != "0" {
+                let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Done", ofType: "mp3")!)
+                audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+            }
             time = timeDate(receivedTime)
             round = String(NSNumberFormatter().numberFromString(round)!.intValue - 1)
             repeatTimer.text = timeString(time)

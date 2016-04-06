@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* PersonalInformation.swift */; };
+		056D64561CB4FBB70057DC49 /* Done.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 056D64551CB4FBB70057DC49 /* Done.mp3 */; };
+		056D64581CB4FCBA0057DC49 /* Done_total_set.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 056D64571CB4FCBA0057DC49 /* Done_total_set.mp3 */; };
 		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
 		E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */; };
 		E63130F21C9BA57100C8E5AC /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63130F11C9BA57100C8E5AC /* RoundButton.swift */; };
@@ -59,6 +61,8 @@
 /* Begin PBXFileReference section */
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
 		053D94281C9C2F94002ADA4E /* PersonalInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInformation.swift; sourceTree = "<group>"; };
+		056D64551CB4FBB70057DC49 /* Done.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Done.mp3; sourceTree = "<group>"; };
+		056D64571CB4FCBA0057DC49 /* Done_total_set.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Done_total_set.mp3; sourceTree = "<group>"; };
 		1C1FE039C8DF3A2B0CC8777C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5EF9819A6B2B4D25EAAD9811 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -135,6 +139,15 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
+		056D64541CB4FBA20057DC49 /* SoundEffects */ = {
+			isa = PBXGroup;
+			children = (
+				056D64571CB4FCBA0057DC49 /* Done_total_set.mp3 */,
+				056D64551CB4FBB70057DC49 /* Done.mp3 */,
+			);
+			name = SoundEffects;
+			sourceTree = "<group>";
+		};
 		9362B02994748E37E71F65CE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -164,6 +177,7 @@
 		E6AD9D7C1C4C5F28004F6437 = {
 			isa = PBXGroup;
 			children = (
+				056D64541CB4FBA20057DC49 /* SoundEffects */,
 				E6D0A0DA1C4C6B2200F43DB5 /* Icon */,
 				E6D0A0D71C4C687900F43DB5 /* Images */,
 				E6AD9D871C4C5F28004F6437 /* GymWorkoutManager */,
@@ -387,6 +401,8 @@
 				E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */,
 				E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */,
 				E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */,
+				056D64561CB4FBB70057DC49 /* Done.mp3 in Resources */,
+				056D64581CB4FCBA0057DC49 /* Done_total_set.mp3 in Resources */,
 				E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */,
 				E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */,
 				E6DCF9BC1C9B8D4800C3668E /* Icon-86@2x.png in Resources */,
