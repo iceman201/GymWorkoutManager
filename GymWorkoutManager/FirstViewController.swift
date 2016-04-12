@@ -97,7 +97,7 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.receivedTime = result
         self.round = result[2]
         self.time = timeDate(result)
-        self.totalTime = timeDate(["0", "0", "0"])
+       // self.totalTime = timeDate(["0", "0", "0"])
         self.repeatTimer.text = self.timeString(result).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.totalWorkoutTimer.text = self.timeString(totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.aroundNumber.text = round

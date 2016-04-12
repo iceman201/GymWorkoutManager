@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* PersonalInformation.swift */; };
-		056D64561CB4FBB70057DC49 /* Done.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 056D64551CB4FBB70057DC49 /* Done.mp3 */; };
-		056D64581CB4FCBA0057DC49 /* Done_total_set.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 056D64571CB4FCBA0057DC49 /* Done_total_set.mp3 */; };
 		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
 		E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */; };
 		E63130F21C9BA57100C8E5AC /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63130F11C9BA57100C8E5AC /* RoundButton.swift */; };
@@ -39,6 +37,8 @@
 		E6DCF9C11C9B8D5B00C3668E /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */; };
 		E6DCF9C21C9B8D5B00C3668E /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */; };
 		E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */; };
+		E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */; };
+		E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,8 +61,6 @@
 /* Begin PBXFileReference section */
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
 		053D94281C9C2F94002ADA4E /* PersonalInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInformation.swift; sourceTree = "<group>"; };
-		056D64551CB4FBB70057DC49 /* Done.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Done.mp3; sourceTree = "<group>"; };
-		056D64571CB4FCBA0057DC49 /* Done_total_set.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Done_total_set.mp3; sourceTree = "<group>"; };
 		1C1FE039C8DF3A2B0CC8777C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5EF9819A6B2B4D25EAAD9811 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +97,8 @@
 		E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
 		E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
 		E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-83.5@2x.png"; sourceTree = "<group>"; };
+		E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Done_total_set.mp3; path = SoundEffects/Done_total_set.mp3; sourceTree = "<group>"; };
+		E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Done.mp3; path = SoundEffects/Done.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +142,8 @@
 		056D64541CB4FBA20057DC49 /* SoundEffects */ = {
 			isa = PBXGroup;
 			children = (
-				056D64571CB4FCBA0057DC49 /* Done_total_set.mp3 */,
-				056D64551CB4FBB70057DC49 /* Done.mp3 */,
+				E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */,
+				E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */,
 			);
 			name = SoundEffects;
 			sourceTree = "<group>";
@@ -397,12 +397,12 @@
 				E6DCF9BD1C9B8D4800C3668E /* Icon-98@2x.png in Resources */,
 				E6DCF9B91C9B8D4800C3668E /* Icon-29@3x.png in Resources */,
 				E6DCF9AD1C9B8D1B00C3668E /* Icon-Small@3x.png in Resources */,
+				E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */,
+				E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */,
 				E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */,
 				E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */,
 				E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */,
 				E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */,
-				056D64561CB4FBB70057DC49 /* Done.mp3 in Resources */,
-				056D64581CB4FCBA0057DC49 /* Done_total_set.mp3 in Resources */,
 				E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */,
 				E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */,
 				E6DCF9BC1C9B8D4800C3668E /* Icon-86@2x.png in Resources */,
