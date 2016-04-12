@@ -8,11 +8,3 @@ after_success:
 - chmod a+x /tmp/travis-automerge
 - BRANCHES_TO_MERGE_REGEX='^f/' BRANCH_TO_MERGE_INTO=develop GITHUB_REPO=cdown/srt
   /tmp/travis-automerge
-deploy:
-  provider: releases
-  api_key:
-    secure: iEUeO8eXyitTOF96YjSJh6wNErqEB3mP3k3Kt9TTS8moRRuuHnGrO7PXG69n7EHPqUzNv/Ux7UexGoeER3ktPeZtooS4pNxrfxyBX3o9ABGHrgrI+JujBQAEeCs2OUgkIDStldV5co2eFhZWE6NQUKTGEPwXeqEi5vbdVWTENGhGobenoPUbSds7xvbd5UciUuQ/XttRiHb6DyeV+uZGyRPWobirUV+BR+vZJd8Gh02aarhCxhmJ6qoZ2NagK6dJ4E8SI+5zTNg4hsnFQX/9y2Ot0e26ZDmR/v15RqEKDb1TDMDnQg1yigi5wE9L/duJv9ilOyPWWV2OZd1cfoCEv0R5Rg5GFwOVTMdJcaWynXAD+Oi3gKsK6wkIbjYf1af/L7gN9dq9clRM8rgeT4AFA2GNy2CqlgABwTP4CUemHPUrdgLgYJQ410UKoj2ROzx1aI2ScZ6X8r1sqwcnLZBhlNe20t86DJ4jOTJn24jRyPpH9126ynyD7AuXP9yzd7VfNI5ophbAARuvZvfSpGkT5rZPC0JsWSbawjFsyjhV0Fj238jhVILuCN5nVfjuuGd1bIF9wgXNjVJlNBluhrMjRWVW3FWJ973ZooxfHhVuTIFJCu2DG/hzkcenRStYa1BW3xcmdA/BqennWNG1p3T58P4eHAaA/ZPkdDItawo7Uwc=
-  file: ''
-  on:
-    repo: CBoostSwift/GymWorkoutManager
-    branch: travis-setup
