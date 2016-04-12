@@ -49,7 +49,6 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         }
         
         self.dismissViewControllerAnimated(true) { () -> Void in
-            //TODO : pass date to FirstViewController
             print(self.result)
         }
     }

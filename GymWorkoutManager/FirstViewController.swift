@@ -30,6 +30,15 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     var timerCountdown : NSTimer = NSTimer()
     var round = "0"
     var audioPlayer = AVAudioPlayer()
+    var fromReset : Bool = false
+    
+    @IBAction func reset(sender: AnyObject) {
+        self.totalTime = timeDate(["0", "0", "0"])
+        round = "0"
+        aroundNumber.text = "0"
+        fromReset = true
+        timeCountdown()
+    }
     
     @IBAction func counter(sender: AnyObject) {
         if startButton.currentTitle != "Stop" {
@@ -48,10 +57,11 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
             startButton.setTitle("GO!", forState: UIControlState.Normal)
             timerCountdown.invalidate()
             timerRuning.invalidate()
-            audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
-            audioPlayer.prepareToPlay()
-            audioPlayer.play()
-            
+            if !fromReset {
+                audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
+                audioPlayer.prepareToPlay()
+                audioPlayer.play()
+            }
         } else if timeString(time) == "00:00.00" {
             if round != "0" {
                 let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Done", ofType: "mp3")!)
@@ -97,10 +107,11 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.receivedTime = result
         self.round = result[2]
         self.time = timeDate(result)
-       // self.totalTime = timeDate(["0", "0", "0"])
+       
         self.repeatTimer.text = self.timeString(result).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.totalWorkoutTimer.text = self.timeString(totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.aroundNumber.text = round
+        fromReset = false
     }
     
     // MARK: - Private Method
