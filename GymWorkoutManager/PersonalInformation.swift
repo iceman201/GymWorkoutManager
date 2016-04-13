@@ -23,11 +23,11 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        name.delegate = self
         age.delegate = self
         bodyFat.delegate = self
         weight.delegate = self
         height.delegate = self
+        styleTextField()
         print(gender.selectedSegmentIndex)
     }
     
@@ -45,6 +45,50 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     @IBAction func BMICalculation(sender: AnyObject) {
         let result = BMICalculator(Float(weight.text ?? "") ?? 0.0, heights: Float(height.text ?? "") ?? 0.0)
         indexDisplayLabel.text = String(result)
+    }
+
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let inverseSet = NSCharacterSet(charactersInString:"0123456789.").invertedSet
+        let components = string.componentsSeparatedByCharactersInSet(inverseSet)
+        let filtered = components.joinWithSeparator("")
+        return string == filtered
+    }
+    
+    private func setLayer(input:JVFloatLabeledTextField) -> CALayer {
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = self.view.tintColor.CGColor
+        border.frame = CGRect(x: 0, y: input.frame.size.height - width, width:  input.frame.size.width, height: input.frame.size.height)
+        border.borderWidth = width
+        return border
+    }
+    
+    private func styleTextField() {
+        name.layer.addSublayer(setLayer(name))
+        name.backgroundColor = UIColor.clearColor()
+        name.textColor = UIColor.whiteColor()
+        name.layer.masksToBounds = true
+        
+        age.layer.addSublayer(setLayer(age))
+        age.backgroundColor = UIColor.clearColor()
+        age.textColor = UIColor.whiteColor()
+        age.layer.masksToBounds = true
+        
+        bodyFat.layer.addSublayer(setLayer(bodyFat))
+        bodyFat.backgroundColor = UIColor.clearColor()
+        bodyFat.textColor = UIColor.whiteColor()
+        bodyFat.layer.masksToBounds = true
+        
+        weight.layer.addSublayer(setLayer(weight))
+        weight.backgroundColor = UIColor.clearColor()
+        weight.textColor = UIColor.whiteColor()
+        weight.layer.masksToBounds = true
+        
+        height.layer.addSublayer(setLayer(height))
+        height.backgroundColor = UIColor.clearColor()
+        height.textColor = UIColor.whiteColor()
+        height.layer.masksToBounds = true
+        
     }
     
     private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{

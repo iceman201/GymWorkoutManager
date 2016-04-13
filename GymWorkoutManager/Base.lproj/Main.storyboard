@@ -452,7 +452,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height (CM)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cty-ZZ-7ag" customClass="JVFloatLabeledTextField">
-                                <rect key="frame" x="119" y="211" width="176" height="39"/>
+                                <rect key="frame" x="119" y="216" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="9Fe-YU-RGA"/>
@@ -481,7 +481,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WbE-si-lbs" customClass="JVFloatLabeledTextField">
-                                <rect key="frame" x="119" y="258" width="176" height="39"/>
+                                <rect key="frame" x="119" y="268" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="Zf8-Hb-KYY"/>
@@ -531,7 +531,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Body Fat %" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QlY-DT-hF5" customClass="JVFloatLabeledTextField">
-                                <rect key="frame" x="119" y="305" width="176" height="39"/>
+                                <rect key="frame" x="119" y="321" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="3kN-MW-OYd"/>
@@ -609,19 +609,19 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="AMx-H9-qDI"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="leading" secondItem="cty-ZZ-7ag" secondAttribute="leading" id="BX0-Zx-6jg"/>
                             <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="BZY-6L-rjO"/>
-                            <constraint firstItem="cty-ZZ-7ag" firstAttribute="top" secondItem="9ei-JE-y6Q" secondAttribute="bottom" constant="8" id="H96-xf-Abt"/>
+                            <constraint firstItem="cty-ZZ-7ag" firstAttribute="top" secondItem="9ei-JE-y6Q" secondAttribute="bottom" constant="13" id="H96-xf-Abt"/>
                             <constraint firstItem="1Zo-ys-11E" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="MIp-Fa-4Vp"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="MOM-Yt-tIR"/>
                             <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="NR3-t3-eet"/>
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="trailing" secondItem="WbE-si-lbs" secondAttribute="trailing" id="NeP-K3-9G0"/>
-                            <constraint firstItem="QlY-DT-hF5" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="8" symbolic="YES" id="R7I-6f-c3Z"/>
+                            <constraint firstItem="QlY-DT-hF5" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="14" id="R7I-6f-c3Z"/>
                             <constraint firstItem="vzu-Vi-Ppe" firstAttribute="leading" secondItem="R8f-Qz-Pza" secondAttribute="trailing" constant="8" symbolic="YES" id="Sxh-j6-75R"/>
                             <constraint firstItem="vzu-Vi-Ppe" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="TMA-dc-lFL"/>
-                            <constraint firstItem="WbE-si-lbs" firstAttribute="top" secondItem="cty-ZZ-7ag" secondAttribute="bottom" constant="8" symbolic="YES" id="UUm-U5-yO5"/>
+                            <constraint firstItem="WbE-si-lbs" firstAttribute="top" secondItem="cty-ZZ-7ag" secondAttribute="bottom" constant="13" id="UUm-U5-yO5"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="top" secondItem="1Wc-gW-KSU" secondAttribute="top" constant="61" id="agx-Ii-FDg"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="b3a-sV-MxA"/>
                             <constraint firstItem="1Zo-ys-11E" firstAttribute="top" secondItem="fct-rl-QZT" secondAttribute="bottom" constant="8" symbolic="YES" id="fVv-9b-Eeh"/>
-                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="top" secondItem="QlY-DT-hF5" secondAttribute="bottom" constant="46" id="hva-jp-NCS"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="top" secondItem="QlY-DT-hF5" secondAttribute="bottom" constant="30" id="hva-jp-NCS"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="leading" secondItem="LYV-3F-pks" secondAttribute="leadingMargin" id="i1H-K4-cbb"/>
                             <constraint firstItem="cty-ZZ-7ag" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="iDL-pT-p8V"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="top" secondItem="LYV-3F-pks" secondAttribute="top" constant="20" symbolic="YES" id="lbM-W2-aVn"/>
