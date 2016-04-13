@@ -111,9 +111,21 @@
                                     <action selector="counter:" destination="9pv-A4-QxB" eventType="touchUpInside" id="l83-iR-vUq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OUp-M3-ID7" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="334" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="8ln-cV-U2R"/>
+                                    <constraint firstAttribute="width" constant="60" id="rsf-EB-EeA"/>
+                                </constraints>
+                                <state key="normal" title="Claim"/>
+                                <connections>
+                                    <action selector="claimRecord:" destination="9pv-A4-QxB" eventType="touchUpInside" id="qMF-Nb-wh0"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196078431371" green="0.25490196078431371" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="OUp-M3-ID7" firstAttribute="trailing" secondItem="tsR-hK-woN" secondAttribute="trailingMargin" id="1Qn-wH-F0N"/>
                             <constraint firstItem="CrC-ty-8pf" firstAttribute="bottom" secondItem="Wc6-um-Cv0" secondAttribute="bottom" constant="63" id="1hN-au-zdg"/>
                             <constraint firstItem="GWR-AC-4CY" firstAttribute="top" secondItem="7i3-hH-bDh" secondAttribute="bottom" constant="32" id="4Pb-c5-WXk"/>
                             <constraint firstItem="CrC-ty-8pf" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="4gO-2n-0VM"/>
@@ -134,6 +146,7 @@
                             <constraint firstItem="mih-Vh-993" firstAttribute="top" secondItem="9Ib-EG-db3" secondAttribute="bottom" constant="8" id="k0U-D3-No4"/>
                             <constraint firstItem="Wc6-um-Cv0" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leadingMargin" id="lQk-aM-kMj"/>
                             <constraint firstItem="mih-Vh-993" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="m8W-Qa-tvx"/>
+                            <constraint firstItem="OUp-M3-ID7" firstAttribute="baseline" secondItem="Wc6-um-Cv0" secondAttribute="baseline" id="umZ-xb-pXv"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Timer" image="first" id="acW-dT-cKf"/>
@@ -230,49 +243,6 @@
             </objects>
             <point key="canvasLocation" x="1382" y="-354"/>
         </scene>
-        <!--Record View Controller-->
-        <scene sceneID="wg7-f3-ORb">
-            <objects>
-                <viewController id="8rJ-Kc-sve" customClass="RecordViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
-                        <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvD-4Y-eXT" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="60" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="5tf-zt-nAh"/>
-                                    <constraint firstAttribute="width" constant="60" id="b4q-4F-Es6"/>
-                                </constraints>
-                                <state key="normal" title="Back"/>
-                                <connections>
-                                    <segue destination="Jgm-d0-MKu" kind="unwind" unwindAction="unwindToMainView:" id="Qc1-h8-yAr"/>
-                                </connections>
-                            </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="2eg-xj-MBP" customClass="JVFloatLabeledTextView">
-                                <rect key="frame" x="87" y="86" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="hvD-4Y-eXT" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="PeQ-nO-Ave"/>
-                            <constraint firstItem="hvD-4Y-eXT" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" id="t1d-WK-OvF"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-                <exit id="Jgm-d0-MKu" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="937" y="465"/>
-        </scene>
         <!--Main Interface View Controller-->
         <scene sceneID="Foo-Ss-rOZ">
             <objects>
@@ -328,7 +298,7 @@
                                 </constraints>
                                 <state key="normal" title="Record"/>
                                 <connections>
-                                    <segue destination="8rJ-Kc-sve" kind="show" id="Sth-T2-3hk"/>
+                                    <segue destination="XSD-KX-JDS" kind="show" id="UNw-Ca-vr5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcF-hB-EB3">
@@ -455,7 +425,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height (CM)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cty-ZZ-7ag" customClass="JVFloatLabeledTextField">
-                                <rect key="frame" x="119" y="211" width="176" height="39"/>
+                                <rect key="frame" x="119" y="216" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="9Fe-YU-RGA"/>
@@ -484,7 +454,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WbE-si-lbs" customClass="JVFloatLabeledTextField">
-                                <rect key="frame" x="119" y="258" width="176" height="39"/>
+                                <rect key="frame" x="119" y="268" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="Zf8-Hb-KYY"/>
@@ -534,7 +504,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Body Fat %" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QlY-DT-hF5" customClass="JVFloatLabeledTextField">
-                                <rect key="frame" x="119" y="305" width="176" height="39"/>
+                                <rect key="frame" x="119" y="321" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="3kN-MW-OYd"/>
@@ -612,19 +582,19 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="AMx-H9-qDI"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="leading" secondItem="cty-ZZ-7ag" secondAttribute="leading" id="BX0-Zx-6jg"/>
                             <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="BZY-6L-rjO"/>
-                            <constraint firstItem="cty-ZZ-7ag" firstAttribute="top" secondItem="9ei-JE-y6Q" secondAttribute="bottom" constant="8" id="H96-xf-Abt"/>
+                            <constraint firstItem="cty-ZZ-7ag" firstAttribute="top" secondItem="9ei-JE-y6Q" secondAttribute="bottom" constant="13" id="H96-xf-Abt"/>
                             <constraint firstItem="1Zo-ys-11E" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="MIp-Fa-4Vp"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="MOM-Yt-tIR"/>
                             <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="NR3-t3-eet"/>
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="trailing" secondItem="WbE-si-lbs" secondAttribute="trailing" id="NeP-K3-9G0"/>
-                            <constraint firstItem="QlY-DT-hF5" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="8" symbolic="YES" id="R7I-6f-c3Z"/>
+                            <constraint firstItem="QlY-DT-hF5" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="14" id="R7I-6f-c3Z"/>
                             <constraint firstItem="vzu-Vi-Ppe" firstAttribute="leading" secondItem="R8f-Qz-Pza" secondAttribute="trailing" constant="8" symbolic="YES" id="Sxh-j6-75R"/>
                             <constraint firstItem="vzu-Vi-Ppe" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="TMA-dc-lFL"/>
-                            <constraint firstItem="WbE-si-lbs" firstAttribute="top" secondItem="cty-ZZ-7ag" secondAttribute="bottom" constant="8" symbolic="YES" id="UUm-U5-yO5"/>
+                            <constraint firstItem="WbE-si-lbs" firstAttribute="top" secondItem="cty-ZZ-7ag" secondAttribute="bottom" constant="13" id="UUm-U5-yO5"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="top" secondItem="1Wc-gW-KSU" secondAttribute="top" constant="61" id="agx-Ii-FDg"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="b3a-sV-MxA"/>
                             <constraint firstItem="1Zo-ys-11E" firstAttribute="top" secondItem="fct-rl-QZT" secondAttribute="bottom" constant="8" symbolic="YES" id="fVv-9b-Eeh"/>
-                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="top" secondItem="QlY-DT-hF5" secondAttribute="bottom" constant="46" id="hva-jp-NCS"/>
+                            <constraint firstItem="vzu-Vi-Ppe" firstAttribute="top" secondItem="QlY-DT-hF5" secondAttribute="bottom" constant="30" id="hva-jp-NCS"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="leading" secondItem="LYV-3F-pks" secondAttribute="leadingMargin" id="i1H-K4-cbb"/>
                             <constraint firstItem="cty-ZZ-7ag" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="iDL-pT-p8V"/>
                             <constraint firstItem="1Wc-gW-KSU" firstAttribute="top" secondItem="LYV-3F-pks" secondAttribute="top" constant="20" symbolic="YES" id="lbM-W2-aVn"/>
@@ -720,8 +690,36 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
             </objects>
             <point key="canvasLocation" x="413" y="966"/>
         </scene>
+        <!--Record View Controller-->
+        <scene sceneID="Zfk-xt-vM6">
+            <objects>
+                <tableViewController id="XSD-KX-JDS" customClass="RecordViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="odu-LI-lst">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" id="ej3-CC-fci">
+                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="XSD-KX-JDS" id="kcE-uk-Yn5"/>
+                            <outlet property="delegate" destination="XSD-KX-JDS" id="caf-rm-OsS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UWu-kL-eav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1032" y="521"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
+        <image name="first" width="31" height="31"/>
     </resources>
 </document>
