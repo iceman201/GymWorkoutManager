@@ -41,6 +41,23 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         }
     }
     
+    @IBAction func claimRecord(sender: AnyObject) {
+        let alert = UIAlertController(title: "Record Claim", message: "Which execirse you did today", preferredStyle: .Alert)
+        alert.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Execirse"
+        }
+        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (UIAlertAction) in
+            //TODO: need pass the value to RecordViewController
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
     func timeCountdown() {
         if round == "0" {
             let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Done_total_set", ofType: "mp3")!)
@@ -128,6 +145,9 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         if segue.identifier == "setTime" {
             let destinationViewController = segue.destinationViewController as! TimeSetupViewController
             destinationViewController.delegate = self;
+        }
+        if segue.identifier == "" {
+            
         }
     }
 }
