@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 import ChameleonFramework
 
 protocol TimeSetupViewControllerDelegate: NSObjectProtocol {
@@ -99,6 +100,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         self.timePicker.delegate = self
         self.timePicker.dataSource = self
         doneButton.layer.cornerRadius = 16
+        
         // Do any additional setup after loading the view.
     }
     

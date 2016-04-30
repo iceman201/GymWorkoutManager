@@ -55,24 +55,25 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     @IBAction func claimRecord(sender: AnyObject) {
         let alert = UIAlertController(title: "Record Claim", message: "Which execirse you did today", preferredStyle: .Alert)
-        let newExecrise = Exercise()
+        
 
         alert.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Execirse"
         }
         alert.addTextFieldWithConfigurationHandler { (textField:UITextField) in
             textField.placeholder = "reps"
-            newExecrise.reps = textField.text ?? "None"
         }
         
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (UIAlertAction) in
             let execriseNameTextField = alert.textFields![0] as UITextField
             let repsTextField = alert.textFields![1] as UITextField
-
+            let newExecrise = Exercise()
+            
             newExecrise.set = self.startRound ?? "None"
             newExecrise.times = self.totalWorkoutTimer.text ?? "None"
             newExecrise.reps = repsTextField.text ?? ""
             newExecrise.exerciseName = execriseNameTextField.text ?? ""
+            
             do {
                 let r = try Realm()
                 try r.write({

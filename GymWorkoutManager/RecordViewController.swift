@@ -8,10 +8,12 @@
 
 import UIKit
 import ChameleonFramework
-
+import RealmSwift
 
 class RecordViewController: UITableViewController {
     var totalRecord = ["1","2","3"]
+    var result : Results<Exercise>!
+    //
     
     func addRecord(item:String, time:String){
         let item = ""
@@ -22,29 +24,48 @@ class RecordViewController: UITableViewController {
         return 2
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return totalRecord.count
+        return result.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
-        switch indexPath.section {
-        case 0:
-            cell.backgroundColor = UIColor.blackColor()
-        case 1:
-            cell.textLabel?.text = totalRecord[indexPath.row]
+        if indexPath.section == 0 {
+            let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath)
+            pictureCell.backgroundColor = UIColor.redColor()            
+            return pictureCell
+        } else {
+            let cell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
+            let content = result[indexPath.row]
+            // TODO: correct content text
+            cell.textLabel?.text = "\(content.exerciseName) \(content.reps) reps \(content.set) sets "
             cell.textLabel?.textColor = UIColor.blueColor()
             cell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
-        default:
-            break
+            return cell
         }
-        
-        return cell
+    }
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 153
+        } else {
+            return UITableViewAutomaticDimension
+        }
+    }
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
 
-        // Do any additional setup after loading the view, typically from a nib.
+        do {
+            let r = try Realm()
+            result = r.objects(Exercise)
+            tableView.reloadData()
+        } catch {
+            print("loading realm faild")
+        }
     }
 
     override func didReceiveMemoryWarning() {

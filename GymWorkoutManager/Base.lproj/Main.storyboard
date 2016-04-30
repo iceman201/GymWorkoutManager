@@ -699,8 +699,43 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="picture" rowHeight="153" id="HL2-gv-n2J">
+                                <rect key="frame" x="0.0" y="28" width="414" height="153"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuz-sl-3JM" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                            <rect key="frame" x="8" y="41" width="71" height="71"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="71" id="ZGU-My-6dc"/>
+                                                <constraint firstAttribute="height" constant="71" id="atc-ej-bv1"/>
+                                            </constraints>
+                                            <state key="normal" title="Back"/>
+                                            <connections>
+                                                <segue destination="iQ7-CV-lKK" kind="unwind" unwindAction="unwindToMainView:" id="cG2-rT-RGX"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2tL-5N-Cep">
+                                            <rect key="frame" x="166" y="0.0" width="240" height="153"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="240" id="7N7-Nh-teG"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="top" secondItem="SU8-cO-ret" secondAttribute="topMargin" constant="-8" id="3yl-Js-A0b"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="trailing" secondItem="SU8-cO-ret" secondAttribute="trailingMargin" id="7qs-jE-sqE"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="centerY" secondItem="SU8-cO-ret" secondAttribute="centerY" id="IWv-EC-xPa"/>
+                                        <constraint firstItem="Cuz-sl-3JM" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="XrF-IJ-W5D"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="centerY" secondItem="Cuz-sl-3JM" secondAttribute="centerY" id="p67-Sy-ql8"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="leading" secondItem="Cuz-sl-3JM" secondAttribute="trailing" constant="87" id="qs9-AF-Rup"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" id="ej3-CC-fci">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="181" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -715,6 +750,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                     </tableView>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWu-kL-eav" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="iQ7-CV-lKK" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1032" y="521"/>
         </scene>
