@@ -160,7 +160,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
                 <exit id="KU8-nt-hM8" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="704" y="-354"/>
+            <point key="canvasLocation" x="705" y="-354"/>
         </scene>
         <!--Time Setup View Controller-->
         <scene sceneID="18K-hz-O2s">
