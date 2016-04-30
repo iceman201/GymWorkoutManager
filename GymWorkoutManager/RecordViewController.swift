@@ -24,20 +24,24 @@ class RecordViewController: UITableViewController {
         return 2
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return result.count
+        if section == 0 {
+            return 1
+        } else {
+            return result.count
+        }
     }
-    
+
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath)
-            pictureCell.backgroundColor = UIColor.redColor()            
+           // pictureCell.backgroundColor = UIColor.redColor()
             return pictureCell
         } else {
             let cell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
             let content = result[indexPath.row]
             // TODO: correct content text
-            cell.textLabel?.text = "\(content.exerciseName) \(content.reps) reps \(content.set) sets "
-            cell.textLabel?.textColor = UIColor.blueColor()
+            cell.textLabel?.text = "\(content.date)---\(content.exerciseName) \(content.reps) reps \(content.set) sets "
+            cell.textLabel?.textColor = cell.tintColor
             cell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
             return cell
         }

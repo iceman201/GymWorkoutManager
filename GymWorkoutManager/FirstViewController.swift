@@ -73,14 +73,14 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
             newExecrise.times = self.totalWorkoutTimer.text ?? "None"
             newExecrise.reps = repsTextField.text ?? ""
             newExecrise.exerciseName = execriseNameTextField.text ?? ""
-            
+            newExecrise.date = self.getDate()
             do {
                 let r = try Realm()
                 try r.write({
                     r.add(newExecrise)
                 })
-            } catch {
-                print("Realm write")
+            } catch let error as NSError {
+                print(error)
                 //TODO: Rollbar??? or some error monitor tools
             }
         }))
@@ -89,9 +89,16 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    
-    
-    
+    private func getDate() -> String {
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day, .Month,.Year], fromDate: date)
+        let day = components.day
+        let month = components.month
+        let year = components.year
+        let formater = "\(day)/\(month)/\(year)"
+        return formater
+    }
     
     func timeCountdown() {
         if round == "0" {

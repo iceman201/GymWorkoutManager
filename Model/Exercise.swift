@@ -13,6 +13,7 @@ class Exercise: Object {
     dynamic var times = ""
     dynamic var reps = ""
     dynamic var set = ""
+    dynamic var date = ""
     dynamic var who: Person?
 }
 

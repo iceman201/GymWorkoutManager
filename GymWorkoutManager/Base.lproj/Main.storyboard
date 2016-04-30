@@ -733,6 +733,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <constraint firstItem="2tL-5N-Cep" firstAttribute="leading" secondItem="Cuz-sl-3JM" secondAttribute="trailing" constant="87" id="qs9-AF-Rup"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="contentCell" id="ej3-CC-fci">
                                 <rect key="frame" x="0.0" y="181" width="414" height="44"/>
