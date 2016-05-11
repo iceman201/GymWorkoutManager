@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 import MediaPlayer
 
 class MainInterfaceViewController: UIViewController {

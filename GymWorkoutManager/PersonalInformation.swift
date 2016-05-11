@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 import JVFloatLabeledTextField
 
 class PersonalInformation: UIViewController, UITextFieldDelegate {
