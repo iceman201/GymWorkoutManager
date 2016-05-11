@@ -31,16 +31,21 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     
     // MARK: - IBOutlet
     
-    @IBOutlet var numberOfRounds: UITextField!
+    @IBOutlet weak var NOR: UILabel!
+    
+    @IBAction func roundNumberStepper(sender: UIStepper) {
+        NOR.text = String(Int(sender.value))
+    }
+    
     @IBOutlet var timePicker: UIPickerView!
     
     @IBOutlet weak var doneButton: UIButton!
     
     @IBAction func confirmButton(sender: AnyObject) {
-        if self.numberOfRounds.text == "" {
+        if self.NOR.text == "" {
             self.result[2] = "0"
         } else {
-            self.result[2] = self.numberOfRounds.text!
+            self.result[2] = self.NOR.text!
         }
         
         self.view.endEditing(true);
@@ -98,7 +103,6 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         super.viewDidLoad()
         self.timePicker.delegate = self
         self.timePicker.dataSource = self
-        doneButton.layer.cornerRadius = 16
         
         // Do any additional setup after loading the view.
     }
