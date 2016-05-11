@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aMi-tv-usv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aMi-tv-usv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -174,17 +174,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ccn-OK-vKa">
-                                <rect key="frame" x="186" y="238" width="42" height="30"/>
-                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="7da-oM-pe0"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of round" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCO-y9-CnH">
-                                <rect key="frame" x="124" y="203" width="167" height="27"/>
+                                <rect key="frame" x="124" y="204" width="167" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -205,41 +196,79 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-aC-azw" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
-                                <rect key="frame" x="158" y="305" width="99" height="99"/>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="eP8-67-LT8">
+                                <rect key="frame" x="160" y="314" width="94" height="29"/>
+                                <connections>
+                                    <action selector="roundNumberStepper:" destination="i9H-gI-UmR" eventType="valueChanged" id="bIj-SW-5Vt"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytu-NO-vuv">
+                                <rect key="frame" x="187" y="239" width="40" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="hhv-k6-eay"/>
+                                    <constraint firstAttribute="height" constant="44" id="kvd-Ny-aIO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-aC-azw" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="212" y="454" width="99" height="99"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="99" id="bzV-Da-o8q"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="99" id="ho6-vM-Dkk"/>
                                     <constraint firstAttribute="height" constant="99" id="rLh-Cy-XSc"/>
                                     <constraint firstAttribute="width" constant="99" id="uEg-4L-nxH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <state key="normal" title="Done!"/>
+                                <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="confirmButton:" destination="i9H-gI-UmR" eventType="touchUpInside" id="v9W-oY-M3v"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf3-fm-hev" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="103" y="454" width="99" height="99"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="99" id="EXB-8M-hex"/>
+                                    <constraint firstAttribute="width" constant="99" id="H8m-me-8oQ"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="99" id="bDv-hB-nji"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="99" id="qUu-gZ-7ZX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="TMR-XK-wNb" kind="unwind" unwindAction="unwindToTimerView:" id="nSg-b7-h9D"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196078431371" green="0.25490196078431371" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="centerX" secondItem="QCO-y9-CnH" secondAttribute="centerX" id="3hH-wL-sh7"/>
-                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="centerX" secondItem="9kH-jg-06m" secondAttribute="centerX" id="77m-0Y-WeW"/>
+                            <constraint firstItem="QCO-y9-CnH" firstAttribute="centerX" secondItem="9kH-jg-06m" secondAttribute="centerX" id="2rC-fY-gQu"/>
+                            <constraint firstItem="mf3-fm-hev" firstAttribute="leading" secondItem="FJg-Mz-oEc" secondAttribute="leading" id="6U8-Vj-Tzn"/>
                             <constraint firstItem="FJg-Mz-oEc" firstAttribute="centerX" secondItem="9kH-jg-06m" secondAttribute="centerX" id="7O7-vb-afO"/>
-                            <constraint firstItem="Rwf-aC-azw" firstAttribute="centerX" secondItem="Ccn-OK-vKa" secondAttribute="centerX" constant="0.5" id="8XO-3l-qP6"/>
+                            <constraint firstItem="QCO-y9-CnH" firstAttribute="top" secondItem="9kH-jg-06m" secondAttribute="bottom" constant="16" id="D6B-6C-UZC"/>
                             <constraint firstItem="9kH-jg-06m" firstAttribute="top" secondItem="FJg-Mz-oEc" secondAttribute="bottom" constant="8" symbolic="YES" id="DfQ-vk-QLV"/>
+                            <constraint firstItem="QCO-y9-CnH" firstAttribute="centerX" secondItem="ytu-NO-vuv" secondAttribute="centerX" id="EMp-vR-Z1c"/>
+                            <constraint firstItem="kV7-Tt-N87" firstAttribute="top" secondItem="mf3-fm-hev" secondAttribute="bottom" constant="183" id="LAC-y4-osp"/>
                             <constraint firstItem="FJg-Mz-oEc" firstAttribute="top" secondItem="M3D-jv-efz" secondAttribute="top" constant="20" symbolic="YES" id="LNZ-Wu-GFG"/>
+                            <constraint firstItem="ytu-NO-vuv" firstAttribute="top" secondItem="QCO-y9-CnH" secondAttribute="bottom" constant="8" symbolic="YES" id="SEP-o0-xPr"/>
+                            <constraint firstItem="Rwf-aC-azw" firstAttribute="top" secondItem="mf3-fm-hev" secondAttribute="top" id="Swk-e8-u4x"/>
+                            <constraint firstItem="Rwf-aC-azw" firstAttribute="trailing" secondItem="FJg-Mz-oEc" secondAttribute="trailing" id="gJh-9E-bon"/>
                             <constraint firstItem="FJg-Mz-oEc" firstAttribute="centerX" secondItem="M3D-jv-efz" secondAttribute="centerX" id="lq7-Ej-KVt"/>
-                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="top" secondItem="M3D-jv-efz" secondAttribute="top" constant="238" id="nm6-Zb-VHr"/>
-                            <constraint firstItem="Ccn-OK-vKa" firstAttribute="top" secondItem="QCO-y9-CnH" secondAttribute="bottom" constant="8" symbolic="YES" id="rmB-9N-Vlf"/>
-                            <constraint firstItem="Rwf-aC-azw" firstAttribute="top" secondItem="Ccn-OK-vKa" secondAttribute="bottom" constant="37" id="vak-q5-mnC"/>
+                            <constraint firstItem="ytu-NO-vuv" firstAttribute="centerX" secondItem="eP8-67-LT8" secondAttribute="centerX" id="riK-w1-OIP"/>
+                            <constraint firstItem="eP8-67-LT8" firstAttribute="top" secondItem="ytu-NO-vuv" secondAttribute="bottom" constant="31" id="tHI-Qt-pNw"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="NOR" destination="ytu-NO-vuv" id="Hn1-Xg-Qvp"/>
                         <outlet property="doneButton" destination="Rwf-aC-azw" id="6qa-Rh-Ecn"/>
-                        <outlet property="numberOfRounds" destination="Ccn-OK-vKa" id="Efi-up-HBC"/>
                         <outlet property="timePicker" destination="9kH-jg-06m" id="zfM-28-sTn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jbo-14-yvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="TMR-XK-wNb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1382" y="-354"/>
         </scene>
@@ -393,6 +422,9 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Age" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9ei-JE-y6Q" customClass="JVFloatLabeledTextField">
@@ -422,35 +454,9 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height (CM)" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cty-ZZ-7ag" customClass="JVFloatLabeledTextField">
-                                <rect key="frame" x="119" y="216" width="176" height="39"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="9Fe-YU-RGA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
-                                        <real key="value" value="1"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
-                                        <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
-                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Weight" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="WbE-si-lbs" customClass="JVFloatLabeledTextField">
@@ -480,30 +486,34 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1Zo-ys-11E">
                                 <rect key="frame" x="149" y="128" width="117" height="29"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <segments>
                                     <segment title="Male"/>
                                     <segment title="Female"/>
                                 </segments>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <action selector="selectGender:" destination="VHl-aa-cQO" eventType="valueChanged" id="vbz-6G-k6q"/>
                                 </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzu-Vi-Ppe">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vzu-Vi-Ppe">
                                 <rect key="frame" x="119" y="390" width="176" height="39"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="176" id="JOD-YB-1Ib"/>
                                     <constraint firstAttribute="height" constant="39" id="LCY-ys-oUN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Body Fat %" textAlignment="right" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QlY-DT-hF5" customClass="JVFloatLabeledTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Body Fat %" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QlY-DT-hF5" customClass="JVFloatLabeledTextField">
                                 <rect key="frame" x="119" y="321" width="176" height="39"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -521,11 +531,11 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
                                         <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
-                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
@@ -569,6 +579,38 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <action selector="BMRCalculation:" destination="VHl-aa-cQO" eventType="touchUpInside" id="qDQ-Z4-iT4"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Height (CM)" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cty-ZZ-7ag" customClass="JVFloatLabeledTextField">
+                                <rect key="frame" x="119" y="216" width="176" height="39"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="39" id="9Fe-YU-RGA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numbersAndPunctuation"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.039215686270000001" green="0.37647058820000001" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -703,7 +745,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="28" width="414" height="153"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="153"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="152"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cuz-sl-3JM" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
