@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
 
 protocol TimeSetupViewControllerDelegate: NSObjectProtocol {
     func timeSetupFinish(timeSetupViewController: TimeSetupViewController, result: [String])

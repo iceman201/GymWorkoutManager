@@ -7,22 +7,34 @@
 //
 
 import UIKit
-import ChameleonFramework
+import MediaPlayer
 
 class MainInterfaceViewController: UIViewController {
+    var moviePlayer: MPMoviePlayerController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let colorset:[UIColor] = [
-            UIColor.flatYellowColor(),
-            UIColor.flatYellowColorDark(),
-            UIColor.flatLimeColor(),
-            UIColor.flatLimeColorDark(),
-            UIColor.flatGreenColor(),
-            UIColor.flatGreenColorDark()
-        ]
-        self.view.backgroundColor = GradientColor(.TopToBottom, frame: self.view.frame, colors: colorset)
+        // Load the video from the app bundle.
+        let videoURL: NSURL = NSBundle.mainBundle().URLForResource("background", withExtension: "mov")!
+        
+        // Create and configure the movie player.
+        self.moviePlayer = MPMoviePlayerController(contentURL: videoURL)
+        
+        self.moviePlayer.controlStyle = MPMovieControlStyle.None
+        self.moviePlayer.scalingMode = MPMovieScalingMode.AspectFill
+        
+        self.moviePlayer.view.frame = self.view.frame
+        self.view .insertSubview(self.moviePlayer.view, atIndex: 0)
+        
+        self.moviePlayer.play()
+        
+        // Loop video.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loopVideo), name: MPMoviePlayerPlaybackDidFinishNotification, object: self.moviePlayer)
     }
     
+    @objc private func loopVideo() {
+        self.moviePlayer.play()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 import AudioToolbox
 import AVFoundation
 import RealmSwift
