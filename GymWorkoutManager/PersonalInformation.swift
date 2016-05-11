@@ -10,7 +10,6 @@ import UIKit
 import JVFloatLabeledTextField
 
 class PersonalInformation: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet var name: JVFloatLabeledTextField!
     @IBOutlet var gender: UISegmentedControl!
     @IBOutlet var age: JVFloatLabeledTextField!

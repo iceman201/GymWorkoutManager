@@ -9,6 +9,7 @@
 import UIKit
 import AudioToolbox
 import AVFoundation
+import RealmSwift
 
 
 class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
@@ -28,12 +29,14 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     var timerRuning : NSTimer = NSTimer()
     var timerCountdown : NSTimer = NSTimer()
     var round = "0"
+    var startRound = "0"
     var audioPlayer = AVAudioPlayer()
     var fromReset : Bool = false
     
     @IBAction func reset(sender: AnyObject) {
         self.totalTime = timeDate(["0", "0", "0"])
         round = "0"
+        startRound = "0"
         aroundNumber.text = "0"
         fromReset = true
         timeCountdown()
@@ -51,20 +54,50 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     @IBAction func claimRecord(sender: AnyObject) {
         let alert = UIAlertController(title: "Record Claim", message: "Which execirse you did today", preferredStyle: .Alert)
+        
+
         alert.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Execirse"
         }
+        alert.addTextFieldWithConfigurationHandler { (textField:UITextField) in
+            textField.placeholder = "reps"
+        }
+        
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (UIAlertAction) in
-            //TODO: need pass the value to RecordViewController
+            let execriseNameTextField = alert.textFields![0] as UITextField
+            let repsTextField = alert.textFields![1] as UITextField
+            let newExecrise = Exercise()
             
+            newExecrise.set = self.startRound ?? "None"
+            newExecrise.times = self.totalWorkoutTimer.text ?? "None"
+            newExecrise.reps = repsTextField.text ?? ""
+            newExecrise.exerciseName = execriseNameTextField.text ?? ""
+            newExecrise.date = self.getDate()
+            do {
+                let r = try Realm()
+                try r.write({
+                    r.add(newExecrise)
+                })
+            } catch let error as NSError {
+                print(error)
+                //TODO: Rollbar??? or some error monitor tools
+            }
         }))
+        
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    
-    
-    
+    private func getDate() -> String {
+        let date = NSDate()
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components([.Day, .Month,.Year], fromDate: date)
+        let day = components.day
+        let month = components.month
+        let year = components.year
+        let formater = "\(day)/\(month)/\(year)"
+        return formater
+    }
     
     func timeCountdown() {
         if round == "0" {
@@ -107,7 +140,7 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         super.viewDidLoad()
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1
-        
+        print(Realm.Configuration.defaultConfiguration.path)
         self.time = timeDate(receivedTime)
         self.totalTime = timeDate(receivedTime)
     }
@@ -122,6 +155,7 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     func timeSetupFinish(timeSetupViewController: TimeSetupViewController, result: [String]) {
         self.receivedTime = result
         self.round = result[2]
+        self.startRound = round
         self.time = timeDate(result)
        
         self.repeatTimer.text = self.timeString(result).stringByReplacingOccurrencesOfString(".", withString: ":")
