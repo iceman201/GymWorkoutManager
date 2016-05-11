@@ -369,6 +369,7 @@
 				TargetAttributes = {
 					E6AD9D841C4C5F28004F6437 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 8436A3G9R2;
 					};
 					E6AD9D9A1C4C5F28004F6437 = {
 						CreatedOnToolsVersion = 7.2;
@@ -652,6 +653,7 @@
 			baseConfigurationReference = 1C1FE039C8DF3A2B0CC8777C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = GymWorkoutManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
@@ -667,6 +669,7 @@
 			baseConfigurationReference = BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = GymWorkoutManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;

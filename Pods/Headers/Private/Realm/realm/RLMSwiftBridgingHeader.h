@@ -1,1 +1,1 @@
-../../../../Realm/include/realm/RLMSwiftBridgingHeader.h
+../../../../Realm/include/Realm/RLMSwiftBridgingHeader.h

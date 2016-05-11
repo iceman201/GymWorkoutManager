@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ChameleonFramework
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
