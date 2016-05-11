@@ -11,6 +11,7 @@
 		053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* PersonalInformation.swift */; };
 		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
 		E62583471CE2F499007C6323 /* background.mov in Resources */ = {isa = PBXBuildFile; fileRef = E62583461CE2F499007C6323 /* background.mov */; };
+		E62583491CE2FBB6007C6323 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E62583481CE2FBB6007C6323 /* Podfile */; };
 		E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */; };
 		E63130F21C9BA57100C8E5AC /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63130F11C9BA57100C8E5AC /* RoundButton.swift */; };
 		E6AA28AF1CBDD81000AC6BCD /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AA28AE1CBDD81000AC6BCD /* TableCell.swift */; };
@@ -67,6 +68,7 @@
 		5EF9819A6B2B4D25EAAD9811 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E62583461CE2F499007C6323 /* background.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = background.mov; sourceTree = "<group>"; };
+		E62583481CE2FBB6007C6323 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
 		E63130F11C9BA57100C8E5AC /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = Method/RoundButton.swift; sourceTree = "<group>"; };
 		E6AA28AE1CBDD81000AC6BCD /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableCell.swift; path = Method/TableCell.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */,
 				E6AD9D911C4C5F28004F6437 /* Assets.xcassets */,
 				E6AD9D931C4C5F28004F6437 /* LaunchScreen.storyboard */,
+				E62583481CE2FBB6007C6323 /* Podfile */,
 				E6AD9D961C4C5F28004F6437 /* Info.plist */,
 			);
 			path = GymWorkoutManager;
@@ -409,6 +412,7 @@
 				E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */,
 				E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */,
 				E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */,
+				E62583491CE2FBB6007C6323 /* Podfile in Resources */,
 				E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */,
 				E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */,
 				E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */,

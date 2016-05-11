@@ -84,7 +84,6 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "Pods-GymWorkoutManager/ChameleonFramework.framework"
   install_framework "Pods-GymWorkoutManager/Charts.framework"
   install_framework "Pods-GymWorkoutManager/EasyAnimation.framework"
   install_framework "Pods-GymWorkoutManager/GradientCircularProgress.framework"
@@ -93,7 +92,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-GymWorkoutManager/RealmSwift.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "Pods-GymWorkoutManager/ChameleonFramework.framework"
   install_framework "Pods-GymWorkoutManager/Charts.framework"
   install_framework "Pods-GymWorkoutManager/EasyAnimation.framework"
   install_framework "Pods-GymWorkoutManager/GradientCircularProgress.framework"
