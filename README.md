@@ -60,14 +60,16 @@
     RealmDB -> Analysis[label="ReadOut"];
   }
 )
+ - Note: 
+  	- box -> Controller
+ 	- circle -> View
+ 	- box(colored) -> Model
 
 ##Framework
 * See Podfile
 
 ##ChangeLog
 * Please Checkout [here](https://github.com/NZSwift/GymWorkoutManager/wiki)
-
-##License
 
 ##Acknowledgements
 Contributor|Github
