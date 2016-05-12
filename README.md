@@ -71,8 +71,6 @@
 ##ChangeLog
 * Please Checkout [here](https://github.com/NZSwift/GymWorkoutManager/wiki)
 
-##License
-
 ##Acknowledgements
 Contributor|Github
 -------------|-------------
