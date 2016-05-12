@@ -32,17 +32,21 @@ class RecordViewController: UITableViewController {
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let pictureCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath)
-           // pictureCell.backgroundColor = UIColor.redColor()
-            return pictureCell
+            let infoCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath) as! RecordInfoCell
+            infoCell.age.text = "1"
+            infoCell.activeDay.text = "3"
+            infoCell.effectiveIndex.text = "0.3"
+            infoCell.name.text = "Liguo Jiao"
+            
+            return infoCell
         } else {
-            let cell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
+            let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
             let content = result[indexPath.row]
             // TODO: correct content text
-            cell.textLabel?.text = "\(content.date)---\(content.exerciseName) \(content.reps) reps \(content.set) sets "
-            cell.textLabel?.textColor = cell.tintColor
-            cell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
-            return cell
+            recordCell.textLabel?.text = "\(content.date)---\(content.exerciseName) \(content.reps) reps \(content.set) sets "
+            recordCell.textLabel?.textColor = recordCell.tintColor
+            recordCell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
+            return recordCell
         }
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

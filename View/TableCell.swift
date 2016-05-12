@@ -14,12 +14,3 @@ class TableCell: UITableViewCell {
         self.backgroundColor = UIColor.blueColor()
     }
 }
-
-class TableImageCell: UITableViewCell {
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.backgroundColor = UIColor.blueColor()
-    }
-    
-    
-}
