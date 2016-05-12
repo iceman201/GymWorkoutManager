@@ -27,6 +27,17 @@
 	* Note: this function may develop on future version.
 
 ###Frame Tree
+![Alt text](http://g.gravizo.com/g?
+  digraph G {
+    aize ="4,4";
+    main [shape=box];
+    main -> Timer [weight=8];
+    main -> Personal Information [style=bold,label="TabBarVC"];
+    Personal Information -> User Information [style=dotted];
+    Personal Information -> User BMI&BMR Record [style=dotted];
+    main -> Analysis;
+  }
+)
 
 ##Framework
 * See Podfile
