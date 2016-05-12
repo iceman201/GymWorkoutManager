@@ -60,6 +60,10 @@
     RealmDB -> Analysis[label="ReadOut"];
   }
 )
+ - Note: 
+  	- box -> Controller
+ 	- circle -> View
+ 	- box(colored) -> Model
 
 ##Framework
 * See Podfile
