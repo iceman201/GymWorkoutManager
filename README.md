@@ -40,4 +40,5 @@
 Contributor|Github
 -------------|-------------
 GL|[gl-Lei](https://github.com/gl-Lei)
+Rita|[jiting71](https://github.com/jiting71)
 GrandKai|[GrandKai](https://github.com/GrandKai)
