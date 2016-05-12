@@ -14,8 +14,9 @@
 		E62583471CE2F499007C6323 /* background.mov in Resources */ = {isa = PBXBuildFile; fileRef = E62583461CE2F499007C6323 /* background.mov */; };
 		E62583491CE2FBB6007C6323 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E62583481CE2FBB6007C6323 /* Podfile */; };
 		E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */; };
-		E63130F21C9BA57100C8E5AC /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63130F11C9BA57100C8E5AC /* RoundButton.swift */; };
-		E6AA28AF1CBDD81000AC6BCD /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AA28AE1CBDD81000AC6BCD /* TableCell.swift */; };
+		E6A1694C1CE448D400A79E20 /* RecordInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A1694B1CE448D400A79E20 /* RecordInfoCell.swift */; };
+		E6A169501CE448E400A79E20 /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A1694E1CE448E400A79E20 /* RoundButton.swift */; };
+		E6A169521CE448F700A79E20 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A169511CE448F700A79E20 /* TableCell.swift */; };
 		E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */; };
 		E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */; };
 		E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */; };
@@ -72,8 +73,9 @@
 		E62583461CE2F499007C6323 /* background.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = background.mov; sourceTree = "<group>"; };
 		E62583481CE2FBB6007C6323 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
-		E63130F11C9BA57100C8E5AC /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = Method/RoundButton.swift; sourceTree = "<group>"; };
-		E6AA28AE1CBDD81000AC6BCD /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableCell.swift; path = Method/TableCell.swift; sourceTree = "<group>"; };
+		E6A1694B1CE448D400A79E20 /* RecordInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordInfoCell.swift; path = View/RecordInfoCell.swift; sourceTree = "<group>"; };
+		E6A1694E1CE448E400A79E20 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = View/RoundButton.swift; sourceTree = "<group>"; };
+		E6A169511CE448F700A79E20 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableCell.swift; path = View/TableCell.swift; sourceTree = "<group>"; };
 		E6AD9D851C4C5F28004F6437 /* GymWorkoutManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymWorkoutManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -181,13 +183,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E63130F01C9BA51200C8E5AC /* Method */ = {
+		E63130F01C9BA51200C8E5AC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				E63130F11C9BA57100C8E5AC /* RoundButton.swift */,
-				E6AA28AE1CBDD81000AC6BCD /* TableCell.swift */,
+				E6A169511CE448F700A79E20 /* TableCell.swift */,
+				E6A1694E1CE448E400A79E20 /* RoundButton.swift */,
+				E6A1694B1CE448D400A79E20 /* RecordInfoCell.swift */,
 			);
-			name = Method;
+			name = View;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -220,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				05D07F051CD41D6600449341 /* Model */,
+				E63130F01C9BA51200C8E5AC /* View */,
 				051F4C3B1C9C008A004EA632 /* ViewControllers */,
-				E63130F01C9BA51200C8E5AC /* Method */,
 				E6AD9D8E1C4C5F28004F6437 /* Main.storyboard */,
 				E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */,
 				E6AD9D911C4C5F28004F6437 /* Assets.xcassets */,
@@ -502,12 +505,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E63130F21C9BA57100C8E5AC /* RoundButton.swift in Sources */,
-				E6AA28AF1CBDD81000AC6BCD /* TableCell.swift in Sources */,
+				E6A169501CE448E400A79E20 /* RoundButton.swift in Sources */,
+				E6A1694C1CE448D400A79E20 /* RecordInfoCell.swift in Sources */,
 				E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */,
 				E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */,
 				E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */,
 				E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */,
+				E6A169521CE448F700A79E20 /* TableCell.swift in Sources */,
 				05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */,
 				05D07F071CD41D9700449341 /* Exercise.swift in Sources */,
 				053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */,
