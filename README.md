@@ -5,7 +5,7 @@
 
 
 ##Introduction
-**Gym Workout Manager** is a personal execrise recorder app. User could use it as a helper/mentor during the workout, and record all the workout information to analysis the effectiveness of their workout.
+**Gym Workout Manager** is a personal exercise recorder application coded by Swift language. User could use it as a helper/mentor during the workout, and record all the workout information to analysis the effectiveness of their workout.
 
 ##Structure
 ###Functionality
