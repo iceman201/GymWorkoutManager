@@ -8,7 +8,7 @@
 **Gym Workout Manager** is a personal exercise recorder application coded by Swift language. User could use it as a helper/mentor during the workout, and record all the workout information to analysis the effectiveness of their workout.
 
 ##Structure
-###Functionality
+######Functionality
 * Timer
 	* HIIT Workout Timer.
 	* Weight Training Timer.
@@ -25,7 +25,7 @@
 * Self Challenge*
 	* Note: this function may develop on future version.
 
-###Frame Tree
+######Frame Tree
 ![Alt text](http://g.gravizo.com/g?
   digraph G {
     aize ="4,4";
