@@ -52,7 +52,7 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         }
     }
     
-    @IBAction func claimRecord(sender: AnyObject) {
+    @objc private func claimRecord(sender: AnyObject) {
         let alert = UIAlertController(title: "Record Claim", message: "Which execirse you did today", preferredStyle: .Alert)
         
 
@@ -138,6 +138,11 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBar.topItem?.title = "HIIT Timer"
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Claim", style: .Plain, target: self, action: #selector(claimRecord))
+        
+        
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1
         print(Realm.Configuration.defaultConfiguration.path)

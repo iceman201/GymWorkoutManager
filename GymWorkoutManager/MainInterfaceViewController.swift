@@ -12,6 +12,9 @@ import MediaPlayer
 class MainInterfaceViewController: UIViewController {
     var moviePlayer: MPMoviePlayerController!
     
+    @IBOutlet var logo: UIImageView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Load the video from the app bundle.
@@ -30,6 +33,10 @@ class MainInterfaceViewController: UIViewController {
         
         // Loop video.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loopVideo), name: MPMoviePlayerPlaybackDidFinishNotification, object: self.moviePlayer)
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBarHidden = true
     }
     
     @objc private func loopVideo() {

@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* PersonalInformation.swift */; };
+		054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B910D1CE6244000851D0E /* AnalysisViewController.swift */; };
+		056C9FAE1CE6052300CFCDDA /* ScrollPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */; };
+		056C9FB01CE6108A00CFCDDA /* 1463164731_scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */; };
+		056C9FB21CE610D500CFCDDA /* 1463164826_centimeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */; };
+		05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D1E1CE615BC0035927C /* RoundImage.swift */; };
+		05C36D211CE61A880035927C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D201CE61A880035927C /* ProfileViewController.swift */; };
 		05D07F071CD41D9700449341 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D07F061CD41D9700449341 /* Exercise.swift */; };
 		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
 		E62583491CE2FBB6007C6323 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E62583481CE2FBB6007C6323 /* Podfile */; };
@@ -98,6 +104,12 @@
 /* Begin PBXFileReference section */
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
 		053D94281C9C2F94002ADA4E /* PersonalInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInformation.swift; sourceTree = "<group>"; };
+		054B910D1CE6244000851D0E /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
+		056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPager.swift; sourceTree = "<group>"; };
+		056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164731_scale.png; sourceTree = "<group>"; };
+		056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164826_centimeter.png; sourceTree = "<group>"; };
+		05C36D1E1CE615BC0035927C /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
+		05C36D201CE61A880035927C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		05D07F061CD41D9700449341 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = Model/Exercise.swift; sourceTree = SOURCE_ROOT; };
 		1C1FE039C8DF3A2B0CC8777C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5EF9819A6B2B4D25EAAD9811 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +117,7 @@
 		E62583481CE2FBB6007C6323 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
 		E6A1694B1CE448D400A79E20 /* RecordInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordInfoCell.swift; path = View/RecordInfoCell.swift; sourceTree = "<group>"; };
-		E6A1694E1CE448E400A79E20 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = View/RoundButton.swift; sourceTree = "<group>"; };
+		E6A1694E1CE448E400A79E20 /* RoundButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundButton.swift; path = ../View/RoundButton.swift; sourceTree = "<group>"; };
 		E6A169511CE448F700A79E20 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableCell.swift; path = View/TableCell.swift; sourceTree = "<group>"; };
 		E6A9C9701CE58DF200B2A231 /* background.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = background.mov; sourceTree = "<group>"; };
 		E6A9C9721CE58E0A00B2A231 /* 1463130943_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463130943_heart.png; sourceTree = "<group>"; };
@@ -209,6 +221,8 @@
 				05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */,
 				E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */,
 				053D94281C9C2F94002ADA4E /* PersonalInformation.swift */,
+				05C36D201CE61A880035927C /* ProfileViewController.swift */,
+				054B910D1CE6244000851D0E /* AnalysisViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -225,7 +239,10 @@
 		05D07F051CD41D6600449341 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */,
 				05D07F061CD41D9700449341 /* Exercise.swift */,
+				E6A1694E1CE448E400A79E20 /* RoundButton.swift */,
+				05C36D1E1CE615BC0035927C /* RoundImage.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -251,7 +268,6 @@
 			isa = PBXGroup;
 			children = (
 				E6A169511CE448F700A79E20 /* TableCell.swift */,
-				E6A1694E1CE448E400A79E20 /* RoundButton.swift */,
 				E6A1694B1CE448D400A79E20 /* RecordInfoCell.swift */,
 			);
 			name = View;
@@ -368,6 +384,8 @@
 		E6D0A0DA1C4C6B2200F43DB5 /* Icon */ = {
 			isa = PBXGroup;
 			children = (
+				056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */,
+				056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */,
 				E6D0A0E71C4C6B2200F43DB5 /* iPhone */,
 				E6D0A0F11C4C6B2200F43DB5 /* iWatch */,
 			);
@@ -515,6 +533,7 @@
 			files = (
 				E6A9C9961CE58E0A00B2A231 /* 1463131051_date.png in Resources */,
 				E6A9C9941CE58E0A00B2A231 /* 1463131047_organizer.png in Resources */,
+				056C9FB21CE610D500CFCDDA /* 1463164826_centimeter.png in Resources */,
 				E6AD9D951C4C5F28004F6437 /* LaunchScreen.storyboard in Resources */,
 				E6A9C9A81CE58E0A00B2A231 /* 1463131078_shake.png in Resources */,
 				E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */,
@@ -560,6 +579,7 @@
 				E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */,
 				E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */,
 				E62583491CE2FBB6007C6323 /* Podfile in Resources */,
+				056C9FB01CE6108A00CFCDDA /* 1463164731_scale.png in Resources */,
 				E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */,
 				E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */,
 				E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */,
@@ -647,9 +667,13 @@
 				E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */,
 				E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */,
 				E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */,
+				056C9FAE1CE6052300CFCDDA /* ScrollPager.swift in Sources */,
 				E6A169521CE448F700A79E20 /* TableCell.swift in Sources */,
 				05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */,
 				05D07F071CD41D9700449341 /* Exercise.swift in Sources */,
+				054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */,
+				05C36D211CE61A880035927C /* ProfileViewController.swift in Sources */,
+				05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */,
 				053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
