@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aMi-tv-usv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aMi-tv-usv">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -316,7 +316,7 @@
                                 </constraints>
                                 <state key="normal" title="  Personal Information"/>
                                 <connections>
-                                    <segue destination="VHl-aa-cQO" kind="presentation" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="kWY-qB-IUV"/>
+                                    <segue destination="WRz-SO-GJi" kind="show" id="2sC-XS-tZx"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAC-21-580">
@@ -370,7 +370,7 @@
             </objects>
             <point key="canvasLocation" x="-125" y="-59"/>
         </scene>
-        <!--Personal Information-->
+        <!--BMI&BMR-->
         <scene sceneID="k0a-rt-spC">
             <objects>
                 <viewController id="VHl-aa-cQO" customClass="PersonalInformation" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -553,21 +553,6 @@
                                     <action selector="BMICalculation:" destination="VHl-aa-cQO" eventType="touchUpInside" id="tUv-gX-Q7C"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uC7-op-YSI">
-                                <rect key="frame" x="87" y="497" width="240" height="240"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="0qN-vd-V0H"/>
-                                    <constraint firstAttribute="height" constant="240" id="1Sr-d5-2BM"/>
-                                </constraints>
-                                <string key="text">Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
-
-
-Your BMR is the amount of energy your body needs to function. We use about 60% of the calories we consume each day for basic bodily functions such as breathing.</string>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8f-Qz-Pza" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
                                 <rect key="frame" x="69" y="389" width="42" height="42"/>
                                 <constraints>
@@ -611,6 +596,21 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uC7-op-YSI">
+                                <rect key="frame" x="87" y="447" width="240" height="240"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="0qN-vd-V0H"/>
+                                    <constraint firstAttribute="height" constant="240" id="1Sr-d5-2BM"/>
+                                </constraints>
+                                <string key="text">Body mass index (BMI) is a measure of body fat based on height and weight that applies to adult men and women.
+
+
+Your BMR is the amount of energy your body needs to function. We use about 60% of the calories we consume each day for basic bodily functions such as breathing.</string>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -623,11 +623,11 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                             <constraint firstItem="WbE-si-lbs" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="9Zc-H5-4KJ"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="AMx-H9-qDI"/>
                             <constraint firstItem="9ei-JE-y6Q" firstAttribute="leading" secondItem="cty-ZZ-7ag" secondAttribute="leading" id="BX0-Zx-6jg"/>
-                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="BZY-6L-rjO"/>
+                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" id="BZY-6L-rjO"/>
                             <constraint firstItem="cty-ZZ-7ag" firstAttribute="top" secondItem="9ei-JE-y6Q" secondAttribute="bottom" constant="13" id="H96-xf-Abt"/>
                             <constraint firstItem="1Zo-ys-11E" firstAttribute="centerX" secondItem="uC7-op-YSI" secondAttribute="centerX" id="MIp-Fa-4Vp"/>
                             <constraint firstItem="fct-rl-QZT" firstAttribute="centerX" secondItem="LYV-3F-pks" secondAttribute="centerX" id="MOM-Yt-tIR"/>
-                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" constant="-1" id="NR3-t3-eet"/>
+                            <constraint firstItem="KUU-ff-TgG" firstAttribute="top" secondItem="uC7-op-YSI" secondAttribute="bottom" id="NR3-t3-eet"/>
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="trailing" secondItem="WbE-si-lbs" secondAttribute="trailing" id="NeP-K3-9G0"/>
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="top" secondItem="WbE-si-lbs" secondAttribute="bottom" constant="14" id="R7I-6f-c3Z"/>
                             <constraint firstItem="vzu-Vi-Ppe" firstAttribute="leading" secondItem="R8f-Qz-Pza" secondAttribute="trailing" constant="8" symbolic="YES" id="Sxh-j6-75R"/>
@@ -645,6 +645,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                             <constraint firstItem="QlY-DT-hF5" firstAttribute="leading" secondItem="WbE-si-lbs" secondAttribute="leading" id="sWG-Cd-pm4"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="BMI&amp;BMR" id="Rh6-P0-L6B"/>
                     <connections>
                         <outlet property="age" destination="9ei-JE-y6Q" id="IfX-uW-YPq"/>
                         <outlet property="bodyFat" destination="QlY-DT-hF5" id="eqh-ic-eqT"/>
@@ -658,7 +659,62 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lzx-Rw-Ml5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="DVf-AP-5tA" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-760" y="869"/>
+            <point key="canvasLocation" x="-514" y="1719"/>
+        </scene>
+        <!--Profile-->
+        <scene sceneID="Cfk-iG-TCw">
+            <objects>
+                <viewController id="tlL-yk-gWd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="k6k-H0-qFT"/>
+                        <viewControllerLayoutGuide type="bottom" id="TFw-Vv-qbf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nVv-k9-YVA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fD-z1-3br" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="20" y="20" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="OqN-dW-ncV"/>
+                                    <constraint firstAttribute="width" constant="60" id="chL-p0-PAi"/>
+                                </constraints>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="XkH-V6-m4P" kind="unwind" unwindAction="unwindToMainView:" id="44Q-Dn-cCJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="9fD-z1-3br" firstAttribute="top" secondItem="k6k-H0-qFT" secondAttribute="bottom" id="9by-7w-J2p"/>
+                            <constraint firstItem="9fD-z1-3br" firstAttribute="leading" secondItem="nVv-k9-YVA" secondAttribute="leadingMargin" id="Miz-eF-69t"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Profile" id="PI3-vx-bNG"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LHa-Vi-936" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="XkH-V6-m4P" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="-1099" y="1593"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="qZ1-Rf-2ag">
+            <objects>
+                <tabBarController id="WRz-SO-GJi" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="naV-Be-rTy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="tlL-yk-gWd" kind="relationship" relationship="viewControllers" id="GfC-y1-4SO"/>
+                        <segue destination="VHl-aa-cQO" kind="relationship" relationship="viewControllers" id="Uis-0m-a3u"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evP-ct-KLx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-710" y="674"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="TSM-5e-YtP">
@@ -936,6 +992,19 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="166" id="rcW-ds-fEA">
+                                <rect key="frame" x="0.0" y="225" width="414" height="166"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rcW-ds-fEA" id="XuL-2f-c3V">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="165"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="wGR-1m-NTl">
+                                            <rect key="frame" x="188" y="128" width="39" height="37"/>
+                                        </pageControl>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
