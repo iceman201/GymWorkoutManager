@@ -37,7 +37,7 @@ class RecordViewController: UITableViewController {
             infoCell.activeDay.text = "3"
             infoCell.effectiveIndex.text = "0.3"
             infoCell.name.text = "Liguo Jiao"
-            
+            infoCell.profileImage.image = UIImage(named: "Icon-60@2x.png")
             return infoCell
         } else {
             let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
@@ -51,7 +51,7 @@ class RecordViewController: UITableViewController {
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            return 153
+            return 183
         } else {
             return UITableViewAutomaticDimension
         }
@@ -65,7 +65,9 @@ class RecordViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-
+        self.edgesForExtendedLayout=UIRectEdge.None
+        self.extendedLayoutIncludesOpaqueBars = false
+        self.automaticallyAdjustsScrollViewInsets = false
         do {
             let r = try Realm()
             result = r.objects(Exercise)
