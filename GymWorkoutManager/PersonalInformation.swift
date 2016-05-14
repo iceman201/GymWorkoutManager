@@ -21,6 +21,8 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.navigationBar.topItem?.title = "BMI&BMR"
         age.delegate = self
         bodyFat.delegate = self
         weight.delegate = self
