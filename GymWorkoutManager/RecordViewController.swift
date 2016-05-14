@@ -33,12 +33,12 @@ class RecordViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let infoCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath) as! RecordInfoCell
-            infoCell.age.text = "1"
             infoCell.activeDay.text = "3"
             infoCell.effectiveIndex.text = "0.3"
             infoCell.name.text = "Liguo Jiao"
             infoCell.profileImage.image = UIImage(named: "Icon-60@2x.png")
             return infoCell
+            
         } else {
             let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
             let content = result[indexPath.row]
@@ -53,7 +53,7 @@ class RecordViewController: UITableViewController {
         if indexPath.section == 0 {
             return 183
         } else {
-            return UITableViewAutomaticDimension
+            return 44
         }
     }
     

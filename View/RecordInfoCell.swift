@@ -14,8 +14,6 @@ class RecordInfoCell: UITableViewCell {
     
     @IBOutlet weak var name: UILabel!
     
-    @IBOutlet weak var age: UILabel!
-    
     @IBOutlet weak var weight: UILabel!
     
     @IBOutlet weak var activeDay: UILabel!
