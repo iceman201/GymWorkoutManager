@@ -52,10 +52,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         if let del = delegate {
             del.timeSetupFinish(self, result: self.result)
         }
-        
-        self.dismissViewControllerAnimated(true) { () -> Void in
-            print(self.result)
-        }
+        navigationController?.popViewControllerAnimated(true)
     }
     
     // MARK: - PickerView

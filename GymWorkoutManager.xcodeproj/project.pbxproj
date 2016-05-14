@@ -14,6 +14,8 @@
 		056C9FB01CE6108A00CFCDDA /* 1463164731_scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */; };
 		056C9FB21CE610D500CFCDDA /* 1463164826_centimeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */; };
 		057946BB1CE6E9350051A501 /* ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057946BA1CE6E9350051A501 /* ColorCode.swift */; };
+		057946BF1CE74E790051A501 /* profileHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 057946BE1CE74E790051A501 /* profileHeader.png */; };
+		057946C11CE75AF70051A501 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057946C01CE75AF70051A501 /* UIViewExtension.swift */; };
 		05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D1E1CE615BC0035927C /* RoundImage.swift */; };
 		05C36D211CE61A880035927C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D201CE61A880035927C /* ProfileViewController.swift */; };
 		05D07F071CD41D9700449341 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D07F061CD41D9700449341 /* Exercise.swift */; };
@@ -57,7 +59,7 @@
 		E6A9C9B01CE58E0A00B2A231 /* 1463131091_iwatch.png in Resources */ = {isa = PBXBuildFile; fileRef = E6A9C9901CE58E0A00B2A231 /* 1463131091_iwatch.png */; };
 		E6A9C9B11CE58E0A00B2A231 /* 1463131092_mixer.png in Resources */ = {isa = PBXBuildFile; fileRef = E6A9C9911CE58E0A00B2A231 /* 1463131092_mixer.png */; };
 		E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */; };
-		E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */; };
+		E6AD9D8B1C4C5F28004F6437 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8A1C4C5F28004F6437 /* TimerViewController.swift */; };
 		E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */; };
 		E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D8E1C4C5F28004F6437 /* Main.storyboard */; };
 		E6AD9D921C4C5F28004F6437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D911C4C5F28004F6437 /* Assets.xcassets */; };
@@ -110,6 +112,8 @@
 		056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164731_scale.png; sourceTree = "<group>"; };
 		056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164826_centimeter.png; sourceTree = "<group>"; };
 		057946BA1CE6E9350051A501 /* ColorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCode.swift; sourceTree = "<group>"; };
+		057946BE1CE74E790051A501 /* profileHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileHeader.png; sourceTree = "<group>"; };
+		057946C01CE75AF70051A501 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		05C36D1E1CE615BC0035927C /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
 		05C36D201CE61A880035927C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		05D07F061CD41D9700449341 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = Model/Exercise.swift; sourceTree = SOURCE_ROOT; };
@@ -156,7 +160,7 @@
 		E6A9C9911CE58E0A00B2A231 /* 1463131092_mixer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463131092_mixer.png; sourceTree = "<group>"; };
 		E6AD9D851C4C5F28004F6437 /* GymWorkoutManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymWorkoutManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		E6AD9D8A1C4C5F28004F6437 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		E6AD9D8F1C4C5F28004F6437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E6AD9D911C4C5F28004F6437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -218,7 +222,7 @@
 		051F4C3B1C9C008A004EA632 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E6AD9D8A1C4C5F28004F6437 /* FirstViewController.swift */,
+				E6AD9D8A1C4C5F28004F6437 /* TimerViewController.swift */,
 				E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */,
 				05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */,
 				E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */,
@@ -246,6 +250,7 @@
 				E6A1694E1CE448E400A79E20 /* RoundButton.swift */,
 				05C36D1E1CE615BC0035927C /* RoundImage.swift */,
 				057946BA1CE6E9350051A501 /* ColorCode.swift */,
+				057946C01CE75AF70051A501 /* UIViewExtension.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -347,6 +352,7 @@
 		E6D0A0D71C4C687900F43DB5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				057946BE1CE74E790051A501 /* profileHeader.png */,
 				E6A9C9721CE58E0A00B2A231 /* 1463130943_heart.png */,
 				E6A9C9731CE58E0A00B2A231 /* 1463131024_notes.png */,
 				E6A9C9741CE58E0A00B2A231 /* 1463131047_organizer.png */,
@@ -572,6 +578,7 @@
 				E6A9C99D1CE58E0A00B2A231 /* 1463131063_stopwatch.png in Resources */,
 				E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */,
 				E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */,
+				057946BF1CE74E790051A501 /* profileHeader.png in Resources */,
 				E6A9C99C1CE58E0A00B2A231 /* 1463131061_plastic.png in Resources */,
 				E6A9C9971CE58E0A00B2A231 /* 1463131052_scale.png in Resources */,
 				E6A9C9A91CE58E0A00B2A231 /* 1463131081_pages.png in Resources */,
@@ -669,7 +676,8 @@
 				E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */,
 				E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */,
 				E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */,
-				E6AD9D8B1C4C5F28004F6437 /* FirstViewController.swift in Sources */,
+				E6AD9D8B1C4C5F28004F6437 /* TimerViewController.swift in Sources */,
+				057946C11CE75AF70051A501 /* UIViewExtension.swift in Sources */,
 				056C9FAE1CE6052300CFCDDA /* ScrollPager.swift in Sources */,
 				E6A169521CE448F700A79E20 /* TableCell.swift in Sources */,
 				05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */,

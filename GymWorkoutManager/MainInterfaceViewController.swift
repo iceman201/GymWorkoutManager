@@ -19,16 +19,12 @@ class MainInterfaceViewController: UIViewController {
         super.viewDidLoad()
         // Load the video from the app bundle.
         let videoURL: NSURL = NSBundle.mainBundle().URLForResource("background", withExtension: "mov")!
-        
         // Create and configure the movie player.
         self.moviePlayer = MPMoviePlayerController(contentURL: videoURL)
-        
         self.moviePlayer.controlStyle = MPMovieControlStyle.None
         self.moviePlayer.scalingMode = MPMovieScalingMode.AspectFill
-        
         self.moviePlayer.view.frame = self.view.frame
         self.view .insertSubview(self.moviePlayer.view, atIndex: 0)
-        
         self.moviePlayer.play()
         
         // Loop video.
