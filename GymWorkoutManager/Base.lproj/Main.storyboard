@@ -69,9 +69,12 @@
                                     <constraint firstAttribute="height" constant="80" id="Dfw-dk-vS8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title=" Set Time"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title=" Set Time">
+                                    <color key="titleColor" red="0.86583981860000003" green="1" blue="0.4396262084" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="i9H-gI-UmR" kind="presentation" identifier="setTime" modalPresentationStyle="formSheet" modalTransitionStyle="flipHorizontal" id="Wn3-yq-aKP"/>
+                                    <segue destination="i9H-gI-UmR" kind="show" identifier="setTime" id="Wn3-yq-aKP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KEc-6E-O6s" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
@@ -81,20 +84,25 @@
                                     <constraint firstAttribute="width" constant="80" id="STG-Ki-9Yy"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Reset"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Reset">
+                                    <color key="titleColor" red="0.86583981860000003" green="1" blue="0.4396262084" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="reset:" destination="9pv-A4-QxB" eventType="touchUpInside" id="In6-Ay-okl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GWR-AC-4CY">
                                 <rect key="frame" x="136" y="546" width="142" height="81"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.66947737068965518" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.86583981860000003" green="1" blue="0.4396262084" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="81" id="I2D-fu-bno"/>
                                     <constraint firstAttribute="width" constant="142" id="lji-4v-kto"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="57"/>
-                                <state key="normal" title="GO!"/>
+                                <state key="normal" title="GO!">
+                                    <color key="titleColor" red="0.37254901959999998" green="0.16078431369999999" blue="0.4039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="counter:" destination="9pv-A4-QxB" eventType="touchUpInside" id="l83-iR-vUq"/>
                                 </connections>
@@ -144,24 +152,24 @@
                         <viewControllerLayoutGuide type="bottom" id="kV7-Tt-N87"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="M3D-jv-efz">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of round" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QCO-y9-CnH">
-                                <rect key="frame" x="217" y="243" width="167" height="27"/>
+                                <rect key="frame" x="124" y="311" width="167" height="27"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9kH-jg-06m">
-                                <rect key="frame" x="170" y="101" width="261" height="126"/>
+                                <rect key="frame" x="77" y="169" width="261" height="126"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="126" id="G7v-yX-mtt"/>
                                     <constraint firstAttribute="width" constant="261" id="wv0-gh-CQv"/>
                                 </constraints>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selete your time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FJg-Mz-oEc">
-                                <rect key="frame" x="196" y="59" width="208" height="34"/>
+                                <rect key="frame" x="103" y="127" width="208" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="41R-UZ-PPi"/>
                                     <constraint firstAttribute="width" constant="208" id="chg-Sf-Vqx"/>
@@ -171,13 +179,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="eP8-67-LT8">
-                                <rect key="frame" x="253" y="343" width="94" height="29"/>
+                                <rect key="frame" x="160" y="411" width="94" height="29"/>
                                 <connections>
                                     <action selector="roundNumberStepper:" destination="i9H-gI-UmR" eventType="valueChanged" id="bIj-SW-5Vt"/>
                                 </connections>
                             </stepper>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ytu-NO-vuv">
-                                <rect key="frame" x="280" y="278" width="40" height="44"/>
+                                <rect key="frame" x="187" y="346" width="40" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="0mx-jK-wIK"/>
                                     <constraint firstAttribute="height" constant="44" id="oLL-oM-FdN"/>
@@ -187,7 +195,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mf3-fm-hev" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
-                                <rect key="frame" x="146" y="417" width="99" height="99"/>
+                                <rect key="frame" x="53" y="485" width="99" height="99"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="99" id="YxD-a0-oQK"/>
@@ -200,7 +208,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rwf-aC-azw" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
-                                <rect key="frame" x="355" y="417" width="99" height="99"/>
+                                <rect key="frame" x="262" y="485" width="99" height="99"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="99" id="JEa-ce-a7g"/>
@@ -514,7 +522,9 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="R8f-Qz-Pza" secondAttribute="height" multiplier="1:1" id="02p-I8-hMg"/>
                                 </constraints>
-                                <state key="normal" title="BMR"/>
+                                <state key="normal" title="BMR">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="BMRCalculation:" destination="VHl-aa-cQO" eventType="touchUpInside" id="qDQ-Z4-iT4"/>
                                 </connections>
@@ -620,6 +630,13 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                     <view key="view" contentMode="scaleToFill" id="nVv-k9-YVA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IwG-Dz-094">
+                                <rect key="frame" x="112" y="127" width="160" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="1463164731_scale.png" id="PI3-vx-bNG"/>
@@ -725,10 +742,8 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <outlet property="activeDay" destination="TLy-Il-23m" id="bru-1n-cvl"/>
-                                    <outlet property="effectiveIndex" destination="BwU-1d-FuE" id="JVX-Vd-nND"/>
                                     <outlet property="lastTimeWorkout" destination="WAa-dn-X4D" id="lbh-DA-1RC"/>
                                     <outlet property="profileImage" destination="2tL-5N-Cep" id="3Nz-A5-nf1"/>
-                                    <outlet property="weight" destination="qxe-DD-JRR" id="aaG-Fy-gMf"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="123" id="Gpb-vA-S2Z">
@@ -738,18 +753,6 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="122"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Effective Index:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUj-9s-dgp">
-                                            <rect key="frame" x="207" y="13" width="118" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X.X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwU-1d-FuE">
-                                            <rect key="frame" x="366" y="13" width="57" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Weight:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubC-mK-vJI">
                                             <rect key="frame" x="51" y="55" width="59" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -762,6 +765,18 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                                 <constraint firstAttribute="width" constant="34" id="5ia-KL-ZTa"/>
                                                 <constraint firstAttribute="height" constant="21" id="Aqn-wg-Mna"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Effective Index:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUj-9s-dgp">
+                                            <rect key="frame" x="51" y="19" width="118" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="X.X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwU-1d-FuE">
+                                            <rect key="frame" x="210" y="19" width="57" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>

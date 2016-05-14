@@ -142,6 +142,10 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.navigationController?.navigationBar.topItem?.title = "HIIT Timer"
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Claim", style: .Plain, target: self, action: #selector(claimRecord))
         
+        self.navigationController?.navigationBar.tintColor = GWMColorPurple
+        self.navigationController?.navigationBar.backgroundColor = GWMColorYellow
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : GWMColorPurple]
+        self.navigationController?.navigationBar.alpha = 1
         
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1

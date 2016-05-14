@@ -13,6 +13,7 @@
 		056C9FAE1CE6052300CFCDDA /* ScrollPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */; };
 		056C9FB01CE6108A00CFCDDA /* 1463164731_scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */; };
 		056C9FB21CE610D500CFCDDA /* 1463164826_centimeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */; };
+		057946BB1CE6E9350051A501 /* ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057946BA1CE6E9350051A501 /* ColorCode.swift */; };
 		05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D1E1CE615BC0035927C /* RoundImage.swift */; };
 		05C36D211CE61A880035927C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D201CE61A880035927C /* ProfileViewController.swift */; };
 		05D07F071CD41D9700449341 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D07F061CD41D9700449341 /* Exercise.swift */; };
@@ -108,6 +109,7 @@
 		056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPager.swift; sourceTree = "<group>"; };
 		056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164731_scale.png; sourceTree = "<group>"; };
 		056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164826_centimeter.png; sourceTree = "<group>"; };
+		057946BA1CE6E9350051A501 /* ColorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCode.swift; sourceTree = "<group>"; };
 		05C36D1E1CE615BC0035927C /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundImage.swift; sourceTree = "<group>"; };
 		05C36D201CE61A880035927C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		05D07F061CD41D9700449341 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = Model/Exercise.swift; sourceTree = SOURCE_ROOT; };
@@ -243,6 +245,7 @@
 				05D07F061CD41D9700449341 /* Exercise.swift */,
 				E6A1694E1CE448E400A79E20 /* RoundButton.swift */,
 				05C36D1E1CE615BC0035927C /* RoundImage.swift */,
+				057946BA1CE6E9350051A501 /* ColorCode.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				E6A169521CE448F700A79E20 /* TableCell.swift in Sources */,
 				05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */,
 				05D07F071CD41D9700449341 /* Exercise.swift in Sources */,
+				057946BB1CE6E9350051A501 /* ColorCode.swift in Sources */,
 				054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */,
 				05C36D211CE61A880035927C /* ProfileViewController.swift in Sources */,
 				05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */,
