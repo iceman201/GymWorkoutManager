@@ -22,7 +22,8 @@ class Person: Object {
     dynamic var sex = ""
     dynamic var birthdate = NSDate(timeIntervalSince1970: 1)
     dynamic var BMI = ""
-    // something else?
+    dynamic var profilePicture : NSString?//After swift 2.2 Realm update with using NSString. NSData? was for swift 1.2.
+    dynamic var activedDays : NSNumber?
     
     let exercise = List<Exercise>()
 }

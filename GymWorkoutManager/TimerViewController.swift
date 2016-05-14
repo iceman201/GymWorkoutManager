@@ -12,7 +12,7 @@ import AVFoundation
 import RealmSwift
 
 
-class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
+class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     // MARK: - IBOutlets
     
@@ -45,7 +45,7 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
     @IBAction func counter(sender: AnyObject) {
         if startButton.currentTitle != "Stop" {
             startButton.setTitle("Stop", forState: .Normal)
-            timerCountdown = NSTimer.scheduledTimerWithTimeInterval(millisecond, target: self, selector: #selector(FirstViewController.timeCountdown), userInfo: nil, repeats: true)
+            timerCountdown = NSTimer.scheduledTimerWithTimeInterval(millisecond, target: self, selector: #selector(TimerViewController.timeCountdown), userInfo: nil, repeats: true)
         } else {
             startButton.setTitle("GO!", forState: .Normal)
             timerCountdown.invalidate()
@@ -142,11 +142,14 @@ class FirstViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.navigationController?.navigationBar.topItem?.title = "HIIT Timer"
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Claim", style: .Plain, target: self, action: #selector(claimRecord))
         
+        self.navigationController?.navigationBar.translucent = false
+        self.navigationController?.navigationBar.barTintColor = GWMColorYellow
+        
         self.navigationController?.navigationBar.tintColor = GWMColorPurple
         self.navigationController?.navigationBar.backgroundColor = GWMColorYellow
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : GWMColorPurple]
-        self.navigationController?.navigationBar.alpha = 1
         
+
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1
         print(Realm.Configuration.defaultConfiguration.path)
