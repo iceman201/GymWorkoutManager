@@ -18,7 +18,7 @@ class Exercise: Object {
 }
 
 class Person: Object {
-    dynamic var id = 0
+    dynamic var id = ""
     dynamic var name = ""
     dynamic var sex = ""
     dynamic var birthdate = NSDate(timeIntervalSince1970: 1)

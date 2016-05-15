@@ -14,7 +14,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet var profilePicture: RoundButton!
     @IBOutlet var headerView: UIView!
-    let Cuser = Person()
+    var Cuser:Person?
     
     @IBAction func selectPicture(sender: AnyObject) {
         let alert = UIAlertController(title: "Profile image", message: "Upload your profile image.", preferredStyle: .ActionSheet)
@@ -34,27 +34,26 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         
+        DatabaseHelper.sharedInstance.beginTransaction()
         //Write into Realm
         if let imageSourceData = UIImagePNGRepresentation(image!) {
-            if Cuser.profilePicture != nil {
-                Cuser.profilePicture = nil
+            if Cuser!.profilePicture != nil {
+                Cuser!.profilePicture = nil
             }
-            Cuser.profilePicture = imageSourceData
-            Cuser.id = 1
-            do {
-                let u = try Realm()
-                try u.write({
-                    u.add(Cuser)
-                })
-            } catch let error as NSError {
-                print(error)
-            }
+            Cuser!.profilePicture = imageSourceData
         }
         //设置Image data
-        let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: Cuser.profilePicture!)!)
+        let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: Cuser!.profilePicture!)!)
         profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
         profilePicture.setTitle("", forState: .Normal)
 
+        DatabaseHelper.sharedInstance.commitTransaction()
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        if cusers?.count <= 0 {
+            Cuser!.id = NSUUID.init().UUIDString
+            DatabaseHelper.sharedInstance.insert(Cuser!)
+        }
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -67,13 +66,18 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profilePictureStyleSheet()
         navigationControllerStyleSheet()
         
-        
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        Cuser = cusers?.first
+        if Cuser == nil {
+            Cuser = Person()
+        }
         // 这里应该是去read from realm读Image data
-        
-        if Cuser.profilePicture != nil {
-            let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: Cuser.profilePicture!)!)
+        if Cuser!.profilePicture != nil {
+            DatabaseHelper.sharedInstance.beginTransaction()
+            let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: Cuser!.profilePicture!)!)
             profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
             profilePicture.setTitle("", forState: .Normal)
+            DatabaseHelper.sharedInstance.commitTransaction()
         }
         
     }
