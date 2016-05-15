@@ -658,7 +658,10 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <constraint firstAttribute="width" constant="150" id="qEi-5k-wxO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Optima-ExtraBlack" family="Optima" pointSize="60"/>
-                                        <state key="normal" title="+"/>
+                                        <color key="tintColor" red="0.46108701070000002" green="0.0" blue="0.63793356359999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="+">
+                                            <color key="titleColor" red="0.86583981860000003" green="1" blue="0.4396262084" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="selectPicture:" destination="tlL-yk-gWd" eventType="touchUpInside" id="E1X-a5-uug"/>
                                         </connections>

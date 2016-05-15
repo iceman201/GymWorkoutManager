@@ -18,12 +18,16 @@ class Exercise: Object {
 }
 
 class Person: Object {
+    dynamic var id = 0
     dynamic var name = ""
     dynamic var sex = ""
     dynamic var birthdate = NSDate(timeIntervalSince1970: 1)
     dynamic var BMI = ""
-    dynamic var profilePicture : NSString?//After swift 2.2 Realm update with using NSString. NSData? was for swift 1.2.
+    dynamic var profilePicture : NSData?
     dynamic var activedDays : NSNumber = 0
     
     let exercise = List<Exercise>()
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
