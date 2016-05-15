@@ -10,9 +10,9 @@ import UIKit
 import RealmSwift
 
 class RecordViewController: UITableViewController {
+    // MARK: - Variables
     var totalRecord = ["1","2","3"]
     var result : Results<Exercise>!
-    //
     
     func addRecord(item:String, time:String){
         let item = ""

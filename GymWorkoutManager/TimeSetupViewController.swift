@@ -14,7 +14,6 @@ protocol TimeSetupViewControllerDelegate: NSObjectProtocol {
 }
 
 class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource {
-    
     // MARK: - Variables
     let seconds = Array(0...59)
     let minutes = Array(0...59)
@@ -30,17 +29,13 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     }
     
     // MARK: - IBOutlet
-    
     @IBOutlet weak var NOR: UILabel!
-    
     @IBAction func roundNumberStepper(sender: UIStepper) {
         NOR.text = String(Int(sender.value))
     }
     
     @IBOutlet var timePicker: UIPickerView!
-    
     @IBOutlet weak var doneButton: UIButton!
-    
     @IBAction func confirmButton(sender: AnyObject) {
         if self.NOR.text == "" {
             self.result[2] = "0"
