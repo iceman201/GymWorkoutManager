@@ -14,49 +14,64 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     @IBOutlet var profilePicture: RoundButton!
     @IBOutlet var headerView: UIView!
-    var Cuser:Person?
+    var curentUser:Person?
     
     @IBAction func selectPicture(sender: AnyObject) {
         let alert = UIAlertController(title: "Profile image", message: "Upload your profile image.", preferredStyle: .ActionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (UIAlertAction) in
-            //open camera
+            let myPickerController = UIImagePickerController()
+            myPickerController.delegate = self
+            myPickerController.sourceType = UIImagePickerControllerSourceType.Camera
+            myPickerController.allowsEditing = true
+            self.presentViewController(myPickerController, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { (UIAlertAction) in
             let myPickerController = UIImagePickerController()
             myPickerController.delegate = self
             myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            
+            myPickerController.allowsEditing = true
             self.presentViewController(myPickerController, animated: true, completion: nil)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
+        let i = info[UIImagePickerControllerOriginalImage] as? UIImage
+        let image = fixOrientation(i!)
         DatabaseHelper.sharedInstance.beginTransaction()
-        //Write into Realm
-        if let imageSourceData = UIImagePNGRepresentation(image!) {
-            if Cuser!.profilePicture != nil {
-                Cuser!.profilePicture = nil
+        if let imageSourceData = UIImagePNGRepresentation(image) {
+            if curentUser!.profilePicture != nil {
+                curentUser!.profilePicture = nil
             }
-            Cuser!.profilePicture = imageSourceData
+            curentUser!.profilePicture = imageSourceData
         }
-        //设置Image data
-        let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: Cuser!.profilePicture!)!)
+        let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: curentUser!.profilePicture!)!)
         profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
         profilePicture.setTitle("", forState: .Normal)
 
         DatabaseHelper.sharedInstance.commitTransaction()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         if cusers?.count <= 0 {
-            Cuser!.id = NSUUID.init().UUIDString
-            DatabaseHelper.sharedInstance.insert(Cuser!)
+            curentUser!.id = NSUUID.init().UUIDString
+            DatabaseHelper.sharedInstance.insert(curentUser!)
         }
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
+    func fixOrientation(img:UIImage) -> UIImage {
+        
+        if (img.imageOrientation == UIImageOrientation.Up) {
+            return img;
+        }
+        UIGraphicsBeginImageContextWithOptions(img.size, false, img.scale);
+        let rect = CGRect(x: 0, y: 0, width: img.size.width, height: img.size.height)
+        img.drawInRect(rect)
+        
+        let normalizedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        return normalizedImage;
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,14 +82,13 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         navigationControllerStyleSheet()
         
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
-        Cuser = cusers?.first
-        if Cuser == nil {
-            Cuser = Person()
+        curentUser = cusers?.first
+        if curentUser == nil {
+            curentUser = Person()
         }
-        // 这里应该是去read from realm读Image data
-        if Cuser!.profilePicture != nil {
+        if curentUser!.profilePicture != nil {
             DatabaseHelper.sharedInstance.beginTransaction()
-            let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: Cuser!.profilePicture!)!)
+            let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: curentUser!.profilePicture!)!)
             profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
             profilePicture.setTitle("", forState: .Normal)
             DatabaseHelper.sharedInstance.commitTransaction()
