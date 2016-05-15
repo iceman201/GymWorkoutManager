@@ -10,13 +10,13 @@ import UIKit
 import JVFloatLabeledTextField
 
 class PersonalInformation: UIViewController, UITextFieldDelegate {
+    // MARK: - IBOutlet
     @IBOutlet var name: JVFloatLabeledTextField!
     @IBOutlet var gender: UISegmentedControl!
     @IBOutlet var age: JVFloatLabeledTextField!
     @IBOutlet var bodyFat: JVFloatLabeledTextField!
     @IBOutlet var weight: JVFloatLabeledTextField!
     @IBOutlet var height: JVFloatLabeledTextField!
-    
     @IBOutlet weak var indexDisplayLabel: UILabel!
     
     override func viewDidLoad() {
