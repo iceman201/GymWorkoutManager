@@ -72,8 +72,8 @@
 * Please Checkout [here](https://github.com/NZSwift/GymWorkoutManager/wiki)
 
 ##Acknowledgements
-Contributor|Github
--------------|-------------
-GL|[gl-Lei](https://github.com/gl-Lei)
-Rita|[jiting71](https://github.com/jiting71)
-GrandKai|[GrandKai](https://github.com/GrandKai)
+Contributor|Github|Version
+-------------|-------------|-------------
+GL|[gl-Lei](https://github.com/gl-Lei)| iOS
+Rita|[jiting71](https://github.com/jiting71)| iOS
+GrandKai|[GrandKai](https://github.com/GrandKai)| iOS
