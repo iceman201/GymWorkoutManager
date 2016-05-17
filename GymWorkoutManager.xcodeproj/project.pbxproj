@@ -10,6 +10,9 @@
 		0505443C1CE873600034F3B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505443B1CE873600034F3B2 /* Person.swift */; };
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		05356CD71CEAEF39007DC7C7 /* 1463483897_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */; };
+		05356CDA1CEB53A1007DC7C7 /* Female.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD81CEB53A1007DC7C7 /* Female.png */; };
+		05356CDB1CEB53A1007DC7C7 /* Male.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD91CEB53A1007DC7C7 /* Male.png */; };
+		05356CDF1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CDE1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png */; };
 		053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* PersonalInformation.swift */; };
 		054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B910D1CE6244000851D0E /* AnalysisViewController.swift */; };
 		056C9FAE1CE6052300CFCDDA /* ScrollPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */; };
@@ -110,6 +113,9 @@
 		0505443B1CE873600034F3B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
 		05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463483897_date.png; sourceTree = "<group>"; };
+		05356CD81CEB53A1007DC7C7 /* Female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Female.png; sourceTree = "<group>"; };
+		05356CD91CEB53A1007DC7C7 /* Male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Male.png; sourceTree = "<group>"; };
+		05356CDE1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocky-balboa-quotes-3.png"; sourceTree = "<group>"; };
 		053D94281C9C2F94002ADA4E /* PersonalInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInformation.swift; sourceTree = "<group>"; };
 		054B910D1CE6244000851D0E /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
 		056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPager.swift; sourceTree = "<group>"; };
@@ -357,6 +363,9 @@
 		E6D0A0D71C4C687900F43DB5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				05356CD81CEB53A1007DC7C7 /* Female.png */,
+				05356CD91CEB53A1007DC7C7 /* Male.png */,
+				05356CDE1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png */,
 				057946BE1CE74E790051A501 /* profileHeader.png */,
 				E6A9C9721CE58E0A00B2A231 /* 1463130943_heart.png */,
 				E6A9C9731CE58E0A00B2A231 /* 1463131024_notes.png */,
@@ -546,6 +555,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05356CDB1CEB53A1007DC7C7 /* Male.png in Resources */,
 				E6A9C9961CE58E0A00B2A231 /* 1463131051_date.png in Resources */,
 				E6A9C9941CE58E0A00B2A231 /* 1463131047_organizer.png in Resources */,
 				056C9FB21CE610D500CFCDDA /* 1463164826_centimeter.png in Resources */,
@@ -553,6 +563,7 @@
 				E6A9C9A81CE58E0A00B2A231 /* 1463131078_shake.png in Resources */,
 				E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */,
 				E6DCF9A61C9B8D1100C3668E /* Icon-40@2x.png in Resources */,
+				05356CDA1CEB53A1007DC7C7 /* Female.png in Resources */,
 				E6A9C9A31CE58E0A00B2A231 /* 1463131074_stopwatch.png in Resources */,
 				E6A9C9921CE58E0A00B2A231 /* 1463130943_heart.png in Resources */,
 				E6A9C9AA1CE58E0A00B2A231 /* 1463131084_headphones.png in Resources */,
@@ -588,6 +599,7 @@
 				057946BF1CE74E790051A501 /* profileHeader.png in Resources */,
 				E6A9C99C1CE58E0A00B2A231 /* 1463131061_plastic.png in Resources */,
 				E6A9C9971CE58E0A00B2A231 /* 1463131052_scale.png in Resources */,
+				05356CDF1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png in Resources */,
 				E6A9C9A91CE58E0A00B2A231 /* 1463131081_pages.png in Resources */,
 				E6A9C9AC1CE58E0A00B2A231 /* 1463131086_dumbbells.png in Resources */,
 				E6A9C9711CE58DF200B2A231 /* background.mov in Resources */,

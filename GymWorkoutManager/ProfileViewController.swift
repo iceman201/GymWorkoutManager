@@ -8,11 +8,17 @@
 
 import UIKit
 import RealmSwift
+import JVFloatLabeledTextField
+
 
 class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     // MARK: - IBOutlet
     @IBOutlet var profilePicture: RoundButton!
     @IBOutlet var headerView: UIView!
+    
+    @IBOutlet var name: JVFloatLabeledTextField!
+    @IBOutlet var bodyWeight: JVFloatLabeledTextField!
+    
     // MARK: - Variables
     var curentUser:Person?
     
@@ -112,16 +118,40 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.tabBarController?.tabBar.barTintColor = GWMColorYellow
         self.tabBarController?.tabBar.translucent = false
     }
+    
+    // MARK: textFieldStyleSheet
+    private func setLayer(input:JVFloatLabeledTextField) -> CALayer {
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = GWMColorYellow.CGColor
+        border.frame = CGRect(x: 0, y: input.frame.size.height - width, width:  input.frame.size.width, height: input.frame.size.height)
+        border.borderWidth = width
+        return border
+    }
+    
+    private func textFieldStyleSheet() {
+        name.layer.addSublayer(setLayer(name))
+        name.textColor = UIColor.whiteColor()
+        name.layer.masksToBounds = true
+        
+        bodyWeight.layer.addSublayer(setLayer(name))
+        bodyWeight.textColor = UIColor.whiteColor()
+        bodyWeight.layer.masksToBounds = true
+        
+    }
+    
+    
+    
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let image = resizeToAspectFit(headerView.frame.size,bounds: headerView.bounds, sourceImage: UIImage(named: "profileHeader.png")!)
-        self.headerView.backgroundColor = UIColor(patternImage: image)
-        
         profilePictureStyleSheet()
         navigationControllerStyleSheet()
-        
+        textFieldStyleSheet()
+        let backgroundImage = resizeToAspectFit(self.view.frame.size,bounds: self.view.bounds, sourceImage: UIImage(named: "rocky-balboa-quotes-3.png")!)
+        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
+        let image = resizeToAspectFit(headerView.frame.size,bounds: headerView.bounds, sourceImage: UIImage(named: "profileHeader.png")!)
+        self.headerView.backgroundColor = UIColor(patternImage: image)
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         curentUser = cusers?.first
         if curentUser == nil {
