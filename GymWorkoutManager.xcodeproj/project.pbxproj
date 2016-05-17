@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0505443C1CE873600034F3B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505443B1CE873600034F3B2 /* Person.swift */; };
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
+		05356CD71CEAEF39007DC7C7 /* 1463483897_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */; };
 		053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* PersonalInformation.swift */; };
 		054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B910D1CE6244000851D0E /* AnalysisViewController.swift */; };
 		056C9FAE1CE6052300CFCDDA /* ScrollPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */; };
@@ -108,6 +109,7 @@
 /* Begin PBXFileReference section */
 		0505443B1CE873600034F3B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
+		05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463483897_date.png; sourceTree = "<group>"; };
 		053D94281C9C2F94002ADA4E /* PersonalInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInformation.swift; sourceTree = "<group>"; };
 		054B910D1CE6244000851D0E /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
 		056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPager.swift; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 		E6D0A0DA1C4C6B2200F43DB5 /* Icon */ = {
 			isa = PBXGroup;
 			children = (
+				05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */,
 				056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */,
 				056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */,
 				E6D0A0E71C4C6B2200F43DB5 /* iPhone */,
@@ -563,6 +566,7 @@
 				E6A9C9A61CE58E0A00B2A231 /* 1463131077_applewatch.png in Resources */,
 				E6A9C9B11CE58E0A00B2A231 /* 1463131092_mixer.png in Resources */,
 				E6DCF9B81C9B8D4800C3668E /* Icon-29@2x.png in Resources */,
+				05356CD71CEAEF39007DC7C7 /* 1463483897_date.png in Resources */,
 				E6A9C9991CE58E0A00B2A231 /* 1463131058_headphones.png in Resources */,
 				E6A9C9A11CE58E0A00B2A231 /* 1463131070_bottle.png in Resources */,
 				E6A9C9A41CE58E0A00B2A231 /* 1463131075_plastic.png in Resources */,

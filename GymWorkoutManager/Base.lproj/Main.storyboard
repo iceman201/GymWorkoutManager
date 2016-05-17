@@ -635,6 +635,26 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
             </objects>
             <point key="canvasLocation" x="687" y="1743"/>
         </scene>
+        <!--Planr-->
+        <scene sceneID="8h4-PU-ZFb">
+            <objects>
+                <viewController id="C6b-fL-jgE" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gei-hp-jav"/>
+                        <viewControllerLayoutGuide type="bottom" id="KZP-lC-wMI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pEu-Xc-qMg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Planr" image="1463483897_date.png" id="BYp-hr-l0b"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jvk-dZ-goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1224" y="1743"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="Cfk-iG-TCw">
             <objects>
@@ -675,48 +695,12 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <constraint firstAttribute="width" constant="414" id="eam-Da-7de"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-Fq-dWh">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-Fq-dWh">
                                 <rect key="frame" x="117" y="338" width="180" height="164"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nsb-qs-ypB" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="QMC-9T-Ttc"/>
-                                            <constraint firstAttribute="width" constant="180" id="YI3-MG-1g7"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
-                                                <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
-                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qc3-Bu-hTz" customClass="JVFloatLabeledTextField">
-                                        <rect key="frame" x="0.0" y="43" width="180" height="35"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="6m8-en-PwG"/>
-                                            <constraint firstAttribute="width" constant="180" id="emW-Qw-3xJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
-                                                <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
-                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7vL-WR-hd9" customClass="JVFloatLabeledTextField">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Body weights" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7vL-WR-hd9" customClass="JVFloatLabeledTextField">
                                         <rect key="frame" x="0.0" y="86" width="180" height="35"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="180" id="I0W-ed-dGE"/>
                                             <constraint firstAttribute="height" constant="35" id="Thi-Cm-mvU"/>
@@ -730,11 +714,14 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
                                                 <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LBq-Zg-xxa" customClass="JVFloatLabeledTextField">
                                         <rect key="frame" x="0.0" y="129" width="180" height="35"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="180" id="3hG-J4-3j1"/>
                                             <constraint firstAttribute="height" constant="35" id="KEa-Qy-XXw"/>
@@ -750,13 +737,51 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nsb-qs-ypB" customClass="JVFloatLabeledTextField">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="QMC-9T-Ttc"/>
+                                            <constraint firstAttribute="width" constant="180" id="YI3-MG-1g7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                                <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                                <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                                <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </textField>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="By7-99-8tA">
+                                        <rect key="frame" x="32" y="43" width="117" height="29"/>
+                                        <segments>
+                                            <segment title="Male"/>
+                                            <segment title="Female"/>
+                                        </segments>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Nsb-qs-ypB" firstAttribute="leading" secondItem="f0e-Fq-dWh" secondAttribute="leading" id="3hO-il-ZQv"/>
+                                    <constraint firstAttribute="height" constant="164" id="7f1-tS-TCW"/>
+                                    <constraint firstItem="LBq-Zg-xxa" firstAttribute="top" secondItem="7vL-WR-hd9" secondAttribute="bottom" constant="8" symbolic="YES" id="neN-m0-k7J"/>
+                                    <constraint firstItem="7vL-WR-hd9" firstAttribute="leading" secondItem="LBq-Zg-xxa" secondAttribute="leading" id="rBg-rg-oFt"/>
+                                    <constraint firstAttribute="width" constant="180" id="skZ-dg-fi2"/>
+                                    <constraint firstItem="Nsb-qs-ypB" firstAttribute="top" secondItem="f0e-Fq-dWh" secondAttribute="top" id="zvD-fr-Mpc"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="f0e-Fq-dWh" firstAttribute="centerX" secondItem="mRx-3N-EJF" secondAttribute="centerX" id="I8v-LD-Len"/>
                             <constraint firstItem="mRx-3N-EJF" firstAttribute="leading" secondItem="nVv-k9-YVA" secondAttribute="leading" id="iiW-0R-nyP"/>
+                            <constraint firstItem="f0e-Fq-dWh" firstAttribute="top" secondItem="mRx-3N-EJF" secondAttribute="bottom" constant="8" symbolic="YES" id="mgD-VD-Atf"/>
                             <constraint firstItem="mRx-3N-EJF" firstAttribute="top" secondItem="k6k-H0-qFT" secondAttribute="bottom" id="obg-XS-FeO"/>
                             <constraint firstAttribute="trailing" secondItem="mRx-3N-EJF" secondAttribute="trailing" id="p7U-Ay-Zms"/>
                             <constraint firstItem="mRx-3N-EJF" firstAttribute="top" secondItem="k6k-H0-qFT" secondAttribute="bottom" id="wJf-7s-8tX"/>
@@ -785,6 +810,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                     <connections>
                         <segue destination="tlL-yk-gWd" kind="relationship" relationship="viewControllers" id="GfC-y1-4SO"/>
                         <segue destination="VHl-aa-cQO" kind="relationship" relationship="viewControllers" id="Uis-0m-a3u"/>
+                        <segue destination="C6b-fL-jgE" kind="relationship" relationship="viewControllers" id="mUs-sS-1zZ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evP-ct-KLx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1013,6 +1039,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <image name="1463130943_heart.png" width="128" height="128"/>
         <image name="1463164731_scale.png" width="32" height="32"/>
         <image name="1463164826_centimeter.png" width="32" height="32"/>
+        <image name="1463483897_date.png" width="32" height="32"/>
         <image name="first" width="31" height="31"/>
     </resources>
 </document>

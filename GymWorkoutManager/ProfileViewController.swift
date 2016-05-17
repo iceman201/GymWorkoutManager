@@ -109,6 +109,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : GWMColorPurple]
         self.tabBarController?.tabBar.backgroundColor = GWMColorYellow
         self.tabBarController?.tabBar.tintColor = GWMColorPurple
+        self.tabBarController?.tabBar.barTintColor = GWMColorYellow
+        self.tabBarController?.tabBar.translucent = false
     }
     // MARK: ViewDidLoad
     override func viewDidLoad() {
