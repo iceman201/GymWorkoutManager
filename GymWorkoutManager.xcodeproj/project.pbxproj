@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0505443C1CE873600034F3B2 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0505443B1CE873600034F3B2 /* Person.swift */; };
+		0507E68B1CEC792900923238 /* profileBackground.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0507E68A1CEC792900923238 /* profileBackground.jpg */; };
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		05356CD71CEAEF39007DC7C7 /* 1463483897_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */; };
 		05356CDA1CEB53A1007DC7C7 /* Female.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD81CEB53A1007DC7C7 /* Female.png */; };
 		05356CDB1CEB53A1007DC7C7 /* Male.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD91CEB53A1007DC7C7 /* Male.png */; };
-		05356CDF1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CDE1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png */; };
-		053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* PersonalInformation.swift */; };
+		053D94291C9C2F94002ADA4E /* BMIBMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053D94281C9C2F94002ADA4E /* BMIBMR.swift */; };
 		054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054B910D1CE6244000851D0E /* AnalysisViewController.swift */; };
 		056C9FAE1CE6052300CFCDDA /* ScrollPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */; };
 		056C9FB01CE6108A00CFCDDA /* 1463164731_scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */; };
@@ -111,12 +111,12 @@
 
 /* Begin PBXFileReference section */
 		0505443B1CE873600034F3B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		0507E68A1CEC792900923238 /* profileBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profileBackground.jpg; sourceTree = "<group>"; };
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
 		05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463483897_date.png; sourceTree = "<group>"; };
 		05356CD81CEB53A1007DC7C7 /* Female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Female.png; sourceTree = "<group>"; };
 		05356CD91CEB53A1007DC7C7 /* Male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Male.png; sourceTree = "<group>"; };
-		05356CDE1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "rocky-balboa-quotes-3.png"; sourceTree = "<group>"; };
-		053D94281C9C2F94002ADA4E /* PersonalInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInformation.swift; sourceTree = "<group>"; };
+		053D94281C9C2F94002ADA4E /* BMIBMR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMIBMR.swift; sourceTree = "<group>"; };
 		054B910D1CE6244000851D0E /* AnalysisViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisViewController.swift; sourceTree = "<group>"; };
 		056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPager.swift; sourceTree = "<group>"; };
 		056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164731_scale.png; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 				E6AD9D8C1C4C5F28004F6437 /* RecordViewController.swift */,
 				05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */,
 				E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */,
-				053D94281C9C2F94002ADA4E /* PersonalInformation.swift */,
+				053D94281C9C2F94002ADA4E /* BMIBMR.swift */,
 				05C36D201CE61A880035927C /* ProfileViewController.swift */,
 				054B910D1CE6244000851D0E /* AnalysisViewController.swift */,
 			);
@@ -365,8 +365,8 @@
 			children = (
 				05356CD81CEB53A1007DC7C7 /* Female.png */,
 				05356CD91CEB53A1007DC7C7 /* Male.png */,
-				05356CDE1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png */,
 				057946BE1CE74E790051A501 /* profileHeader.png */,
+				0507E68A1CEC792900923238 /* profileBackground.jpg */,
 				E6A9C9721CE58E0A00B2A231 /* 1463130943_heart.png */,
 				E6A9C9731CE58E0A00B2A231 /* 1463131024_notes.png */,
 				E6A9C9741CE58E0A00B2A231 /* 1463131047_organizer.png */,
@@ -589,6 +589,7 @@
 				E6A9C9B01CE58E0A00B2A231 /* 1463131091_iwatch.png in Resources */,
 				E6DCF9BD1C9B8D4800C3668E /* Icon-98@2x.png in Resources */,
 				E6DCF9B91C9B8D4800C3668E /* Icon-29@3x.png in Resources */,
+				0507E68B1CEC792900923238 /* profileBackground.jpg in Resources */,
 				E6A9C99F1CE58E0A00B2A231 /* 1463131065_weight.png in Resources */,
 				E6A9C99E1CE58E0A00B2A231 /* 1463131064_medal.png in Resources */,
 				E6A9C99B1CE58E0A00B2A231 /* 1463131060_pages.png in Resources */,
@@ -599,7 +600,6 @@
 				057946BF1CE74E790051A501 /* profileHeader.png in Resources */,
 				E6A9C99C1CE58E0A00B2A231 /* 1463131061_plastic.png in Resources */,
 				E6A9C9971CE58E0A00B2A231 /* 1463131052_scale.png in Resources */,
-				05356CDF1CEB6064007DC7C7 /* rocky-balboa-quotes-3.png in Resources */,
 				E6A9C9A91CE58E0A00B2A231 /* 1463131081_pages.png in Resources */,
 				E6A9C9AC1CE58E0A00B2A231 /* 1463131086_dumbbells.png in Resources */,
 				E6A9C9711CE58DF200B2A231 /* background.mov in Resources */,
@@ -705,7 +705,7 @@
 				054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */,
 				05C36D211CE61A880035927C /* ProfileViewController.swift in Sources */,
 				05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */,
-				053D94291C9C2F94002ADA4E /* PersonalInformation.swift in Sources */,
+				053D94291C9C2F94002ADA4E /* BMIBMR.swift in Sources */,
 				6B982C4B1CE85BCA00DC7499 /* DatabaseHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

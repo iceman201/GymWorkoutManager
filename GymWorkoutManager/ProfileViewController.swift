@@ -11,16 +11,45 @@ import RealmSwift
 import JVFloatLabeledTextField
 
 
-class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     // MARK: - IBOutlet
     @IBOutlet var profilePicture: RoundButton!
     @IBOutlet var headerView: UIView!
-    
     @IBOutlet var name: JVFloatLabeledTextField!
     @IBOutlet var bodyWeight: JVFloatLabeledTextField!
-    
+    @IBOutlet var age: JVFloatLabeledTextField!
+    @IBOutlet var bodyHeight: JVFloatLabeledTextField!
+    @IBOutlet weak var maleButton: UIButton!
+    @IBOutlet weak var femaleButton: UIButton!
+
     // MARK: - Variables
     var curentUser:Person?
+    
+    @IBAction func female(sender: AnyObject) {
+        femaleButton.backgroundColor = GWMColorPurple
+        maleButton.backgroundColor = GWMColorYellow
+        DatabaseHelper.sharedInstance.beginTransaction()
+        curentUser?.sex = "female"
+        DatabaseHelper.sharedInstance.commitTransaction()
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        if cusers?.count <= 0 {
+            curentUser!.id = NSUUID.init().UUIDString
+            DatabaseHelper.sharedInstance.insert(curentUser!)
+        }
+
+    }
+    @IBAction func male(sender: AnyObject) {
+        maleButton.backgroundColor = GWMColorPurple
+        femaleButton.backgroundColor = GWMColorYellow
+        DatabaseHelper.sharedInstance.beginTransaction()
+        curentUser?.sex = "male"
+        DatabaseHelper.sharedInstance.commitTransaction()
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        if cusers?.count <= 0 {
+            curentUser!.id = NSUUID.init().UUIDString
+            DatabaseHelper.sharedInstance.insert(curentUser!)
+        }
+    }
     
     // MARK: Profile Image
     @IBAction func selectPicture(sender: AnyObject) {
@@ -41,6 +70,21 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        DatabaseHelper.sharedInstance.beginTransaction()
+        curentUser?.name = name.text ?? ""
+        curentUser?.age = Int(age.text ?? "0") ?? 0
+        curentUser?.weight = bodyWeight.text ?? ""
+        curentUser?.height = bodyHeight.text ?? ""
+        DatabaseHelper.sharedInstance.commitTransaction()
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        if cusers?.count <= 0 {
+            curentUser!.id = NSUUID.init().UUIDString
+            DatabaseHelper.sharedInstance.insert(curentUser!)
+        }
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -134,10 +178,17 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         name.textColor = UIColor.whiteColor()
         name.layer.masksToBounds = true
         
-        bodyWeight.layer.addSublayer(setLayer(name))
+        bodyWeight.layer.addSublayer(setLayer(bodyWeight))
         bodyWeight.textColor = UIColor.whiteColor()
         bodyWeight.layer.masksToBounds = true
         
+        bodyHeight.layer.addSublayer(setLayer(bodyHeight))
+        bodyHeight.textColor = UIColor.whiteColor()
+        bodyHeight.layer.masksToBounds = true
+        
+        age.layer.addSublayer(setLayer(age))
+        age.textColor = UIColor.whiteColor()
+        age.layer.masksToBounds = true
     }
     
     
@@ -148,22 +199,47 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profilePictureStyleSheet()
         navigationControllerStyleSheet()
         textFieldStyleSheet()
-        let backgroundImage = resizeToAspectFit(self.view.frame.size,bounds: self.view.bounds, sourceImage: UIImage(named: "rocky-balboa-quotes-3.png")!)
+        
+        let backgroundImage = resizeToAspectFit(self.view.frame.size,bounds: self.view.bounds, sourceImage: UIImage(named: "profileBackground.jpg")!)
         self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         let image = resizeToAspectFit(headerView.frame.size,bounds: headerView.bounds, sourceImage: UIImage(named: "profileHeader.png")!)
         self.headerView.backgroundColor = UIColor(patternImage: image)
+    }
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        self.navigationController?.navigationBar.topItem?.title = "Profile"
         curentUser = cusers?.first
         if curentUser == nil {
             curentUser = Person()
         }
-        if curentUser!.profilePicture != nil {
+        
+        if let user = curentUser {
             DatabaseHelper.sharedInstance.beginTransaction()
-            let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: curentUser!.profilePicture!)!)
-            profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
-            profilePicture.setTitle("", forState: .Normal)
+            if let userPicture = user.profilePicture{
+                let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: userPicture)!)
+                profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
+                profilePicture.setTitle("", forState: .Normal)
+            }
+            name.text = user.name
+            bodyHeight.text = user.height
+            bodyWeight.text = user.weight
+            if case user.age = 0 {
+                return
+            } else {
+                age.text = "\(user.age)"
+
+            }
+            if user.sex == "male" {
+                maleButton.backgroundColor = GWMColorPurple
+                femaleButton.backgroundColor = GWMColorYellow
+            } else if user.sex == "female" {
+                femaleButton.backgroundColor = GWMColorPurple
+                maleButton.backgroundColor = GWMColorYellow
+            }
             DatabaseHelper.sharedInstance.commitTransaction()
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
