@@ -13,6 +13,7 @@ class RecordViewController: UITableViewController {
     // MARK: - Variables
     var totalRecord = ["1","2","3"]
     var result : Results<Exercise>!
+    var curentUser:Person?
     
     func addRecord(item:String, time:String){
         let item = ""
@@ -33,10 +34,23 @@ class RecordViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let infoCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath) as! RecordInfoCell
-            infoCell.activeDay.text = "3"
+            let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+            curentUser = cusers?.first
+            if curentUser == nil {
+                curentUser = Person()
+            }
+            
+            if let user = curentUser {
+                DatabaseHelper.sharedInstance.beginTransaction()
+                infoCell.activeDay.text = "\(user.activedDays)"
+                infoCell.name.text = user.name
+                infoCell.weight.text = user.weight
+                if let pictureData = user.profilePicture {
+                    infoCell.profileImage.image = UIImage(data: pictureData)
+                }
+                DatabaseHelper.sharedInstance.commitTransaction()
+            }
             infoCell.effectiveIndex.text = "0.3"
-            infoCell.name.text = "Liguo Jiao"
-            infoCell.profileImage.image = UIImage(named: "Icon-60@2x.png")
             return infoCell
             
         } else {
@@ -49,6 +63,29 @@ class RecordViewController: UITableViewController {
             return recordCell
         }
     }
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+    //Todo: delete issue
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.Delete) {
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.delete(result[indexPath.row])
+                }
+            } catch let error as NSError {
+                print(error)
+                // TODO: need an error handling API
+            }
+            tableView.reloadData()
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 183
@@ -77,8 +114,15 @@ class RecordViewController: UITableViewController {
         } catch {
             print("loading realm faild")
         }
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(editTable))
     }
-
+    func editTable() {
+        if self.tableView.editing {
+            self.tableView.setEditing(false, animated: true)
+        } else {
+            self.tableView.setEditing(true, animated: true)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
