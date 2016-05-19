@@ -9,41 +9,55 @@
 import UIKit
 import JVFloatLabeledTextField
 
-class PersonalInformation: UIViewController, UITextFieldDelegate {
+class BMIBMR: UIViewController, UITextFieldDelegate {
     // MARK: - IBOutlet
-    @IBOutlet var name: JVFloatLabeledTextField!
-    @IBOutlet var gender: UISegmentedControl!
-    @IBOutlet var age: JVFloatLabeledTextField!
     @IBOutlet var bodyFat: JVFloatLabeledTextField!
-    @IBOutlet var weight: JVFloatLabeledTextField!
-    @IBOutlet var height: JVFloatLabeledTextField!
     @IBOutlet weak var indexDisplayLabel: UILabel!
+    
+    var weight = ""
+    var height = ""
+    var age = 0
+    var gender = 0
+    var curentUser:Person?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBarHidden = false
-        self.navigationController?.navigationBar.topItem?.title = "BMI&BMR"
-        age.delegate = self
+
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "profileBackground.jpg")!)
         bodyFat.delegate = self
-        weight.delegate = self
-        height.delegate = self
         styleTextField()
-        print(gender.selectedSegmentIndex)
     }
-    
-    @IBAction func selectGender(sender: AnyObject) {
-        if gender.selectedSegmentIndex == 0 {
-            print("M")
-        } else if gender.selectedSegmentIndex == 1 {
-            print("F")
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.topItem?.title = "BMI&BMR"
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        curentUser = cusers?.first
+        if curentUser == nil {
+            curentUser = Person()
+        }
+        
+        if let user = curentUser {
+            DatabaseHelper.sharedInstance.beginTransaction()
+            height = user.height
+            weight = user.weight
+            DatabaseHelper.sharedInstance.commitTransaction()
         }
     }
     
     @IBAction func BMRCalculation(sender: AnyObject) {
+        if bodyFat.text?.isEmpty == true {
+            let alert = UIAlertController(title: "Message", message: "Please enter your body fat percentage", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+        } else {
+            
+        }
     }
     
     @IBAction func BMICalculation(sender: AnyObject) {
-        let result = BMICalculator(Float(weight.text ?? "") ?? 0.0, heights: Float(height.text ?? "") ?? 0.0)
+        let result = BMICalculator(Float(weight ?? "") ?? 0.0, heights: Float(height ?? "") ?? 0.0)
+        
         indexDisplayLabel.text = String(result)
     }
 
@@ -64,31 +78,10 @@ class PersonalInformation: UIViewController, UITextFieldDelegate {
     }
     
     private func styleTextField() {
-        name.layer.addSublayer(setLayer(name))
-        name.backgroundColor = UIColor.clearColor()
-        name.textColor = UIColor.whiteColor()
-        name.layer.masksToBounds = true
-        
-        age.layer.addSublayer(setLayer(age))
-        age.backgroundColor = UIColor.clearColor()
-        age.textColor = UIColor.whiteColor()
-        age.layer.masksToBounds = true
-        
         bodyFat.layer.addSublayer(setLayer(bodyFat))
         bodyFat.backgroundColor = UIColor.clearColor()
         bodyFat.textColor = UIColor.whiteColor()
         bodyFat.layer.masksToBounds = true
-        
-        weight.layer.addSublayer(setLayer(weight))
-        weight.backgroundColor = UIColor.clearColor()
-        weight.textColor = UIColor.whiteColor()
-        weight.layer.masksToBounds = true
-        
-        height.layer.addSublayer(setLayer(height))
-        height.backgroundColor = UIColor.clearColor()
-        height.textColor = UIColor.whiteColor()
-        height.layer.masksToBounds = true
-        
     }
     
     private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{
