@@ -48,13 +48,9 @@ class RecordViewController: UITableViewController {
                 if let pictureData = user.profilePicture {
                     infoCell.profileImage.image = UIImage(data: pictureData)
                 }
-
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
-
             infoCell.effectiveIndex.text = "0.3"
-            
-            
             return infoCell
             
         } else {
@@ -67,6 +63,29 @@ class RecordViewController: UITableViewController {
             return recordCell
         }
     }
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
+            return false
+        } else {
+            return true
+        }
+    }
+    //Todo: delete issue
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.Delete) {
+            do {
+                let realm = try Realm()
+                try realm.write {
+                    realm.delete(result[indexPath.row])
+                }
+            } catch let error as NSError {
+                print(error)
+                // TODO: need an error handling API
+            }
+            tableView.reloadData()
+        }
+    }
+    
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 183
@@ -95,10 +114,15 @@ class RecordViewController: UITableViewController {
         } catch {
             print("loading realm faild")
         }
-        
-
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(editTable))
     }
-
+    func editTable() {
+        if self.tableView.editing {
+            self.tableView.setEditing(false, animated: true)
+        } else {
+            self.tableView.setEditing(true, animated: true)
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
