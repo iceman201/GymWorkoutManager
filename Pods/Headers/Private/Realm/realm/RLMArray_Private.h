@@ -1,1 +1,1 @@
-../../../../Realm/include/Realm/RLMArray_Private.h
+../../../../Realm/include/realm/RLMArray_Private.h
