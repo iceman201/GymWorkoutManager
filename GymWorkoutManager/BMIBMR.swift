@@ -27,6 +27,7 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "profileBackground.jpg")!)
         bodyFat.delegate = self
         styleTextField()
+        indexDisplayLabel.textColor = UIColor.whiteColor()
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
