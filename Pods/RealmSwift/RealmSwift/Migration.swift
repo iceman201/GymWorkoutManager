@@ -43,20 +43,20 @@ accessed using subscripting.
 public typealias MigrationObjectEnumerateBlock = (oldObject: MigrationObject?, newObject: MigrationObject?) -> Void
 
 /**
-Get the schema version for a Realm at a given path.
-- parameter realmPath:     Path to a Realm file.
-- parameter encryptionKey: Optional 64-byte encryption key for encrypted Realms.
-- parameter error:         If an error occurs, upon return contains an `NSError` object
-                           that describes the problem. If you are not interested in
-                           possible errors, omit the argument, or pass in `nil`.
+Get the schema version for a Realm at a given local URL.
 
-- returns: The version of the Realm at `realmPath` or `nil` if the version cannot be read.
+- parameter fileURL:       Local URL to a Realm file.
+- parameter encryptionKey: Optional 64-byte encryption key for encrypted Realms.
+
+- throws: An NSError that describes the problem.
+
+- returns: The version of the Realm at `fileURL`.
 */
-public func schemaVersionAtPath(realmPath: String, encryptionKey: NSData? = nil,
-                                error: NSErrorPointer = nil) -> UInt64? {
-    let version = RLMRealm.schemaVersionAtPath(realmPath, encryptionKey: encryptionKey, error: error)
-    if version == RLMNotVersioned {
-        return nil
+public func schemaVersionAtURL(fileURL: NSURL, encryptionKey: NSData? = nil) throws -> UInt64 {
+    var error: NSError? = nil
+    let version = RLMRealm.schemaVersionAtURL(fileURL, encryptionKey: encryptionKey, error: &error)
+    if let error = error {
+        throw error
     }
     return version
 }
@@ -152,6 +152,20 @@ public final class Migration {
     */
     public func deleteData(objectClassName: String) -> Bool {
         return rlmMigration.deleteDataForClassName(objectClassName)
+    }
+
+    /**
+    Rename property of the given class from `oldName` to `newName`.
+
+    - parameter className: Class for which the property is to be renamed. Must be present
+                           in both the old and new Realm schemas.
+    - parameter oldName:   Old name for the property to be renamed. Must not be present
+                           in the new Realm.
+    - parameter newName:   New name for the property to be renamed. Must not be present
+                           in the old Realm.
+    */
+    public func renamePropertyForClass(className: String, oldName: String, newName: String) {
+        rlmMigration.renamePropertyForClass(className, oldName: oldName, newName: newName)
     }
 
     private init(_ rlmMigration: RLMMigration) {

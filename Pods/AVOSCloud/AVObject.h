@@ -17,6 +17,16 @@
 
 #pragma mark Constructors
 
+/*!
+ Creates a reference to an existing AVObject with an object ID.
+
+ Calling isDataAvailable on this object will return NO until fetchIfNeeded or refresh has been called.
+
+ @param objectId The object ID.
+ @return An object with the given object ID.
+ */
++ (instancetype)objectWithObjectId:(NSString *)objectId;
+
 /*! @name Creating a AVObject */
 
 /*!
@@ -27,15 +37,15 @@
 + (instancetype)objectWithClassName:(NSString *)className;
 
 /*!
- Creates a reference to an existing AVObject for use in creating associations between AVObjects.  Calling isDataAvailable on this
- object will return NO until fetchIfNeeded or refresh has been called.  No network request will be made.
+ Creates a reference to an existing AVObject for use in creating associations between AVObjects.
 
- @param className The object's class.
- @param objectId The object id for the referenced object.
- @return A AVObject without data.
+ Calling isDataAvailable on this object will return NO until fetchIfNeeded or refresh has been called.
+
+ @param className The object's class name.
+ @param objectId The object ID for the referenced object.
+ @return An object with the given class name and object ID.
  */
-+ (instancetype)objectWithoutDataWithClassName:(NSString *)className
-                                    objectId:(NSString *)objectId;
++ (instancetype)objectWithClassName:(NSString *)className objectId:(NSString *)objectId;
 
 /*!
  Creates a new AVObject with a class name, initialized with data constructed from the specified set of objects and keys.
@@ -666,6 +676,10 @@
 #pragma mark - Deprecated API
 
 @interface AVObject (AVDeprecated)
+
++ (instancetype)objectWithoutDataWithObjectId:(NSString *)objectId AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.9. Use +[AVObject objectWithObjectId:] instead.");
+
++ (instancetype)objectWithoutDataWithClassName:(NSString *)className objectId:(NSString *)objectId AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.9. Use +[AVObject objectWithClassName:objectId:] instead.");
 
 - (AVRelation *)relationforKey:(NSString *)key AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.3. Use -[AVObject relationForKey:] instead.");
 

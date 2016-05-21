@@ -1,7 +1,7 @@
 {
   "name": "GradientCircularProgress",
-  "version": "3.1.0",
-  "summary": "",
+  "version": "3.3.0",
+  "summary": "Customizable progress indicator library in Swift",
   "homepage": "https://github.com/keygx/GradientCircularProgress",
   "license": {
     "type": "MIT",
@@ -16,7 +16,7 @@
   },
   "source": {
     "git": "https://github.com/keygx/GradientCircularProgress.git",
-    "tag": "3.1.0"
+    "tag": "3.3.0"
   },
   "source_files": "Source/*",
   "requires_arc": true

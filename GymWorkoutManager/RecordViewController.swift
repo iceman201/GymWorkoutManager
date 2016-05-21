@@ -114,7 +114,7 @@ class RecordViewController: UITableViewController {
         } catch {
             print("loading realm faild")
         }
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .Plain, target: self, action: #selector(editTable))
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(editTable))
     }
     func editTable() {
         if self.tableView.editing {

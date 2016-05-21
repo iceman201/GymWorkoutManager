@@ -46,12 +46,6 @@ public final class Realm {
 
     // MARK: Properties
 
-    /// Path to the file where this Realm is persisted.
-    public var path: String { return rlmRealm.path }
-
-    /// Indicates if this Realm was opened in read-only mode.
-    public var readOnly: Bool { return rlmRealm.readOnly }
-
     /// The Schema used by this realm.
     public var schema: Schema { return Schema(rlmRealm.schema) }
 
@@ -64,30 +58,45 @@ public final class Realm {
     // MARK: Initializers
 
     /**
-    Obtains a Realm instance with the given configuration. Defaults to the default Realm configuration,
-    which can be changed by setting `Realm.Configuration.defaultConfiguration`.
+    Obtains a Realm instance with the default Realm configuration, which can be
+    changed by setting `Realm.Configuration.defaultConfiguration`.
+
+    - throws: An NSError if the Realm could not be initialized.
+    */
+    public convenience init() throws {
+        let rlmRealm = try RLMRealm(configuration: RLMRealmConfiguration.defaultConfiguration())
+        self.init(rlmRealm)
+    }
+
+    /**
+    Obtains a Realm instance with the given configuration.
 
     - parameter configuration: The configuration to use when creating the Realm instance.
+
+    - throws: An NSError if the Realm could not be initialized.
     */
-    public convenience init(configuration: Configuration = Configuration.defaultConfiguration) throws {
+    public convenience init(configuration: Configuration) throws {
         let rlmRealm = try RLMRealm(configuration: configuration.rlmConfiguration)
         self.init(rlmRealm)
     }
 
     /**
-    Obtains a Realm instance persisted at the specified file path.
+    Obtains a Realm instance persisted at the specified file URL.
 
-    - parameter path: Path to the realm file.
+    - parameter fileURL: Local URL to the realm file.
+
+    - throws: An NSError if the Realm could not be initialized.
     */
-    public convenience init(path: String) throws {
-        let rlmRealm = try RLMRealm(path: path, key: nil, readOnly: false, inMemory: false, dynamic: false, schema: nil)
-        self.init(rlmRealm)
+    public convenience init(fileURL: NSURL) throws {
+        var configuration = Configuration.defaultConfiguration
+        configuration.fileURL = fileURL
+        try self.init(configuration: configuration)
     }
 
     // MARK: Transactions
 
     /**
-    Performs actions contained within the given block inside a write transation.
+    Performs actions contained within the given block inside a write transaction.
 
     Write transactions cannot be nested, and trying to execute a write transaction
 	on a `Realm` which is already in a write transaction will throw an exception.
@@ -99,6 +108,8 @@ public final class Realm {
 	if applicable. This has no effect if the `Realm` was already up to date.
 
     - parameter block: The block to be executed inside a write transaction.
+
+    - throws: An NSError if the transaction could not be written.
     */
     public func write(@noescape block: (() -> Void)) throws {
         try rlmRealm.transactionWithBlock(block)
@@ -132,6 +143,8 @@ public final class Realm {
 	the transaction.
 
     Calling this when not in a write transaction will throw an exception.
+
+    - throws: An NSError if the transaction could not be written.
     */
     public func commitWrite() throws {
         try rlmRealm.commitWriteTransaction()
@@ -250,7 +263,7 @@ public final class Realm {
     public func create<T: Object>(type: T.Type, value: AnyObject = [:], update: Bool = false) -> T {
         let className = (type as Object.Type).className()
         if update && schema[className]?.primaryKeyProperty == nil {
-          throwRealmException("'\(className)' does not have a primary key and can not be updated")
+            throwRealmException("'\(className)' does not have a primary key and can not be updated")
         }
         return unsafeBitCast(RLMCreateObjectInRealmWithValue(rlmRealm, className, value, update), T.self)
     }
@@ -434,11 +447,19 @@ public final class Realm {
     Add a notification handler for changes in this Realm.
 
     Notification handlers are called after each write transaction is committed,
-    either on the current thread or other threads. The block is called on the
-    same thread as they were added on, and can only be added on threads which
-    are currently within a run loop. Unless you are specifically creating and
-    running a run loop on a background thread, this normally will only be the
-    main thread.
+    independent from the thread or process.
+
+    The block is called on the same thread as it was added on, and can only
+    be added on threads which are currently within a run loop. Unless you are
+    specifically creating and running a run loop on a background thread, this
+    normally will only be the main thread.
+
+    Notifications can't be delivered as long as the runloop is blocked by
+    other activity. When notifications can't be delivered instantly, multiple
+    notifications may be coalesced.
+
+    You must retain the returned token for as long as you want updates to continue
+    to be sent to the block. To stop receiving updates, call stop() on the token.
 
     - parameter block: A block which is called to process Realm notifications.
                        It receives the following parameters:
@@ -446,24 +467,18 @@ public final class Realm {
                        - `Notification`: The incoming notification.
                        - `Realm`:        The realm for which this notification occurred.
 
-    - returns: A notification token which can later be passed to `removeNotification(_:)`
-               to remove this notification.
+    - returns: A token which must be held for as long as you want notifications to be delivered.
     */
+    @warn_unused_result(message="You must hold on to the NotificationToken returned from addNotificationBlock")
     public func addNotificationBlock(block: NotificationBlock) -> NotificationToken {
-        return rlmRealm.addNotificationBlock(rlmNotificationBlockFromNotificationBlock(block))
+        return rlmRealm.addNotificationBlock { rlmNotification, _ in
+            if rlmNotification == RLMRealmDidChangeNotification {
+                block(notification: Notification.DidChange, realm: self)
+            } else if rlmNotification == RLMRealmRefreshRequiredNotification {
+                block(notification: Notification.RefreshRequired, realm: self)
+            }
+        }
     }
-
-    /**
-    Remove a previously registered notification handler using the token returned
-    from `addNotificationBlock(_:)`
-
-    - parameter notificationToken: The token returned from `addNotificationBlock(_:)`
-                                   corresponding to the notification block to remove.
-    */
-    public func removeNotification(notificationToken: NotificationToken) {
-        rlmRealm.removeNotification(notificationToken)
-    }
-
 
     // MARK: Autorefresh and Refresh
 
@@ -545,25 +560,24 @@ public final class Realm {
     // MARK: Writing a Copy
 
     /**
-    Write an encrypted and compacted copy of the Realm to the given path.
+    Write an encrypted and compacted copy of the Realm to the given local URL.
 
     The destination file cannot already exist.
 
     Note that if this is called from within a write transaction it writes the
     *current* data, and not data when the last write transaction was committed.
 
-    - parameter path:          Path to save the Realm to.
+    - parameter fileURL:       Local URL to save the Realm to.
     - parameter encryptionKey: Optional 64-byte encryption key to encrypt the new file with.
+
+    - throws: An NSError if the copy could not be written.
     */
-    public func writeCopyToPath(path: String, encryptionKey: NSData? = nil) throws {
-        if let encryptionKey = encryptionKey {
-            try rlmRealm.writeCopyToPath(path, encryptionKey: encryptionKey)
-        } else {
-            try rlmRealm.writeCopyToPath(path)
-        }
+    public func writeCopyToURL(fileURL: NSURL, encryptionKey: NSData? = nil) throws {
+        try rlmRealm.writeCopyToURL(fileURL, encryptionKey: encryptionKey)
     }
 
     // MARK: Internal
+
     internal var rlmRealm: RLMRealm
 
     internal init(_ rlmRealm: RLMRealm) {
@@ -576,7 +590,7 @@ public final class Realm {
 extension Realm: Equatable { }
 
 /// Returns whether the two realms are equal.
-public func == (lhs: Realm, rhs: Realm) -> Bool {
+public func == (lhs: Realm, rhs: Realm) -> Bool { // swiftlint:disable:this valid_docs
     return lhs.rlmRealm == rhs.rlmRealm
 }
 
@@ -608,9 +622,3 @@ public enum Notification: String {
 
 /// Closure to run when the data in a Realm was modified.
 public typealias NotificationBlock = (notification: Notification, realm: Realm) -> Void
-
-internal func rlmNotificationBlockFromNotificationBlock(notificationBlock: NotificationBlock) -> RLMNotificationBlock {
-    return { rlmNotification, rlmRealm in
-        return notificationBlock(notification: Notification(rawValue: rlmNotification)!, realm: Realm(rlmRealm))
-    }
-}
