@@ -76,7 +76,7 @@ public class Object: RLMObjectBase {
 
     - see: Realm().add(_:)
     */
-    public required override init() {
+    public override required init() {
         super.init()
     }
 
@@ -129,6 +129,15 @@ public class Object: RLMObjectBase {
     public final var className: String { return "" }
     #endif
 
+    /**
+    WARNING: This is an internal helper method not intended for public use.
+    :nodoc:
+    */
+    public override class func objectUtilClass(isSwift: Bool) -> AnyClass {
+        return ObjectUtil.self
+    }
+
+
     // MARK: Object Customization
 
     /**
@@ -150,28 +159,13 @@ public class Object: RLMObjectBase {
     public class func ignoredProperties() -> [String] { return [] }
 
     /**
-    Return an array of property names for properties which should be indexed. Only supported
-    for string and int properties.
+    Return an array of property names for properties which should be indexed.
+    Only supported for string, integer, boolean and NSDate properties.
 
     - returns: `Array` of property names to index.
     */
     public class func indexedProperties() -> [String] { return [] }
 
-
-    // MARK: Inverse Relationships
-
-    /**
-    Get an `Array` of objects of type `T` which have this object as the given property value. This can
-    be used to get the inverse relationship value for `Object` and `List` properties.
-
-    - parameter type:          The type of object on which the relationship to query is defined.
-    - parameter propertyName:  The name of the property which defines the relationship.
-
-    - returns: An `Array` of objects of type `T` which have this object as their value for the `propertyName` property.
-    */
-    public func linkingObjects<T: Object>(type: T.Type, forProperty propertyName: String) -> [T] {
-        return RLMObjectBaseLinkingObjectsOfClass(self, (T.self as Object.Type).className(), propertyName) as! [T]
-    }
 
     // MARK: Key-Value Coding & Subscripting
 
@@ -221,9 +215,14 @@ public class Object: RLMObjectBase {
 
     // MARK: Equatable
 
-    /// Returns whether both objects are equal.
-    /// Objects are considered equal when they are both from the same Realm
-    /// and point to the same underlying object in the database.
+    /**
+    Returns whether both objects are equal.
+
+    Objects are considered equal when they are both from the same Realm and point to the same
+    underlying object in the database.
+
+    - parameter object: Object to compare for equality.
+    */
     public override func isEqual(object: AnyObject?) -> Bool {
         return RLMObjectBaseAreEqual(self as RLMObjectBase?, object as? RLMObjectBase)
     }
@@ -236,7 +235,7 @@ public class Object: RLMObjectBase {
     WARNING: This is an internal initializer not intended for public use.
     :nodoc:
     */
-    public override init(realm: RLMRealm, schema: RLMObjectSchema) {
+    public override required init(realm: RLMRealm, schema: RLMObjectSchema) {
         super.init(realm: realm, schema: schema)
     }
 
@@ -244,7 +243,7 @@ public class Object: RLMObjectBase {
     WARNING: This is an internal initializer not intended for public use.
     :nodoc:
     */
-    public override init(value: AnyObject, schema: RLMSchema) {
+    public override required init(value: AnyObject, schema: RLMSchema) {
         super.init(value: value, schema: schema)
     }
 
@@ -256,6 +255,11 @@ public class Object: RLMObjectBase {
     // Helper for getting the optional object for a property
     internal func optionalForProperty(prop: RLMProperty) -> RLMOptionalBase {
         return object_getIvar(self, prop.swiftIvar) as! RLMOptionalBase
+    }
+
+    // Helper for getting the linking objects object for a property
+    internal func linkingObjectsForProperty(prop: RLMProperty) -> LinkingObjectsBase? {
+        return object_getIvar(self, prop.swiftIvar) as? LinkingObjectsBase
     }
 }
 
@@ -288,6 +292,11 @@ public final class DynamicObject: Object {
         return optional
     }
 
+    // Dynamic objects never have linking objects properties
+    internal override func linkingObjectsForProperty(prop: RLMProperty) -> LinkingObjectsBase? {
+        return nil
+    }
+
     /// :nodoc:
     public override func valueForUndefinedKey(key: String) -> AnyObject? {
         return self[key]
@@ -308,6 +317,10 @@ public final class DynamicObject: Object {
 /// Internal class. Do not use directly.
 @objc(RealmSwiftObjectUtil)
 public class ObjectUtil: NSObject {
+    @objc private class func swiftVersion() -> NSString {
+        return swiftLanguageVersion
+    }
+
     @objc private class func ignoredPropertiesForClass(type: AnyClass) -> NSArray? {
         if let type = type as? Object.Type {
             return type.ignoredProperties() as NSArray?
@@ -319,6 +332,11 @@ public class ObjectUtil: NSObject {
         if let type = type as? Object.Type {
             return type.indexedProperties() as NSArray?
         }
+        return nil
+    }
+
+    @objc private class func linkingObjectsPropertiesForClass(type: AnyClass) -> NSDictionary? {
+        // Not used for Swift. getLinkingObjectsProperties(_:) is used instead.
         return nil
     }
 
@@ -341,12 +359,14 @@ public class ObjectUtil: NSObject {
         optional.object = object
     }
 
+    // swiftlint:disable:next cyclomatic_complexity
     @objc private class func getOptionalProperties(object: AnyObject) -> NSDictionary {
         let children = Mirror(reflecting: object).children
-        return children.reduce([String: AnyObject]()) { (var properties: [String:AnyObject], prop: Mirror.Child) in
+        return children.reduce([String: AnyObject]()) { ( properties: [String:AnyObject], prop: Mirror.Child) in
             guard let name = prop.label else { return properties }
             let mirror = Mirror(reflecting: prop.value)
             let type = mirror.subjectType
+            var properties = properties
             if type is Optional<String>.Type || type is Optional<NSString>.Type {
                 properties[name] = Int(PropertyType.String.rawValue)
             } else if type is Optional<NSDate>.Type {
@@ -378,5 +398,25 @@ public class ObjectUtil: NSObject {
 
     @objc private class func requiredPropertiesForClass(_: AnyClass) -> NSArray? {
         return nil
+    }
+
+    // Get information about each of the linking objects properties.
+    @objc private class func getLinkingObjectsProperties(object: AnyObject) -> NSDictionary {
+        let properties = Mirror(reflecting: object).children.filter { (prop: Mirror.Child) in
+            return prop.value as? LinkingObjectsBase != nil
+        }.flatMap { (prop: Mirror.Child) in
+            (prop.label!, prop.value as! LinkingObjectsBase)
+        }
+        return properties.reduce([:] as [String : [String: String ]]) { (dictionary, property) in
+            var d = dictionary
+            let (name, results) = property
+            d[name] = ["class": results.objectClassName, "property": results.propertyName]
+            return d
+        }
+    }
+
+    @objc private class func initializeLinkingObjectsProperty(object: RLMObjectBase, property: RLMProperty) {
+        guard let linkingObjects = (object as! Object).linkingObjectsForProperty(property) else { return }
+        linkingObjects.attachTo(object: object, property: property)
     }
 }

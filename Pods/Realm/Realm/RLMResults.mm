@@ -19,6 +19,7 @@
 #import "RLMResults_Private.h"
 
 #import "RLMArray_Private.hpp"
+#import "RLMCollection_Private.hpp"
 #import "RLMObjectSchema_Private.hpp"
 #import "RLMObjectStore.h"
 #import "RLMObject_Private.hpp"
@@ -37,105 +38,11 @@
 
 using namespace realm;
 
-static const int RLMEnumerationBufferSize = 16;
-
-@implementation RLMFastEnumerator {
-    // The buffer supplied by fast enumeration does not retain the objects given
-    // to it, but because we create objects on-demand and don't want them
-    // autoreleased (a table can have more rows than the device has memory for
-    // accessor objects) we need a thing to retain them.
-    id _strongBuffer[RLMEnumerationBufferSize];
-
-    RLMRealm *_realm;
-    RLMObjectSchema *_objectSchema;
-
-    // Collection being enumerated. Only one of these two will be valid: when
-    // possible we enumerate the collection directly, but when in a write
-    // transaction we instead create a frozen TableView and enumerate that
-    // instead so that mutating the collection during enumeration works.
-    id<RLMFastEnumerable> _collection;
-    realm::TableView _tableView;
-}
-
-- (instancetype)initWithCollection:(id<RLMFastEnumerable>)collection objectSchema:(RLMObjectSchema *)objectSchema {
-    self = [super init];
-    if (self) {
-        _realm = collection.realm;
-        _objectSchema = objectSchema;
-
-        if (_realm.inWriteTransaction) {
-            _tableView = [collection tableView];
-        }
-        else {
-            _collection = collection;
-            [_realm registerEnumerator:self];
-        }
-    }
-    return self;
-}
-
-- (void)dealloc {
-    if (_collection) {
-        [_realm unregisterEnumerator:self];
-    }
-}
-
-- (void)detach {
-    _tableView = [_collection tableView];
-    _collection = nil;
-}
-
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state
-                                    count:(NSUInteger)len {
-    [_realm verifyThread];
-    if (!_tableView.is_attached() && !_collection) {
-        @throw RLMException(@"Collection is no longer valid");
-    }
-    // The fast enumeration buffer size is currently a hardcoded number in the
-    // compiler so this can't actually happen, but just in case it changes in
-    // the future...
-    if (len > RLMEnumerationBufferSize) {
-        len = RLMEnumerationBufferSize;
-    }
-
-    NSUInteger batchCount = 0, count = state->extra[1];
-
-    Class accessorClass = _objectSchema.accessorClass;
-    for (NSUInteger index = state->state; index < count && batchCount < len; ++index) {
-        RLMObject *accessor = [[accessorClass alloc] initWithRealm:_realm schema:_objectSchema];
-        if (_collection) {
-            accessor->_row = (*_objectSchema.table)[[_collection indexInSource:index]];
-        }
-        else if (_tableView.is_row_attached(index)) {
-            accessor->_row = (*_objectSchema.table)[_tableView.get_source_ndx(index)];
-        }
-        _strongBuffer[batchCount] = accessor;
-        batchCount++;
-    }
-
-    for (NSUInteger i = batchCount; i < len; ++i) {
-        _strongBuffer[i] = nil;
-    }
-
-    if (batchCount == 0) {
-        // Release our data if we're done, as we're autoreleased and so may
-        // stick around for a while
-        _collection = nil;
-        if (_tableView.is_attached()) {
-            _tableView = TableView();
-        }
-        else {
-            [_realm unregisterEnumerator:self];
-        }
-    }
-
-    state->itemsPtr = (__unsafe_unretained id *)(void *)_strongBuffer;
-    state->state += batchCount;
-    state->mutationsPtr = state->extra+1;
-
-    return batchCount;
-}
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wincomplete-implementation"
+@implementation RLMNotificationToken
 @end
+#pragma clang diagnostic pop
 
 //
 // RLMResults implementation
@@ -209,9 +116,18 @@ static auto translateErrors(Function&& f, NSString *aggregateMethod=nil) {
     return ar;
 }
 
++ (instancetype)emptyDetachedResults
+{
+    return [[self alloc] initPrivate];
+}
+
 static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMResults *const ar) {
     ar->_realm->_realm->verify_thread();
     ar->_realm->_realm->verify_in_write();
+}
+
+- (BOOL)isInvalidated {
+    return translateErrors([&] { return !_results.is_valid(); });
 }
 
 - (NSUInteger)count {
@@ -240,8 +156,10 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
 
 - (NSUInteger)indexOfObjectWhere:(NSString *)predicateFormat, ... {
     va_list args;
-    RLM_VARARG(predicateFormat, args);
-    return [self indexOfObjectWhere:predicateFormat args:args];
+    va_start(args, predicateFormat);
+    NSUInteger index = [self indexOfObjectWhere:predicateFormat args:args];
+    va_end(args);
+    return index;
 }
 
 - (NSUInteger)indexOfObjectWhere:(NSString *)predicateFormat args:(va_list)args {
@@ -256,11 +174,25 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
 
     Query query = translateErrors([&] { return _results.get_query(); });
     RLMUpdateQueryWithPredicate(&query, predicate, _realm.schema, _objectSchema);
-    size_t index = query.find();
-    if (index == realm::not_found) {
+
+    query.sync_view_if_needed();
+
+    TableView table_view;
+    if (const auto& sort = _results.get_sort()) {
+        // A sort order is specified so we need to return the first match given that ordering.
+        table_view = query.find_all();
+        table_view.sort(sort.column_indices, sort.ascending);
+    } else {
+        // No sort order is specified so we only need to find a single match.
+        // FIXME: We're only looking for a single object so we'd like to be able to use `Query::find`
+        // for this, but as of core v0.97.1 it gives incorrect results if the query is restricted
+        // to a link view (<https://github.com/realm/realm-core/issues/1565>).
+        table_view = query.find_all(0, -1, 1);
+    }
+    if (!table_view.size()) {
         return NSNotFound;
     }
-    return _results.index_of(index);
+    return _results.index_of(table_view.get_source_ndx(0));
 }
 
 - (id)objectAtIndex:(NSUInteger)index {
@@ -380,8 +312,10 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
 
 - (RLMResults *)objectsWhere:(NSString *)predicateFormat, ... {
     va_list args;
-    RLM_VARARG(predicateFormat, args);
-    return [self objectsWhere:predicateFormat args:args];
+    va_start(args, predicateFormat);
+    RLMResults *results = [self objectsWhere:predicateFormat args:args];
+    va_end(args);
+    return results;
 }
 
 - (RLMResults *)objectsWhere:(NSString *)predicateFormat args:(va_list)args {
@@ -393,10 +327,10 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
         if (_results.get_mode() == Results::Mode::Empty) {
             return self;
         }
-        auto query = _results.get_query();
+        auto query = _objectSchema.table->where();
         RLMUpdateQueryWithPredicate(&query, predicate, _realm.schema, _objectSchema);
         return [RLMResults resultsWithObjectSchema:_objectSchema
-                                           results:realm::Results(_realm->_realm, std::move(query), _results.get_sort())];
+                                           results:_results.filter(std::move(query))];
     });
 }
 
@@ -457,35 +391,7 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
 }
 
 - (NSString *)description {
-    const NSUInteger maxObjects = 100;
-    NSMutableString *mString = [NSMutableString stringWithFormat:@"RLMResults <0x%lx> (\n", (long)self];
-    unsigned long index = 0, skipped = 0;
-    for (id obj in self) {
-        NSString *sub;
-        if ([obj respondsToSelector:@selector(descriptionWithMaxDepth:)]) {
-            sub = [obj descriptionWithMaxDepth:RLMDescriptionMaxDepth - 1];
-        }
-        else {
-            sub = [obj description];
-        }
-
-        // Indent child objects
-        NSString *objDescription = [sub stringByReplacingOccurrencesOfString:@"\n" withString:@"\n\t"];
-        [mString appendFormat:@"\t[%lu] %@,\n", index++, objDescription];
-        if (index >= maxObjects) {
-            skipped = self.count - maxObjects;
-            break;
-        }
-    }
-
-    // Remove last comma and newline characters
-    if(self.count > 0)
-        [mString deleteCharactersInRange:NSMakeRange(mString.length-2, 2)];
-    if (skipped) {
-        [mString appendFormat:@"\n\t... %lu objects skipped.", skipped];
-    }
-    [mString appendFormat:@"\n)"];
-    return [NSString stringWithString:mString];
+    return RLMDescriptionWithMaxDepth(@"RLMResults", self, RLMDescriptionMaxDepth);
 }
 
 - (NSUInteger)indexInSource:(NSUInteger)index {
@@ -496,4 +402,24 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
     return translateErrors([&] { return _results.get_tableview(); });
 }
 
+// The compiler complains about the method's argument type not matching due to
+// it not having the generic type attached, but it doesn't seem to be possible
+// to actually include the generic type
+// http://www.openradar.me/radar?id=6135653276319744
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wmismatched-parameter-types"
+- (RLMNotificationToken *)addNotificationBlock:(void (^)(RLMResults *, RLMCollectionChange *, NSError *))block {
+    [_realm verifyNotificationsAreSupported];
+    return RLMAddNotificationBlock(self, _results, block, false);
+}
+#pragma clang diagnostic pop
+
+- (BOOL)isAttached
+{
+    return !!_realm;
+}
+
+@end
+
+@implementation RLMLinkingObjects
 @end

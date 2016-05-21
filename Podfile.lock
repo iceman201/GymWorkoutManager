@@ -1,23 +1,25 @@
 PODS:
-  - AVOSCloud (3.2.7)
-  - AVOSCloudIM (3.2.7):
+  - AVOSCloud (3.2.12)
+  - AVOSCloudIM (3.2.12):
     - AVOSCloud
-  - Charts (2.2.3):
-    - Charts/Core (= 2.2.3)
-  - Charts/Core (2.2.3)
-  - EasyAnimation (1.0.4)
-  - GradientCircularProgress (3.1.0)
+  - Charts (2.2.4):
+    - Charts/Core (= 2.2.4)
+  - Charts/Core (2.2.4)
+  - CVCalendar (1.2.9)
+  - EasyAnimation (1.0.5)
+  - GradientCircularProgress (3.3.0)
   - JVFloatLabeledTextField (1.1.0)
-  - Realm (0.97.0):
-    - Realm/Headers (= 0.97.0)
-  - Realm/Headers (0.97.0)
-  - RealmSwift (0.97.0):
-    - Realm (= 0.97.0)
+  - Realm (0.103.1):
+    - Realm/Headers (= 0.103.1)
+  - Realm/Headers (0.103.1)
+  - RealmSwift (0.103.1):
+    - Realm (= 0.103.1)
 
 DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudIM
   - Charts
+  - CVCalendar (~> 1.2.9)
   - EasyAnimation
   - GradientCircularProgress (from `https://github.com/keygx/GradientCircularProgress`)
   - JVFloatLabeledTextField
@@ -29,17 +31,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GradientCircularProgress:
-    :commit: 975d13a884bcd9395318cfb1647d7bdde4ba3257
+    :commit: 46b44e9066dba34b4c5df588aee24f29a469ca93
     :git: https://github.com/keygx/GradientCircularProgress
 
 SPEC CHECKSUMS:
-  AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
-  AVOSCloudIM: ec08eaec4d27d732e3be93eadeb3bcf1355b5dcf
-  Charts: f54267bb3f0f0e74520c6f248517cf5074dfd6fc
-  EasyAnimation: 4aabd439b4038f48d72939cc19d6220363b3206e
-  GradientCircularProgress: 7997493ecbe6f6b84694c66aefe43ff7b9de4b6a
+  AVOSCloud: fcbb5c2bcccaddbdea8c2b4f6c1ad7f13e6639fe
+  AVOSCloudIM: 3c9aece07d9f707f1e7846435703ad191505b7fd
+  Charts: a9e735c83c6d376ade20f6612dcf0ba217394a49
+  CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
+  EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
+  GradientCircularProgress: d197589486f78d49125761deb3643a77500edd27
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
-  Realm: b498a6fb9d288b171ff98d0e2d4384c295be8990
-  RealmSwift: d014810dec75c9a3f1a33926d2dabfed855c582c
+  Realm: 9ed57109332e95bdc48a7caedff80b70c51d5ef4
+  RealmSwift: 56629adb4acd2dc33eb2c8199fe856585dfd3ba3
 
 COCOAPODS: 0.39.0

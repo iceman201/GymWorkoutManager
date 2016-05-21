@@ -36,7 +36,8 @@
 /**
  * Register remote notification with all types (badge, alert, sound) and empty categories.
  */
-+ (void)registerForRemoteNotification AVIM_TV_UNAVAILABLE AVIM_WATCH_UNAVAILABLE;
++ (void)registerForRemoteNotification AVIM_TV_UNAVAILABLE AVIM_WATCH_UNAVAILABLE \
+    AVIM_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.8. Use +[AVOSCloud registerForRemoteNotification] instead.");
 
 /**
  * Register remote notification with types.
@@ -44,15 +45,16 @@
  * @param categories A set of UIUserNotificationCategory objects that define the groups of actions a notification may include.
  * NOTE: categories only supported by iOS 8 and later. If application run below iOS 8, categories will be ignored.
  */
-+ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories AVIM_TV_UNAVAILABLE AVIM_WATCH_UNAVAILABLE;
++ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories AVIM_TV_UNAVAILABLE AVIM_WATCH_UNAVAILABLE \
+    AVIM_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.8. Use +[AVOSCloud registerForRemoteNotificationTypes:categories:] instead.");
 
 /**
  * Handle device token registered from APNs.
  * @param deviceToken Device token issued by APNs.
  * This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
  */
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
-
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken \
+    AVIM_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.8. Use +[AVOSCloud handleRemoteNotificationsWithDeviceToken:] instead.");
 
 /**
  * Handle device token registered from APNs.
@@ -60,6 +62,7 @@
  * @param block       Constructing block of [AVInstallation currentInstallation].
  * This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
  */
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken constructingInstallationWithBlock:(void (^)(AVInstallation *currentInstallation))block;
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken constructingInstallationWithBlock:(void (^)(AVInstallation *currentInstallation))block \
+    AVIM_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.8. Use +[AVOSCloud handleRemoteNotificationsWithDeviceToken:constructingInstallationWithBlock:] instead.");
 
 @end

@@ -28,6 +28,8 @@ FOUNDATION_EXPORT NSString *const kAVIMCodeKey;
 FOUNDATION_EXPORT NSString *const kAVIMAppCodeKey;
 /* AVOSCloud IM reason key */
 FOUNDATION_EXPORT NSString *const kAVIMReasonKey;
+/* AVOSCloud IM detail key */
+FOUNDATION_EXPORT NSString *const kAVIMDetailKey;
 
 typedef void (^AVIMBooleanResultBlock)(BOOL succeeded, NSError *error);
 typedef void (^AVIMIntegerResultBlock)(NSInteger number, NSError *error);

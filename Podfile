@@ -8,6 +8,7 @@ pod 'Charts'
 pod 'JVFloatLabeledTextField'
 pod 'AVOSCloud' 
 pod 'AVOSCloudIM'
+pod 'CVCalendar', '~> 1.2.9'
 
 target 'GymWorkoutManager' do
 

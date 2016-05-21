@@ -53,6 +53,18 @@ extern NSString *const kAVIMKeyConversationId;
 + (instancetype)andQueryWithSubqueries:(NSArray<AVIMConversationQuery *> *)queries;
 
 /*!
+ Add a constraint that requires a particular key exists.
+ @param key The key that should exist.
+ */
+- (void)whereKeyExists:(NSString *)key;
+
+/*!
+ Add a constraint that requires a key not exist.
+ @param key The key that should not exist.
+ */
+- (void)whereKeyDoesNotExist:(NSString *)key;
+
+/*!
  添加等于条件
  @param key 添加条件的 key
  @param object 需要等于的 object

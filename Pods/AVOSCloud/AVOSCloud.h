@@ -78,7 +78,7 @@ typedef NS_ENUM(NSInteger, AVStorageType) {
     AVStorageTypeQiniu = 0,
     AVStorageTypeParse,
     AVStorageTypeS3,
-
+    AVStorageTypeQCloud,
     /* Default service region */
     AVStorageTypeDefault = AVStorageTypeQiniu
 } ;
@@ -162,8 +162,8 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
 +(void)clearLastModifyCache;
 
 /**
- *  Set third party file storage service. If uses China server, the default is Qiniu, if uses US server, the default is AWS S3.
- *  @param type Qiniu or AWS S3
+ *  Set third party file storage service. If uses China server, you can use QCloud or Qiniu, the default is Qiniu, if uses US server, the default is AWS S3.
+ *  @param type Qiniu, QCloud or AWS S3.
  */
 + (void)setStorageType:(AVStorageType)type;
 
@@ -289,6 +289,36 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
  */
 + (void)getServerDateWithBlock:(void(^)(NSDate *date, NSError *error))block;
 
+#pragma mark - Push Notification
+
+/**
+ * Register remote notification with all types (badge, alert, sound) and empty categories.
+ */
++ (void)registerForRemoteNotification AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE;
+
+/**
+ * Register remote notification with types.
+ * @param types Notification types.
+ * @param categories A set of UIUserNotificationCategory objects that define the groups of actions a notification may include.
+ * NOTE: categories only supported by iOS 8 and later. If application run below iOS 8, categories will be ignored.
+ */
++ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE;
+
+/**
+ * Handle device token registered from APNs.
+ * @param deviceToken Device token issued by APNs.
+ * This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
+ */
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+
+/**
+ * Handle device token registered from APNs.
+ * @param deviceToken Device token issued by APNs.
+ * @param block       Constructing block of [AVInstallation currentInstallation].
+ * This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
+ */
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken constructingInstallationWithBlock:(void (^)(AVInstallation *currentInstallation))block;
+
 @end
 
 #pragma mark - Deprecated API
@@ -306,18 +336,5 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
  * Use LeanCloud China Sever. Default option.
  */
 + (void)useAVCloudCN AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.3. Use +[AVOSCloud setServiceRegion:] instead.");
-
-/**
- * Register remote notification with types.
- * @param types Notification types.
- * @param categories A set of UIUserNotificationCategory objects that define the groups of actions a notification may include.
- * NOTE: categories only supported by iOS 8 and later. If application run below iOS 8, categories will be ignored.
- */
-+ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.1.7.2. Use -[AVOSCloudIM registerForRemoteNotificationTypes:categories:] instead.");
-
-/**
- * Register remote notification with all types (badge, alert, sound) and empty categories.
- */
-+ (void)registerForRemoteNotification AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.1.7.2. Use -[AVOSCloudIM registerForRemoteNotification] instead.");
 
 @end

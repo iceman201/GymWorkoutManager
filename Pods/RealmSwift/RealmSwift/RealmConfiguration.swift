@@ -52,24 +52,25 @@ extension Realm {
         /**
         Initializes a `Realm.Configuration`, suitable for creating new `Realm` instances.
 
-        - parameter path:               The path to the realm file.
+        - parameter fileURL:            The local URL to the realm file.
         - parameter inMemoryIdentifier: A string used to identify a particular in-memory Realm.
         - parameter encryptionKey:      64-byte key to use to encrypt the data.
         - parameter readOnly:           Whether the Realm is read-only (must be true for read-only files).
         - parameter schemaVersion:      The current schema version.
         - parameter migrationBlock:     The block which migrates the Realm to the current version.
+        - parameter deleteRealmIfMigrationNeeded: If `true`, recreate the Realm file with the provided
+                                                  schema if a migration is required.
         - parameter objectTypes:        The subset of `Object` subclasses persisted in the Realm.
-
-        - returns: An initialized `Realm.Configuration`.
         */
-        public init(path: String? = RLMRealmPathForFile("default.realm"),
+        public init(fileURL: NSURL? = NSURL(fileURLWithPath: RLMRealmPathForFile("default.realm"), isDirectory: false),
             inMemoryIdentifier: String? = nil,
             encryptionKey: NSData? = nil,
             readOnly: Bool = false,
             schemaVersion: UInt64 = 0,
             migrationBlock: MigrationBlock? = nil,
+            deleteRealmIfMigrationNeeded: Bool = false,
             objectTypes: [Object.Type]? = nil) {
-                self.path = path
+                self.fileURL = fileURL
                 if inMemoryIdentifier != nil {
                     self.inMemoryIdentifier = inMemoryIdentifier
                 }
@@ -77,20 +78,21 @@ extension Realm {
                 self.readOnly = readOnly
                 self.schemaVersion = schemaVersion
                 self.migrationBlock = migrationBlock
+                self.deleteRealmIfMigrationNeeded = deleteRealmIfMigrationNeeded
                 self.objectTypes = objectTypes
         }
 
         // MARK: Configuration Properties
 
-        /// The path to the realm file.
+        /// The local URL to the realm file.
         /// Mutually exclusive with `inMemoryIdentifier`.
-        public var path: String? {
+        public var fileURL: NSURL? {
             set {
                 _inMemoryIdentifier = nil
-                _path = newValue
+                _path = newValue?.path
             }
             get {
-                return _path
+                return _path.map { NSURL(fileURLWithPath: $0) }
             }
         }
 
@@ -122,6 +124,16 @@ extension Realm {
         /// The block which migrates the Realm to the current version.
         public var migrationBlock: MigrationBlock? = nil
 
+        /**
+        Recreate the Realm file with the provided schema if a migration is required.
+        This is the case when the stored schema differs from the provided schema or
+        the stored schema version differs from the version on this configuration.
+        This deletes the file if a migration would otherwise be required or run.
+
+        - note: This doesn't disable file format migrations.
+        */
+        public var deleteRealmIfMigrationNeeded: Bool = false
+
         /// The classes persisted in the Realm.
         public var objectTypes: [Object.Type]? {
             set {
@@ -135,12 +147,15 @@ extension Realm {
         /// A custom schema to use for the Realm.
         private var customSchema: RLMSchema? = nil
 
+        /// Allows to disable automatic format upgrades when accessing the Realm.
+        internal var disableFormatUpgrade: Bool = false
+
         // MARK: Private Methods
 
         internal var rlmConfiguration: RLMRealmConfiguration {
             let configuration = RLMRealmConfiguration()
-            if path != nil {
-                configuration.path = self.path
+            if fileURL != nil {
+                configuration.fileURL = self.fileURL
             } else if inMemoryIdentifier != nil {
                 configuration.inMemoryIdentifier = self.inMemoryIdentifier
             } else {
@@ -150,13 +165,15 @@ extension Realm {
             configuration.readOnly = self.readOnly
             configuration.schemaVersion = self.schemaVersion
             configuration.migrationBlock = self.migrationBlock.map { accessorMigrationBlock($0) }
+            configuration.deleteRealmIfMigrationNeeded = self.deleteRealmIfMigrationNeeded
             configuration.customSchema = self.customSchema
+            configuration.disableFormatUpgrade = self.disableFormatUpgrade
             return configuration
         }
 
         internal static func fromRLMRealmConfiguration(rlmConfiguration: RLMRealmConfiguration) -> Configuration {
             var configuration = Configuration()
-            configuration._path = rlmConfiguration.path
+            configuration._path = rlmConfiguration.fileURL?.path
             configuration._inMemoryIdentifier = rlmConfiguration.inMemoryIdentifier
             configuration.encryptionKey = rlmConfiguration.encryptionKey
             configuration.readOnly = rlmConfiguration.readOnly
@@ -166,7 +183,9 @@ extension Realm {
                     rlmMigration(migration.rlmMigration, schemaVersion)
                 }
             }
+            configuration.deleteRealmIfMigrationNeeded = rlmConfiguration.deleteRealmIfMigrationNeeded
             configuration.customSchema = rlmConfiguration.customSchema
+            configuration.disableFormatUpgrade = rlmConfiguration.disableFormatUpgrade
             return configuration
         }
     }
