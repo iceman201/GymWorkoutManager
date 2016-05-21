@@ -1,1 +1,1 @@
-../../../../Realm/include/Realm/RLMRealmConfiguration.h
+../../../../Realm/include/realm/RLMRealmConfiguration.h

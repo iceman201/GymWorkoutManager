@@ -6,6 +6,8 @@ pod 'GradientCircularProgress', :git => 'https://github.com/keygx/GradientCircul
 pod 'EasyAnimation'
 pod 'Charts'
 pod 'JVFloatLabeledTextField'
+pod 'AVOSCloud' 
+pod 'AVOSCloudIM'
 
 target 'GymWorkoutManager' do
 
