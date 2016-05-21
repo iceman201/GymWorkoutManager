@@ -1,4 +1,7 @@
 PODS:
+  - AVOSCloud (3.2.7)
+  - AVOSCloudIM (3.2.7):
+    - AVOSCloud
   - Charts (2.2.3):
     - Charts/Core (= 2.2.3)
   - Charts/Core (2.2.3)
@@ -12,6 +15,8 @@ PODS:
     - Realm (= 0.97.0)
 
 DEPENDENCIES:
+  - AVOSCloud
+  - AVOSCloudIM
   - Charts
   - EasyAnimation
   - GradientCircularProgress (from `https://github.com/keygx/GradientCircularProgress`)
@@ -28,6 +33,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/keygx/GradientCircularProgress
 
 SPEC CHECKSUMS:
+  AVOSCloud: 957d1508104d7c8ed501df9d9b734d7a98c2e047
+  AVOSCloudIM: ec08eaec4d27d732e3be93eadeb3bcf1355b5dcf
   Charts: f54267bb3f0f0e74520c6f248517cf5074dfd6fc
   EasyAnimation: 4aabd439b4038f48d72939cc19d6220363b3206e
   GradientCircularProgress: 7997493ecbe6f6b84694c66aefe43ff7b9de4b6a

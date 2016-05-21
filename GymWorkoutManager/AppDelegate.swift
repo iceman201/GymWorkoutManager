@@ -16,7 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+
+        // this for AVOS settings
+        AVOSCloud.setApplicationId("ms40eP4IP5JGJEHiKAqJqCHj-gzGzoHsz", clientKey: "EM5S0GFMiAtvhHh88opBM3FY")
+        
+        //Set notificaion type and register for remote notifications
+        let types:UIUserNotificationType = [.Alert,.Badge,.Sound]
+        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
+        
+        CommonUtils.scheduleLocalNotification()
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
         print("--------- Realm path---------")
         print(Realm.Configuration.defaultConfiguration.path)
@@ -45,6 +56,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let currentInstallation = AVInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.saveInBackground()
+    }
+    
 
 
 }

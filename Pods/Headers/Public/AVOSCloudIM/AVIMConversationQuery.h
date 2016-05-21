@@ -1,0 +1,1 @@
+../../../AVOSCloudIM/AVIMConversationQuery.h
