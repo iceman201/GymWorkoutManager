@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CommonUtils.scheduleLocalNotification()
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: true)
         print("--------- Realm path---------")
-        print(Realm.Configuration.defaultConfiguration.path)
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         
         return true
     }
