@@ -22,35 +22,42 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     @IBOutlet var startButton: UIButton!
     
     // MARK: - Variables
-    let millisecond = 0.01
+    let MILLI_SECOND = 0.01
     var receivedTime : [String] = ["0", "0", "0"]
     var time : NSDate = NSDate()
     var totalTime : NSDate = NSDate()
-    var timerRuning : NSTimer = NSTimer()
     var timerCountdown : NSTimer = NSTimer()
     var round = "0"
     var startRound = "0"
     var audioPlayer = AVAudioPlayer()
-    var fromReset : Bool = false
     
     @IBAction func reset(sender: AnyObject) {
         self.totalTime = timeDate(["0", "0", "0"])
         round = "0"
         startRound = "0"
         aroundNumber.text = "0"
-        fromReset = true
-        timeCountdown()
+        repeatTimer.text = "00:00:00"
+        stopTimeCountDown()
     }
     
     @IBAction func counter(sender: AnyObject) {
+        
+        if round == "0" {
+            // must have a round to start, warn users with alert
+            let alert = UIAlertController(title: "Message", message: "Must set time first", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
         if startButton.currentTitle != "Stop" {
             startButton.setTitle("Stop", forState: .Normal)
-            timerCountdown = NSTimer.scheduledTimerWithTimeInterval(millisecond, target: self, selector: #selector(TimerViewController.timeCountdown), userInfo: nil, repeats: true)
+            timerCountdown = NSTimer.scheduledTimerWithTimeInterval(MILLI_SECOND, target: self, selector: #selector(TimerViewController.timeCountdown), userInfo: nil, repeats: true)
         } else {
-            startButton.setTitle("GO!", forState: .Normal)
-            timerCountdown.invalidate()
+            stopTimeCountDown()
         }
     }
+    
     
     @objc private func claimRecord(sender: AnyObject) {
         let alert = UIAlertController(title: "Record Claim", message: "Which execirse you did today", preferredStyle: .Alert)
@@ -101,39 +108,35 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     func timeCountdown() {
         if round == "0" {
-            let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Done_total_set", ofType: "mp3")!)
+            // this means rounds up, there comes the end.
+            playEffectSound("Done_total_set", type: "mp3")
             repeatTimer.text = "00:00:00"
-            startButton.setTitle("GO!", forState: UIControlState.Normal)
-            timerCountdown.invalidate()
-            timerRuning.invalidate()
-            if !fromReset {
-                audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
-                audioPlayer.prepareToPlay()
-                audioPlayer.play()
-            }
-        } else if timeString(time) == "00:00.00" {
-            if round != "0" {
-                let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Done", ofType: "mp3")!)
-                audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
-                audioPlayer.prepareToPlay()
-                audioPlayer.play()
-            }
+            stopTimeCountDown()
+            return
+        }
+        
+        if timeString(time) == "00:00.00" {
+            //this means time up, there comes a end.
+            playEffectSound("Done", type: "mp3")
             time = timeDate(receivedTime)
             round = String(NSNumberFormatter().numberFromString(round)!.intValue - 1)
             repeatTimer.text = timeString(time)
             aroundNumber.text = round
-            self.repeatTimer.text = self.timeString(self.time)
-            self.aroundNumber.text = self.round
-            if self.round != "0" {
-                self.startButton .sendActionsForControlEvents(UIControlEvents.TouchUpInside)
-            }
+            stopTimeCountDown()
         } else {
-            time = time.dateByAddingTimeInterval(-millisecond)
-            totalTime = totalTime.dateByAddingTimeInterval(millisecond)
+            //Continue counting down.
+            time = time.dateByAddingTimeInterval(-MILLI_SECOND)
+            totalTime = totalTime.dateByAddingTimeInterval(MILLI_SECOND)
             repeatTimer.text = self.timeString(time).stringByReplacingOccurrencesOfString(".", withString: ":")
             totalWorkoutTimer.text = self.timeString(totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
         }
     }
+    
+    private func stopTimeCountDown(){
+        startButton.setTitle("GO!", forState: .Normal)
+        timerCountdown.invalidate()
+    }
+    
     
     // MARK: - View
     override func viewDidLoad() {
@@ -152,7 +155,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
 
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1
-        print(Realm.Configuration.defaultConfiguration.path)
+        print(Realm.Configuration.defaultConfiguration.fileURL)
         self.time = timeDate(receivedTime)
         self.totalTime = timeDate(receivedTime)
     }
@@ -173,7 +176,6 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.repeatTimer.text = self.timeString(result).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.totalWorkoutTimer.text = self.timeString(totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.aroundNumber.text = round
-        fromReset = false
     }
     
     // MARK: - Private Method
@@ -205,6 +207,13 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         if segue.identifier == "" {
             
         }
+    }
+    
+    func playEffectSound(name:String,type:String){
+        let alertSound = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource(name, ofType:type)!)
+        audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
     }
     
     @IBAction func unwindToTimerView(segue: UIStoryboardSegue){
