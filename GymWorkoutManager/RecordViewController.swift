@@ -44,7 +44,10 @@ class RecordViewController: UITableViewController {
                 DatabaseHelper.sharedInstance.beginTransaction()
                 infoCell.activeDay.text = "\(user.activedDays)"
                 infoCell.name.text = user.name
-                infoCell.weight.text = user.weight
+                if user.weight != "" {
+                    infoCell.weight.text = user.weight + " KG"
+                }
+                
                 if let pictureData = user.profilePicture {
                     infoCell.profileImage.image = UIImage(data: pictureData)
                 }
