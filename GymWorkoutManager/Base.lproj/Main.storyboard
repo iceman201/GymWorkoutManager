@@ -481,10 +481,10 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
             </objects>
             <point key="canvasLocation" x="687" y="1734"/>
         </scene>
-        <!--Planr-->
+        <!--Animator Delegate-->
         <scene sceneID="8h4-PU-ZFb">
             <objects>
-                <viewController id="C6b-fL-jgE" sceneMemberID="viewController">
+                <viewController id="C6b-fL-jgE" customClass="PlannerViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Gei-hp-jav"/>
                         <viewControllerLayoutGuide type="bottom" id="KZP-lC-wMI"/>
@@ -492,10 +492,46 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                     <view key="view" contentMode="scaleToFill" id="pEu-Xc-qMg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mcW-3w-A0d" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                <rect key="frame" x="0.0" y="72" width="414" height="44"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="MUH-sF-eKy"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="menuViewDelegate" destination="C6b-fL-jgE" id="E1G-Pb-AOc"/>
+                                </connections>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dm1-jA-JwQ" customClass="CVCalendarView" customModule="CVCalendar">
+                                <rect key="frame" x="0.0" y="124" width="414" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="S07-pW-Gtq"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="animatorDelegate" destination="C6b-fL-jgE" id="bIG-ND-Sv3"/>
+                                    <outlet property="calendarAppearanceDelegate" destination="C6b-fL-jgE" id="Txu-Vj-esD"/>
+                                    <outlet property="calendarDelegate" destination="C6b-fL-jgE" id="i7M-qO-8if"/>
+                                </connections>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mcW-3w-A0d" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leading" id="5BP-DQ-mgO"/>
+                            <constraint firstItem="mcW-3w-A0d" firstAttribute="top" secondItem="Gei-hp-jav" secondAttribute="bottom" constant="8" id="71n-pN-fdv"/>
+                            <constraint firstAttribute="trailing" secondItem="Dm1-jA-JwQ" secondAttribute="trailing" id="Bqb-yW-N8j"/>
+                            <constraint firstItem="Dm1-jA-JwQ" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leading" id="Ede-z7-qaQ"/>
+                            <constraint firstItem="Dm1-jA-JwQ" firstAttribute="top" secondItem="mcW-3w-A0d" secondAttribute="bottom" constant="8" id="IZA-LW-fUT"/>
+                            <constraint firstAttribute="trailing" secondItem="mcW-3w-A0d" secondAttribute="trailing" id="uuw-no-7kC"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Planr" image="1463483897_date.png" id="BYp-hr-l0b"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="calendarView" destination="Dm1-jA-JwQ" id="HOl-q3-e7W"/>
+                        <outlet property="menuView" destination="mcW-3w-A0d" id="aCJ-mr-UXA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvk-dZ-goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -780,7 +816,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="92" width="414" height="159"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="158.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="159"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actived Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TW7-ho-klW">
