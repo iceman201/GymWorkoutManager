@@ -12,7 +12,6 @@ class AnalysisViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.topItem?.title = "Analysis"
         // Do any additional setup after loading the view.
     }

@@ -141,7 +141,6 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.topItem?.title = "HIIT Timer"
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Claim", style: .Plain, target: self, action: #selector(claimRecord))
         

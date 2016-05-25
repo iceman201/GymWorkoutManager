@@ -142,7 +142,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     // MARK: Navigation Controller
     private func navigationControllerStyleSheet() {
-        self.navigationController?.navigationBarHidden = false
         self.navigationController?.navigationBar.translucent = false
         self.navigationController?.navigationBar.barTintColor = GWMColorYellow
         self.navigationController?.navigationBar.topItem?.title = "Profile"
