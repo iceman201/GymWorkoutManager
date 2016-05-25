@@ -19,7 +19,9 @@ class PlannerViewController: UIViewController,CVCalendarViewDelegate,CVCalendarM
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.navigationBar.topItem?.title = "Planner"
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         menuView.commitMenuViewUpdate()
