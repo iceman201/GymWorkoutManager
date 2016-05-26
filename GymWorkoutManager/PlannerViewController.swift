@@ -14,10 +14,12 @@ class PlannerViewController: UIViewController,CVCalendarViewDelegate,CVCalendarM
     //MARK: Properties
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
-    
+    @IBOutlet weak var setPlan: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setPlan.backgroundColor = GWMColorPurple
+        setPlan.tintColor = GWMColorYellow
     }
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Planner"

@@ -515,6 +515,10 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <outlet property="calendarDelegate" destination="C6b-fL-jgE" id="i7M-qO-8if"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9P-Je-oHQ">
+                                <rect key="frame" x="0.0" y="383" width="414" height="51"/>
+                                <state key="normal" title="Set Plan"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -531,6 +535,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                     <connections>
                         <outlet property="calendarView" destination="Dm1-jA-JwQ" id="HOl-q3-e7W"/>
                         <outlet property="menuView" destination="mcW-3w-A0d" id="aCJ-mr-UXA"/>
+                        <outlet property="setPlan" destination="s9P-Je-oHQ" id="tzN-4k-aNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvk-dZ-goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1014,6 +1019,6 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <image name="1463483897_date.png" width="32" height="32"/>
         <image name="Female.png" width="64" height="64"/>
         <image name="Male.png" width="64" height="64"/>
-        <image name="first" width="30" height="30"/>
+        <image name="first" width="33" height="33"/>
     </resources>
 </document>
