@@ -47,6 +47,7 @@ class PlannerViewController: UIViewController,CVCalendarViewDelegate,CVCalendarM
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "setPlan" {
             var destinationVC = segue.destinationViewController as! SetPlanViewController
+            //TODO:
            // destinationVC.date =
         }
     }

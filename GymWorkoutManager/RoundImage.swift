@@ -13,7 +13,6 @@ class RoundImage: UIImageView {
         super.init(coder: aDecoder)!
         self.layer.borderWidth = 6
         self.layer.borderColor = tintColor.CGColor
-        
         self.layer.cornerRadius = 0.5 * self.bounds.size.width
     }
 }
