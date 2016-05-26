@@ -24,6 +24,7 @@
 		05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D1E1CE615BC0035927C /* RoundImage.swift */; };
 		05C36D211CE61A880035927C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05C36D201CE61A880035927C /* ProfileViewController.swift */; };
 		05D07F071CD41D9700449341 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D07F061CD41D9700449341 /* Exercise.swift */; };
+		1263D2E61CF73A8100929166 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1263D2E51CF73A8100929166 /* Plan.swift */; };
 		128628681CF4A92200DA8E0D /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128628671CF4A92200DA8E0D /* PlannerViewController.swift */; };
 		12D91CA51CEB5DC70042C56C /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D91CA41CEB5DC70042C56C /* CommonUtils.swift */; };
 		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
@@ -130,6 +131,7 @@
 		05C36D1E1CE615BC0035927C /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundImage.swift; path = GymWorkoutManager/RoundImage.swift; sourceTree = "<group>"; };
 		05C36D201CE61A880035927C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		05D07F061CD41D9700449341 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Exercise.swift; path = Model/Exercise.swift; sourceTree = SOURCE_ROOT; };
+		1263D2E51CF73A8100929166 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
 		128628671CF4A92200DA8E0D /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
 		12D91CA41CEB5DC70042C56C /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		12EE2FEC1CEF7DFF00F7178F /* GymWorkoutManager-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GymWorkoutManager-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				6B982C4A1CE85BCA00DC7499 /* DatabaseHelper.swift */,
 				056C9FAD1CE6052300CFCDDA /* ScrollPager.swift */,
 				05D07F061CD41D9700449341 /* Exercise.swift */,
+				1263D2E51CF73A8100929166 /* Plan.swift */,
 				0505443B1CE873600034F3B2 /* Person.swift */,
 				057946BA1CE6E9350051A501 /* ColorCode.swift */,
 				12D91CA41CEB5DC70042C56C /* CommonUtils.swift */,
@@ -711,6 +714,7 @@
 			files = (
 				E6A169501CE448E400A79E20 /* RoundButton.swift in Sources */,
 				E6A1694C1CE448D400A79E20 /* RecordInfoCell.swift in Sources */,
+				1263D2E61CF73A8100929166 /* Plan.swift in Sources */,
 				128628681CF4A92200DA8E0D /* PlannerViewController.swift in Sources */,
 				E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */,
 				E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */,
