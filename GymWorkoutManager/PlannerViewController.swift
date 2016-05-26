@@ -20,6 +20,7 @@ class PlannerViewController: UIViewController,CVCalendarViewDelegate,CVCalendarM
         super.viewDidLoad()
         setPlan.backgroundColor = GWMColorPurple
         setPlan.tintColor = GWMColorYellow
+        
     }
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Planner"
@@ -42,5 +43,11 @@ class PlannerViewController: UIViewController,CVCalendarViewDelegate,CVCalendarM
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool){
         print(dayView.date.commonDescription)
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "setPlan" {
+            var destinationVC = segue.destinationViewController as! SetPlanViewController
+           // destinationVC.date =
+        }
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -518,6 +518,9 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9P-Je-oHQ">
                                 <rect key="frame" x="0.0" y="383" width="414" height="51"/>
                                 <state key="normal" title="Set Plan"/>
+                                <connections>
+                                    <segue destination="LmT-Cx-xki" kind="show" identifier="setPlan" id="ebW-gF-VrT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -541,6 +544,116 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvk-dZ-goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1224" y="1743"/>
+        </scene>
+        <!--Set Plan View Controller-->
+        <scene sceneID="gYW-jZ-gk1">
+            <objects>
+                <viewController id="LmT-Cx-xki" customClass="SetPlanViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j4n-vC-sw6"/>
+                        <viewControllerLayoutGuide type="bottom" id="2PD-eY-VJe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gZs-wQ-75A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G9U-c8-ejK">
+                                <rect key="frame" x="84" y="146" width="247" height="29"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="BPb-ny-zMk"/>
+                                    <constraint firstAttribute="width" constant="247" id="sgS-tO-0mY"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Cardio"/>
+                                    <segment title="Weights"/>
+                                    <segment title="HIIT"/>
+                                </segments>
+                            </segmentedControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ady-sW-D8G" customClass="JVFloatLabeledTextView">
+                                <rect key="frame" x="84" y="200" width="247" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="Iq4-hI-yMS"/>
+                                    <constraint firstAttribute="height" constant="128" id="vq4-ae-Nxz"/>
+                                </constraints>
+                                <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.78823529410000004" green="0.7843137255" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderTextColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="floatingLabelShouldLockToTop" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What is your plan?"/>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJe-YU-dJ1">
+                                <rect key="frame" x="84" y="88" width="247" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="6h3-p3-HCI"/>
+                                    <constraint firstAttribute="height" constant="21" id="F7o-Hw-3i1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sla-ph-5pK" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="177" y="338" width="60" height="60"/>
+                                <color key="backgroundColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="92n-pg-8rv"/>
+                                    <constraint firstAttribute="width" constant="60" id="VBL-bM-5B7"/>
+                                </constraints>
+                                <color key="tintColor" red="0.46108701070000002" green="0.0" blue="0.63793356359999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="LmT-Cx-xki" eventType="touchUpInside" id="tmc-Ds-TpF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="sla-ph-5pK" firstAttribute="centerX" secondItem="gZs-wQ-75A" secondAttribute="centerX" id="4HP-h8-EtI"/>
+                            <constraint firstItem="Ady-sW-D8G" firstAttribute="centerX" secondItem="gZs-wQ-75A" secondAttribute="centerX" constant="0.5" id="6TH-9N-5LJ"/>
+                            <constraint firstItem="G9U-c8-ejK" firstAttribute="leading" secondItem="ZJe-YU-dJ1" secondAttribute="leading" id="95r-yP-oDa"/>
+                            <constraint firstItem="Ady-sW-D8G" firstAttribute="centerY" secondItem="gZs-wQ-75A" secondAttribute="centerY" constant="-104" id="GyT-66-IhR"/>
+                            <constraint firstItem="sla-ph-5pK" firstAttribute="centerY" secondItem="gZs-wQ-75A" secondAttribute="centerY" id="IOy-4P-PmK"/>
+                            <constraint firstItem="G9U-c8-ejK" firstAttribute="top" secondItem="ZJe-YU-dJ1" secondAttribute="bottom" constant="37" id="SKU-b9-25D"/>
+                            <constraint firstItem="Ady-sW-D8G" firstAttribute="top" secondItem="G9U-c8-ejK" secondAttribute="bottom" constant="26" id="aZ6-KA-86I"/>
+                            <constraint firstItem="G9U-c8-ejK" firstAttribute="leading" secondItem="Ady-sW-D8G" secondAttribute="leading" id="afp-Jh-3w1"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="chooseType" destination="G9U-c8-ejK" id="r1x-xK-ul6"/>
+                        <outlet property="dateDisplayLabel" destination="ZJe-YU-dJ1" id="Wxa-Ve-jpF"/>
+                        <outlet property="planContent" destination="Ady-sW-D8G" id="jDf-To-5bC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u82-51-Thy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1762" y="1743"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Cfk-iG-TCw">
@@ -821,7 +934,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="92" width="414" height="159"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="159"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actived Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TW7-ho-klW">
@@ -977,7 +1090,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="251" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
