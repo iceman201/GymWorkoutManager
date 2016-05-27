@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -525,6 +525,18 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <segue destination="LmT-Cx-xki" kind="show" identifier="setPlan" id="ebW-gF-VrT"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sHQ-wY-jG8">
+                                <rect key="frame" x="20" y="525" width="374" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="lvh-S7-xU8"/>
+                                    <constraint firstAttribute="width" constant="374" id="pxM-2g-p0X"/>
+                                </constraints>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -535,7 +547,10 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                             <constraint firstAttribute="trailing" secondItem="s9P-Je-oHQ" secondAttribute="trailing" id="Fxn-jC-bTE"/>
                             <constraint firstItem="Dm1-jA-JwQ" firstAttribute="top" secondItem="mcW-3w-A0d" secondAttribute="bottom" constant="8" id="IZA-LW-fUT"/>
                             <constraint firstItem="s9P-Je-oHQ" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leading" id="QNC-yw-MSP"/>
+                            <constraint firstItem="sHQ-wY-jG8" firstAttribute="top" secondItem="s9P-Je-oHQ" secondAttribute="bottom" constant="8" id="ZdN-F0-evp"/>
                             <constraint firstItem="s9P-Je-oHQ" firstAttribute="top" secondItem="Dm1-jA-JwQ" secondAttribute="bottom" constant="19" id="fqj-Q9-mX9"/>
+                            <constraint firstItem="sHQ-wY-jG8" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leadingMargin" id="hIE-2U-1XS"/>
+                            <constraint firstItem="sHQ-wY-jG8" firstAttribute="trailing" secondItem="pEu-Xc-qMg" secondAttribute="trailingMargin" id="lcH-qH-PYb"/>
                             <constraint firstAttribute="trailing" secondItem="mcW-3w-A0d" secondAttribute="trailing" id="uuw-no-7kC"/>
                         </constraints>
                     </view>
@@ -544,6 +559,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                     <connections>
                         <outlet property="calendarView" destination="Dm1-jA-JwQ" id="HOl-q3-e7W"/>
                         <outlet property="menuView" destination="mcW-3w-A0d" id="aCJ-mr-UXA"/>
+                        <outlet property="planDisplay" destination="sHQ-wY-jG8" id="mbo-ie-CfA"/>
                         <outlet property="setPlan" destination="s9P-Je-oHQ" id="tzN-4k-aNU"/>
                     </connections>
                 </viewController>
@@ -606,7 +622,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ady-sW-D8G" customClass="JVFloatLabeledTextView">
                                 <rect key="frame" x="40" y="200" width="334" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="247" id="Iq4-hI-yMS"/>
                                     <constraint firstAttribute="height" constant="128" id="vq4-ae-Nxz"/>
@@ -637,7 +653,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderTextColor">
-                                        <color key="value" red="0.1056070540382974" green="0.22601730642265438" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="floatingLabelShouldLockToTop" value="YES"/>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What is your plan?"/>
@@ -964,7 +980,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="92" width="414" height="159"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="159"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actived Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TW7-ho-klW">
@@ -1120,7 +1136,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="251" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>

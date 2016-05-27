@@ -16,6 +16,7 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var setPlan: UIButton!
+    @IBOutlet weak var planDisplay: UITextView!
     
     var selectedDay:String?
     var results :Results<(Plan)>?
@@ -24,7 +25,6 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
         super.viewDidLoad()
         setPlan.backgroundColor = GWMColorPurple
         setPlan.tintColor = GWMColorYellow
-        
         selectedDay = calendarView.presentedDate.commonDescription
         
     }

@@ -35,13 +35,13 @@ class SetPlanViewController: UIViewController {
         newPlan.detail = planContent.text
         switch chooseType.selectedSegmentIndex {
         case 0:
-            newPlan.type = "Cardio"
+            newPlan.exerciseType = "Cardio"
         case 1:
-            newPlan.type = "Weights"
+            newPlan.exerciseType = "Weights"
         case 2:
-            newPlan.type = "HIIT"
+            newPlan.exerciseType = "HIIT"
         default:
-            newPlan.type = "Cardio"
+            newPlan.exerciseType = "Cardio"
         }
         do {
             let r = try Realm()
@@ -62,7 +62,7 @@ class SetPlanViewController: UIViewController {
         if let updateplan = updateplan {
             dateDisplayLabel.text = updateplan.date
             planContent.text = updateplan.detail
-            switch updateplan.type {
+            switch updateplan.exerciseType {
             case "Cardio":
                 chooseType.selectedSegmentIndex = 0
             case "Weights":

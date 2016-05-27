@@ -9,7 +9,7 @@ import RealmSwift
 
 class Plan: Object {
     dynamic var date = ""
-    dynamic var type = ""
+    dynamic var exerciseType = ""
     dynamic var detail = ""
     dynamic var who: Person?
 }
