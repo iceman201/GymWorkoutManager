@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -504,10 +504,10 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dm1-jA-JwQ" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="124" width="414" height="240"/>
+                                <rect key="frame" x="0.0" y="124" width="414" height="320"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="240" id="S07-pW-Gtq"/>
+                                    <constraint firstAttribute="height" constant="320" id="S07-pW-Gtq"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="animatorDelegate" destination="C6b-fL-jgE" id="bIG-ND-Sv3"/>
@@ -515,18 +515,70 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <outlet property="calendarDelegate" destination="C6b-fL-jgE" id="i7M-qO-8if"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9P-Je-oHQ">
-                                <rect key="frame" x="0.0" y="383" width="414" height="51"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9P-Je-oHQ">
+                                <rect key="frame" x="70" y="463" width="273" height="54"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="FKY-MW-gQP"/>
+                                    <constraint firstAttribute="width" constant="273" id="N3n-Fh-4Ed"/>
+                                </constraints>
                                 <state key="normal" title="Set Plan"/>
+                                <connections>
+                                    <segue destination="LmT-Cx-xki" kind="show" identifier="setPlan" id="ebW-gF-VrT"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="sHQ-wY-jG8">
+                                <rect key="frame" x="20" y="525" width="374" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="lvh-S7-xU8"/>
+                                    <constraint firstAttribute="width" constant="374" id="pxM-2g-p0X"/>
+                                </constraints>
+                                <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Yy-ko-1gb">
+                                <rect key="frame" x="0.0" y="463" width="70" height="54"/>
+                                <color key="backgroundColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.46108701070000002" green="0.0" blue="0.63793356359999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="leftPageTurning:" destination="C6b-fL-jgE" eventType="touchUpInside" id="tgU-0c-tOh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3jh-fD-MdM">
+                                <rect key="frame" x="344" y="463" width="70" height="54"/>
+                                <color key="backgroundColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.46108701070000002" green="0.0" blue="0.63793356359999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="&gt;"/>
+                                <connections>
+                                    <action selector="rightPageTurning:" destination="C6b-fL-jgE" eventType="touchUpInside" id="FKW-P9-hCq"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="s9P-Je-oHQ" firstAttribute="bottom" secondItem="7Yy-ko-1gb" secondAttribute="bottom" id="0Sl-gf-zh3"/>
+                            <constraint firstItem="s9P-Je-oHQ" firstAttribute="leading" secondItem="7Yy-ko-1gb" secondAttribute="trailing" id="0Uz-FW-HMM"/>
                             <constraint firstItem="mcW-3w-A0d" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leading" id="5BP-DQ-mgO"/>
                             <constraint firstItem="mcW-3w-A0d" firstAttribute="top" secondItem="Gei-hp-jav" secondAttribute="bottom" constant="8" id="71n-pN-fdv"/>
+                            <constraint firstItem="s9P-Je-oHQ" firstAttribute="centerY" secondItem="7Yy-ko-1gb" secondAttribute="centerY" id="91N-0w-KBE"/>
                             <constraint firstAttribute="trailing" secondItem="Dm1-jA-JwQ" secondAttribute="trailing" id="Bqb-yW-N8j"/>
                             <constraint firstItem="Dm1-jA-JwQ" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leading" id="Ede-z7-qaQ"/>
+                            <constraint firstItem="7Yy-ko-1gb" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leadingMargin" constant="-20" id="GcA-KE-iLj"/>
                             <constraint firstItem="Dm1-jA-JwQ" firstAttribute="top" secondItem="mcW-3w-A0d" secondAttribute="bottom" constant="8" id="IZA-LW-fUT"/>
+                            <constraint firstItem="3jh-fD-MdM" firstAttribute="top" secondItem="7Yy-ko-1gb" secondAttribute="top" id="OMq-g1-Aj9"/>
+                            <constraint firstItem="s9P-Je-oHQ" firstAttribute="top" secondItem="7Yy-ko-1gb" secondAttribute="top" id="Q3w-1i-dgL"/>
+                            <constraint firstItem="3jh-fD-MdM" firstAttribute="bottom" secondItem="7Yy-ko-1gb" secondAttribute="bottom" id="U7V-44-qgt"/>
+                            <constraint firstItem="3jh-fD-MdM" firstAttribute="leading" secondItem="s9P-Je-oHQ" secondAttribute="trailing" constant="1" id="VMN-Pe-PIF"/>
+                            <constraint firstItem="sHQ-wY-jG8" firstAttribute="top" secondItem="s9P-Je-oHQ" secondAttribute="bottom" constant="8" id="ZdN-F0-evp"/>
+                            <constraint firstItem="3jh-fD-MdM" firstAttribute="centerY" secondItem="7Yy-ko-1gb" secondAttribute="centerY" id="cgV-2u-4cn"/>
+                            <constraint firstItem="s9P-Je-oHQ" firstAttribute="top" secondItem="Dm1-jA-JwQ" secondAttribute="bottom" constant="19" id="fqj-Q9-mX9"/>
+                            <constraint firstItem="sHQ-wY-jG8" firstAttribute="leading" secondItem="pEu-Xc-qMg" secondAttribute="leadingMargin" id="hIE-2U-1XS"/>
+                            <constraint firstItem="sHQ-wY-jG8" firstAttribute="trailing" secondItem="pEu-Xc-qMg" secondAttribute="trailingMargin" id="lcH-qH-PYb"/>
+                            <constraint firstItem="s9P-Je-oHQ" firstAttribute="centerX" secondItem="sHQ-wY-jG8" secondAttribute="centerX" id="qku-PR-IhP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3jh-fD-MdM" secondAttribute="trailing" constant="-20" id="swn-Zk-2Ph"/>
                             <constraint firstAttribute="trailing" secondItem="mcW-3w-A0d" secondAttribute="trailing" id="uuw-no-7kC"/>
                         </constraints>
                     </view>
@@ -535,12 +587,147 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                     <connections>
                         <outlet property="calendarView" destination="Dm1-jA-JwQ" id="HOl-q3-e7W"/>
                         <outlet property="menuView" destination="mcW-3w-A0d" id="aCJ-mr-UXA"/>
+                        <outlet property="planDisplay" destination="sHQ-wY-jG8" id="mbo-ie-CfA"/>
                         <outlet property="setPlan" destination="s9P-Je-oHQ" id="tzN-4k-aNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jvk-dZ-goc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1224" y="1743"/>
+        </scene>
+        <!--Set Plan View Controller-->
+        <scene sceneID="gYW-jZ-gk1">
+            <objects>
+                <viewController id="LmT-Cx-xki" customClass="SetPlanViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j4n-vC-sw6"/>
+                        <viewControllerLayoutGuide type="bottom" id="2PD-eY-VJe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gZs-wQ-75A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="G9U-c8-ejK">
+                                <rect key="frame" x="84" y="146" width="247" height="29"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="BPb-ny-zMk"/>
+                                    <constraint firstAttribute="width" constant="247" id="sgS-tO-0mY"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Cardio"/>
+                                    <segment title="Weights"/>
+                                    <segment title="HIIT"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJe-YU-dJ1">
+                                <rect key="frame" x="84" y="88" width="247" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="6h3-p3-HCI"/>
+                                    <constraint firstAttribute="height" constant="21" id="F7o-Hw-3i1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sla-ph-5pK">
+                                <rect key="frame" x="0.0" y="348" width="414" height="54"/>
+                                <color key="backgroundColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="92n-pg-8rv"/>
+                                    <constraint firstAttribute="width" constant="60" id="VBL-bM-5B7"/>
+                                </constraints>
+                                <color key="tintColor" red="0.46108701070000002" green="0.0" blue="0.63793356359999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Save"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="VBL-bM-5B7"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="saveButton:" destination="LmT-Cx-xki" eventType="touchUpInside" id="tmc-Ds-TpF"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Ady-sW-D8G" customClass="JVFloatLabeledTextView">
+                                <rect key="frame" x="40" y="200" width="334" height="128"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="Iq4-hI-yMS"/>
+                                    <constraint firstAttribute="height" constant="128" id="vq4-ae-Nxz"/>
+                                </constraints>
+                                <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelTextColor">
+                                        <color key="value" red="0.074387519947901576" green="0.24109457546339536" blue="0.78823529410000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="floatingLabelActiveTextColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="_placeholderLabel.textColor">
+                                        <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="animateEvenIfNotFirstResponder" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="adjustsClearButtonRect" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="NO"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="placeholderYPadding">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelXPadding">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="floatingLabelYPadding">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderTextColor">
+                                        <color key="value" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="floatingLabelShouldLockToTop" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What is your plan?"/>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Iq4-hI-yMS"/>
+                                    </mask>
+                                </variation>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="sla-ph-5pK" firstAttribute="centerX" secondItem="gZs-wQ-75A" secondAttribute="centerX" id="4HP-h8-EtI"/>
+                            <constraint firstItem="Ady-sW-D8G" firstAttribute="centerX" secondItem="gZs-wQ-75A" secondAttribute="centerX" id="6TH-9N-5LJ"/>
+                            <constraint firstItem="G9U-c8-ejK" firstAttribute="leading" secondItem="ZJe-YU-dJ1" secondAttribute="leading" id="95r-yP-oDa"/>
+                            <constraint firstItem="Ady-sW-D8G" firstAttribute="centerY" secondItem="gZs-wQ-75A" secondAttribute="centerY" constant="-104" id="GyT-66-IhR"/>
+                            <constraint firstItem="sla-ph-5pK" firstAttribute="centerY" secondItem="gZs-wQ-75A" secondAttribute="centerY" id="IOy-4P-PmK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ady-sW-D8G" secondAttribute="trailing" constant="20" id="IQl-hB-o9h"/>
+                            <constraint firstItem="G9U-c8-ejK" firstAttribute="top" secondItem="ZJe-YU-dJ1" secondAttribute="bottom" constant="37" id="SKU-b9-25D"/>
+                            <constraint firstItem="Ady-sW-D8G" firstAttribute="top" secondItem="G9U-c8-ejK" secondAttribute="bottom" constant="26" id="aZ6-KA-86I"/>
+                            <constraint firstItem="G9U-c8-ejK" firstAttribute="leading" secondItem="Ady-sW-D8G" secondAttribute="leading" id="afp-Jh-3w1"/>
+                            <constraint firstItem="sla-ph-5pK" firstAttribute="leading" secondItem="gZs-wQ-75A" secondAttribute="leading" id="fkW-o0-SKl"/>
+                            <constraint firstItem="ZJe-YU-dJ1" firstAttribute="centerX" secondItem="gZs-wQ-75A" secondAttribute="centerX" id="ghK-cb-iPX"/>
+                            <constraint firstItem="sla-ph-5pK" firstAttribute="top" secondItem="Ady-sW-D8G" secondAttribute="bottom" constant="20" id="mWg-8X-PLj"/>
+                            <constraint firstItem="G9U-c8-ejK" firstAttribute="centerX" secondItem="gZs-wQ-75A" secondAttribute="centerX" id="p2w-Gz-qro"/>
+                            <constraint firstItem="Ady-sW-D8G" firstAttribute="leading" secondItem="gZs-wQ-75A" secondAttribute="leadingMargin" constant="20" id="p5N-tZ-Xca"/>
+                            <constraint firstAttribute="trailing" secondItem="sla-ph-5pK" secondAttribute="trailing" id="yOc-K8-aai"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="95r-yP-oDa"/>
+                                <exclude reference="afp-Jh-3w1"/>
+                                <exclude reference="IOy-4P-PmK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="chooseType" destination="G9U-c8-ejK" id="r1x-xK-ul6"/>
+                        <outlet property="dateDisplayLabel" destination="ZJe-YU-dJ1" id="Wxa-Ve-jpF"/>
+                        <outlet property="planContent" destination="Ady-sW-D8G" id="jDf-To-5bC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u82-51-Thy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1765" y="1743"/>
         </scene>
         <!--Profile-->
         <scene sceneID="Cfk-iG-TCw">
@@ -642,8 +829,8 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kuo-mZ-ogA">
-                                        <rect key="frame" x="0.0" y="178" width="90" height="90"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kuo-mZ-ogA">
+                                        <rect key="frame" x="0.0" y="172" width="90" height="90"/>
                                         <color key="backgroundColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="EkA-3j-nMw"/>
@@ -704,8 +891,8 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="keepBaseline" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OF5-pK-paz">
-                                        <rect key="frame" x="90" y="178" width="90" height="90"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OF5-pK-paz">
+                                        <rect key="frame" x="90" y="172" width="90" height="90"/>
                                         <color key="backgroundColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="KIy-dU-BqN"/>
@@ -821,7 +1008,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="92" width="414" height="159"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="159"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actived Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TW7-ho-klW">
@@ -894,8 +1081,8 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxe-DD-JRR">
-                                            <rect key="frame" x="71" y="41" width="34" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxe-DD-JRR">
+                                            <rect key="frame" x="71" y="41" width="0.0" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="34" id="5ia-KL-ZTa"/>
                                                 <constraint firstAttribute="height" constant="21" id="Aqn-wg-Mna"/>
@@ -977,7 +1164,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="251" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
