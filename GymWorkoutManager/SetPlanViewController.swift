@@ -11,13 +11,11 @@ import JVFloatLabeledTextField
 import RealmSwift
 
 class SetPlanViewController: UIViewController {
-    
+    //MARK: Properties
     @IBOutlet weak var dateDisplayLabel: UILabel!
-    
     @IBOutlet weak var chooseType: UISegmentedControl!
-    
     @IBOutlet weak var planContent: JVFloatLabeledTextView!
-    
+    //MARK: Variable
     var date: String = ""
     var updateplan : Plan?
     
@@ -51,8 +49,7 @@ class SetPlanViewController: UIViewController {
         } catch let error as NSError {
             print(error)
         }
-
-        
+        planContent.text = ""
     }
     
     
@@ -72,7 +69,7 @@ class SetPlanViewController: UIViewController {
             default:
                 chooseType.selectedSegmentIndex = 0
             }
-        }else {
+        } else {
             dateDisplayLabel.text = date
         }
         

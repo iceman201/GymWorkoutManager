@@ -21,6 +21,17 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
     var selectedDay:String?
     var results :Results<(Plan)>?
 
+    
+    @IBAction func leftPageTurning(sender: AnyObject) {
+        calendarView.loadPreviousView()
+    }
+    
+    @IBAction func rightPageTurning(sender: AnyObject) {
+        calendarView.loadNextView()
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setPlan.backgroundColor = GWMColorPurple
@@ -29,6 +40,18 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
         
     }
     
+    private func displayPlan(date: String, plans: Results<Plan>) {
+        guard plans.isEmpty == false else {
+            return
+        }
+        for each in plans{
+            if each.date == selectedDay {
+                planDisplay.text = "\(each.exerciseType) ---  \(each.detail)"
+            } else {
+                planDisplay.text = ""
+            }
+        }
+    }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Planner"
@@ -36,10 +59,10 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
             let r = try Realm()
             results = r.objects(Plan)
             calendarView.contentController.refreshPresentedMonth()
+            displayPlan(calendarView.presentedDate.commonDescription,plans: results!)
         } catch {
             print("loading realm faild")
         }
-
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -81,9 +104,8 @@ extension PlannerViewController:CVCalendarViewDelegate {
     
     func didSelectDayView(dayView: DayView, animationDidFinish: Bool){
         selectedDay = dayView.date.commonDescription
+        displayPlan(calendarView.presentedDate.commonDescription,plans: results!)
     }
-    
-    
     
     func supplementaryView(viewOnDayView dayView: DayView) -> UIView {
         let π = M_PI
@@ -141,8 +163,4 @@ extension PlannerViewController:CVCalendarViewDelegate {
         return false
         
     }
-
-    
-    
-
 }

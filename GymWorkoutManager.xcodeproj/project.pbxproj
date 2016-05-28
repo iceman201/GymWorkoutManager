@@ -126,7 +126,7 @@
 		056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164731_scale.png; sourceTree = "<group>"; };
 		056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164826_centimeter.png; sourceTree = "<group>"; };
 		0578833D1CF712D600F4636F /* SetPlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPlanViewController.swift; sourceTree = "<group>"; };
-		057946BA1CE6E9350051A501 /* ColorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCode.swift; sourceTree = "<group>"; };
+		057946BA1CE6E9350051A501 /* ColorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCode.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		057946BE1CE74E790051A501 /* profileHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileHeader.png; sourceTree = "<group>"; };
 		05C36D1E1CE615BC0035927C /* RoundImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundImage.swift; path = GymWorkoutManager/RoundImage.swift; sourceTree = "<group>"; };
 		05C36D201CE61A880035927C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
