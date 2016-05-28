@@ -75,6 +75,5 @@
 Contributor|Github|Version
 -------------|-------------|-------------
 GL|[gl-Lei](https://github.com/gl-Lei)| iOS
-Rita|[jiting71](https://github.com/jiting71)| iOS
 Yunchen Zhang|[zyunchen](https://github.com/zyunchen)| iOS
 XiaoYao |[xyjwsj](https://github.com/xyjwsj)| iOS
