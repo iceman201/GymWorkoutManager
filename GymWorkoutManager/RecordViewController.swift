@@ -73,7 +73,12 @@ class RecordViewController: UITableViewController {
             return true
         }
     }
-    //Todo: delete issue
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            cell.backgroundColor = UIColor.clearColor()
+        }
+    }
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if(editingStyle == UITableViewCellEditingStyle.Delete) {
             do {
@@ -96,7 +101,7 @@ class RecordViewController: UITableViewController {
             return 44
         }
     }
-    
+
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -105,6 +110,8 @@ class RecordViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        self.view.backgroundColor = GWMColorYellow
+        
         self.navigationController?.navigationBar.topItem?.title = "Records"
         self.edgesForExtendedLayout=UIRectEdge.None
         self.extendedLayoutIncludesOpaqueBars = false
@@ -118,6 +125,7 @@ class RecordViewController: UITableViewController {
         }
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(editTable))
     }
+    
     func editTable() {
         if self.tableView.editing {
             self.tableView.setEditing(false, animated: true)
