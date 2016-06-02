@@ -29,9 +29,7 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
     @IBAction func rightPageTurning(sender: AnyObject) {
         calendarView.loadNextView()
     }
-    
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setPlan.backgroundColor = GWMColorPurple

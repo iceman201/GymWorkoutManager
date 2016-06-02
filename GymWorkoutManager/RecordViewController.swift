@@ -59,8 +59,8 @@ class RecordViewController: UITableViewController {
         } else {
             let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
             let content = result[indexPath.row]
-            // TODO: correct content text
-            recordCell.textLabel?.text = "\(content.date)---\(content.exerciseName) \(content.reps) reps \(content.set) sets "
+
+            recordCell.textLabel?.text = "[\(content.date)] \(content.exerciseName) (\(content.set) sets - \(content.reps) reps)"
             recordCell.textLabel?.textColor = recordCell.tintColor
             recordCell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
             return recordCell
