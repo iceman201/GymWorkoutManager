@@ -10,7 +10,7 @@ import UIKit
 import CVCalendar
 import RealmSwift
 
-class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
+class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalendarViewAppearanceDelegate {
     
     //MARK: Properties
     @IBOutlet weak var menuView: CVCalendarMenuView!
@@ -35,7 +35,9 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
         setPlan.backgroundColor = GWMColorPurple
         setPlan.tintColor = GWMColorYellow
         selectedDay = calendarView.presentedDate.commonDescription
-        
+    }
+    func dayLabelWeekdayInTextColor() -> UIColor {
+        return UIColor.whiteColor()
     }
     
     private func displayPlan(date: String, plans: Results<Plan>) {
@@ -50,6 +52,7 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate {
             }
         }
     }
+    
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBar.topItem?.title = "Planner"

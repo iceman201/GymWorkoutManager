@@ -142,20 +142,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     // MARK: Navigation Controller
     private func navigationControllerStyleSheet() {
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.barTintColor = GWMColorYellow
         self.navigationController?.navigationBar.topItem?.title = "Profile"
-        
+        // make the navigation bar edge disappear
         let navBarLineView = UIView(frame: CGRectMake(0,
             CGRectGetHeight((navigationController?.navigationBar.frame)!),
             CGRectGetWidth((self.navigationController?.navigationBar.frame)!),
             1))
-        
         navBarLineView.backgroundColor = GWMColorYellow
-        
         self.navigationController?.navigationBar.addSubview(navBarLineView)
-        self.navigationController?.navigationBar.tintColor = GWMColorPurple
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : GWMColorPurple]
+
         self.tabBarController?.tabBar.backgroundColor = GWMColorYellow
         self.tabBarController?.tabBar.tintColor = GWMColorPurple
         self.tabBarController?.tabBar.barTintColor = GWMColorYellow

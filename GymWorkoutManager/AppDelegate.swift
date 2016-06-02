@@ -32,6 +32,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("--------- Realm path---------")
         print(Realm.Configuration.defaultConfiguration.fileURL)
         
+        UINavigationBar.appearance().translucent = false
+        UINavigationBar.appearance().barTintColor = GWMColorYellow
+        
+        UINavigationBar.appearance().tintColor = GWMColorPurple
+        UINavigationBar.appearance().backgroundColor = GWMColorYellow
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : GWMColorPurple]
+        
         return true
     }
 

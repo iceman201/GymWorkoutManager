@@ -154,11 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymWorkoutManager/ProfileViewController.swift"
-            timestampString = "485267816.27181"
+            timestampString = "486561092.694835"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
             landmarkName = "viewDidLoad()"
             landmarkType = "5">
          </BreakpointContent>
@@ -218,12 +218,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymWorkoutManager/RecordViewController.swift"
-            timestampString = "485349941.491041"
+            timestampString = "486561322.96748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "tableView(_:commitEditingStyle:forRowAtIndexPath:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "tableView(_:canEditRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -234,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymWorkoutManager/TimerViewController.swift"
-            timestampString = "485492160.72165"
+            timestampString = "486559803.813041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "timeCountdown()"
             landmarkType = "5">
          </BreakpointContent>
@@ -250,12 +250,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymWorkoutManager/TimerViewController.swift"
-            timestampString = "485492171.944497"
+            timestampString = "486559803.813041"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "timeCountdown()"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "getDate()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GymWorkoutManager/PlannerViewController.swift"
-            timestampString = "486136085.587865"
+            timestampString = "486558611.847602"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "prepareForSegue(_:sender:)"
             landmarkType = "5">
          </BreakpointContent>

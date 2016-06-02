@@ -55,13 +55,12 @@ class RecordViewController: UITableViewController {
             }
             infoCell.effectiveIndex.text = "0.3"
             return infoCell
-            
         } else {
             let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
             let content = result[indexPath.row]
 
-            recordCell.textLabel?.text = "[\(content.date)] \(content.exerciseName) (\(content.set) sets - \(content.reps) reps)"
-            recordCell.textLabel?.textColor = recordCell.tintColor
+            recordCell.textLabel?.text = "[\(content.date)] \(content.exerciseName)"
+            recordCell.detailTextLabel?.text = "   \(content.set) Sets - \(content.reps) Reps"
             recordCell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
             return recordCell
         }
@@ -73,9 +72,12 @@ class RecordViewController: UITableViewController {
             return true
         }
     }
+    
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             cell.backgroundColor = UIColor.clearColor()
+            cell.textLabel?.textColor = GWMColorPurple
+            cell.detailTextLabel?.textColor = UIColor.magentaColor()
         }
     }
     
@@ -98,7 +100,7 @@ class RecordViewController: UITableViewController {
         if indexPath.section == 0 {
             return 183
         } else {
-            return 44
+            return 55
         }
     }
 

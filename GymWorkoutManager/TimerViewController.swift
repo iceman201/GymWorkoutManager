@@ -67,6 +67,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
             textField.placeholder = "Execirse"
         }
         alert.addTextFieldWithConfigurationHandler { (textField:UITextField) in
+            textField.keyboardType = .NumberPad
             textField.placeholder = "reps"
         }
         
@@ -143,14 +144,6 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = "HIIT Timer"
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Claim", style: .Plain, target: self, action: #selector(claimRecord))
-        
-        self.navigationController?.navigationBar.translucent = false
-        self.navigationController?.navigationBar.barTintColor = GWMColorYellow
-        
-        self.navigationController?.navigationBar.tintColor = GWMColorPurple
-        self.navigationController?.navigationBar.backgroundColor = GWMColorYellow
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : GWMColorPurple]
-        
 
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1
