@@ -6,202 +6,56 @@
 	<dict>
 		<key>CVCalendar.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>17</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Charts.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
 		</dict>
 		<key>EasyAnimation.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
-		<key>GradientCircularProgress.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>JVFloatLabeledTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
 		</dict>
 		<key>Pods-GymWorkoutManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>7</integer>
-		</dict>
-		<key>Pods-GymWorkoutManager.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>8</integer>
 		</dict>
 		<key>Pods-GymWorkoutManagerTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>10</integer>
-		</dict>
-		<key>Pods-GymWorkoutManagerTests.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>9</integer>
 		</dict>
 		<key>Pods-GymWorkoutManagerUITests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>11</integer>
-		</dict>
-		<key>Pods-GymWorkoutManagerUITests.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>12</integer>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>5</integer>
-		</dict>
-		<key>Pods.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>6</integer>
 		</dict>
 		<key>Realm.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>14</integer>
-		</dict>
-		<key>Realm.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>13</integer>
 		</dict>
 		<key>RealmSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>16</integer>
-		</dict>
-		<key>RealmSwift.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>15</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>042B21AA2F8DA82F0CA8AB34ACB89D34</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>153DC3E4CFC8FBB1C4C17A12DB7839EA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1FEE4BD2E80230E9987A9F6A2E8353EC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>28414D74930156DFC6F60F8CD49B30D1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>3A8610C88F4C8CAA41643562438BEBFE</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5A8F695AF70612B12A42CA4BF376283C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5EBA4BC9CE040DB48A52AAF63344DF18</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6C2DF5BD91B0313C81313B87CE94FB6C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6D501514454CF4DD2CF5D5B6F2A52ED3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>735882DA95E7FCCEC084FC1C5384FF8A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A376E868ED408EE8EEBD1DDBCE639EF5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B22B4980FEC34F05316E48378A56896A</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BA14B622689766F6B8A4F42FD9DE552F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C01A85A6F03163AE6B86C0B66F3FD0B2</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C6828C2508515BC0428D6BDAA1292DC9</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C913FD4FCBCF4D9C8E34433F7424F02F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F40B1E53AF7392F495D6EC5421226E3F</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F586DB23EB872E82436190B173FF0B72</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

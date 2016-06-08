@@ -2,7 +2,6 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'RealmSwift'
-pod 'GradientCircularProgress', :git => 'https://github.com/keygx/GradientCircularProgress'
 pod 'EasyAnimation'
 pod 'Charts'
 pod 'JVFloatLabeledTextField'
