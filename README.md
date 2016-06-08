@@ -2,7 +2,7 @@
 [![Swift 2.1](https://img.shields.io/badge/Swift-2.1-orange.svg?style=flat)](https://developer.apple.com/swift/) [![Build Status](https://travis-ci.org/NZSwift/GymWorkoutManager.svg?branch=master)](https://travis-ci.org/NZSwift/GymWorkoutManager)
 [![Language: Swift](https://img.shields.io/badge/language-swift-orange.svg)](https://github.com/CBoostSwift/GymWorkoutManager)
 ![](http://ruby-gem-downloads-badge.herokuapp.com/)
-
+[![codebeat badge](https://codebeat.co/badges/74638e53-fc92-4a28-bf68-2f7f883e011d)](https://codebeat.co/projects/github-com-nzswift-gymworkoutmanager)
 
 ##Introduction
 **Gym Workout Manager** is a personal exercise recorder application coded by Swift language. User could use it as a helper/mentor during the workout, and record all the workout information to analysis the effectiveness of their workout.
