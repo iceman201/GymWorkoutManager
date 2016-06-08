@@ -133,6 +133,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Timer" image="first" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="WLC-a6-oSy"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="aroundNumber" destination="8jM-zA-QmR" id="ez0-f2-qCU"/>
@@ -263,19 +264,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6E-bm-3YU">
                                 <rect key="frame" x="77" y="371" width="260" height="260"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-hZ-bWH" customClass="SpringButton" customModule="GymWorkoutManager" customModuleProvider="target">
-                                        <rect key="frame" x="135" y="135" width="125" height="125"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VUo-Vf-ltH" customClass="SpringButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="135" width="125" height="125"/>
                                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="EBC-Pk-shp"/>
-                                            <constraint firstAttribute="height" constant="125" id="xqa-WP-Fc5"/>
+                                            <constraint firstAttribute="height" constant="125" id="ucw-CX-yp3"/>
+                                            <constraint firstAttribute="width" constant="125" id="wCT-Gn-NFf"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
-                                        <state key="normal" title="Analysis">
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
+                                        <state key="normal" title="Profile">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="AZ4-yU-AC7" kind="show" id="i1Q-yI-WSk"/>
+                                            <action selector="profileButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="G9r-eS-7HS"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcF-hB-EB3" customClass="SpringButton" customModule="GymWorkoutManager" customModuleProvider="target">
@@ -290,7 +291,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="9pv-A4-QxB" kind="show" id="MYY-G1-xaE"/>
+                                            <action selector="timerButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="OjA-6O-TaV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAC-21-580" customClass="SpringButton" customModule="GymWorkoutManager" customModuleProvider="target">
@@ -305,22 +306,22 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="XSD-KX-JDS" kind="show" id="UNw-Ca-vr5"/>
+                                            <action selector="recordButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="wYj-cZ-9Qo"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VUo-Vf-ltH" customClass="SpringButton" customModule="GymWorkoutManager" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="135" width="125" height="125"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-hZ-bWH" customClass="SpringButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                        <rect key="frame" x="135" y="135" width="125" height="125"/>
                                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="125" id="ucw-CX-yp3"/>
-                                            <constraint firstAttribute="width" constant="125" id="wCT-Gn-NFf"/>
+                                            <constraint firstAttribute="width" constant="125" id="EBC-Pk-shp"/>
+                                            <constraint firstAttribute="height" constant="125" id="xqa-WP-Fc5"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
-                                        <state key="normal" title="Profile">
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                                        <state key="normal" title="Analysis">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="WRz-SO-GJi" kind="show" id="2sC-XS-tZx"/>
+                                            <action selector="analysisButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="gqK-cK-pGf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -354,6 +355,10 @@
                     <size key="freeformSize" width="414" height="736"/>
                     <connections>
                         <outlet property="logo" destination="yaZ-CI-RNz" id="5CL-8t-wIU"/>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="timer" id="8Ca-Jn-i9z"/>
+                        <segue destination="XSD-KX-JDS" kind="show" identifier="record" id="3Ch-kY-08T"/>
+                        <segue destination="AZ4-yU-AC7" kind="show" identifier="analysis" id="d50-b1-scW"/>
+                        <segue destination="WRz-SO-GJi" kind="show" identifier="profile" id="Dh4-Qg-xfc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N47-KB-GAF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1235,6 +1240,6 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <image name="1463483897_date.png" width="32" height="32"/>
         <image name="Female.png" width="64" height="64"/>
         <image name="Male.png" width="64" height="64"/>
-        <image name="first" width="33" height="33"/>
+        <image name="first" width="30" height="13"/>
     </resources>
 </document>
