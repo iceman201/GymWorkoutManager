@@ -13,6 +13,8 @@ class AnalysisViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = "Analysis"
+        self.tableView.backgroundColor = GWMColorBackground
+        self.tableView.separatorColor = GWMColorYellow
         // Do any additional setup after loading the view.
     }
 

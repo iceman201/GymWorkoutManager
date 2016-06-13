@@ -47,6 +47,8 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
         for each in plans{
             if each.date == selectedDay {
                 planDisplay.text = "\(each.exerciseType) ---  \(each.detail)"
+                planDisplay.textColor = UIColor.whiteColor()
+                planDisplay.font = UIFont.boldSystemFontOfSize(18.0)
             } else {
                 planDisplay.text = ""
             }
@@ -116,7 +118,7 @@ extension PlannerViewController:CVCalendarViewDelegate {
         let ringVerticalOffset: CGFloat = 1.0
         var ringLayer: CAShapeLayer!
         let ringLineWidth: CGFloat = 2.0
-        let ringLineColour: UIColor = GWMColorPurple
+        let ringLineColour: UIColor = GWMColorYellow
         
         let newView = UIView(frame: dayView.bounds)
         
