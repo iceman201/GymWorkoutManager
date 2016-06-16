@@ -21,7 +21,31 @@ class Person: Object {
     dynamic var lastTimeUseApp : NSDate?
     
     let exercise = List<Exercise>()
+    let plans = List<Plan>()
+    
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    var effectiveIndex:Int {
+        get {
+            var totalReps:[Int] = []
+            var totalSets:[Int] = []
+            for eachExercise in exercise {
+                totalReps.append((eachExercise.reps as NSString).integerValue)
+                totalSets.append((eachExercise.set as NSString).integerValue)
+            }
+            let averageReps = totalReps.reduce(0, combine: +)/totalReps.count
+            let averageSets = totalSets.reduce(0, combine: +)/totalSets.count
+            if averageReps >= 8 && averageReps <= 16 {
+                if averageSets > 3 && averageSets <= 5 {
+                    return 8
+                } else {
+                    return 5
+                }
+            } else {
+                return 2
+            }
+        }
     }
 }
