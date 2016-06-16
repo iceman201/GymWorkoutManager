@@ -18,6 +18,7 @@ class SetPlanViewController: UIViewController {
     //MARK: Variable
     var date: String = ""
     var updateplan : Plan?
+    var curentUser : Person?
     
     
     //MARK: function
@@ -25,10 +26,16 @@ class SetPlanViewController: UIViewController {
     @IBAction func saveButton(sender: AnyObject) {
         
         var newPlan = Plan()
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        self.curentUser = cusers?.first
+        if self.curentUser == nil{
+            self.curentUser = Person()
+        }
+        
         if let updateplan = updateplan {
             newPlan = updateplan
         }
-        
+        DatabaseHelper.sharedInstance.beginTransaction()
         newPlan.date = date
         newPlan.detail = planContent.text
         switch chooseType.selectedSegmentIndex {
@@ -41,14 +48,17 @@ class SetPlanViewController: UIViewController {
         default:
             newPlan.exerciseType = "Cardio"
         }
-        do {
-            let r = try Realm()
-            try r.write({
-                r.add(newPlan)
-            })
-        } catch let error as NSError {
-            print(error)
+        
+        //TODO: replace the plan if it's exist otherwise save it
+        if let localUser = self.curentUser {
+            if localUser.plans.contains({ $0.date == newPlan.date }) {
+                localUser.plans.replace(localUser.plans.indexOf(newPlan)!, object: newPlan)
+            } else {
+                localUser.plans.append(newPlan)
+            }
         }
+        DatabaseHelper.sharedInstance.commitTransaction()
+
         planContent.text = ""
     }
     

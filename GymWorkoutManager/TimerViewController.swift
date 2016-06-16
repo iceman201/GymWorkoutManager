@@ -30,6 +30,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     var round = "0"
     var startRound = "0"
     var audioPlayer = AVAudioPlayer()
+    var curentUser: Person?
     
     @IBAction func reset(sender: AnyObject) {
         self.totalTime = timeDate(["0", "0", "0"])
@@ -75,21 +76,24 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
             let execriseNameTextField = alert.textFields![0] as UITextField
             let repsTextField = alert.textFields![1] as UITextField
             let newExecrise = Exercise()
-            
+            let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+            self.curentUser = cusers?.first
+            if self.curentUser == nil{
+                self.curentUser = Person()
+            }
+            guard let localUser = self.curentUser else {
+                return
+            }
+            DatabaseHelper.sharedInstance.beginTransaction()
             newExecrise.set = self.startRound ?? "None"
             newExecrise.times = self.totalWorkoutTimer.text ?? "None"
             newExecrise.reps = repsTextField.text ?? ""
             newExecrise.exerciseName = execriseNameTextField.text ?? ""
             newExecrise.date = self.getDate()
-            do {
-                let r = try Realm()
-                try r.write({
-                    r.add(newExecrise)
-                })
-            } catch let error as NSError {
-                print(error)
-                //TODO: Rollbar??? or some error monitor tools
-            }
+            
+            localUser.exercise.append(newExecrise)
+            DatabaseHelper.sharedInstance.commitTransaction()
+
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))

@@ -29,20 +29,24 @@ class Person: Object {
     
     var effectiveIndex:Int {
         get {
-            var totalReps:[Int] = []
-            var totalSets:[Int] = []
+            var reps:[Int] = []
+            var sets:[Int] = []
             for eachExercise in exercise {
-                totalReps.append((eachExercise.reps as NSString).integerValue)
-                totalSets.append((eachExercise.set as NSString).integerValue)
+                reps.append(Int(eachExercise.reps) ?? 0)
+                sets.append(Int(eachExercise.set) ?? 0)
             }
-            let averageReps = totalReps.reduce(0, combine: +)/totalReps.count
-            let averageSets = totalSets.reduce(0, combine: +)/totalSets.count
+            let totalReps = reps.reduce(0, combine: +)
+            let totalSets = sets.reduce(0, combine: +)
+            let averageReps = totalReps/reps.count
+            let averageSets = totalSets/sets.count
             if averageReps >= 8 && averageReps <= 16 {
                 if averageSets > 3 && averageSets <= 5 {
                     return 8
                 } else {
                     return 5
                 }
+            } else if averageSets == 0 || averageReps == 0 {
+                return 0
             } else {
                 return 2
             }

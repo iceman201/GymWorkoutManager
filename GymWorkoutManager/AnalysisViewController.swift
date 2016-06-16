@@ -7,15 +7,24 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AnalysisViewController: UITableViewController {
+    var curentUser:Person?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = "Analysis"
         self.tableView.backgroundColor = GWMColorBackground
         self.tableView.separatorColor = GWMColorYellow
-        // Do any additional setup after loading the view.
+        
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+
+        curentUser = cusers?.first
+        if curentUser == nil {
+            curentUser = Person()
+        }
+        print(curentUser?.effectiveIndex)
     }
 
     override func didReceiveMemoryWarning() {
