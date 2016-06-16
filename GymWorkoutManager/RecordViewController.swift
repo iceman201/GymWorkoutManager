@@ -32,13 +32,14 @@ class RecordViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        curentUser = cusers?.first
+        if curentUser == nil{
+            curentUser = Person()
+        }
         if indexPath.section == 0 {
             let infoCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath) as! RecordInfoCell
-            let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
-            curentUser = cusers?.first
-            if curentUser == nil {
-                curentUser = Person()
-            }
+            
             
             if let user = curentUser {
                 DatabaseHelper.sharedInstance.beginTransaction()
@@ -57,8 +58,10 @@ class RecordViewController: UITableViewController {
             return infoCell
         } else {
             let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
-            let content = result[indexPath.row]
-
+            guard let user = curentUser else {
+                return UITableViewCell()
+            }
+            let content = user.exercise[indexPath.row]
             recordCell.textLabel?.text = "[\(content.date)] \(content.exerciseName)"
             recordCell.detailTextLabel?.text = "   \(content.set) Sets - \(content.reps) Reps"
             recordCell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count

@@ -20,6 +20,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     @IBOutlet var totalWorkoutTimer: UILabel!
     @IBOutlet var aroundNumber: UILabel!
     @IBOutlet var startButton: UIButton!
+    @IBOutlet weak var workoutType: UISegmentedControl!
     
     // MARK: - Variables
     let MILLI_SECOND = 0.01
@@ -30,6 +31,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     var round = "0"
     var startRound = "0"
     var audioPlayer = AVAudioPlayer()
+    var curentUser: Person?
     
     @IBAction func reset(sender: AnyObject) {
         self.totalTime = timeDate(["0", "0", "0"])
@@ -40,11 +42,17 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         stopTimeCountDown()
     }
     
-    @IBAction func counter(sender: AnyObject) {
-        
+    @IBAction func startButton(sender: AnyObject) {
         if round == "0" {
             // must have a round to start, warn users with alert
             let alert = UIAlertController(title: "Message", message: "Must set time first", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        
+        guard workoutType.selectedSegmentIndex != -1 else {
+            let alert = UIAlertController(title: "Message", message: "Please select your workout type.", preferredStyle: .Alert)
             alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
             return
@@ -60,8 +68,8 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     
     @objc private func claimRecord(sender: AnyObject) {
+        //TODO: claim with workout type
         let alert = UIAlertController(title: "Record Claim", message: "Which execirse you did today", preferredStyle: .Alert)
-        
 
         alert.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Execirse"
@@ -75,21 +83,23 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
             let execriseNameTextField = alert.textFields![0] as UITextField
             let repsTextField = alert.textFields![1] as UITextField
             let newExecrise = Exercise()
-            
+            let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+            self.curentUser = cusers?.first
+            if self.curentUser == nil{
+                self.curentUser = Person()
+            }
+            guard let localUser = self.curentUser else {
+                return
+            }
+            DatabaseHelper.sharedInstance.beginTransaction()
             newExecrise.set = self.startRound ?? "None"
             newExecrise.times = self.totalWorkoutTimer.text ?? "None"
             newExecrise.reps = repsTextField.text ?? ""
             newExecrise.exerciseName = execriseNameTextField.text ?? ""
             newExecrise.date = self.getDate()
-            do {
-                let r = try Realm()
-                try r.write({
-                    r.add(newExecrise)
-                })
-            } catch let error as NSError {
-                print(error)
-                //TODO: Rollbar??? or some error monitor tools
-            }
+            
+            localUser.exercise.append(newExecrise)
+            DatabaseHelper.sharedInstance.commitTransaction()
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
