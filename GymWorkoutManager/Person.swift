@@ -29,9 +29,13 @@ class Person: Object {
     
     var effectiveIndex:Int {
         get {
+            guard exercise.isEmpty == false else {
+                return 0
+            }
             var reps:[Int] = []
             var sets:[Int] = []
             for eachExercise in exercise {
+                
                 reps.append(Int(eachExercise.reps) ?? 0)
                 sets.append(Int(eachExercise.set) ?? 0)
             }
@@ -39,6 +43,7 @@ class Person: Object {
             let totalSets = sets.reduce(0, combine: +)
             let averageReps = totalReps/reps.count
             let averageSets = totalSets/sets.count
+
             if averageReps >= 8 && averageReps <= 16 {
                 if averageSets > 3 && averageSets <= 5 {
                     return 8

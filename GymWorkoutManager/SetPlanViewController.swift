@@ -20,14 +20,26 @@ class SetPlanViewController: UIViewController {
     var updateplan : Plan?
     var curentUser : Person?
     
-    
     //MARK: function
     
     @IBAction func saveButton(sender: AnyObject) {
+        guard chooseType.selectedSegmentIndex != -1 else {
+            let alert = UIAlertController(title: "Reminder", message: "Please select your workout type.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
+        guard planContent.text.isEmpty == false else {
+            let alert = UIAlertController(title: "Reminder", message: "Please enter your workout plan.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
         
         var newPlan = Plan()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         self.curentUser = cusers?.first
+        
         if self.curentUser == nil{
             self.curentUser = Person()
         }
@@ -39,27 +51,25 @@ class SetPlanViewController: UIViewController {
         newPlan.date = date
         newPlan.detail = planContent.text
         switch chooseType.selectedSegmentIndex {
-        case 0:
-            newPlan.exerciseType = "Cardio"
-        case 1:
-            newPlan.exerciseType = "Weights"
-        case 2:
-            newPlan.exerciseType = "HIIT"
-        default:
-            newPlan.exerciseType = "Cardio"
+            case 0:
+                newPlan.exerciseType = "Cardio"
+            case 1:
+                newPlan.exerciseType = "Weights"
+            case 2:
+                newPlan.exerciseType = "HIIT"
+            default:
+                break
         }
-        
-        //TODO: replace the plan if it's exist otherwise save it
+
         if let localUser = self.curentUser {
             if localUser.plans.contains({ $0.date == newPlan.date }) {
-                localUser.plans.replace(localUser.plans.indexOf(newPlan)!, object: newPlan)
+                DatabaseHelper.sharedInstance.commitTransaction()
             } else {
                 localUser.plans.append(newPlan)
+                DatabaseHelper.sharedInstance.commitTransaction()
             }
         }
-        DatabaseHelper.sharedInstance.commitTransaction()
-
-        planContent.text = ""
+        navigationController?.popViewControllerAnimated(true)
     }
     
     
@@ -82,7 +92,5 @@ class SetPlanViewController: UIViewController {
         } else {
             dateDisplayLabel.text = date
         }
-        
     }
-    
 }
