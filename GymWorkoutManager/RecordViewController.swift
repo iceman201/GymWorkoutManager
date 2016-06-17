@@ -54,7 +54,10 @@ class RecordViewController: UITableViewController {
                 }
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
-            infoCell.effectiveIndex.text = "0.3"
+            if let effectIndex = curentUser?.effectiveIndex {
+                infoCell.effectiveIndex.text = "\(effectIndex) / 10"
+                infoCell.effectiveIndex.textColor = GWMColorYellow
+            }
             return infoCell
         } else {
             let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
@@ -80,7 +83,7 @@ class RecordViewController: UITableViewController {
         if indexPath.section == 1 {
             cell.backgroundColor = UIColor.clearColor()
             cell.textLabel?.textColor = GWMColorPurple
-            cell.detailTextLabel?.textColor = UIColor.magentaColor()
+            cell.detailTextLabel?.textColor = UIColor.blackColor()
         }
     }
     

@@ -10,7 +10,7 @@ import UIKit
 import JVFloatLabeledTextField
 import RealmSwift
 
-class SetPlanViewController: UIViewController {
+class SetPlanViewController: UIViewController, UITextViewDelegate {
     //MARK: Properties
     @IBOutlet weak var dateDisplayLabel: UILabel!
     @IBOutlet weak var chooseType: UISegmentedControl!
@@ -75,6 +75,10 @@ class SetPlanViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        planContent.delegate = self
+        planContent.floatingLabelShouldLockToTop = true
+        planContent.floatingLabel.font = UIFont.systemFontOfSize(18)
+
         
         if let updateplan = updateplan {
             dateDisplayLabel.text = updateplan.date
