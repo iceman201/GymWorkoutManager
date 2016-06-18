@@ -14,4 +14,5 @@ class Exercise: Object {
     dynamic var reps = ""
     dynamic var set = ""
     dynamic var date = ""
+    dynamic var workoutType = -1
 }

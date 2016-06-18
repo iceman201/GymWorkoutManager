@@ -55,7 +55,7 @@ extension DatabaseHelper {
 
 extension DatabaseHelper {
     /**
-     修改前调用
+     Calling when start editing the database
      */
     func beginTransaction() {
         if realm != nil {
@@ -66,7 +66,7 @@ extension DatabaseHelper {
     }
     
     /**
-     修改后调用
+     Calling after use the database
      */
     func commitTransaction() {
         if realm != nil {
