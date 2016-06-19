@@ -55,7 +55,7 @@ class RecordViewController: UITableViewController {
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
             if let effectIndex = curentUser?.effectiveIndex {
-                infoCell.effectiveIndex.text = "\(effectIndex) / 10"
+                infoCell.effectiveIndex.text = "\(effectIndex) / 10.0"
                 infoCell.effectiveIndex.textColor = GWMColorYellow
             }
             return infoCell
@@ -64,9 +64,22 @@ class RecordViewController: UITableViewController {
             guard let user = curentUser else {
                 return UITableViewCell()
             }
-            let content = user.exercise[indexPath.row]
-            recordCell.textLabel?.text = "[\(content.date)] \(content.exerciseName)"
-            recordCell.detailTextLabel?.text = "   \(content.set) Sets - \(content.reps) Reps"
+            
+            let eachExercise = user.exercise[indexPath.row]
+            recordCell.accessoryView?.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
+            let image = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: 22, height: 22))
+            
+            if eachExercise.workoutType == 0 {
+                image.image = UIImage(named: "1466238314_running.png")
+            } else if eachExercise.workoutType == 1 {
+                image.image = UIImage(named: "1463131048_dumbbell.png")
+                
+            } else if eachExercise.workoutType == 2 {
+                image.image = UIImage(named: "push_up-256.png")
+            }
+            recordCell.accessoryView = image
+            recordCell.textLabel?.text = "[\(eachExercise.date)] \(eachExercise.exerciseName)"
+            recordCell.detailTextLabel?.text = "   \(eachExercise.set) Sets - \(eachExercise.reps) Reps"
             recordCell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
             return recordCell
         }
@@ -145,7 +158,5 @@ class RecordViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
 }
 

@@ -108,7 +108,6 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         self.view.endEditing(true)
     }
     
-    
     /*
     // MARK: - Navigation
     
