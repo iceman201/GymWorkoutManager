@@ -8,10 +8,11 @@
 
 import UIKit
 import RealmSwift
+import Graphs
 
 class AnalysisViewController: UITableViewController {
     var curentUser:Person?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = "Analysis"
