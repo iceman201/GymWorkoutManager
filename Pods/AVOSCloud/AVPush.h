@@ -113,7 +113,7 @@ extern NSString *const kAVPushTargetPlatformWindowsPhone;
  *
  *  @param dateToPush   Defaults is now.
  */
-- (void)setPushDate:(NSDate*)dateToPush;
+- (void)setPushDate:(NSDate *)dateToPush;
 
 
 /*!

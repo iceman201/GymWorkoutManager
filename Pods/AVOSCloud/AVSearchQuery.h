@@ -24,6 +24,11 @@
 @property (nonatomic, retain) NSString *className;
 
 /*!
+ The number of objects to skip before returning any.
+ */
+@property (nonatomic, assign) NSInteger skip;
+
+/*!
  *  返回集合大小上限，默认值为100，最大为1000
  */
 @property (nonatomic, assign) NSInteger limit;

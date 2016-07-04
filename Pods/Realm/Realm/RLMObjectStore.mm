@@ -152,7 +152,7 @@ void RLMAddObjectToRealm(__unsafe_unretained RLMObjectBase *const object,
                          bool createOrUpdate) {
     RLMVerifyInWriteTransaction(realm);
 
-    // verify that object is standalone
+    // verify that object is unmanaged
     if (object.invalidated) {
         @throw RLMException(@"Adding a deleted or invalidated object to a Realm is not permitted");
     }
@@ -182,7 +182,7 @@ void RLMAddObjectToRealm(__unsafe_unretained RLMObjectBase *const object,
 
     // get or create row
     bool created;
-    auto primaryGetter = [=](__unsafe_unretained RLMProperty *const p) { return [object valueForKey:p.getterName]; };
+    auto primaryGetter = [=](__unsafe_unretained RLMProperty *const p) { return [object valueForKey:p.name]; };
     object->_row = (*schema.table)[RLMCreateOrGetRowForObject(schema, primaryGetter, createOrUpdate, created)];
 
     RLMCreationOptions creationOptions = RLMCreationOptionsPromoteStandalone;
@@ -294,7 +294,7 @@ static void RLMValidateValueForProperty(__unsafe_unretained id const obj,
         case RLMPropertyTypeArray: {
             if (obj != nil && obj != NSNull.null) {
                 if (![obj conformsToProtocol:@protocol(NSFastEnumeration)]) {
-                    @throw  RLMException(@"Array property value (%@) is not enumerable.", obj);
+                    @throw RLMException(@"Array property value (%@) is not enumerable.", obj);
                 }
                 if (validateNested) {
                     id<NSFastEnumeration> array = obj;

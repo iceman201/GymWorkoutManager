@@ -143,9 +143,6 @@ static inline void RLMSetValueUnique(__unsafe_unretained RLMObjectBase *const ob
 // date getter/setter
 static inline NSDate *RLMGetDate(__unsafe_unretained RLMObjectBase *const obj, NSUInteger colIndex) {
     RLMVerifyAttached(obj);
-    if (obj->_row.is_null(colIndex)) {
-        return nil;
-    }
     return RLMTimestampToNSDate(obj->_row.get_timestamp(colIndex));
 }
 static inline void RLMSetValue(__unsafe_unretained RLMObjectBase *const obj, NSUInteger colIndex, __unsafe_unretained NSDate *const date) {
@@ -205,7 +202,7 @@ static inline RLMObjectBase *RLMGetLinkedObjectForValue(__unsafe_unretained RLMR
         @throw RLMException(@"Can not add objects from a different Realm");
     }
 
-    // copy from another realm or copy from standalone
+    // copy from another realm or copy from unmanaged
     return RLMCreateObjectInRealmWithValue(realm, className, link, creationOptions & RLMCreationOptionsCreateOrUpdate);
 }
 
@@ -549,7 +546,7 @@ static void RLMSuperSet(RLMObjectBase *obj, NSString *propName, id val) {
     superSetter(obj, prop.setterSel, val);
 }
 
-// getter/setter for standalone
+// getter/setter for unmanaged
 static IMP RLMAccessorStandaloneGetter(RLMProperty *prop, RLMAccessorCode accessorCode) {
     // only override getters for RLMArray and linking objects properties
     if (accessorCode == RLMAccessorCodeArray) {

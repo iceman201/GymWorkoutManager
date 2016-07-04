@@ -74,7 +74,7 @@ void RLMDisableSyncToDisk() {
     if (_realm || _block) {
         NSLog(@"RLMNotificationToken released without unregistering a notification. You must hold "
               @"on to the RLMNotificationToken returned from addNotificationBlock and call "
-              @"-[RLMNotificationToken stop] when you no longer wish to recieve RLMRealm notifications.");
+              @"-[RLMNotificationToken stop] when you no longer wish to receive RLMRealm notifications.");
     }
 }
 @end
@@ -158,29 +158,6 @@ NSData *RLMRealmValidatedEncryptionKey(NSData *key) {
     configuration.fileURL = fileURL;
     return [RLMRealm realmWithConfiguration:configuration error:nil];
 }
-
-+ (instancetype)realmWithURL:(NSURL *)fileURL
-                         key:(NSData *)key
-                    readOnly:(BOOL)readonly
-                    inMemory:(BOOL)inMemory
-                     dynamic:(BOOL)dynamic
-                      schema:(RLMSchema *)customSchema
-                       error:(NSError **)outError
-{
-    RLMRealmConfiguration *configuration = [[RLMRealmConfiguration alloc] init];
-    if (inMemory) {
-        configuration.inMemoryIdentifier = fileURL.lastPathComponent;
-    }
-    else {
-        configuration.fileURL = fileURL;
-    }
-    configuration.encryptionKey = key;
-    configuration.readOnly = readonly;
-    configuration.dynamic = dynamic;
-    configuration.customSchema = customSchema;
-    return [RLMRealm realmWithConfiguration:configuration error:outError];
-}
-
 // ARC tries to eliminate calls to autorelease when the value is then immediately
 // returned, but this results in significantly different semantics between debug
 // and release builds for RLMRealm, so force it to always autorelease.
@@ -220,7 +197,7 @@ static void RLMRealmSetSchemaAndAlign(RLMRealm *realm, RLMSchema *targetSchema) 
     return RLMAutorelease(realm);
 }
 
-void RLMRealmTranslateException(NSError **error) {
+REALM_NOINLINE void RLMRealmTranslateException(NSError **error) {
     try {
         throw;
     }
@@ -514,16 +491,8 @@ void RLMRealmTranslateException(NSError **error) {
         _realm->commit_transaction();
         return YES;
     }
-    catch (File::AccessError const& ex) {
-        RLMSetErrorOrThrow(RLMMakeError(RLMErrorFail, ex), outError);
-        return NO;
-    }
-    catch (AddressSpaceExhausted const &ex) {
-        RLMSetErrorOrThrow(RLMMakeError(RLMErrorAddressSpaceExhausted, ex), outError);
-        return NO;
-    }
-    catch (std::exception const& ex) {
-        RLMSetErrorOrThrow(RLMMakeError(RLMErrorFail, ex), outError);
+    catch (...) {
+        RLMRealmTranslateException(outError);
         return NO;
     }
 }
@@ -745,33 +714,16 @@ void RLMRealmTranslateException(NSError **error) {
     NSString *path = fileURL.path;
 
     try {
-        self.group->write(path.UTF8String, static_cast<const char *>(key.bytes));
+        _realm->write_copy(path.UTF8String, {static_cast<const char *>(key.bytes), key.length});
         return YES;
     }
-    catch (File::PermissionDenied &ex) {
-        if (error) {
-            *error = RLMMakeError(RLMErrorFilePermissionDenied, ex);
+    catch (...) {
+        __autoreleasing NSError *dummyError;
+        if (!error) {
+            error = &dummyError;
         }
-    }
-    catch (File::Exists &ex) {
-        if (error) {
-            *error = RLMMakeError(RLMErrorFileExists, ex);
-        }
-    }
-    catch (File::NotFound &ex) {
-        if (error) {
-            *error = RLMMakeError(RLMErrorFileNotFound, ex);
-        }
-    }
-    catch (File::AccessError &ex) {
-        if (error) {
-            *error = RLMMakeError(RLMErrorFileAccess, ex);
-        }
-    }
-    catch (std::exception &ex) {
-        if (error) {
-            *error = RLMMakeError(RLMErrorFail, ex);
-        }
+        RLMRealmTranslateException(error);
+        return NO;
     }
 
     return NO;

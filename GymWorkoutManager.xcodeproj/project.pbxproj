@@ -58,7 +58,8 @@
 		1263D2E61CF73A8100929166 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1263D2E51CF73A8100929166 /* Plan.swift */; };
 		128628681CF4A92200DA8E0D /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128628671CF4A92200DA8E0D /* PlannerViewController.swift */; };
 		12D91CA51CEB5DC70042C56C /* CommonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12D91CA41CEB5DC70042C56C /* CommonUtils.swift */; };
-		4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EF9819A6B2B4D25EAAD9811 /* Pods.framework */; };
+		2561ED58A186CD41A401F9E3 /* Pods_GymWorkoutManagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DA295412F920807CFA0BED /* Pods_GymWorkoutManagerUITests.framework */; };
+		26777166A9B7C906BB062ADF /* Pods_GymWorkoutManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642AD442B9DDB91E25776422 /* Pods_GymWorkoutManagerTests.framework */; };
 		6B982C4B1CE85BCA00DC7499 /* DatabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B982C4A1CE85BCA00DC7499 /* DatabaseHelper.swift */; };
 		E62583491CE2FBB6007C6323 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E62583481CE2FBB6007C6323 /* Podfile */; };
 		E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */; };
@@ -125,6 +126,7 @@
 		E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */; };
 		E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */; };
 		E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */; };
+		E82BCEBC24CC1EDB6A28B7BD /* Pods_GymWorkoutManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F849FC71D97DEF1D2B42AA9 /* Pods_GymWorkoutManager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,6 +147,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0365B5815CEAC5FB9DF0C6DB /* Pods-GymWorkoutManagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerUITests/Pods-GymWorkoutManagerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		0505443B1CE873600034F3B2 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		0507E68A1CEC792900923238 /* profileBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profileBackground.jpg; sourceTree = "<group>"; };
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
@@ -198,10 +201,16 @@
 		128628671CF4A92200DA8E0D /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
 		12D91CA41CEB5DC70042C56C /* CommonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonUtils.swift; sourceTree = "<group>"; };
 		12EE2FEC1CEF7DFF00F7178F /* GymWorkoutManager-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GymWorkoutManager-Bridging-Header.h"; sourceTree = "<group>"; };
-		1C1FE039C8DF3A2B0CC8777C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		5EF9819A6B2B4D25EAAD9811 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F849FC71D97DEF1D2B42AA9 /* Pods_GymWorkoutManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymWorkoutManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		642AD442B9DDB91E25776422 /* Pods_GymWorkoutManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymWorkoutManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B982C4A1CE85BCA00DC7499 /* DatabaseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DatabaseHelper.swift; path = helper/DatabaseHelper.swift; sourceTree = "<group>"; };
-		BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		7C3097EE71FAA8387CADA8C5 /* Pods-GymWorkoutManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerTests/Pods-GymWorkoutManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		92683E7A81A173610FA30FB2 /* Pods-GymWorkoutManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerTests/Pods-GymWorkoutManagerTests.release.xcconfig"; sourceTree = "<group>"; };
+		AD79E05400595CD7CCE52315 /* Pods-GymWorkoutManagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerUITests/Pods-GymWorkoutManagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		B0E43AF8E840696A2AF0E582 /* Pods-GymWorkoutManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManager/Pods-GymWorkoutManager.debug.xcconfig"; sourceTree = "<group>"; };
+		C0DD77459B880D8271ABF146 /* Pods-GymWorkoutManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManager/Pods-GymWorkoutManager.release.xcconfig"; sourceTree = "<group>"; };
+		C1DA295412F920807CFA0BED /* Pods_GymWorkoutManagerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymWorkoutManagerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E62583481CE2FBB6007C6323 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
 		E6A1694B1CE448D400A79E20 /* RecordInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordInfoCell.swift; path = View/RecordInfoCell.swift; sourceTree = "<group>"; };
@@ -280,7 +289,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F41F0D14FD0B49AF7D0984C /* Pods.framework in Frameworks */,
+				E82BCEBC24CC1EDB6A28B7BD /* Pods_GymWorkoutManager.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +297,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26777166A9B7C906BB062ADF /* Pods_GymWorkoutManagerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +305,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2561ED58A186CD41A401F9E3 /* Pods_GymWorkoutManagerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,15 +401,22 @@
 			isa = PBXGroup;
 			children = (
 				5EF9819A6B2B4D25EAAD9811 /* Pods.framework */,
+				5F849FC71D97DEF1D2B42AA9 /* Pods_GymWorkoutManager.framework */,
+				642AD442B9DDB91E25776422 /* Pods_GymWorkoutManagerTests.framework */,
+				C1DA295412F920807CFA0BED /* Pods_GymWorkoutManagerUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9B921BC1281139B845A38F52 /* Pods */ = {
+		CAC257E4400465BB64ED770B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1C1FE039C8DF3A2B0CC8777C /* Pods.debug.xcconfig */,
-				BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */,
+				B0E43AF8E840696A2AF0E582 /* Pods-GymWorkoutManager.debug.xcconfig */,
+				C0DD77459B880D8271ABF146 /* Pods-GymWorkoutManager.release.xcconfig */,
+				7C3097EE71FAA8387CADA8C5 /* Pods-GymWorkoutManagerTests.debug.xcconfig */,
+				92683E7A81A173610FA30FB2 /* Pods-GymWorkoutManagerTests.release.xcconfig */,
+				AD79E05400595CD7CCE52315 /* Pods-GymWorkoutManagerUITests.debug.xcconfig */,
+				0365B5815CEAC5FB9DF0C6DB /* Pods-GymWorkoutManagerUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -433,8 +451,8 @@
 				E6AD9D9E1C4C5F28004F6437 /* GymWorkoutManagerTests */,
 				E6AD9DA91C4C5F28004F6437 /* GymWorkoutManagerUITests */,
 				E6AD9D861C4C5F28004F6437 /* Products */,
-				9B921BC1281139B845A38F52 /* Pods */,
 				9362B02994748E37E71F65CE /* Frameworks */,
+				CAC257E4400465BB64ED770B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -579,12 +597,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6AD9DAF1C4C5F28004F6437 /* Build configuration list for PBXNativeTarget "GymWorkoutManager" */;
 			buildPhases = (
-				CC42F73BF56CE0EFD0D07C0B /* Check Pods Manifest.lock */,
+				C154C99D52CBABFFBFA1DB34 /* [CP] Check Pods Manifest.lock */,
 				E6AD9D811C4C5F28004F6437 /* Sources */,
 				E6AD9D821C4C5F28004F6437 /* Frameworks */,
 				E6AD9D831C4C5F28004F6437 /* Resources */,
-				B8ED3253B87A7228B9205783 /* Embed Pods Frameworks */,
-				B3F3A52207839CBA4F9BE153 /* Copy Pods Resources */,
+				1548E492CDC567C94C95F7A9 /* [CP] Embed Pods Frameworks */,
+				94069B9F05782851890A7BA5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -599,9 +617,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6AD9DB21C4C5F28004F6437 /* Build configuration list for PBXNativeTarget "GymWorkoutManagerTests" */;
 			buildPhases = (
+				6D82037C8429B3CCADE9C570 /* [CP] Check Pods Manifest.lock */,
 				E6AD9D971C4C5F28004F6437 /* Sources */,
 				E6AD9D981C4C5F28004F6437 /* Frameworks */,
 				E6AD9D991C4C5F28004F6437 /* Resources */,
+				6497B40B55D77622C0D030BC /* [CP] Embed Pods Frameworks */,
+				F2C3794DFA59CAFB8D7A9E9B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -617,9 +638,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E6AD9DB51C4C5F28004F6437 /* Build configuration list for PBXNativeTarget "GymWorkoutManagerUITests" */;
 			buildPhases = (
+				6C3248483CAF8D3098C8BB34 /* [CP] Check Pods Manifest.lock */,
 				E6AD9DA21C4C5F28004F6437 /* Sources */,
 				E6AD9DA31C4C5F28004F6437 /* Frameworks */,
 				E6AD9DA41C4C5F28004F6437 /* Resources */,
+				61B67060DCFCBEEF9F8B29A8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -767,49 +790,124 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B3F3A52207839CBA4F9BE153 /* Copy Pods Resources */ = {
+		1548E492CDC567C94C95F7A9 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GymWorkoutManager/Pods-GymWorkoutManager-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B8ED3253B87A7228B9205783 /* Embed Pods Frameworks */ = {
+		61B67060DCFCBEEF9F8B29A8 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GymWorkoutManagerUITests/Pods-GymWorkoutManagerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CC42F73BF56CE0EFD0D07C0B /* Check Pods Manifest.lock */ = {
+		6497B40B55D77622C0D030BC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GymWorkoutManagerTests/Pods-GymWorkoutManagerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6C3248483CAF8D3098C8BB34 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6D82037C8429B3CCADE9C570 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		94069B9F05782851890A7BA5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GymWorkoutManager/Pods-GymWorkoutManager-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C154C99D52CBABFFBFA1DB34 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F2C3794DFA59CAFB8D7A9E9B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GymWorkoutManagerTests/Pods-GymWorkoutManagerTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1006,7 +1104,7 @@
 		};
 		E6AD9DB01C4C5F28004F6437 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1C1FE039C8DF3A2B0CC8777C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = B0E43AF8E840696A2AF0E582 /* Pods-GymWorkoutManager.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1027,7 +1125,7 @@
 		};
 		E6AD9DB11C4C5F28004F6437 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BDD20A506A8263EBEB7D8078 /* Pods.release.xcconfig */;
+			baseConfigurationReference = C0DD77459B880D8271ABF146 /* Pods-GymWorkoutManager.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1046,6 +1144,7 @@
 		};
 		E6AD9DB31C4C5F28004F6437 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C3097EE71FAA8387CADA8C5 /* Pods-GymWorkoutManagerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = GymWorkoutManagerTests/Info.plist;
@@ -1058,6 +1157,7 @@
 		};
 		E6AD9DB41C4C5F28004F6437 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92683E7A81A173610FA30FB2 /* Pods-GymWorkoutManagerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = GymWorkoutManagerTests/Info.plist;
@@ -1070,6 +1170,7 @@
 		};
 		E6AD9DB61C4C5F28004F6437 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD79E05400595CD7CCE52315 /* Pods-GymWorkoutManagerUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = GymWorkoutManagerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1082,6 +1183,7 @@
 		};
 		E6AD9DB71C4C5F28004F6437 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0365B5815CEAC5FB9DF0C6DB /* Pods-GymWorkoutManagerUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = GymWorkoutManagerUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

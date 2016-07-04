@@ -3,7 +3,6 @@ use_frameworks!
 
 pod 'RealmSwift'
 pod 'EasyAnimation'
-pod 'Charts'
 pod 'JVFloatLabeledTextField'
 pod 'AVOSCloud' 
 pod 'AVOSCloudIM'

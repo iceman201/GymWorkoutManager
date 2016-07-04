@@ -25,12 +25,14 @@
 #include <vector>
 
 namespace realm {
+    class BinaryData;
     class BindingContext;
     class Group;
     class Realm;
     class Replication;
     class Schema;
     class SharedGroup;
+    class StringData;
     typedef std::shared_ptr<Realm> SharedRealm;
     typedef std::weak_ptr<Realm> WeakRealm;
 
@@ -121,6 +123,7 @@ namespace realm {
 
         void invalidate();
         bool compact();
+        void write_copy(StringData path, BinaryData encryption_key);
 
         std::thread::id thread_id() const { return m_thread_id; }
         void verify_thread() const;
@@ -131,6 +134,8 @@ namespace realm {
         // Close this Realm and remove it from the cache. Continuing to use a
         // Realm after closing it will produce undefined behavior.
         void close();
+
+        bool is_closed() { return !m_read_only_group && !m_shared_group; }
 
         ~Realm();
 
@@ -213,12 +218,12 @@ namespace realm {
 
     class MismatchedConfigException : public std::runtime_error {
     public:
-        MismatchedConfigException(std::string message) : std::runtime_error(message) {}
+        MismatchedConfigException(std::string message) : std::runtime_error(move(message)) {}
     };
 
     class InvalidTransactionException : public std::runtime_error {
     public:
-        InvalidTransactionException(std::string message) : std::runtime_error(message) {}
+        InvalidTransactionException(std::string message) : std::runtime_error(move(message)) {}
     };
 
     class IncorrectThreadException : public std::runtime_error {
@@ -228,7 +233,7 @@ namespace realm {
 
     class UninitializedRealmException : public std::runtime_error {
     public:
-        UninitializedRealmException(std::string message) : std::runtime_error(message) {}
+        UninitializedRealmException(std::string message) : std::runtime_error(move(message)) {}
     };
 }
 

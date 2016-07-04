@@ -90,16 +90,13 @@ static void throwError() {
         throw;
     }
     catch (realm::InvalidTransactionException const&) {
-        @throw RLMException(@"Cannot modify persisted RLMArray outside of a write transaction");
+        @throw RLMException(@"Cannot modify managed RLMArray outside of a write transaction");
     }
     catch (realm::IncorrectThreadException const&) {
         @throw RLMException(@"Realm accessed from incorrect thread");
     }
     catch (realm::List::InvalidatedException const&) {
         @throw RLMException(@"RLMArray has been invalidated or the containing object has been deleted");
-    }
-    catch (realm::List::DetatchedAccessorException const&) {
-        @throw RLMException(@"Object has been deleted or invalidated");
     }
     catch (realm::List::OutOfBoundsIndexException const& e) {
         @throw RLMException(@"Index %zu is out of bounds (must be less than %zu)",
