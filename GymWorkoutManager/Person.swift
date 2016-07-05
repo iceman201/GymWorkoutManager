@@ -88,15 +88,15 @@ class Person: Object {
             }
         }
     }
-    func getPercentageOfWorkout(whichWorkout:String) -> Int{
+    
+    func getPercentageOfWorkout(whichWorkout:String) -> Double {
         let allTypes = exercise.map({"\($0.workoutType)"})
-        var counter = 0
+        var counter = 0.0
         for each in allTypes{
             if each == whichWorkout {
-                counter += 1
+                counter += 1.0
             }
         }
-        let r = (counter/allTypes.count)*100
-        return r
+        return (counter/Double(allTypes.count)) * 100
     }
 }

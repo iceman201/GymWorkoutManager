@@ -10,10 +10,12 @@ import UIKit
 
 class GraphViewCell: UITableViewCell {
     
+    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var graphicView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         graphicView.backgroundColor = UIColor.clearColor()
+        title.textColor = GWMColorYellow
     }
 }

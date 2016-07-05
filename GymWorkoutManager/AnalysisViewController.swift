@@ -40,7 +40,7 @@ class AnalysisViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 312
+        return 368
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -49,25 +49,20 @@ class AnalysisViewController: UITableViewController {
         }
         
         let data = [
-            graphData(key: "John", value: 18.9),
-            graphData(key: "Ken", value: 32.9),
-            graphData(key: "Taro", value: 15.3),
-            graphData(key: "Micheal", value: 22.9),
-            graphData(key: "Jun", value: 12.9),
-            graphData(key: "Hanako", value: 32.2),
-            graphData(key: "Kent", value: 3.8)
+            graphData(key: "Cardio", value: curentUser?.getPercentageOfWorkout("0") ?? 0.0),
+            graphData(key: "Weights", value: curentUser?.getPercentageOfWorkout("1") ?? 0.0),
+            graphData(key: "Hiit", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)
         ]
-
         
         let view = data.pieGraph() { (unit, totalValue) -> String? in
             return unit.key! + "\n" + String(format: "%.0f%%", unit.value / totalValue * 100.0)
             }.view(cell.graphicView.bounds)
  
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        cell.title.text = "Proportion of Workout"
         cell.graphicView.addSubview(view)
         cell.backgroundColor = UIColor.clearColor()
-        
-
+        cell.selectionStyle = .None
         
         return cell
     }
@@ -78,8 +73,6 @@ class AnalysisViewController: UITableViewController {
         self.tableView.backgroundColor = GWMColorBackground
         self.tableView.separatorColor = GWMColorYellow
         self.tableView.delegate = self
-
-        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
