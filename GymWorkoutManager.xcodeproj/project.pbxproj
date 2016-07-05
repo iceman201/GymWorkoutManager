@@ -106,6 +106,7 @@
 		E6AD9D951C4C5F28004F6437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D931C4C5F28004F6437 /* LaunchScreen.storyboard */; };
 		E6AD9DA01C4C5F28004F6437 /* GymWorkoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D9F1C4C5F28004F6437 /* GymWorkoutManagerTests.swift */; };
 		E6AD9DAB1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9DAA1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift */; };
+		E6BB4EFD1D2B1C9300C23D73 /* GraphViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BB4EFC1D2B1C9300C23D73 /* GraphViewCell.swift */; };
 		E6DCF9A61C9B8D1100C3668E /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */; };
 		E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */; };
 		E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */; };
@@ -261,6 +262,7 @@
 		E6AD9DA61C4C5F28004F6437 /* GymWorkoutManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymWorkoutManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6AD9DAA1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutManagerUITests.swift; sourceTree = "<group>"; };
 		E6AD9DAC1C4C5F28004F6437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6BB4EFC1D2B1C9300C23D73 /* GraphViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphViewCell.swift; path = View/GraphViewCell.swift; sourceTree = "<group>"; };
 		E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
 		E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
 		E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				E6A1694E1CE448E400A79E20 /* RoundButton.swift */,
 				E6A169511CE448F700A79E20 /* TableCell.swift */,
 				E6A1694B1CE448D400A79E20 /* RecordInfoCell.swift */,
+				E6BB4EFC1D2B1C9300C23D73 /* GraphViewCell.swift */,
 			);
 			name = View;
 			path = ..;
@@ -954,6 +957,7 @@
 				058D5A431D0811E500C3E7D9 /* DesignableView.swift in Sources */,
 				058D5A401D0811E500C3E7D9 /* DesignableTabBarController.swift in Sources */,
 				05C36D1F1CE615BC0035927C /* RoundImage.swift in Sources */,
+				E6BB4EFD1D2B1C9300C23D73 /* GraphViewCell.swift in Sources */,
 				12D91CA51CEB5DC70042C56C /* CommonUtils.swift in Sources */,
 				058D5A551D0811E500C3E7D9 /* UnwindSegue.swift in Sources */,
 				058D5A3D1D0811E500C3E7D9 /* DesignableButton.swift in Sources */,

@@ -1002,13 +1002,30 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="312" id="za9-tB-qoq">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="graphicCell" rowHeight="312" id="za9-tB-qoq" customClass="GraphViewCell" customModule="GymWorkoutManager" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="312"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="za9-tB-qoq" id="yVb-rp-EGt">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="311"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zh3-oD-ADb">
+                                            <rect key="frame" x="8" y="8" width="398" height="295"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="295" id="2ll-s7-j1H"/>
+                                                <constraint firstAttribute="width" constant="398" id="HWV-Mg-fDe"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zh3-oD-ADb" firstAttribute="centerY" secondItem="yVb-rp-EGt" secondAttribute="centerY" id="5EU-SC-bxg"/>
+                                        <constraint firstItem="zh3-oD-ADb" firstAttribute="centerX" secondItem="yVb-rp-EGt" secondAttribute="centerX" id="hto-pg-zbe"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="graphicView" destination="zh3-oD-ADb" id="hfE-jp-TLQ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1254,6 +1271,6 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <image name="1463483897_date.png" width="32" height="32"/>
         <image name="Female.png" width="64" height="64"/>
         <image name="Male.png" width="64" height="64"/>
-        <image name="first" width="26" height="26"/>
+        <image name="first" width="224" height="85"/>
     </resources>
 </document>
