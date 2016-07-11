@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -17,11 +17,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="caZ-4X-6QV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gym Workout Manager" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1i2-8e-SF1">
+                                <rect key="frame" x="141" y="391" width="319" height="39"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="319" id="Dsm-P7-YSg"/>
+                                    <constraint firstAttribute="height" constant="39" id="osQ-Mu-e7l"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="Nln-cc-duR">
+                                <rect key="frame" x="222" y="222" width="156" height="156"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="156" id="7e0-yr-x0t"/>
+                                    <constraint firstAttribute="width" constant="156" id="FYd-i5-fvG"/>
+                                </constraints>
                             </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Copyright (c) 2015 Liguo Jiao. All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="7pj-m8-jvd">
+                                <rect key="frame" x="80" y="571" width="441" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="441" id="2cn-DA-ZDS"/>
+                                    <constraint firstAttribute="height" constant="21" id="seD-Bp-DJi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Nln-cc-duR" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="CpV-ej-znf"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="7pj-m8-jvd" secondAttribute="bottom" constant="8" id="U4a-YC-Ev6"/>
+                            <constraint firstItem="1i2-8e-SF1" firstAttribute="top" secondItem="Nln-cc-duR" secondAttribute="bottom" constant="13" id="dMB-Hl-C0L"/>
+                            <constraint firstItem="1i2-8e-SF1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lh9-Bd-IKY"/>
+                            <constraint firstItem="7pj-m8-jvd" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="naC-mK-i1e"/>
+                            <constraint firstItem="Nln-cc-duR" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="v47-ec-MGj"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -29,4 +61,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo.png" width="256" height="256"/>
+    </resources>
 </document>

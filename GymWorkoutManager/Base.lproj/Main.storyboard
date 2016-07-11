@@ -254,7 +254,7 @@
             </objects>
             <point key="canvasLocation" x="2194" y="-354"/>
         </scene>
-        <!--Main Interface View Controller-->
+        <!--Delegate-->
         <scene sceneID="Foo-Ss-rOZ">
             <objects>
                 <viewController id="aMi-tv-usv" customClass="MainInterfaceViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -266,104 +266,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1463130943_heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="yaZ-CI-RNz" customClass="RoundImage" customModule="GymWorkoutManager" customModuleProvider="target">
-                                <rect key="frame" x="87" y="44" width="240" height="240"/>
-                                <color key="tintColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWk-df-IPc" customClass="CircleMenu" customModule="CircleMenu">
+                                <rect key="frame" x="157" y="318" width="100" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="Qez-W0-YOU"/>
-                                    <constraint firstAttribute="height" constant="240" id="XeV-dv-jr1"/>
+                                    <constraint firstAttribute="height" constant="100" id="8ZP-r9-dZe"/>
+                                    <constraint firstAttribute="width" constant="100" id="Ybc-aP-QOz"/>
                                 </constraints>
-                            </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N6E-bm-3YU">
-                                <rect key="frame" x="77" y="371" width="260" height="260"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="VUo-Vf-ltH">
-                                        <rect key="frame" x="0.0" y="135" width="125" height="125"/>
-                                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="125" id="ucw-CX-yp3"/>
-                                            <constraint firstAttribute="width" constant="125" id="wCT-Gn-NFf"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
-                                        <state key="normal" title="Profile">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="profileButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="G9r-eS-7HS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BcF-hB-EB3">
-                                        <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
-                                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="1ja-Qi-AFi"/>
-                                            <constraint firstAttribute="height" constant="125" id="Yft-m3-cLM"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
-                                        <state key="normal" title="Timer">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="timerButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="OjA-6O-TaV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFT-hZ-bWH">
-                                        <rect key="frame" x="135" y="135" width="125" height="125"/>
-                                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="EBC-Pk-shp"/>
-                                            <constraint firstAttribute="height" constant="125" id="xqa-WP-Fc5"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
-                                        <state key="normal" title="Analysis">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="analysisButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="gqK-cK-pGf"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MAC-21-580" customClass="SpringButton" customModule="GymWorkoutManager" customModuleProvider="target">
-                                        <rect key="frame" x="135" y="0.0" width="125" height="125"/>
-                                        <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="125" id="7xf-5n-FnF"/>
-                                            <constraint firstAttribute="height" constant="125" id="yfe-TN-mhk"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="33"/>
-                                        <state key="normal" title="Record">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="recordButtonAnimation:" destination="aMi-tv-usv" eventType="touchUpInside" id="wYj-cZ-9Qo"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="VUo-Vf-ltH" secondAttribute="bottom" id="1jV-ua-nlL"/>
-                                    <constraint firstItem="BcF-hB-EB3" firstAttribute="leading" secondItem="N6E-bm-3YU" secondAttribute="leading" id="3EN-yE-cP7"/>
-                                    <constraint firstItem="BcF-hB-EB3" firstAttribute="top" secondItem="N6E-bm-3YU" secondAttribute="top" id="3gb-T8-P6L"/>
-                                    <constraint firstItem="MAC-21-580" firstAttribute="top" secondItem="N6E-bm-3YU" secondAttribute="top" id="6cH-I9-gQJ"/>
-                                    <constraint firstItem="VUo-Vf-ltH" firstAttribute="leading" secondItem="N6E-bm-3YU" secondAttribute="leading" id="DHf-yE-7jU"/>
-                                    <constraint firstAttribute="trailing" secondItem="xFT-hZ-bWH" secondAttribute="trailing" id="EoJ-wv-09n"/>
-                                    <constraint firstAttribute="width" secondItem="N6E-bm-3YU" secondAttribute="height" multiplier="1:1" id="Hk2-sq-4NM"/>
-                                    <constraint firstAttribute="trailing" secondItem="MAC-21-580" secondAttribute="trailing" id="R11-B1-AG3"/>
-                                    <constraint firstAttribute="height" constant="260" id="awe-3u-Gd8"/>
-                                    <constraint firstAttribute="bottom" secondItem="xFT-hZ-bWH" secondAttribute="bottom" id="ciB-j6-kgO"/>
-                                    <constraint firstAttribute="width" constant="260" id="twA-XU-j9H"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWk-df-IPc">
-                                <rect key="frame" x="184" y="292" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" image="icon_menu"/>
+                                <state key="selected" image="icon_close"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="buttonsCount">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="duration">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="distance">
+                                        <real key="value" value="180"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="showDelay">
+                                        <real key="value" value="0.29999999999999999"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="aMi-tv-usv" id="hm2-qo-0Ch"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yaZ-CI-RNz" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="87w-DG-R7h"/>
-                            <constraint firstItem="N6E-bm-3YU" firstAttribute="centerY" secondItem="L9l-Gm-MPS" secondAttribute="centerY" constant="133" id="8lA-hN-mpj"/>
-                            <constraint firstItem="yaZ-CI-RNz" firstAttribute="top" secondItem="TDK-EZ-waU" secondAttribute="bottom" constant="24" id="VDy-rK-0d8"/>
-                            <constraint firstItem="N6E-bm-3YU" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="sio-Rq-Xex"/>
+                            <constraint firstItem="XWk-df-IPc" firstAttribute="centerY" secondItem="L9l-Gm-MPS" secondAttribute="centerY" id="aST-pr-2o1"/>
+                            <constraint firstItem="XWk-df-IPc" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="tjU-ph-2Fd"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0wO-dn-uAL"/>
@@ -371,7 +304,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
                     <connections>
-                        <outlet property="logo" destination="yaZ-CI-RNz" id="5CL-8t-wIU"/>
                         <segue destination="9pv-A4-QxB" kind="show" identifier="timer" id="8Ca-Jn-i9z"/>
                         <segue destination="XSD-KX-JDS" kind="show" identifier="record" id="3Ch-kY-08T"/>
                         <segue destination="AZ4-yU-AC7" kind="show" identifier="analysis" id="d50-b1-scW"/>
@@ -1321,12 +1253,13 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         </scene>
     </scenes>
     <resources>
-        <image name="1463130943_heart.png" width="128" height="128"/>
         <image name="1463164731_scale.png" width="32" height="32"/>
         <image name="1463164826_centimeter.png" width="32" height="32"/>
         <image name="1463483897_date.png" width="32" height="32"/>
         <image name="Female.png" width="64" height="64"/>
         <image name="Male.png" width="64" height="64"/>
         <image name="first" width="224" height="85"/>
+        <image name="icon_close" width="128" height="128"/>
+        <image name="icon_menu" width="128" height="128"/>
     </resources>
 </document>

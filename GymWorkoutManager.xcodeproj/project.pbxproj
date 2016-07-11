@@ -12,6 +12,16 @@
 		05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */; };
 		051234811D14F6B200F8A24E /* 1466238314_running.png in Resources */ = {isa = PBXBuildFile; fileRef = 051234801D14F6B200F8A24E /* 1466238314_running.png */; };
 		051234831D14F6F700F8A24E /* push_up-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 051234821D14F6F700F8A24E /* push_up-256.png */; };
+		052B45871D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45731D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt.png */; };
+		052B45881D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45741D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt@2x.png */; };
+		052B45891D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45751D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@2x.png */; };
+		052B458A1D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45761D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@3x.png */; };
+		052B458B1D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45771D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@2x.png */; };
+		052B458C1D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45781D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@3x.png */; };
+		052B458D1D33C5BF0027E99D /* iPhone_Spotlight_iOS5-6_29pt.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45791D33C5BF0027E99D /* iPhone_Spotlight_iOS5-6_29pt.png */; };
+		052B458E1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B457A1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@2x.png */; };
+		052B458F1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B457B1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@3x.png */; };
+		052B45931D33DA870027E99D /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 052B45921D33DA870027E99D /* logo.png */; };
 		05356CD71CEAEF39007DC7C7 /* 1463483897_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */; };
 		05356CDA1CEB53A1007DC7C7 /* Female.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD81CEB53A1007DC7C7 /* Female.png */; };
 		05356CDB1CEB53A1007DC7C7 /* Male.png in Resources */ = {isa = PBXBuildFile; fileRef = 05356CD91CEB53A1007DC7C7 /* Male.png */; };
@@ -79,23 +89,6 @@
 		E6AD9DA01C4C5F28004F6437 /* GymWorkoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D9F1C4C5F28004F6437 /* GymWorkoutManagerTests.swift */; };
 		E6AD9DAB1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9DAA1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift */; };
 		E6BB4EFD1D2B1C9300C23D73 /* GraphViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6BB4EFC1D2B1C9300C23D73 /* GraphViewCell.swift */; };
-		E6DCF9A61C9B8D1100C3668E /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */; };
-		E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */; };
-		E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */; };
-		E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9A51C9B8D1100C3668E /* Icon-60@3x.png */; };
-		E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AA1C9B8D1B00C3668E /* Icon-Small@2x.png */; };
-		E6DCF9AD1C9B8D1B00C3668E /* Icon-Small@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AB1C9B8D1B00C3668E /* Icon-Small@3x.png */; };
-		E6DCF9B61C9B8D4800C3668E /* Icon-24@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AE1C9B8D4800C3668E /* Icon-24@2x.png */; };
-		E6DCF9B71C9B8D4800C3668E /* Icon-27.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9AF1C9B8D4800C3668E /* Icon-27.5@2x.png */; };
-		E6DCF9B81C9B8D4800C3668E /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B01C9B8D4800C3668E /* Icon-29@2x.png */; };
-		E6DCF9B91C9B8D4800C3668E /* Icon-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B11C9B8D4800C3668E /* Icon-29@3x.png */; };
-		E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B21C9B8D4800C3668E /* Icon-40@2x.png */; };
-		E6DCF9BB1C9B8D4800C3668E /* Icon-44@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B31C9B8D4800C3668E /* Icon-44@2x.png */; };
-		E6DCF9BC1C9B8D4800C3668E /* Icon-86@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B41C9B8D4800C3668E /* Icon-86@2x.png */; };
-		E6DCF9BD1C9B8D4800C3668E /* Icon-98@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9B51C9B8D4800C3668E /* Icon-98@2x.png */; };
-		E6DCF9C11C9B8D5B00C3668E /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */; };
-		E6DCF9C21C9B8D5B00C3668E /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */; };
-		E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */; };
 		E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */; };
 		E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */; };
 /* End PBXBuildFile section */
@@ -123,6 +116,16 @@
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
 		051234801D14F6B200F8A24E /* 1466238314_running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1466238314_running.png; sourceTree = "<group>"; };
 		051234821D14F6F700F8A24E /* push_up-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push_up-256.png"; sourceTree = "<group>"; };
+		052B45731D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS5-6_57pt.png"; sourceTree = "<group>"; };
+		052B45741D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS5-6_57pt@2x.png"; sourceTree = "<group>"; };
+		052B45751D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS7-9_60pt@2x.png"; sourceTree = "<group>"; };
+		052B45761D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS7-9_60pt@3x.png"; sourceTree = "<group>"; };
+		052B45771D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Settings_iOS5-9_29pt@2x.png"; sourceTree = "<group>"; };
+		052B45781D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Settings_iOS5-9_29pt@3x.png"; sourceTree = "<group>"; };
+		052B45791D33C5BF0027E99D /* iPhone_Spotlight_iOS5-6_29pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Spotlight_iOS5-6_29pt.png"; sourceTree = "<group>"; };
+		052B457A1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Spotlight_iOS7-9_40pt@2x.png"; sourceTree = "<group>"; };
+		052B457B1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_Spotlight_iOS7-9_40pt@3x.png"; sourceTree = "<group>"; };
+		052B45921D33DA870027E99D /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463483897_date.png; sourceTree = "<group>"; };
 		05356CD81CEB53A1007DC7C7 /* Female.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Female.png; sourceTree = "<group>"; };
 		05356CD91CEB53A1007DC7C7 /* Male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Male.png; sourceTree = "<group>"; };
@@ -202,23 +205,6 @@
 		E6AD9DAA1C4C5F28004F6437 /* GymWorkoutManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutManagerUITests.swift; sourceTree = "<group>"; };
 		E6AD9DAC1C4C5F28004F6437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6BB4EFC1D2B1C9300C23D73 /* GraphViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GraphViewCell.swift; path = View/GraphViewCell.swift; sourceTree = "<group>"; };
-		E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
-		E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
-		E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
-		E6DCF9A51C9B8D1100C3668E /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
-		E6DCF9AA1C9B8D1B00C3668E /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
-		E6DCF9AB1C9B8D1B00C3668E /* Icon-Small@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@3x.png"; sourceTree = "<group>"; };
-		E6DCF9AE1C9B8D4800C3668E /* Icon-24@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-24@2x.png"; sourceTree = "<group>"; };
-		E6DCF9AF1C9B8D4800C3668E /* Icon-27.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-27.5@2x.png"; sourceTree = "<group>"; };
-		E6DCF9B01C9B8D4800C3668E /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
-		E6DCF9B11C9B8D4800C3668E /* Icon-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@3x.png"; sourceTree = "<group>"; };
-		E6DCF9B21C9B8D4800C3668E /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
-		E6DCF9B31C9B8D4800C3668E /* Icon-44@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-44@2x.png"; sourceTree = "<group>"; };
-		E6DCF9B41C9B8D4800C3668E /* Icon-86@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-86@2x.png"; sourceTree = "<group>"; };
-		E6DCF9B51C9B8D4800C3668E /* Icon-98@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-98@2x.png"; sourceTree = "<group>"; };
-		E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
-		E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
-		E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-83.5@2x.png"; sourceTree = "<group>"; };
 		E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Done_total_set.mp3; path = SoundEffects/Done_total_set.mp3; sourceTree = "<group>"; };
 		E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Done.mp3; path = SoundEffects/Done.mp3; sourceTree = "<group>"; };
 		EE9905C3665D9FD903BBAFE4 /* Pods-GymWorkoutManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerTests/Pods-GymWorkoutManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -264,6 +250,22 @@
 				0578833C1CF70EEE00F4636F /* ProfileViewControllers */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		052B45671D33C5BE0027E99D /* iPhone */ = {
+			isa = PBXGroup;
+			children = (
+				052B45731D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt.png */,
+				052B45741D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt@2x.png */,
+				052B45751D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@2x.png */,
+				052B45761D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@3x.png */,
+				052B45771D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@2x.png */,
+				052B45781D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@3x.png */,
+				052B45791D33C5BF0027E99D /* iPhone_Spotlight_iOS5-6_29pt.png */,
+				052B457A1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@2x.png */,
+				052B457B1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@3x.png */,
+			);
+			path = iPhone;
 			sourceTree = "<group>";
 		};
 		056D64541CB4FBA20057DC49 /* SoundEffects */ = {
@@ -456,41 +458,10 @@
 				05356CD61CEAEF39007DC7C7 /* 1463483897_date.png */,
 				056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */,
 				056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */,
-				E6D0A0E71C4C6B2200F43DB5 /* iPhone */,
-				E6D0A0F11C4C6B2200F43DB5 /* iWatch */,
+				052B45921D33DA870027E99D /* logo.png */,
+				052B45671D33C5BE0027E99D /* iPhone */,
 			);
 			path = Icon;
-			sourceTree = "<group>";
-		};
-		E6D0A0E71C4C6B2200F43DB5 /* iPhone */ = {
-			isa = PBXGroup;
-			children = (
-				E6DCF9AA1C9B8D1B00C3668E /* Icon-Small@2x.png */,
-				E6DCF9AB1C9B8D1B00C3668E /* Icon-Small@3x.png */,
-				E6DCF9A21C9B8D1100C3668E /* Icon-40@2x.png */,
-				E6DCF9A31C9B8D1100C3668E /* Icon-40@3x.png */,
-				E6DCF9A41C9B8D1100C3668E /* Icon-60@2x.png */,
-				E6DCF9A51C9B8D1100C3668E /* Icon-60@3x.png */,
-				E6DCF9BE1C9B8D5B00C3668E /* Icon-76.png */,
-				E6DCF9BF1C9B8D5B00C3668E /* Icon-76@2x.png */,
-				E6DCF9C01C9B8D5B00C3668E /* Icon-83.5@2x.png */,
-			);
-			path = iPhone;
-			sourceTree = "<group>";
-		};
-		E6D0A0F11C4C6B2200F43DB5 /* iWatch */ = {
-			isa = PBXGroup;
-			children = (
-				E6DCF9AE1C9B8D4800C3668E /* Icon-24@2x.png */,
-				E6DCF9AF1C9B8D4800C3668E /* Icon-27.5@2x.png */,
-				E6DCF9B01C9B8D4800C3668E /* Icon-29@2x.png */,
-				E6DCF9B11C9B8D4800C3668E /* Icon-29@3x.png */,
-				E6DCF9B21C9B8D4800C3668E /* Icon-40@2x.png */,
-				E6DCF9B31C9B8D4800C3668E /* Icon-44@2x.png */,
-				E6DCF9B41C9B8D4800C3668E /* Icon-86@2x.png */,
-				E6DCF9B51C9B8D4800C3668E /* Icon-98@2x.png */,
-			);
-			path = iWatch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -612,15 +583,12 @@
 				056C9FB21CE610D500CFCDDA /* 1463164826_centimeter.png in Resources */,
 				E6AD9D951C4C5F28004F6437 /* LaunchScreen.storyboard in Resources */,
 				E6A9C9A81CE58E0A00B2A231 /* 1463131078_shake.png in Resources */,
-				E6DCF9C31C9B8D5B00C3668E /* Icon-83.5@2x.png in Resources */,
-				E6DCF9A61C9B8D1100C3668E /* Icon-40@2x.png in Resources */,
 				05356CDA1CEB53A1007DC7C7 /* Female.png in Resources */,
 				E6A9C9A31CE58E0A00B2A231 /* 1463131074_stopwatch.png in Resources */,
+				052B458E1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@2x.png in Resources */,
 				E6A9C9921CE58E0A00B2A231 /* 1463130943_heart.png in Resources */,
 				E6A9C9AA1CE58E0A00B2A231 /* 1463131084_headphones.png in Resources */,
-				E6DCF9C21C9B8D5B00C3668E /* Icon-76@2x.png in Resources */,
 				E6A9C9A21CE58E0A00B2A231 /* 1463131071_muscle.png in Resources */,
-				E6DCF9B71C9B8D4800C3668E /* Icon-27.5@2x.png in Resources */,
 				E6AD9D921C4C5F28004F6437 /* Assets.xcassets in Resources */,
 				E6A9C9AE1CE58E0A00B2A231 /* 1463131088_ipod.png in Resources */,
 				E6A9C9A51CE58E0A00B2A231 /* 1463131076_calendar.png in Resources */,
@@ -629,26 +597,27 @@
 				051234811D14F6B200F8A24E /* 1466238314_running.png in Resources */,
 				E6A9C9A61CE58E0A00B2A231 /* 1463131077_applewatch.png in Resources */,
 				E6A9C9B11CE58E0A00B2A231 /* 1463131092_mixer.png in Resources */,
-				E6DCF9B81C9B8D4800C3668E /* Icon-29@2x.png in Resources */,
+				052B458F1D33C5BF0027E99D /* iPhone_Spotlight_iOS7-9_40pt@3x.png in Resources */,
 				05356CD71CEAEF39007DC7C7 /* 1463483897_date.png in Resources */,
 				E6A9C9991CE58E0A00B2A231 /* 1463131058_headphones.png in Resources */,
 				E6A9C9A11CE58E0A00B2A231 /* 1463131070_bottle.png in Resources */,
+				052B458B1D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@2x.png in Resources */,
 				E6A9C9A41CE58E0A00B2A231 /* 1463131075_plastic.png in Resources */,
-				E6DCF9BB1C9B8D4800C3668E /* Icon-44@2x.png in Resources */,
-				E6DCF9B61C9B8D4800C3668E /* Icon-24@2x.png in Resources */,
+				052B45881D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt@2x.png in Resources */,
 				E6A9C99A1CE58E0A00B2A231 /* 1463131060_medicine.png in Resources */,
+				052B458C1D33C5BF0027E99D /* iPhone_Settings_iOS5-9_29pt@3x.png in Resources */,
 				E6A9C9A01CE58E0A00B2A231 /* 1463131068_basketball.png in Resources */,
 				E6A9C9931CE58E0A00B2A231 /* 1463131024_notes.png in Resources */,
 				E6A9C9B01CE58E0A00B2A231 /* 1463131091_iwatch.png in Resources */,
-				E6DCF9BD1C9B8D4800C3668E /* Icon-98@2x.png in Resources */,
-				E6DCF9B91C9B8D4800C3668E /* Icon-29@3x.png in Resources */,
 				0507E68B1CEC792900923238 /* profileBackground.jpg in Resources */,
+				052B45891D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@2x.png in Resources */,
+				052B45871D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt.png in Resources */,
 				E6A9C99F1CE58E0A00B2A231 /* 1463131065_weight.png in Resources */,
 				E6A9C99E1CE58E0A00B2A231 /* 1463131064_medal.png in Resources */,
 				E6A9C99B1CE58E0A00B2A231 /* 1463131060_pages.png in Resources */,
-				E6DCF9AD1C9B8D1B00C3668E /* Icon-Small@3x.png in Resources */,
 				E6A9C99D1CE58E0A00B2A231 /* 1463131063_stopwatch.png in Resources */,
 				E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */,
+				052B458D1D33C5BF0027E99D /* iPhone_Spotlight_iOS5-6_29pt.png in Resources */,
 				E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */,
 				057946BF1CE74E790051A501 /* profileHeader.png in Resources */,
 				E6A9C99C1CE58E0A00B2A231 /* 1463131061_plastic.png in Resources */,
@@ -658,17 +627,12 @@
 				E6A9C9711CE58DF200B2A231 /* background.mov in Resources */,
 				E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */,
 				E6A9C9981CE58E0A00B2A231 /* 1463131053_capsules.png in Resources */,
-				E6DCF9A91C9B8D1100C3668E /* Icon-60@3x.png in Resources */,
-				E6DCF9AC1C9B8D1B00C3668E /* Icon-Small@2x.png in Resources */,
+				052B45931D33DA870027E99D /* logo.png in Resources */,
 				056C9FB01CE6108A00CFCDDA /* 1463164731_scale.png in Resources */,
-				E6DCF9BA1C9B8D4800C3668E /* Icon-40@2x.png in Resources */,
-				E6DCF9A71C9B8D1100C3668E /* Icon-40@3x.png in Resources */,
-				E6DCF9A81C9B8D1100C3668E /* Icon-60@2x.png in Resources */,
 				E6A9C9AB1CE58E0A00B2A231 /* 1463131085_medicine.png in Resources */,
-				E6DCF9BC1C9B8D4800C3668E /* Icon-86@2x.png in Resources */,
 				E6A9C9AF1CE58E0A00B2A231 /* 1463131089_whatch.png in Resources */,
-				E6DCF9C11C9B8D5B00C3668E /* Icon-76.png in Resources */,
 				E6A9C9951CE58E0A00B2A231 /* 1463131048_dumbbell.png in Resources */,
+				052B458A1D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@3x.png in Resources */,
 				E6A9C9A71CE58E0A00B2A231 /* 1463131078_centimeter.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
