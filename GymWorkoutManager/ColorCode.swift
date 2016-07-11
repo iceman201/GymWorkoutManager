@@ -13,4 +13,6 @@ let GWMColorPurple = UIColor(red: (95.0 / 255.0), green: (41.0 / 255.0), blue: (
 let GWMColorBlue = UIColor(red: 0, green: (122.0 / 255.0), blue: (255.0 / 255.0), alpha: 1.0)
 let GWMColorGray = UIColor(red: (255.0 / 255.0), green: (255.0 / 255.0), blue: (255.0 / 255.0), alpha: 0.6)
 
-
+let GWMPieGraphColorCardio = UIColor(red: 224.0/255.0, green: 255.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+let GWMPieGraphColorWeights = UIColor(red: 240.0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1.0)
+let GWMPieGraphColorHiit = UIColor(red: 255.0/255.0, green: 215.0/255.0, blue: 0/255.0, alpha: 1.0)

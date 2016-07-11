@@ -997,18 +997,87 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <scene sceneID="p4g-So-FEt">
             <objects>
                 <tableViewController id="AZ4-yU-AC7" customClass="AnalysisViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="312" sectionHeaderHeight="28" sectionFooterHeight="28" id="KDi-sn-qUd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="224" sectionHeaderHeight="28" sectionFooterHeight="28" id="KDi-sn-qUd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="312" id="za9-tB-qoq">
-                                <rect key="frame" x="0.0" y="28" width="414" height="312"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="graphicCell" rowHeight="224" id="za9-tB-qoq" customClass="GraphViewCell" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="224"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="za9-tB-qoq" id="yVb-rp-EGt">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="311"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="223"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tji-dj-0YB">
+                                            <rect key="frame" x="8" y="8" width="398" height="39"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="398" id="iI1-yO-YUz"/>
+                                                <constraint firstAttribute="height" constant="39" id="wty-7h-D8f"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zh3-oD-ADb">
+                                            <rect key="frame" x="246" y="55" width="160" height="160"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="160" id="4qJ-lW-VOc"/>
+                                                <constraint firstAttribute="width" constant="160" id="FgT-hG-J7W"/>
+                                            </constraints>
+                                        </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LXH-Lf-49e">
+                                            <rect key="frame" x="8" y="79" width="177" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="37" id="HOv-LB-LIa"/>
+                                                <constraint firstAttribute="width" constant="177" id="ij4-ns-58l"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0K-Aj-Kl1">
+                                            <rect key="frame" x="8" y="116" width="177" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="177" id="gvA-z9-Kbt"/>
+                                                <constraint firstAttribute="height" constant="37" id="l9u-Sg-zpR"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ezi-re-koo">
+                                            <rect key="frame" x="8" y="153" width="177" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="177" id="M0k-n0-wuf"/>
+                                                <constraint firstAttribute="height" constant="37" id="ONO-n8-Ix9"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="zh3-oD-ADb" firstAttribute="centerY" secondItem="E0K-Aj-Kl1" secondAttribute="centerY" id="Mft-7u-9Mt"/>
+                                        <constraint firstItem="zh3-oD-ADb" firstAttribute="trailing" secondItem="yVb-rp-EGt" secondAttribute="trailingMargin" id="PQ2-mV-qb8"/>
+                                        <constraint firstItem="ezi-re-koo" firstAttribute="top" secondItem="E0K-Aj-Kl1" secondAttribute="bottom" id="Sra-RB-sJf"/>
+                                        <constraint firstItem="LXH-Lf-49e" firstAttribute="leading" secondItem="yVb-rp-EGt" secondAttribute="leadingMargin" id="VZz-gV-N4L"/>
+                                        <constraint firstItem="tji-dj-0YB" firstAttribute="centerX" secondItem="yVb-rp-EGt" secondAttribute="centerX" id="awF-lm-yCU"/>
+                                        <constraint firstItem="ezi-re-koo" firstAttribute="leading" secondItem="yVb-rp-EGt" secondAttribute="leadingMargin" id="gZv-mU-Fe8"/>
+                                        <constraint firstItem="zh3-oD-ADb" firstAttribute="bottom" secondItem="yVb-rp-EGt" secondAttribute="bottomMargin" id="mFX-mP-zMs"/>
+                                        <constraint firstItem="tji-dj-0YB" firstAttribute="top" secondItem="yVb-rp-EGt" secondAttribute="topMargin" id="qkD-Ur-kmj"/>
+                                        <constraint firstItem="E0K-Aj-Kl1" firstAttribute="top" secondItem="LXH-Lf-49e" secondAttribute="bottom" id="tpN-HK-O7E"/>
+                                        <constraint firstItem="E0K-Aj-Kl1" firstAttribute="leading" secondItem="yVb-rp-EGt" secondAttribute="leadingMargin" id="u2X-nz-DYs"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cardioLabel" destination="LXH-Lf-49e" id="yh5-Vb-t5i"/>
+                                    <outlet property="graphicView" destination="zh3-oD-ADb" id="hfE-jp-TLQ"/>
+                                    <outlet property="hiitLabel" destination="ezi-re-koo" id="bbA-PO-UTq"/>
+                                    <outlet property="title" destination="tji-dj-0YB" id="HKo-Jr-xKy"/>
+                                    <outlet property="weightLabel" destination="E0K-Aj-Kl1" id="lZ0-FV-qRR"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1254,6 +1323,6 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <image name="1463483897_date.png" width="32" height="32"/>
         <image name="Female.png" width="64" height="64"/>
         <image name="Male.png" width="64" height="64"/>
-        <image name="first" width="26" height="26"/>
+        <image name="first" width="224" height="85"/>
     </resources>
 </document>
