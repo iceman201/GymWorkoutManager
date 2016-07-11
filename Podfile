@@ -2,8 +2,8 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'RealmSwift'
-pod 'EasyAnimation'
 pod 'Graphs', '~> 0.1.2'
+pod 'CircleMenu', '~> 1.0.0'
 pod 'JVFloatLabeledTextField'
 pod 'AVOSCloud' 
 pod 'AVOSCloudIM'

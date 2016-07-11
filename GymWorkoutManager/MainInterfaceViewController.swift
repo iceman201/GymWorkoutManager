@@ -92,9 +92,10 @@ class MainInterfaceViewController: UIViewController {
 
         self.moviePlayer = MPMoviePlayerController(contentURL: videoURL)
         self.moviePlayer.controlStyle = MPMovieControlStyle.None
-        self.moviePlayer.scalingMode = MPMovieScalingMode.AspectFill
+        self.moviePlayer.scalingMode = MPMovieScalingMode.AspectFit
         self.moviePlayer.view.frame = self.view.frame
         self.view .insertSubview(self.moviePlayer.view, atIndex: 0)
+        
         self.moviePlayer.play()
 
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loopVideo), name: MPMoviePlayerPlaybackDidFinishNotification, object: self.moviePlayer)

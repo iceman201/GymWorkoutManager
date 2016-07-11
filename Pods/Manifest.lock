@@ -2,8 +2,8 @@ PODS:
   - AVOSCloud (3.3.5)
   - AVOSCloudIM (3.3.5):
     - AVOSCloud
+  - CircleMenu (1.0.7)
   - CVCalendar (1.2.9)
-  - EasyAnimation (1.0.5)
   - Graphs (0.1.2)
   - JVFloatLabeledTextField (1.1.0)
   - Realm (1.0.1):
@@ -15,8 +15,8 @@ PODS:
 DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudIM
+  - CircleMenu (~> 1.0.0)
   - CVCalendar (~> 1.2.9)
-  - EasyAnimation
   - Graphs (~> 0.1.2)
   - JVFloatLabeledTextField
   - RealmSwift
@@ -24,13 +24,13 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
   AVOSCloudIM: dc307c48e951fcd861f4ae6db6d807e7b40639c8
+  CircleMenu: ddd8000fe2774497c367b8f6fcc2354a9a28f4db
   CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
-  EasyAnimation: 32821f37dd39187e7364369a3d8f65d38405cf1d
   Graphs: 08e8c2ee01dc13c96222dfd92ccb018d14748f4c
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
   RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
 
-PODFILE CHECKSUM: 4ff133d62e706cf0c237d76e86574d6c453350ee
+PODFILE CHECKSUM: 7edc283c4d9db110268313de92dd4fb6de829657
 
 COCOAPODS: 1.0.1
