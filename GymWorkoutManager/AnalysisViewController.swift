@@ -28,9 +28,6 @@ struct graphData<T: Hashable, U: NumericType> : GraphData {
 
 class AnalysisViewController: UITableViewController {
     var curentUser:Person?
-
-    
-
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -40,7 +37,7 @@ class AnalysisViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 368
+        return 223
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -49,15 +46,31 @@ class AnalysisViewController: UITableViewController {
         }
         
         let data = [
-            graphData(key: "Cardio", value: curentUser?.getPercentageOfWorkout("0") ?? 0.0),
-            graphData(key: "Weights", value: curentUser?.getPercentageOfWorkout("1") ?? 0.0),
-            graphData(key: "Hiit", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)
+            //Cardio
+            graphData(key: "", value: curentUser?.getPercentageOfWorkout("0") ?? 0.0),
+            
+            //Weights
+            graphData(key: "", value: curentUser?.getPercentageOfWorkout("1") ?? 0.0),
+            
+            //Hiit
+            graphData(key: "", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)
         ]
         
         let view = data.pieGraph() { (unit, totalValue) -> String? in
             return unit.key! + "\n" + String(format: "%.0f%%", unit.value / totalValue * 100.0)
             }.view(cell.graphicView.bounds)
- 
+        
+        view.pieGraphConfiguration{
+            PieGraphViewConfig(textFont: UIFont(name: "DINCondensed-Bold", size: 14.0), isDounut: true, contentInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
+                pieColors: [
+                    GWMPieGraphColorCardio,
+                    GWMPieGraphColorWeights,
+                    GWMPieGraphColorHiit
+                ],
+                textColor: UIColor(red: 119.0/255.0, green: 136.0/255.0, blue: 153.0/255.0, alpha: 1.0)
+            )
+        }
+    
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         cell.title.text = "Proportion of Workout"
         cell.graphicView.addSubview(view)
@@ -71,7 +84,7 @@ class AnalysisViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = "Analysis"
         self.tableView.backgroundColor = GWMColorBackground
-        self.tableView.separatorColor = GWMColorYellow
+        self.tableView.separatorColor = UIColor.clearColor()
         self.tableView.delegate = self
     }
     override func viewWillAppear(animated: Bool) {
