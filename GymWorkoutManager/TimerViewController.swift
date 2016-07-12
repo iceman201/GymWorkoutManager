@@ -69,6 +69,12 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     
     @objc private func claimRecord(sender: AnyObject) {
         //TODO: claim with workout type
+        guard workoutType.selectedSegmentIndex != -1 else {
+            let alert = UIAlertController(title: "oops!", message: "Please select which exercise you have done.", preferredStyle: .Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            return
+        }
         let alert = UIAlertController(title: "Record Claim", message: "Which execirse you did today", preferredStyle: .Alert)
 
         alert.addTextFieldWithConfigurationHandler { (textField) in
@@ -154,7 +160,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     // MARK: - View
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.topItem?.title = "HIIT Timer"
+        self.navigationController?.navigationBar.topItem?.title = "Timer"
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Claim", style: .Plain, target: self, action: #selector(claimRecord))
 
         startButton.layer.cornerRadius = 16

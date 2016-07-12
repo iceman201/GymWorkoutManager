@@ -132,7 +132,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     private func profilePictureStyleSheet() {
-        profilePicture.layer.borderWidth = 3
+        profilePicture.layer.borderWidth = 1
         profilePicture.backgroundColor = GWMColorPurple
         profilePicture.layer.shadowColor = UIColor.blackColor().CGColor
         profilePicture.layer.shadowOffset = CGSize(width: 0, height: 0)

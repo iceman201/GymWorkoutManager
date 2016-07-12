@@ -80,7 +80,7 @@ class RecordViewController: UITableViewController {
             recordCell.accessoryView = image
             recordCell.textLabel?.text = "[\(eachExercise.date)] \(eachExercise.exerciseName)"
             recordCell.detailTextLabel?.text = "   \(eachExercise.set) Sets - \(eachExercise.reps) Reps"
-            recordCell.textLabel?.numberOfLines = totalRecord[indexPath.row].characters.count
+            recordCell.textLabel?.numberOfLines = 0
             return recordCell
         }
     }
@@ -133,7 +133,7 @@ class RecordViewController: UITableViewController {
         tableView.dataSource = self
         self.view.backgroundColor = GWMColorYellow
         
-        self.navigationController?.navigationBar.topItem?.title = "Records"
+        self.navigationController?.navigationBar.topItem?.title = "Report"
         self.edgesForExtendedLayout=UIRectEdge.None
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
