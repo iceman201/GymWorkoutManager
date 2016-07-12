@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0730"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5FAACBAC9311E33406B0A9021FA7CE4C"
-               BuildableName = "Pods_GymWorkoutManagerUITests.framework"
-               BlueprintName = "Pods-GymWorkoutManagerUITests"
+               BlueprintIdentifier = "D9D31A7ECD48D53E170B20BA419477B9"
+               BuildableName = "Graphs.framework"
+               BlueprintName = "Graphs"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5FAACBAC9311E33406B0A9021FA7CE4C"
-            BuildableName = "Pods_GymWorkoutManagerUITests.framework"
-            BlueprintName = "Pods-GymWorkoutManagerUITests"
+            BlueprintIdentifier = "D9D31A7ECD48D53E170B20BA419477B9"
+            BuildableName = "Graphs.framework"
+            BlueprintName = "Graphs"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,6 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "D9D31A7ECD48D53E170B20BA419477B9"
+            BuildableName = "Graphs.framework"
+            BlueprintName = "Graphs"
+            ReferencedContainer = "container:Pods.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

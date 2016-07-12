@@ -8,97 +8,22 @@
 
 import UIKit
 import MediaPlayer
+import CircleMenu
 
-class MainInterfaceViewController: UIViewController {
+class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     // MARK: - Variables
     var moviePlayer: MPMoviePlayerController!
-    
-    // MARK: - IBOutlet
-    @IBOutlet var logo: UIImageView!
 
-    
-    @IBAction func timerButtonAnimation(sender: AnyObject) {
-        UIView.animateWithDuration(1, animations: {
-            if let button = sender as? SpringButton {
-                button.animation = "pop"
-                button.curve = "easeInOut"
-                button.duration = 1
-                button.scaleX = 2.7
-                button.scaleY = 2.7
-                button.damping = 1.0
-                button.animate()
-            }
-            }) { (done) in
-                self.performSegueWithIdentifier("timer", sender: sender)
-        }
-    }
-    
-    @IBAction func recordButtonAnimation(sender: AnyObject) {
-        UIView.animateWithDuration(1.5, animations: {
-            if let button = sender as? SpringButton {
-                button.animation = "wobble"
-                button.curve = "spring"
-                button.force = 1.2
-                button.scaleX = 3.0
-                button.scaleY = 3.0
-                button.duration = 1.5
-                button.animate()
-            }
-        }) { (done) in
-            self.performSegueWithIdentifier("record", sender: sender)
-        }
-    }
-    
-    @IBAction func profileButtonAnimation(sender: AnyObject) {
-        UIView.animateWithDuration(1, animations: {
-            if let button = sender as? SpringButton {
-                button.animation = "morph"
-                button.curve = "easeInOut"
-                button.duration = 1
-                button.scaleX = 2.0
-                button.scaleY = 2.0
-                button.animate()
-            }
-            }) { (Done) in
-                self.performSegueWithIdentifier("profile", sender: sender)
-        }
-    }
-    
-    @IBAction func analysisButtonAnimation(sender: AnyObject) {
-        UIView.animateWithDuration(1, animations: {
-            if let button = sender as? SpringButton {
-                button.animation = "swing"
-                button.curve = "easeIn"
-                button.duration = 1.0
-                button.scaleX = -3.0
-                button.scaleY = -3.0
-                button.damping = 0.3
-                button.velocity = 1.0
-                button.animate()
-            }
-        }) { (done) in
-            self.performSegueWithIdentifier("analysis", sender: sender)
-        }
-    }
-    
-    @objc private func loopVideo() {
-        self.moviePlayer.play()
-    }
+    let items: [(icon: String, color: UIColor)] = [
+        ("icon_timer", GWMColorBlue),
+        ("icon_record", GWMColorGreen),
+        ("icon-profile", GWMColorRed),
+        ("icon-analysis", UIColor.whiteColor()),
+        ]
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        let videoURL: NSURL = NSBundle.mainBundle().URLForResource("background", withExtension: "mov")!
-
-        self.moviePlayer = MPMoviePlayerController(contentURL: videoURL)
-        self.moviePlayer.controlStyle = MPMovieControlStyle.None
-        self.moviePlayer.scalingMode = MPMovieScalingMode.AspectFit
-        self.moviePlayer.view.frame = self.view.frame
-        self.view .insertSubview(self.moviePlayer.view, atIndex: 0)
-        
-        self.moviePlayer.play()
-
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(loopVideo), name: MPMoviePlayerPlaybackDidFinishNotification, object: self.moviePlayer)
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -119,5 +44,37 @@ class MainInterfaceViewController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    }
+    
+    // MARK: <CircleMenuDelegate>
+    
+    func circleMenu(circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
+        button.backgroundColor = items[atIndex].color
+        button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
+        
+        // set highlited image
+        let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
+        button.setImage(highlightedImage, forState: .Highlighted)
+        button.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
+    }
+/*
+    func circleMenu(circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
+        print("button will selected: \(atIndex)")
+    }
+*/
+    func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
+        switch atIndex {
+        case 0:
+            self.performSegueWithIdentifier("timer", sender: self)
+        case 1:
+            self.performSegueWithIdentifier("record", sender: self)
+        case 2:
+            self.performSegueWithIdentifier("profile", sender: self)
+        case 3:
+            self.performSegueWithIdentifier("analysis", sender: self)
+        
+        default:
+            break
+        }
     }
 }
