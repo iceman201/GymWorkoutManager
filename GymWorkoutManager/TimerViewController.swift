@@ -98,12 +98,15 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
             guard let localUser = self.curentUser else {
                 return
             }
+            if repsTextField.text == "" {
+                repsTextField.text = "0"
+            }
             
             DatabaseHelper.sharedInstance.beginTransaction()
-            newExecrise.set = self.startRound ?? "None"
+            newExecrise.set = self.startRound ?? "0"
             newExecrise.times = self.totalWorkoutTimer.text ?? "None"
-            newExecrise.reps = repsTextField.text ?? ""
-            newExecrise.exerciseName = execriseNameTextField.text ?? ""
+            newExecrise.reps = repsTextField.text ?? "0"
+            newExecrise.exerciseName = execriseNameTextField.text ?? "None"
             newExecrise.date = self.getDate()
             newExecrise.workoutType = self.workoutType.selectedSegmentIndex
             localUser.exercise.append(newExecrise)

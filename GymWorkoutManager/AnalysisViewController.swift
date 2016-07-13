@@ -73,10 +73,17 @@ class AnalysisViewController: UITableViewController {
     
         view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
         cell.title.text = "Proportion of Workout"
-        cell.graphicView.addSubview(view)
         cell.backgroundColor = UIColor.clearColor()
         cell.selectionStyle = .None
+
+        for each in data {
+            guard !each._value.isNaN else {
+                return cell
+            }
+        }
         
+        
+        cell.graphicView.addSubview(view)
         return cell
     }
     
