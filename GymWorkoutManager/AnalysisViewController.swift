@@ -108,33 +108,36 @@ class AnalysisViewController: UITableViewController {
             calendarComponents.minute = 0
             calendarComponents.second = 0
             cal.timeZone = timeZone
+
             /*
+             
             let week = []
             
             let view = [8, 12, 20, -10, 6, 20, -11, 9, 12, 16, -10, 6, 20, -12].lineGraph().view(cell.graphView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: UIColor(hex: "#ff6699"), contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
             view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             cell.graphView.addSubview(view)
             */
-            
-            
-            if let midnightOfToday = cal.dateFromComponents(calendarComponents) {
-            
-                if CMPedometer.isStepCountingAvailable() {
-                 //   let startDate = NSDate(timeIntervalSinceNow: -86400 * 7)
-                    let startDate = NSDate(dateString: "2015-07-01")
-                    let endDate = NSDate(dateString: "2016-06-01")
-                    self.pedoMeter.queryPedometerDataFromDate(startDate, toDate: endDate, withHandler: { (CMPData: CMPedometerData?, error:NSError?) in
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            if let data = CMPData {
-                                cell.numberSteps.text = "\(data.numberOfSteps)"
-                            }
-                        })
-                    })
-                }
-            }
             return cell
         }
     }
+    /*
+    
+    func getPedometer(startDay: String, endDay: String) -> Int {
+        if CMPedometer.isStepCountingAvailable() {
+            //   let startDate = NSDate(timeIntervalSinceNow: -86400 * 7)
+            let startDate = NSDate(dateString: startDay)
+            let endDate = NSDate(dateString: endDay)
+            self.pedoMeter.queryPedometerDataFromDate(startDate, toDate: endDate, withHandler: { (CMPData: CMPedometerData?, error:NSError?) in
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    if let data = CMPData {
+                        return data.numberOfSteps
+                    }
+                })
+            })
+        }
+    }*/
+    
+    
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
     }
