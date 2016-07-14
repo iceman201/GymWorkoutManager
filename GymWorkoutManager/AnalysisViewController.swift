@@ -99,30 +99,28 @@ class AnalysisViewController: UITableViewController {
                 return UITableViewCell()
             }
             
-            let cal = NSCalendar.currentCalendar()
-            let now = NSDate()
-            let calendarComponents = cal.components([NSCalendarUnit.Month, NSCalendarUnit.Day, NSCalendarUnit.Year], fromDate: now)
-            let timeZone = NSTimeZone.systemTimeZone()
-            calendarComponents.hour = 0
-            calendarComponents.minute = 0
-            calendarComponents.second = 0
-            cal.timeZone = timeZone
+            if CMPedometer.isStepCountingAvailable() {
+                self.pedoMeter.queryPedometerDataFromDate(NSDate().dateByAddingTimeInterval(-604800.0), toDate: NSDate(), withHandler: { (CMPData: CMPedometerData?, errors:NSError?) in
+                    guard errors == nil else {
+                        return
+                    }
+                    if let data = CMPData {
+                        cell.numberSteps.text = "\(data.numberOfSteps)"
+                    }
+                })
+
+                
+            }
             
-            print(arrageSteps())
-            
-            /*
-             
-            let week = []
-            
-            let view = [8, 12, 20, -10, 6, 20, -11, 9, 12, 16, -10, 6, 20, -12].lineGraph().view(cell.graphView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: UIColor(hex: "#ff6699"), contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
+            let view = result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: UIColor(hex: "#ff6699"), contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
             view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            cell.graphView.addSubview(view)
-            */
+            cell.graphicView.addSubview(view)
+
             return cell
         }
     }
     
-    func arrageSteps() -> [Int]{
+    func arrageSteps(){
         let today = NSDate()
         let one = today.dateByAddingTimeInterval(-604800.0)
         let two = today.dateByAddingTimeInterval(-518400.0)
@@ -132,7 +130,6 @@ class AnalysisViewController: UITableViewController {
         let six = today.dateByAddingTimeInterval(-172800.0)
         let seven = today.dateByAddingTimeInterval(-86400.0)
         
-        
         self.getPedometer(one, endDay: two)
         self.getPedometer(two, endDay: three)
         self.getPedometer(three, endDay: four)
@@ -140,23 +137,17 @@ class AnalysisViewController: UITableViewController {
         self.getPedometer(five, endDay: six)
         self.getPedometer(six, endDay: seven)
         self.getPedometer(seven, endDay: today)
-        
-        return result
     }
     
     
     func getPedometer(startDay: NSDate, endDay: NSDate) {
         if CMPedometer.isStepCountingAvailable() {
-            //   let startDate = NSDate(timeIntervalSinceNow: -86400 * 7)
-            //let startDate = NSDate(dateString: startDay)
-            //let endDate = NSDate(dateString: endDay)
             self.pedoMeter.queryPedometerDataFromDate(startDay, toDate: endDay, withHandler: { (CMPData: CMPedometerData?, errors:NSError?) in
                 guard errors == nil else {
                     return
                 }
                 if let data = CMPData {
                     self.result.append(data.numberOfSteps.integerValue)
-                    dispatch_main()
                 }
             })
         } else {
@@ -179,13 +170,12 @@ class AnalysisViewController: UITableViewController {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        arrageSteps()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         curentUser = cusers?.first
         if curentUser == nil {
             curentUser = Person()
         }
-//        print(curentUser?.effectiveIndex)
     }
 
     override func didReceiveMemoryWarning() {

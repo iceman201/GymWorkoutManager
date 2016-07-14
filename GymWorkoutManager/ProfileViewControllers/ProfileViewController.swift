@@ -22,6 +22,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var maleButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
 
+    //@IBOutlet weak var backgroundScrollView: UIScrollView!
+    
     // MARK: - Variables
     var curentUser:Person?
     
@@ -193,7 +195,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         profilePictureStyleSheet()
         navigationControllerStyleSheet()
         textFieldStyleSheet()
-        
+        //backgroundScrollView.contentSize.height = 2500
         let backgroundImage = resizeToAspectFit(self.view.frame.size,bounds: self.view.bounds, sourceImage: UIImage(named: "profileBackground.jpg")!)
         self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         let image = resizeToAspectFit(headerView.frame.size,bounds: headerView.bounds, sourceImage: UIImage(named: "profileHeader.png")!)

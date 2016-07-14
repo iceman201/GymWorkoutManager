@@ -10,6 +10,7 @@ import UIKit
 
 class PedmeterViewCell: UITableViewCell {
     
+    @IBOutlet weak var graphicView: UIImageView!
     @IBOutlet var numberSteps: UILabel!
     @IBOutlet var stepsLabel: UILabel!
     

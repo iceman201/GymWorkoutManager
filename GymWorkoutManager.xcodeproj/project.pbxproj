@@ -117,6 +117,7 @@
 		05CD29501D34EA2300776B39 /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
 		05CD29511D34EA2300776B39 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		05CD29521D34EA2300776B39 /* SetPlanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPlanViewController.swift; sourceTree = "<group>"; };
+		05F797CD1D37746800B5FEA6 /* developerfile.developerprofile */ = {isa = PBXFileReference; lastKnownFileType = file; path = developerfile.developerprofile; sourceTree = "<group>"; };
 		12EE2FEC1CEF7DFF00F7178F /* GymWorkoutManager-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GymWorkoutManager-Bridging-Header.h"; sourceTree = "<group>"; };
 		151C6D5841126256237D54E1 /* Pods-GymWorkoutManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManager.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManager/Pods-GymWorkoutManager.debug.xcconfig"; sourceTree = "<group>"; };
 		47700E3BFFE0AE7F135B2C4F /* Pods-GymWorkoutManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManager.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManager/Pods-GymWorkoutManager.release.xcconfig"; sourceTree = "<group>"; };
@@ -307,6 +308,7 @@
 		E6AD9D871C4C5F28004F6437 /* GymWorkoutManager */ = {
 			isa = PBXGroup;
 			children = (
+				05F797CD1D37746800B5FEA6 /* developerfile.developerprofile */,
 				05CD293F1D34E95200776B39 /* Model */,
 				05CD29341D34E93C00776B39 /* View */,
 				051F4C3B1C9C008A004EA632 /* ViewControllers */,
