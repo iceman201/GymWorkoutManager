@@ -21,6 +21,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet var bodyHeight: JVFloatLabeledTextField!
     @IBOutlet weak var maleButton: UIButton!
     @IBOutlet weak var femaleButton: UIButton!
+    @IBOutlet weak var viewForAdaptForKeyboard: UIView!
+    
+    var tapRecognizer: UITapGestureRecognizer? = nil
 
     //@IBOutlet weak var backgroundScrollView: UIScrollView!
     
@@ -76,6 +79,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
+        
+        self.removeKeyboardDismissRecognizer()
+        self.unsubscribeToKeyboardNotifications()
+        
         DatabaseHelper.sharedInstance.beginTransaction()
         curentUser?.name = name.text ?? ""
         curentUser?.age = Int(age.text ?? "0") ?? 0
@@ -87,6 +94,9 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             curentUser!.id = NSUUID.init().UUIDString
             DatabaseHelper.sharedInstance.insert(curentUser!)
         }
+        
+        viewForAdaptForKeyboard.frame.origin.y = 0
+        
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -173,18 +183,39 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         name.layer.addSublayer(setLayer(name))
         name.textColor = UIColor.whiteColor()
         name.layer.masksToBounds = true
+        name.delegate = self
         
         bodyWeight.layer.addSublayer(setLayer(bodyWeight))
         bodyWeight.textColor = UIColor.whiteColor()
         bodyWeight.layer.masksToBounds = true
+        bodyWeight.delegate = self
         
         bodyHeight.layer.addSublayer(setLayer(bodyHeight))
         bodyHeight.textColor = UIColor.whiteColor()
         bodyHeight.layer.masksToBounds = true
+        bodyHeight.delegate = self
         
         age.layer.addSublayer(setLayer(age))
         age.textColor = UIColor.whiteColor()
         age.layer.masksToBounds = true
+        age.delegate = self
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        print("text filed shold return")
+        
+        if name.isFirstResponder() {
+            age.becomeFirstResponder()
+        }else if age.isFirstResponder(){
+            bodyHeight.becomeFirstResponder()
+        }else if bodyHeight.isFirstResponder(){
+            bodyWeight.becomeFirstResponder()
+        }else{
+            view.endEditing(true)
+        }
+        
+        return true
     }
     
     
@@ -200,9 +231,19 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.view.backgroundColor = UIColor(patternImage: backgroundImage)
         let image = resizeToAspectFit(headerView.frame.size,bounds: headerView.bounds, sourceImage: UIImage(named: "profileHeader.png")!)
         self.headerView.backgroundColor = UIColor(patternImage: image)
+        
+        /* Configure tap recognizer */
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.handleSingleTap(_:)))
+        tapRecognizer?.numberOfTapsRequired = 1
+        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.addKeyboardDismissRecognizer()
+        self.subscribeToKeyboardNotifications()
+        
+        
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         self.navigationController?.navigationBar.topItem?.title = "Profile"
         curentUser = cusers?.first
@@ -236,6 +277,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             DatabaseHelper.sharedInstance.commitTransaction()
         }
         
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -243,4 +285,52 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+// MARK: - ProfileViewController (Show/Hide Keyboard)
+
+extension ProfileViewController {
+    
+    func addKeyboardDismissRecognizer() {
+        print("add keyboard dissmiss recognizer")
+        view.addGestureRecognizer(tapRecognizer!)
+    }
+    
+    func removeKeyboardDismissRecognizer() {
+        view.removeGestureRecognizer(tapRecognizer!)
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        print("handle sigle tap")
+        view.endEditing(true)
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        print("keyboard will show")
+        print("height is " + String(getKeyboardHeight(notification)/2))
+        if(view.frame.origin.y == 0.0){
+            view.frame.origin.y -= getKeyboardHeight(notification) / 2
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        print("keyboard will hide")
+        view.frame.origin.y = 0.0
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
+    }
 }
