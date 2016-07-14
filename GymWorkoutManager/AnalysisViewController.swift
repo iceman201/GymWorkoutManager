@@ -45,7 +45,7 @@ class AnalysisViewController: UITableViewController {
         if indexPath.section == 0 {
             return 223
         } else {
-            return 258
+            return 370
         }
     }
     

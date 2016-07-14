@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="WXI-jj-Jc6">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -950,7 +950,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <scene sceneID="p4g-So-FEt">
             <objects>
                 <tableViewController id="AZ4-yU-AC7" customClass="AnalysisViewController" customModule="GymWorkoutManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="224" sectionHeaderHeight="28" sectionFooterHeight="28" id="KDi-sn-qUd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="224" sectionHeaderHeight="28" sectionFooterHeight="28" id="KDi-sn-qUd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -959,7 +959,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="28" width="414" height="224"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="za9-tB-qoq" id="yVb-rp-EGt">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="223"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tji-dj-0YB">
@@ -1032,50 +1032,47 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <outlet property="weightLabel" destination="E0K-Aj-Kl1" id="lZ0-FV-qRR"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pedmeterCell" rowHeight="258" id="09B-wb-rkt" customClass="PedmeterViewCell" customModule="GymWorkoutManager" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="252" width="414" height="258"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="pedmeterCell" rowHeight="370" id="09B-wb-rkt" customClass="PedmeterViewCell" customModule="GymWorkoutManager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="252" width="414" height="370"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09B-wb-rkt" id="2ha-Hp-dCs">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="369"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhC-fK-nCq">
-                                            <rect key="frame" x="153" y="13" width="48" height="21"/>
+                                            <rect key="frame" x="15" y="13" width="186" height="69"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="48" id="2n7-Hl-0Gv"/>
-                                                <constraint firstAttribute="height" constant="21" id="i4z-R5-huG"/>
+                                                <constraint firstAttribute="height" constant="69" id="825-iB-IK0"/>
+                                                <constraint firstAttribute="width" constant="186" id="BRC-a4-icp"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tq0-N2-hSq">
-                                            <rect key="frame" x="8" y="42" width="398" height="207"/>
+                                            <rect key="frame" x="8" y="123" width="398" height="238"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="398" id="Tve-lh-Pcz"/>
-                                                <constraint firstAttribute="height" constant="207" id="Xyq-5H-Yb0"/>
+                                                <constraint firstAttribute="height" constant="238" id="Xyq-5H-Yb0"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps in last 5 days" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L32-AW-V5Q">
-                                            <rect key="frame" x="209" y="13" width="148" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps in last 7 days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L32-AW-V5Q">
+                                            <rect key="frame" x="209" y="49" width="197" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="JkE-UK-rRO"/>
-                                                <constraint firstAttribute="width" constant="148" id="moO-C3-A7D"/>
+                                                <constraint firstAttribute="height" constant="33" id="P7a-Te-isl"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" constant="5" id="Qel-hc-y1L"/>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="bottom" secondItem="lhC-fK-nCq" secondAttribute="bottom" id="RLb-qF-qti"/>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="centerY" secondItem="lhC-fK-nCq" secondAttribute="centerY" id="UeA-Mg-VLQ"/>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="leading" secondItem="lhC-fK-nCq" secondAttribute="trailing" constant="8" id="UvA-My-SaW"/>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="top" secondItem="lhC-fK-nCq" secondAttribute="top" id="WOe-8u-uMg"/>
+                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="bottom" secondItem="lhC-fK-nCq" secondAttribute="bottom" id="FRI-hD-xCs"/>
+                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="trailing" secondItem="2ha-Hp-dCs" secondAttribute="trailingMargin" id="FuO-ON-X3h"/>
                                         <constraint firstItem="tq0-N2-hSq" firstAttribute="bottom" secondItem="2ha-Hp-dCs" secondAttribute="bottomMargin" id="bV1-UI-bYF"/>
-                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" constant="5" id="duW-cA-F3r"/>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="centerX" secondItem="2ha-Hp-dCs" secondAttribute="centerX" constant="76" id="hai-CW-bMI"/>
+                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="leading" secondItem="2ha-Hp-dCs" secondAttribute="leadingMargin" constant="7" id="fQV-gK-BD1"/>
+                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="leading" secondItem="lhC-fK-nCq" secondAttribute="trailing" constant="8" id="g3S-aX-PHX"/>
+                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" constant="5" id="idW-t0-VPW"/>
                                         <constraint firstItem="tq0-N2-hSq" firstAttribute="centerX" secondItem="2ha-Hp-dCs" secondAttribute="centerX" id="nMf-zf-avM"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -1114,7 +1111,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="92" width="414" height="159"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="159"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actived Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TW7-ho-klW">
@@ -1271,18 +1268,18 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="251" width="414" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="53"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lhu-eK-hrr">
-                                            <rect key="frame" x="15" y="9" width="35.5" height="21.5"/>
+                                            <rect key="frame" x="15" y="8" width="36" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L4P-fX-rVZ">
-                                            <rect key="frame" x="15" y="30.5" width="44" height="14.5"/>
+                                            <rect key="frame" x="15" y="30" width="44" height="15"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
