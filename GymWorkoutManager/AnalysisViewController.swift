@@ -32,9 +32,8 @@ class AnalysisViewController: UITableViewController {
     
     let activityManager = CMMotionActivityManager()
     let pedoMeter = CMPedometer()
-    
+    var result : [Int] = []
     var days:[String] = []
-    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -85,7 +84,7 @@ class AnalysisViewController: UITableViewController {
             view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             cell.title.text = "Proportion of Workout"
             
-            cell.selectionStyle = .None
+            
 
             for each in data {
                 guard !each._value.isNaN else {
@@ -108,7 +107,9 @@ class AnalysisViewController: UITableViewController {
             calendarComponents.minute = 0
             calendarComponents.second = 0
             cal.timeZone = timeZone
-
+            
+            print(arrageSteps())
+            
             /*
              
             let week = []
@@ -120,26 +121,53 @@ class AnalysisViewController: UITableViewController {
             return cell
         }
     }
-    /*
     
-    func getPedometer(startDay: String, endDay: String) -> Int {
+    func arrageSteps() -> [Int]{
+        let today = NSDate()
+        let one = today.dateByAddingTimeInterval(-604800.0)
+        let two = today.dateByAddingTimeInterval(-518400.0)
+        let three = today.dateByAddingTimeInterval(-432000.0)
+        let four = today.dateByAddingTimeInterval(-345600.0)
+        let five = today.dateByAddingTimeInterval(-259200.0)
+        let six = today.dateByAddingTimeInterval(-172800.0)
+        let seven = today.dateByAddingTimeInterval(-86400.0)
+        
+        
+        self.getPedometer(one, endDay: two)
+        self.getPedometer(two, endDay: three)
+        self.getPedometer(three, endDay: four)
+        self.getPedometer(four, endDay: five)
+        self.getPedometer(five, endDay: six)
+        self.getPedometer(six, endDay: seven)
+        self.getPedometer(seven, endDay: today)
+        
+        return result
+    }
+    
+    
+    func getPedometer(startDay: NSDate, endDay: NSDate) {
         if CMPedometer.isStepCountingAvailable() {
             //   let startDate = NSDate(timeIntervalSinceNow: -86400 * 7)
-            let startDate = NSDate(dateString: startDay)
-            let endDate = NSDate(dateString: endDay)
-            self.pedoMeter.queryPedometerDataFromDate(startDate, toDate: endDate, withHandler: { (CMPData: CMPedometerData?, error:NSError?) in
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    if let data = CMPData {
-                        return data.numberOfSteps
-                    }
-                })
+            //let startDate = NSDate(dateString: startDay)
+            //let endDate = NSDate(dateString: endDay)
+            self.pedoMeter.queryPedometerDataFromDate(startDay, toDate: endDay, withHandler: { (CMPData: CMPedometerData?, errors:NSError?) in
+                guard errors == nil else {
+                    return
+                }
+                if let data = CMPData {
+                    self.result.append(data.numberOfSteps.integerValue)
+                    dispatch_main()
+                }
             })
+        } else {
+            self.result.append(0)
         }
-    }*/
+    }
     
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
+        cell.selectionStyle = .None
     }
     
     override func viewDidLoad() {
@@ -157,7 +185,7 @@ class AnalysisViewController: UITableViewController {
         if curentUser == nil {
             curentUser = Person()
         }
-        print(curentUser?.effectiveIndex)
+//        print(curentUser?.effectiveIndex)
     }
 
     override func didReceiveMemoryWarning() {

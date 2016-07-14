@@ -1310,7 +1310,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <image name="1463483897_date.png" width="32" height="32"/>
         <image name="Female.png" width="64" height="64"/>
         <image name="Male.png" width="64" height="64"/>
-        <image name="first" width="256" height="256"/>
+        <image name="first" width="1024" height="768"/>
         <image name="icon_close" width="128" height="128"/>
         <image name="icon_menu" width="128" height="128"/>
     </resources>
