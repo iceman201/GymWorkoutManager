@@ -100,60 +100,42 @@ class AnalysisViewController: UITableViewController {
             }
             
             if CMPedometer.isStepCountingAvailable() {
-                self.pedoMeter.queryPedometerDataFromDate(NSDate().dateByAddingTimeInterval(-604800.0), toDate: NSDate(), withHandler: { (CMPData: CMPedometerData?, errors:NSError?) in
-                    guard errors == nil else {
-                        return
-                    }
-                    if let data = CMPData {
-                        cell.numberSteps.text = "\(data.numberOfSteps)"
+                let serialQueue : dispatch_queue_t  = dispatch_queue_create("com.pedometer.MyQueue", nil)
+                
+                let formatter = NSDateFormatter()
+                formatter.dateFormat = "d MMM"
+                dispatch_sync(serialQueue, { () -> Void in
+                    for day in 0...6 {
+                        let fromDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
+                        let toDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
+                        let dateString = formatter.stringFromDate(toDate)
+                        self.pedoMeter.queryPedometerDataFromDate(fromDate, toDate: toDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
+                            guard let data = CMData else {
+                                return
+                            }
+                            cell.numberSteps.text = "\(data.numberOfSteps)"
+                            self.days.append(dateString)
+                            self.result.append(data.numberOfSteps.integerValue)
+                            if(self.days.count == 7){
+                                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
+                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
+                                    view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+                                    cell.graphicView.addSubview(view)
+                                })
+                            }
+                            
+                        }
                     }
                 })
-
-                
             }
-            
-            let view = result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: UIColor(hex: "#ff6699"), contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
-            view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
-            cell.graphicView.addSubview(view)
-
             return cell
         }
     }
     
-    func arrageSteps(){
-        let today = NSDate()
-        let one = today.dateByAddingTimeInterval(-604800.0)
-        let two = today.dateByAddingTimeInterval(-518400.0)
-        let three = today.dateByAddingTimeInterval(-432000.0)
-        let four = today.dateByAddingTimeInterval(-345600.0)
-        let five = today.dateByAddingTimeInterval(-259200.0)
-        let six = today.dateByAddingTimeInterval(-172800.0)
-        let seven = today.dateByAddingTimeInterval(-86400.0)
-        
-        self.getPedometer(one, endDay: two)
-        self.getPedometer(two, endDay: three)
-        self.getPedometer(three, endDay: four)
-        self.getPedometer(four, endDay: five)
-        self.getPedometer(five, endDay: six)
-        self.getPedometer(six, endDay: seven)
-        self.getPedometer(seven, endDay: today)
+    func getDataForLastWeek() {
+
     }
     
-    
-    func getPedometer(startDay: NSDate, endDay: NSDate) {
-        if CMPedometer.isStepCountingAvailable() {
-            self.pedoMeter.queryPedometerDataFromDate(startDay, toDate: endDay, withHandler: { (CMPData: CMPedometerData?, errors:NSError?) in
-                guard errors == nil else {
-                    return
-                }
-                if let data = CMPData {
-                    self.result.append(data.numberOfSteps.integerValue)
-                }
-            })
-        } else {
-            self.result.append(0)
-        }
-    }
     
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
@@ -170,7 +152,7 @@ class AnalysisViewController: UITableViewController {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        arrageSteps()
+
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         curentUser = cusers?.first
         if curentUser == nil {
