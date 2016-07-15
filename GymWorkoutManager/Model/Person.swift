@@ -42,19 +42,16 @@ class Person: Object {
                 if eachExercise.workoutType == 0 {
                     result += 1
                     if totalSeconds >= 3600 {
-                        //If runner run for an hour or more which means it's absolute effective
-                        result = 10
+                        result = 10 //If runner run for an hour or more which means it's absolute effective
                     } else if totalSeconds < 2400 {
-                        //if runner run less than 40 mins, body fat wont burn much
-                        result = 5
+                        result = 5 //if runner run less than 40 mins, body fat wont burn much
                     }
                 } else if eachExercise.workoutType == 1 {
                     hasWeightTraining = true
                     reps.append(Int(eachExercise.reps) ?? 0)
                     sets.append(Int(eachExercise.set) ?? 0)
                     if totalSeconds >= 1800 {
-                        // weight training should be more than 30mins at lease
-                        result = 1
+                        result = 1 // weight training should be more than 30mins at lease
                     }
                 } else if eachExercise.workoutType == 2 {
                     if totalSeconds >= 225 {
@@ -67,10 +64,8 @@ class Person: Object {
                 }
             }
             if hasWeightTraining {
-                
                 let averageReps = reps.reduce(0, combine: +)/reps.count
                 let averageSets = sets.reduce(0, combine: +)/sets.count
-            
                 if averageReps >= 8 && averageReps <= 16 {
                     if averageSets > 3 && averageSets <= 5 {
                         result += 1
