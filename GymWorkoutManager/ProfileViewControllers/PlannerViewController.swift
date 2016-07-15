@@ -21,7 +21,6 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
     var selectedDay:String?
     var results :Results<(Plan)>?
 
-    
     @IBAction func leftPageTurning(sender: AnyObject) {
         calendarView.loadPreviousView()
     }
@@ -36,6 +35,7 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
         setPlan.tintColor = GWMColorYellow
         selectedDay = calendarView.presentedDate.commonDescription
     }
+    
     func dayLabelWeekdayInTextColor() -> UIColor {
         return UIColor.whiteColor()
     }
@@ -75,22 +75,22 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "setPlan" {
-            let destinationVC = segue.destinationViewController as! SetPlanViewController
-            if let selectedDay = selectedDay {
+            
+            if let destinationVC = segue.destinationViewController as? SetPlanViewController,
+                let selectedDay = selectedDay {
                 destinationVC.updateplan = nil
-                if let results = results{
-                    for result in results {
-                        if selectedDay == result.date {
-                            destinationVC.updateplan = result
-                        }
+                guard let results = results else {
+                    return
+                }
+                for result in results {
+                    if selectedDay == result.date {
+                        destinationVC.updateplan = result
                     }
                 }
                 destinationVC.date = selectedDay
             }
         }
     }
-    
-
 }
 
 //MARK: Implemente of CAValendarViewDelegate
