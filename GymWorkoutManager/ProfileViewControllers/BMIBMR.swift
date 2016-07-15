@@ -86,11 +86,9 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
     }
     
     private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{
-        //Harris Benedict Method
-        /*BMR Men: BMR = 66.5 + ( 13.75 x weight in kg ) + ( 5.003 x height in cm ) – ( 6.755 x age in years )
-        
-        BMR Women: BMR = 655.1 + ( 9.563 x weight in kg ) + ( 1.850 x height in cm ) – ( 4.676 x age in years )
-        */
+        /* Harris Benedict Method
+           BMR Men: BMR = 66.5 + ( 13.75 x weight in kg ) + ( 5.003 x height in cm ) – ( 6.755 x age in years )
+           BMR Women: BMR = 655.1 + ( 9.563 x weight in kg ) + ( 1.850 x height in cm ) – ( 4.676 x age in years ) */
         var result : Float = 0.0
         if gender == 0 { // 0 For male
             result = 66+(13.75*w)+(5.003*h)-(6.755 * Float(a))
@@ -100,13 +98,10 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         return result
     }
     private func BMRCalculation2(age:Int, weights:Float, bodyFat:Float) -> Float {
-        //Katch & McArdle Method
-        /*
-        BMR (Men + Women) = 370 + (21.6 * Lean Mass in kg)
-        
-        Lean Mass = weight in kg – (weight in kg * body fat %)
-        1 kg = 2.2 pounds, so divide your weight by 2.2 to get your weight in kg
-        */
+        /*  Katch & McArdle Method
+            BMR (Men + Women) = 370 + (21.6 * Lean Mass in kg)
+            Lean Mass = weight in kg – (weight in kg * body fat %)
+            1 kg = 2.2 pounds, so divide your weight by 2.2 to get your weight in kg */
         var result : Float = 0.0
         var leanMass : Float = 0.0
         leanMass = weights - (weights * bodyFat)

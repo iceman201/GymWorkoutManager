@@ -38,7 +38,6 @@
 		05CD294A1D34E95200776B39 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29431D34E95200776B39 /* Exercise.swift */; };
 		05CD294B1D34E95200776B39 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29441D34E95200776B39 /* Person.swift */; };
 		05CD294C1D34E95200776B39 /* Plan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29451D34E95200776B39 /* Plan.swift */; };
-		05CD294D1D34E95200776B39 /* ScrollPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29461D34E95200776B39 /* ScrollPager.swift */; };
 		05CD29531D34EA2300776B39 /* BMIBMR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD294F1D34EA2300776B39 /* BMIBMR.swift */; };
 		05CD29541D34EA2300776B39 /* PlannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29501D34EA2300776B39 /* PlannerViewController.swift */; };
 		05CD29551D34EA2300776B39 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29511D34EA2300776B39 /* ProfileViewController.swift */; };
@@ -112,7 +111,6 @@
 		05CD29431D34E95200776B39 /* Exercise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		05CD29441D34E95200776B39 /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		05CD29451D34E95200776B39 /* Plan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plan.swift; sourceTree = "<group>"; };
-		05CD29461D34E95200776B39 /* ScrollPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollPager.swift; sourceTree = "<group>"; };
 		05CD294F1D34EA2300776B39 /* BMIBMR.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMIBMR.swift; sourceTree = "<group>"; };
 		05CD29501D34EA2300776B39 /* PlannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlannerViewController.swift; sourceTree = "<group>"; };
 		05CD29511D34EA2300776B39 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 				05CD29431D34E95200776B39 /* Exercise.swift */,
 				05CD29441D34E95200776B39 /* Person.swift */,
 				05CD29451D34E95200776B39 /* Plan.swift */,
-				05CD29461D34E95200776B39 /* ScrollPager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -658,7 +655,6 @@
 				E6AD9D8D1C4C5F28004F6437 /* RecordViewController.swift in Sources */,
 				E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */,
 				05CD29471D34E95200776B39 /* ColorCode.swift in Sources */,
-				05CD294D1D34E95200776B39 /* ScrollPager.swift in Sources */,
 				E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */,
 				E6AD9D8B1C4C5F28004F6437 /* TimerViewController.swift in Sources */,
 				05083F9F1C4CE0A60008DD95 /* TimeSetupViewController.swift in Sources */,
