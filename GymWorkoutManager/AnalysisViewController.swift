@@ -88,10 +88,10 @@ class AnalysisViewController: UITableViewController {
                 formatter.dateFormat = "d MMM"
                 dispatch_sync(serialQueue, { () -> Void in
                     for day in 0...6 {
-                        let fromDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
-                        let toDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
-                        let dateString = formatter.stringFromDate(toDate)
-                        self.pedoMeter.queryPedometerDataFromDate(fromDate, toDate: toDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
+                        let startDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
+                        let endDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
+                        let dateString = formatter.stringFromDate(endDate)
+                        self.pedoMeter.queryPedometerDataFromDate(startDate, toDate: endDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
                             guard let data = CMData else { return }
                             cell.numberSteps.text = "\(data.numberOfSteps)"
                             self.days.append(dateString)
