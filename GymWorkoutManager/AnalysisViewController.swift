@@ -45,7 +45,7 @@ class AnalysisViewController: UITableViewController {
         if indexPath.section == 0 {
             return 223
         } else {
-            return 258
+            return 370
         }
     }
     
@@ -88,10 +88,10 @@ class AnalysisViewController: UITableViewController {
                 formatter.dateFormat = "d MMM"
                 dispatch_sync(serialQueue, { () -> Void in
                     for day in 0...6 {
-                        let fromDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
-                        let toDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
-                        let dateString = formatter.stringFromDate(toDate)
-                        self.pedoMeter.queryPedometerDataFromDate(fromDate, toDate: toDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
+                        let startDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
+                        let endDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
+                        let dateString = formatter.stringFromDate(endDate)
+                        self.pedoMeter.queryPedometerDataFromDate(startDate, toDate: endDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
                             guard let data = CMData else { return }
                             cell.numberSteps.text = "\(data.numberOfSteps)"
                             self.days.append(dateString)
@@ -101,6 +101,8 @@ class AnalysisViewController: UITableViewController {
                                     let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
                                     view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                                     cell.graphicView.addSubview(view)
+                                    cell.graphicView.layer.borderWidth = 1
+                                    cell.graphicView.layer.borderColor = GWMColorRed.CGColor
                                 })
                             }
                             
