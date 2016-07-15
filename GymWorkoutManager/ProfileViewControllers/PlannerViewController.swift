@@ -64,7 +64,7 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
             calendarView.contentController.refreshPresentedMonth()
             displayPlan(calendarView.presentedDate.commonDescription,plans: results!)
         } catch {
-            print("loading realm faild")
+            assertionFailure("loading realm faild")
         }
     }
     override func viewDidLayoutSubviews() {
@@ -96,7 +96,6 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
 //MARK: Implemente of CAValendarViewDelegate
 
 extension PlannerViewController:CVCalendarViewDelegate {
-   
     func presentationMode() -> CalendarMode {
         return CalendarMode.MonthView
     }
@@ -111,20 +110,16 @@ extension PlannerViewController:CVCalendarViewDelegate {
     }
     
     func supplementaryView(viewOnDayView dayView: DayView) -> UIView {
-        let π = M_PI
-        
+        let pi = M_PI
         let ringSpacing: CGFloat = 4.0
         let ringInsetWidth: CGFloat = 1.0
         let ringVerticalOffset: CGFloat = 1.0
         var ringLayer: CAShapeLayer!
         let ringLineWidth: CGFloat = 2.0
         let ringLineColour: UIColor = GWMColorYellow
-        
         let newView = UIView(frame: dayView.bounds)
-        
         let diameter: CGFloat = (newView.bounds.width) - ringSpacing
         let radius: CGFloat = diameter / 2.0
-        
         let rect = CGRectMake(newView.frame.midX-radius, newView.frame.midY-radius-ringVerticalOffset, diameter, diameter)
         
         ringLayer = CAShapeLayer()
@@ -134,12 +129,12 @@ extension PlannerViewController:CVCalendarViewDelegate {
         ringLayer.lineWidth = ringLineWidth
         ringLayer.strokeColor = ringLineColour.CGColor
         
-        let ringLineWidthInset: CGFloat = CGFloat(ringLineWidth/2.0) + ringInsetWidth
+        let ringLineWidthInset: CGFloat = CGFloat(ringLineWidth / 2.0) + ringInsetWidth
         let ringRect: CGRect = CGRectInset(rect, ringLineWidthInset, ringLineWidthInset)
         let centrePoint: CGPoint = CGPointMake(ringRect.midX, ringRect.midY)
-        let startAngle: CGFloat = CGFloat(-π/2.0)
-        let endAngle: CGFloat = CGFloat(π * 2.0) + startAngle
-        let ringPath: UIBezierPath = UIBezierPath(arcCenter: centrePoint, radius: ringRect.width/2.0, startAngle: startAngle, endAngle: endAngle, clockwise: true)
+        let startAngle: CGFloat = CGFloat(-pi / 2.0)
+        let endAngle: CGFloat = CGFloat(pi * 2.0) + startAngle
+        let ringPath: UIBezierPath = UIBezierPath(arcCenter: centrePoint, radius: ringRect.width / 2.0, startAngle: startAngle, endAngle: endAngle, clockwise: true)
         
         ringLayer.path = ringPath.CGPath
         ringLayer.frame = newView.layer.bounds
@@ -148,22 +143,18 @@ extension PlannerViewController:CVCalendarViewDelegate {
     }
     
     func supplementaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
-        
         guard let results = results else {
             return false
         }
         
         for result in results {
             if dayView.date == nil {
-                print("date is nil  and this is a bug????")
                 return false
             }
             if dayView.date.commonDescription == result.date {
                 return true
             }
         }
-        
         return false
-        
     }
 }

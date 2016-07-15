@@ -101,6 +101,8 @@ class AnalysisViewController: UITableViewController {
                                     let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
                                     view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                                     cell.graphicView.addSubview(view)
+                                    cell.graphicView.layer.borderWidth = 1
+                                    cell.graphicView.layer.borderColor = GWMColorRed.CGColor
                                 })
                             }
                             
