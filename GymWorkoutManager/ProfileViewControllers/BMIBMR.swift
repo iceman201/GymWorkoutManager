@@ -37,7 +37,6 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         if curentUser == nil {
             curentUser = Person()
         }
-        
         if let user = curentUser {
             DatabaseHelper.sharedInstance.beginTransaction()
             height = user.height
@@ -52,13 +51,13 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
             self.presentViewController(alert, animated: true, completion: nil)
         } else {
-            
+            let result = BMRCalculation1(age, w: Float(weight ?? "") ?? 0.0, h: Float(height ?? "") ?? 0.0, gender: gender)
+            indexDisplayLabel.text = String(result)
         }
     }
     
     @IBAction func BMICalculation(sender: AnyObject) {
         let result = BMICalculator(Float(weight ?? "") ?? 0.0, heights: Float(height ?? "") ?? 0.0)
-        
         indexDisplayLabel.text = String(result)
     }
 
