@@ -62,10 +62,7 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
     }
 
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let inverseSet = NSCharacterSet(charactersInString:"0123456789.").invertedSet
-        let components = string.componentsSeparatedByCharactersInSet(inverseSet)
-        let filtered = components.joinWithSeparator("")
-        return string == filtered
+        return numberEnterOnly(replacementString: string)
     }
     
     private func setLayer(input:JVFloatLabeledTextField) -> CALayer {

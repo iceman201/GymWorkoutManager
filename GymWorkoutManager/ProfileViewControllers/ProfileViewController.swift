@@ -62,6 +62,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
     
+    
     // MARK: Profile Image
     @IBAction func selectPicture(sender: AnyObject) {
         let alert = UIAlertController(title: "Profile image", message: "Upload your profile image.", preferredStyle: .ActionSheet)
@@ -102,6 +103,14 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         viewForAdaptForKeyboard.frame.origin.y = 0
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField.placeholder != name.placeholder {
+            return numberEnterOnly(replacementString: string)
+        } else {
+            return true
+        }
+    }
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             return

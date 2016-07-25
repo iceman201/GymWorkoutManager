@@ -29,6 +29,13 @@ func timeToSecond(time: String) -> Int {
     return m * 60 + s
 }
 
+func numberEnterOnly(replacementString string: String) -> Bool {
+    let inverseSet = NSCharacterSet(charactersInString:"0123456789.").invertedSet
+    let components = string.componentsSeparatedByCharactersInSet(inverseSet)
+    let filtered = components.joinWithSeparator("")
+    return string == filtered
+}
+
 extension NSDate
 {
     convenience
