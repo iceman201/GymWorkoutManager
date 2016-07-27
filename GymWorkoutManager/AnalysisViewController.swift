@@ -29,11 +29,11 @@ struct graphData<T: Hashable, U: NumericType> : GraphData {
 
 class AnalysisViewController: UITableViewController {
     var curentUser:Person?
-    
-    let activityManager = CMMotionActivityManager()
-    let pedoMeter = CMPedometer()
     var result : [Int] = []
     var days:[String] = []
+    let activityManager = CMMotionActivityManager()
+    let pedoMeter = CMPedometer()
+    
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
@@ -45,7 +45,7 @@ class AnalysisViewController: UITableViewController {
         if indexPath.section == 0 {
             return 223
         } else {
-            return 258
+            return 370
         }
     }
     
@@ -54,65 +54,45 @@ class AnalysisViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCellWithIdentifier("graphicCell", forIndexPath: indexPath) as? GraphViewCell else {
                 return UITableViewCell()
             }
-            
             let data = [
                 //Cardio
                 graphData(key: "", value: curentUser?.getPercentageOfWorkout("0") ?? 0.0),
-                
                 //Weights
                 graphData(key: "", value: curentUser?.getPercentageOfWorkout("1") ?? 0.0),
-                
                 //Hiit
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)
-            ]
+                graphData(key: "", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)]
             
             let view = data.pieGraph() { (unit, totalValue) -> String? in
                 return unit.key! + "\n" + String(format: "%.0f%%", unit.value / totalValue * 100.0)
                 }.view(cell.graphicView.bounds)
-            
             view.pieGraphConfiguration{
                 PieGraphViewConfig(textFont: UIFont(name: "DINCondensed-Bold", size: 14.0), isDounut: true, contentInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
-                    pieColors: [
-                        GWMPieGraphColorCardio,
-                        GWMPieGraphColorWeights,
-                        GWMPieGraphColorHiit
-                    ],
+                    pieColors: [GWMPieGraphColorCardio, GWMPieGraphColorWeights, GWMPieGraphColorHiit],
                     textColor: UIColor(red: 119.0/255.0, green: 136.0/255.0, blue: 153.0/255.0, alpha: 1.0)
                 )
             }
-        
             view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             cell.title.text = "Proportion of Workout"
-            
-            
-
             for each in data {
-                guard !each._value.isNaN else {
-                    return cell
-                }
+                guard !each._value.isNaN else { return cell }
             }
             cell.graphicView.addSubview(view)
             return cell
         } else {
-            
             guard let cell = tableView.dequeueReusableCellWithIdentifier("pedmeterCell", forIndexPath: indexPath) as? PedmeterViewCell else {
                 return UITableViewCell()
             }
-            
             if CMPedometer.isStepCountingAvailable() {
                 let serialQueue : dispatch_queue_t  = dispatch_queue_create("com.pedometer.MyQueue", nil)
-                
                 let formatter = NSDateFormatter()
                 formatter.dateFormat = "d MMM"
                 dispatch_sync(serialQueue, { () -> Void in
                     for day in 0...6 {
-                        let fromDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
-                        let toDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
-                        let dateString = formatter.stringFromDate(toDate)
-                        self.pedoMeter.queryPedometerDataFromDate(fromDate, toDate: toDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
-                            guard let data = CMData else {
-                                return
-                            }
+                        let startDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
+                        let endDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
+                        let dateString = formatter.stringFromDate(endDate)
+                        self.pedoMeter.queryPedometerDataFromDate(startDate, toDate: endDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
+                            guard let data = CMData else { return }
                             cell.numberSteps.text = "\(data.numberOfSteps)"
                             self.days.append(dateString)
                             self.result.append(data.numberOfSteps.integerValue)
@@ -121,6 +101,8 @@ class AnalysisViewController: UITableViewController {
                                     let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
                                     view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                                     cell.graphicView.addSubview(view)
+                                    cell.graphicView.layer.borderWidth = 1
+                                    cell.graphicView.layer.borderColor = GWMColorRed.CGColor
                                 })
                             }
                             
@@ -146,7 +128,6 @@ class AnalysisViewController: UITableViewController {
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         curentUser = cusers?.first
         if curentUser == nil {

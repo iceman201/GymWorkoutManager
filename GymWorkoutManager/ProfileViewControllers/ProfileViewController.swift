@@ -37,11 +37,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         curentUser?.sex = "female"
         DatabaseHelper.sharedInstance.commitTransaction()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
-        if cusers?.count <= 0 {
-            curentUser!.id = NSUUID.init().UUIDString
-            DatabaseHelper.sharedInstance.insert(curentUser!)
+        guard let numberOfUser = cusers?.count else {
+            return
         }
-
+        checkUser(numberOfUser)
     }
     @IBAction func male(sender: AnyObject) {
         maleButton.backgroundColor = GWMColorPurple
@@ -50,36 +49,43 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         curentUser?.sex = "male"
         DatabaseHelper.sharedInstance.commitTransaction()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
-        if cusers?.count <= 0 {
+        guard let numberOfUser = cusers?.count else {
+            return
+        }
+        checkUser(numberOfUser)
+    }
+    
+    private func checkUser(numberOfUser:Int) {
+        if numberOfUser <= 0 {
             curentUser!.id = NSUUID.init().UUIDString
             DatabaseHelper.sharedInstance.insert(curentUser!)
         }
     }
     
+    
     // MARK: Profile Image
     @IBAction func selectPicture(sender: AnyObject) {
         let alert = UIAlertController(title: "Profile image", message: "Upload your profile image.", preferredStyle: .ActionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (UIAlertAction) in
-            let myPickerController = UIImagePickerController()
-            myPickerController.delegate = self
-            myPickerController.sourceType = UIImagePickerControllerSourceType.Camera
-            myPickerController.allowsEditing = true
-            self.presentViewController(myPickerController, animated: true, completion: nil)
+            self.popupImageSelection(UIImagePickerControllerSourceType.Camera)
         }))
         alert.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { (UIAlertAction) in
-            let myPickerController = UIImagePickerController()
-            myPickerController.delegate = self
-            myPickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-            myPickerController.allowsEditing = true
-            self.presentViewController(myPickerController, animated: true, completion: nil)
+            self.popupImageSelection(UIImagePickerControllerSourceType.PhotoLibrary)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    private func popupImageSelection(type: UIImagePickerControllerSourceType) {
+        let myPickerController = UIImagePickerController()
+        myPickerController.delegate = self
+        myPickerController.sourceType = type
+        myPickerController.allowsEditing = true
+        self.presentViewController(myPickerController, animated: true, completion: nil)
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        
         self.removeKeyboardDismissRecognizer()
         self.unsubscribeToKeyboardNotifications()
         
@@ -90,20 +96,29 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         curentUser?.height = bodyHeight.text ?? ""
         DatabaseHelper.sharedInstance.commitTransaction()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
-        if cusers?.count <= 0 {
-            curentUser!.id = NSUUID.init().UUIDString
-            DatabaseHelper.sharedInstance.insert(curentUser!)
+        guard let numberOfUser = cusers?.count else {
+            return
         }
-        
+        checkUser(numberOfUser)
         viewForAdaptForKeyboard.frame.origin.y = 0
-        
     }
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField.placeholder != name.placeholder {
+            return numberEnterOnly(replacementString: string)
+        } else {
+            return true
+        }
+    }
+
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        let i = info[UIImagePickerControllerOriginalImage] as? UIImage
-        let image = fixOrientation(i!)
+        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+            return
+        }
+        
+        let imageWithFixedDirection = fixOrientation(image)
         DatabaseHelper.sharedInstance.beginTransaction()
-        if let imageSourceData = UIImagePNGRepresentation(image) {
+        if let imageSourceData = UIImagePNGRepresentation(imageWithFixedDirection) {
             if curentUser!.profilePicture != nil {
                 curentUser!.profilePicture = nil
             }
@@ -115,10 +130,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
         DatabaseHelper.sharedInstance.commitTransaction()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
-        if cusers?.count <= 0 {
-            curentUser!.id = NSUUID.init().UUIDString
-            DatabaseHelper.sharedInstance.insert(curentUser!)
+        guard let numberOfUser = cusers?.count else {
+            return
         }
+        checkUser(numberOfUser)
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -202,19 +217,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        print("text filed shold return")
-        
         if name.isFirstResponder() {
             age.becomeFirstResponder()
-        }else if age.isFirstResponder(){
+        } else if age.isFirstResponder() {
             bodyHeight.becomeFirstResponder()
-        }else if bodyHeight.isFirstResponder(){
+        } else if bodyHeight.isFirstResponder() {
             bodyWeight.becomeFirstResponder()
-        }else{
+        } else {
             view.endEditing(true)
         }
-        
         return true
     }
     

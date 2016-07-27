@@ -40,7 +40,6 @@ class RecordViewController: UITableViewController {
         if indexPath.section == 0 {
             let infoCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath) as! RecordInfoCell
             
-            
             if let user = curentUser {
                 DatabaseHelper.sharedInstance.beginTransaction()
                 infoCell.activeDay.text = "\(user.activedDays)"
@@ -51,6 +50,8 @@ class RecordViewController: UITableViewController {
                 
                 if let pictureData = user.profilePicture {
                     infoCell.profileImage.image = UIImage(data: pictureData)
+                } else {
+                    infoCell.profileImage.layer.borderColor = UIColor.clearColor().CGColor
                 }
                 DatabaseHelper.sharedInstance.commitTransaction()
             }

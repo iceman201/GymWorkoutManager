@@ -172,11 +172,6 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.time = timeDate(receivedTime)
         self.totalTime = timeDate(receivedTime)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
     // MARK: - TimeSetUpViewControllerDelegate
     
@@ -185,7 +180,6 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.round = result[2]
         self.startRound = round
         self.time = timeDate(result)
-       
         self.repeatTimer.text = self.timeString(result).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.totalWorkoutTimer.text = self.timeString(totalTime).stringByReplacingOccurrencesOfString(".", withString: ":")
         self.aroundNumber.text = round
@@ -227,9 +221,5 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         audioPlayer = try! AVAudioPlayer(contentsOfURL: alertSound, fileTypeHint: nil)
         audioPlayer.prepareToPlay()
         audioPlayer.play()
-    }
-    
-    @IBAction func unwindToTimerView(segue: UIStoryboardSegue){
-        
     }
 }
