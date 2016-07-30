@@ -246,6 +246,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         /* Configure tap recognizer */
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.handleSingleTap(_:)))
         tapRecognizer?.numberOfTapsRequired = 1
+        tapRecognizer?.delegate = self
         
     }
     override func viewWillAppear(animated: Bool) {
@@ -300,7 +301,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
 // MARK: - ProfileViewController (Show/Hide Keyboard)
 
-extension ProfileViewController {
+extension ProfileViewController:UIGestureRecognizerDelegate {
     
     func addKeyboardDismissRecognizer() {
         print("add keyboard dissmiss recognizer")
@@ -312,8 +313,16 @@ extension ProfileViewController {
     }
     
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
-        print("handle sigle tap")
         view.endEditing(true)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if let view = touch.view {
+            if view is UIButton{
+                return false
+            }
+        }
+        return true
     }
     
     func subscribeToKeyboardNotifications() {
