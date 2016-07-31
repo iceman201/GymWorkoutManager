@@ -700,7 +700,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="066-G4-8Ic">
-                                <rect key="frame" x="-20" y="0.0" width="454" height="550"/>
+                                <rect key="frame" x="-20" y="0.0" width="454" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRx-3N-EJF">
                                         <rect key="frame" x="20" y="0.0" width="414" height="266"/>
@@ -905,9 +905,15 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                         <constraints>
                             <constraint firstItem="066-G4-8Ic" firstAttribute="leading" secondItem="nVv-k9-YVA" secondAttribute="leadingMargin" constant="-40" id="Cbv-uw-ztx"/>
                             <constraint firstItem="066-G4-8Ic" firstAttribute="top" secondItem="nVv-k9-YVA" secondAttribute="topMargin" id="I7g-R5-mJ9"/>
+                            <constraint firstItem="066-G4-8Ic" firstAttribute="height" secondItem="nVv-k9-YVA" secondAttribute="height" id="d0U-QN-Cvq"/>
                             <constraint firstItem="066-G4-8Ic" firstAttribute="centerX" secondItem="nVv-k9-YVA" secondAttribute="centerX" id="k4V-AA-AOT"/>
                             <constraint firstItem="TFw-Vv-qbf" firstAttribute="top" secondItem="066-G4-8Ic" secondAttribute="bottom" constant="137" id="vFW-aH-bIo"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="vFW-aH-bIo"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="1463164731_scale.png" id="PI3-vx-bNG"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>

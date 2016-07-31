@@ -19,6 +19,7 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
     var age = 0
     var gender = 0
     var curentUser:Person?
+    var tapRecognizer: UITapGestureRecognizer? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +29,19 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         bodyFat.delegate = self
         styleTextField()
         indexDisplayLabel.textColor = UIColor.whiteColor()
+        
+        /* Configure tap recognizer */
+        tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BMIBMR.handleSingleTap(_:)))
+        tapRecognizer?.numberOfTapsRequired = 1
+        tapRecognizer?.delegate = self
+        
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.addKeyboardDismissRecognizer()
+        self.subscribeToKeyboardNotifications()
+        
         self.navigationController?.navigationBar.topItem?.title = "BMI&BMR"
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         curentUser = cusers?.first
@@ -43,6 +54,12 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
             weight = user.weight
             DatabaseHelper.sharedInstance.commitTransaction()
         }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardDismissRecognizer()
+        self.unsubscribeToKeyboardNotifications()
     }
     
     @IBAction func BMRCalculation(sender: AnyObject) {
@@ -109,4 +126,68 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         let result = 10000*(weights / (heights * heights))
         return result
     }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return true
+    }
+    
+    
 }
+
+// MARK: - ProfileViewController (Show/Hide Keyboard)
+
+extension BMIBMR:UIGestureRecognizerDelegate {
+    
+    func addKeyboardDismissRecognizer() {
+        print("add keyboard dissmiss recognizer")
+        view.addGestureRecognizer(tapRecognizer!)
+    }
+    
+    func removeKeyboardDismissRecognizer() {
+        view.removeGestureRecognizer(tapRecognizer!)
+    }
+    
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+        if let view = touch.view {
+            if view is UIButton{
+                return false
+            }
+        }
+        return true
+    }
+    
+    func subscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeToKeyboardNotifications() {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func keyboardWillShow(notification: NSNotification) {
+        print("keyboard will show")
+        print("height is " + String(getKeyboardHeight(notification)/2))
+        if(view.frame.origin.y == 0.0){
+            view.frame.origin.y -= getKeyboardHeight(notification) / 2
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        print("keyboard will hide")
+        view.frame.origin.y = 0.0
+    }
+    
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.CGRectValue().height
+    }
+}
+
