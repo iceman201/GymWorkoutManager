@@ -17,7 +17,7 @@
                BlueprintIdentifier = "E6AD9D841C4C5F28004F6437"
                BuildableName = "GymWorkoutManager.app"
                BlueprintName = "GymWorkoutManager"
-               ReferencedContainer = "container:GymmeManager.xcodeproj">
+               ReferencedContainer = "container:GymWorkoutManager.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "E6AD9D9A1C4C5F28004F6437"
                BuildableName = "GymWorkoutManagerTests.xctest"
                BlueprintName = "GymWorkoutManagerTests"
-               ReferencedContainer = "container:GymmeManager.xcodeproj">
+               ReferencedContainer = "container:GymWorkoutManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "E6AD9DA51C4C5F28004F6437"
                BuildableName = "GymWorkoutManagerUITests.xctest"
                BlueprintName = "GymWorkoutManagerUITests"
-               ReferencedContainer = "container:GymmeManager.xcodeproj">
+               ReferencedContainer = "container:GymWorkoutManager.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,7 +55,7 @@
             BlueprintIdentifier = "E6AD9D841C4C5F28004F6437"
             BuildableName = "GymWorkoutManager.app"
             BlueprintName = "GymWorkoutManager"
-            ReferencedContainer = "container:GymmeManager.xcodeproj">
+            ReferencedContainer = "container:GymWorkoutManager.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -78,7 +78,7 @@
             BlueprintIdentifier = "E6AD9D841C4C5F28004F6437"
             BuildableName = "GymWorkoutManager.app"
             BlueprintName = "GymWorkoutManager"
-            ReferencedContainer = "container:GymmeManager.xcodeproj">
+            ReferencedContainer = "container:GymWorkoutManager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -97,7 +97,7 @@
             BlueprintIdentifier = "E6AD9D841C4C5F28004F6437"
             BuildableName = "GymWorkoutManager.app"
             BlueprintName = "GymWorkoutManager"
-            ReferencedContainer = "container:GymmeManager.xcodeproj">
+            ReferencedContainer = "container:GymWorkoutManager.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
