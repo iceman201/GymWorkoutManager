@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:GymWorkoutManager.xcodeproj">
+      location = "group:/Users/Liguo_Jiao/Programming project/GymWorkoutManager/GymmeManager.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

@@ -452,7 +452,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E6AD9D801C4C5F28004F6437 /* Build configuration list for PBXProject "GymWorkoutManager" */;
+			buildConfigurationList = E6AD9D801C4C5F28004F6437 /* Build configuration list for PBXProject "GymmeManager" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -905,7 +905,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E6AD9D801C4C5F28004F6437 /* Build configuration list for PBXProject "GymWorkoutManager" */ = {
+		E6AD9D801C4C5F28004F6437 /* Build configuration list for PBXProject "GymmeManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E6AD9DAD1C4C5F28004F6437 /* Debug */,
