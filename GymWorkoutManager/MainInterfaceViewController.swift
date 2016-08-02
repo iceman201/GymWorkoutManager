@@ -40,17 +40,23 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         })
     }
     
+    /*modify by zhangyunchen
+     the funcs in animations is the outcoming status.
+     I hided the start button in storyboard
+ 
+    */
+    
     private func buttonBackgroundAnimation() {
-        UIView.animateWithDuration(1, delay: 0.3, options: [.Repeat, .Autoreverse], animations: {
-            self.backLayer.transform = CGAffineTransformMakeScale(0.1, 0.1)
+        UIView.animateWithDuration(1, delay: 0.3, options: [], animations: {
+            self.backLayer.transform = CGAffineTransformMakeScale(2, 2)
             self.backLayer.alpha = 0
             }) { (finished) in
-                UIView.animateWithDuration(1, animations: {
-                    self.backLayer.alpha = 0.8
-                    self.backLayer.transform = CGAffineTransformMakeScale(1, 1)
-                    }, completion: { (done) in
-                        self.backLayer.alpha = 0
-                })
+//                UIView.animateWithDuration(1, animations: {
+//                    self.backLayer.alpha = 0.8
+//                    self.backLayer.transform = CGAffineTransformMakeScale(1, 1)
+//                    }, completion: { (done) in
+//                        self.backLayer.alpha = 0
+//                })
         }
     }
     
