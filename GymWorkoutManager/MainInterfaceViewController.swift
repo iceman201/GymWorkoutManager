@@ -12,8 +12,10 @@ import CircleMenu
 
 class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     // MARK: - Variables
-    var moviePlayer: MPMoviePlayerController!
-
+    
+    @IBOutlet var backLayer: UIImageView!
+    @IBOutlet var startButton: CircleMenu!
+    
     let items: [(icon: String, color: UIColor)] = [
         ("icon_timer", GWMColorBlue),
         ("icon_record", GWMColorGreen),
@@ -25,6 +27,33 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        /*
+        UIView.animateWithDuration(3.5, delay: 0.3, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.startButton.alpha = 1.0
+            self.startButton.transform = CGAffineTransformMakeRotation(CGFloat(M_2_PI*4))
+        }, completion: nil)*/
+        self.buttonBackgroundAnimation()
+        dispatch_async(dispatch_get_main_queue(), {
+            
+        })
+    }
+    
+    private func buttonBackgroundAnimation() {
+        UIView.animateWithDuration(1, delay: 0.3, options: [.Repeat, .Autoreverse], animations: {
+            self.backLayer.transform = CGAffineTransformMakeScale(0.1, 0.1)
+            self.backLayer.alpha = 0
+            }) { (finished) in
+                UIView.animateWithDuration(1, animations: {
+                    self.backLayer.alpha = 0.8
+                    self.backLayer.transform = CGAffineTransformMakeScale(1, 1)
+                    }, completion: { (done) in
+                        self.backLayer.alpha = 0
+                })
+        }
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -57,11 +86,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         button.setImage(highlightedImage, forState: .Highlighted)
         button.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
     }
-/*
-    func circleMenu(circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
-        print("button will selected: \(atIndex)")
-    }
-*/
+
     func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
         switch atIndex {
         case 0:
