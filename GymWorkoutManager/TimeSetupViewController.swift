@@ -3,7 +3,7 @@
 //  GymWorkoutManager
 //
 //  Created by Liguo Jiao on 16/1/18.
-//  Copyright © 2016 McKay. All rights reserved.
+//  Copyright © 2016年 McKay. All rights reserved.
 //
 
 import UIKit

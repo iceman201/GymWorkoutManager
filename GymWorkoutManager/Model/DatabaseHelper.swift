@@ -3,7 +3,7 @@
 //  GymWorkoutManager
 //
 //  Created by Hoolai on 16/5/15.
-//  Copyright © 2016 McKay. All rights reserved.
+//  Copyright © 2016年 McKay. All rights reserved.
 //
 
 import Foundation
