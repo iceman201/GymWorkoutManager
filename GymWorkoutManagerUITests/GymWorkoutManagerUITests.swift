@@ -2,7 +2,7 @@
 //  GymWorkoutManagerUITests.swift
 //  GymWorkoutManagerUITests
 //
-//  Created by Liguo Jiao on 18/01/16.
+//  Created by Liguo Jiao on 4/08/16.
 //  Copyright © 2016 McKay. All rights reserved.
 //
 
@@ -29,14 +29,9 @@ class GymWorkoutManagerUITests: XCTestCase {
     }
     
     func testExample() {
+        
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testAddAnItemGoToDetailsThenDeleteIt() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-
     }
     
 }
