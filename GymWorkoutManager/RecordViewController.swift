@@ -132,7 +132,7 @@ class RecordViewController: UITableViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        self.view.backgroundColor = GWMColorYellow
+        self.view.backgroundColor = GWMColorBackground
         
         self.navigationController?.navigationBar.topItem?.title = "Report"
         self.edgesForExtendedLayout=UIRectEdge.None
