@@ -37,20 +37,6 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         self.backLayer.zoomOutWithEasing()
     }
     
-    private func buttonBackgroundAnimation() {
-        UIView.animateWithDuration(1, delay: 0, options: [.Repeat, .CurveEaseIn], animations: {
-            self.backLayer.transform = CGAffineTransformMakeScale(0.01, 0.01)
-            self.backLayer.alpha = 0.1
-            }) { (finished) in
-                UIView.animateWithDuration(1, animations: {
-                    self.backLayer.alpha = 0.6
-                    self.backLayer.transform = CGAffineTransformMakeScale(1, 1)
-                
-                })
-            }
-    }
-
-    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -79,9 +65,8 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         button.backgroundColor = items[atIndex].color
         button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
         button.setTitle(items[atIndex].Name, forState: .Normal)
-        button.setImageAndTitleLeft()
-   
-        
+        button.setImageAndTitleLeft(0.0)
+
         // set highlited image
         let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
         button.setImage(highlightedImage, forState: .Highlighted)
@@ -106,7 +91,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     }
 }
 extension UIImageView {
-    func zoomOutWithEasing(duration duration: NSTimeInterval = 6, easingOffset: CGFloat = 0.23) {
+    func zoomOutWithEasing(duration duration: NSTimeInterval = 7.7, easingOffset: CGFloat = 0.23) {
         let easeScale = 1.0 + easingOffset
         let easingDuration = NSTimeInterval(easingOffset) * duration / NSTimeInterval(easeScale)
         let scalingDuration = duration - easingDuration
@@ -121,22 +106,14 @@ extension UIImageView {
     }
 }
 extension UIButton {
-    
-    func setImageAndTitleLeft(){
-        let SPACING:CGFloat=0.0
-        setImageAndTitleLeft(SPACING)
-    }
-    
-    //imageView在上,label在下
     func setImageAndTitleLeft(spacing:CGFloat){
-        let imageSize =  self.imageView?.frame.size
-        let titleSize = self.titleLabel?.frame.size;
-        
-        let totalHeight = imageSize!.height + titleSize!.height + spacing
-        
-        self.imageEdgeInsets = UIEdgeInsetsMake(-(totalHeight - imageSize!.height)/2, self.frame.size.width/4 - 8, 0.0, -self.frame.size.width/4 - 8)
-/*        UIEdgeInsetsMake(<#T##top: CGFloat##CGFloat#>, <#T##left: CGFloat##CGFloat#>, <#T##bottom: CGFloat##CGFloat#>, <#T##right: CGFloat##CGFloat#>)*/
-        self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize!.width, -(totalHeight - titleSize!.height)*2, 0.0)
+        if let imageSize =  self.imageView?.frame.size,
+            let titleSize = self.titleLabel?.frame.size {
+            let totalHeight = imageSize.height + titleSize.height + spacing
+            
+            self.imageEdgeInsets = UIEdgeInsetsMake(-(totalHeight - imageSize.height)/7, self.frame.size.width/7.5, 0.0, 0.0)
+            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width, -(totalHeight - titleSize.height)*2, 0.0)
+        }
     }
     
 }
