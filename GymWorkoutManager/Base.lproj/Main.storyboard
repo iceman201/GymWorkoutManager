@@ -292,6 +292,13 @@
                                     <outlet property="delegate" destination="aMi-tv-usv" id="hm2-qo-0Ch"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_menu" translatesAutoresizingMaskIntoConstraints="NO" id="Y4o-Nl-gOU">
+                                <rect key="frame" x="127" y="288" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="6Qm-yU-TXk"/>
+                                    <constraint firstAttribute="width" constant="160" id="uY2-ag-jPV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
