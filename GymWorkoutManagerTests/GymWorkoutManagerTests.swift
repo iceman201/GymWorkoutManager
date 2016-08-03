@@ -2,12 +2,11 @@
 //  GymWorkoutManagerTests.swift
 //  GymWorkoutManagerTests
 //
-//  Created by Liguo Jiao on 18/01/16.
+//  Created by Liguo Jiao on 4/08/16.
 //  Copyright © 2016 McKay. All rights reserved.
 //
 
 import XCTest
-@testable import GymWorkoutManager
 
 class GymWorkoutManagerTests: XCTestCase {
     
