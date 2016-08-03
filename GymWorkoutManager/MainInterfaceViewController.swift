@@ -12,13 +12,15 @@ import CircleMenu
 
 class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     // MARK: - Variables
-    var moviePlayer: MPMoviePlayerController!
-
-    let items: [(icon: String, color: UIColor)] = [
-        ("icon_timer", GWMColorBlue),
-        ("icon_record", GWMColorGreen),
-        ("icon-profile", GWMColorRed),
-        ("icon-analysis", UIColor.whiteColor()),
+    
+    @IBOutlet var startButton: CircleMenu!
+    @IBOutlet var backLayer: UIImageView!
+    
+    let items: [(icon: String, color: UIColor, Name: String)] = [
+        ("icon_timer", GWMColorBlue, "Timer"),
+        ("icon_record", GWMColorGreen, "Record"),
+        ("icon-profile", GWMColorRed, "Profile"),
+        ("icon-analysis", UIColor.whiteColor(), "Analysis"),
         ]
     
     // MARK: viewDidLoad
@@ -28,31 +30,27 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        /*
-        UIView.animateWithDuration(3.5, delay: 0.3, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        
+        UIView.animateWithDuration(2.0, delay: 0.3, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             self.startButton.alpha = 1.0
-            self.startButton.transform = CGAffineTransformMakeRotation(CGFloat(M_2_PI*4))
-        }, completion: nil)*/
-        self.buttonBackgroundAnimation()
-        dispatch_async(dispatch_get_main_queue(), {
-            
-        })
+        }, completion: nil)
+        self.backLayer.zoomOutWithEasing()
     }
     
     private func buttonBackgroundAnimation() {
-        UIView.animateWithDuration(1, delay: 0.3, options: [.Repeat, .Autoreverse], animations: {
-            self.backLayer.transform = CGAffineTransformMakeScale(0.1, 0.1)
-            self.backLayer.alpha = 0
+        UIView.animateWithDuration(1, delay: 0, options: [.Repeat, .CurveEaseIn], animations: {
+            self.backLayer.transform = CGAffineTransformMakeScale(0.01, 0.01)
+            self.backLayer.alpha = 0.1
             }) { (finished) in
                 UIView.animateWithDuration(1, animations: {
-                    self.backLayer.alpha = 0.8
+                    self.backLayer.alpha = 0.6
                     self.backLayer.transform = CGAffineTransformMakeScale(1, 1)
-                    }, completion: { (done) in
-                        self.backLayer.alpha = 0
+                
                 })
-        }
+            }
     }
 
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -77,19 +75,21 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     // MARK: <CircleMenuDelegate>
     
     func circleMenu(circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
+        backLayer.hidden = true
         button.backgroundColor = items[atIndex].color
         button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
+        button.setTitle(items[atIndex].Name, forState: .Normal)
+        button.setImageAndTitleLeft()
+   
         
         // set highlited image
         let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
         button.setImage(highlightedImage, forState: .Highlighted)
         button.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
     }
-/*
-    func circleMenu(circleMenu: CircleMenu, buttonWillSelected button: UIButton, atIndex: Int) {
-        print("button will selected: \(atIndex)")
+    func menuCollapsed(circleMenu: CircleMenu) {
+        backLayer.hidden = false
     }
-*/
     func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
         switch atIndex {
         case 0:
@@ -100,9 +100,43 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
             self.performSegueWithIdentifier("profile", sender: self)
         case 3:
             self.performSegueWithIdentifier("analysis", sender: self)
-        
         default:
             break
         }
     }
+}
+extension UIImageView {
+    func zoomOutWithEasing(duration duration: NSTimeInterval = 6, easingOffset: CGFloat = 0.23) {
+        let easeScale = 1.0 + easingOffset
+        let easingDuration = NSTimeInterval(easingOffset) * duration / NSTimeInterval(easeScale)
+        let scalingDuration = duration - easingDuration
+        UIView.animateWithDuration(easingDuration, delay: 0.0, options: [.Repeat,.CurveEaseOut], animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(easeScale, easeScale)
+            }, completion: { (completed: Bool) -> Void in
+                UIView.animateWithDuration(scalingDuration, delay: 0.0, options: [.Repeat,.CurveEaseOut], animations: { () -> Void in
+                    self.transform = CGAffineTransformMakeScale(0.0, 0.0)
+                    }, completion: { (completed: Bool) -> Void in
+                })
+        })
+    }
+}
+extension UIButton {
+    
+    func setImageAndTitleLeft(){
+        let SPACING:CGFloat=0.0
+        setImageAndTitleLeft(SPACING)
+    }
+    
+    //imageView在上,label在下
+    func setImageAndTitleLeft(spacing:CGFloat){
+        let imageSize =  self.imageView?.frame.size
+        let titleSize = self.titleLabel?.frame.size;
+        
+        let totalHeight = imageSize!.height + titleSize!.height + spacing
+        
+        self.imageEdgeInsets = UIEdgeInsetsMake(-(totalHeight - imageSize!.height)/2, self.frame.size.width/4 - 8, 0.0, -self.frame.size.width/4 - 8)
+/*        UIEdgeInsetsMake(<#T##top: CGFloat##CGFloat#>, <#T##left: CGFloat##CGFloat#>, <#T##bottom: CGFloat##CGFloat#>, <#T##right: CGFloat##CGFloat#>)*/
+        self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize!.width, -(totalHeight - titleSize!.height)*2, 0.0)
+    }
+    
 }
