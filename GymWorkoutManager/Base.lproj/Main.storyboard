@@ -266,7 +266,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWk-df-IPc" customClass="CircleMenu" customModule="CircleMenu">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XWk-df-IPc" customClass="CircleMenu" customModule="CircleMenu">
                                 <rect key="frame" x="157" y="318" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="8ZP-r9-dZe"/>
@@ -292,11 +292,20 @@
                                     <outlet property="delegate" destination="aMi-tv-usv" id="hm2-qo-0Ch"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_menu" translatesAutoresizingMaskIntoConstraints="NO" id="Y4o-Nl-gOU">
+                                <rect key="frame" x="127" y="288" width="160" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="6Qm-yU-TXk"/>
+                                    <constraint firstAttribute="width" constant="160" id="uY2-ag-jPV"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="XWk-df-IPc" firstAttribute="centerY" secondItem="L9l-Gm-MPS" secondAttribute="centerY" id="aST-pr-2o1"/>
+                            <constraint firstItem="Y4o-Nl-gOU" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="s1R-AS-ikq"/>
                             <constraint firstItem="XWk-df-IPc" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="tjU-ph-2Fd"/>
+                            <constraint firstItem="Y4o-Nl-gOU" firstAttribute="centerY" secondItem="L9l-Gm-MPS" secondAttribute="centerY" id="vqe-4r-45B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0wO-dn-uAL"/>
@@ -304,6 +313,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="736"/>
                     <connections>
+                        <outlet property="backLayer" destination="Y4o-Nl-gOU" id="h2d-Jp-dR7"/>
+                        <outlet property="startButton" destination="XWk-df-IPc" id="QUg-Xe-Nbn"/>
                         <segue destination="9pv-A4-QxB" kind="show" identifier="timer" id="8Ca-Jn-i9z"/>
                         <segue destination="XSD-KX-JDS" kind="show" identifier="record" id="3Ch-kY-08T"/>
                         <segue destination="AZ4-yU-AC7" kind="show" identifier="analysis" id="d50-b1-scW"/>

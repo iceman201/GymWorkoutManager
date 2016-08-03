@@ -3,7 +3,7 @@
 //  GymWorkoutManager
 //
 //  Created by zhangyunchen on 16/5/26.
-//  Copyright © 2016年 McKay. All rights reserved.
+//  Copyright © 2016 McKay. All rights reserved.
 //
 import RealmSwift
 
