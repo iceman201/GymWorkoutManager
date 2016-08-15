@@ -112,14 +112,22 @@ extension UIImageView {
 }
 extension UIButton {
     func setImageAndTitleLeft(spacing:CGFloat){
-        if let imageSize =  self.imageView?.frame.size,
-            let titleSize = self.titleLabel?.frame.size {
-            let totalHeight = imageSize.height + titleSize.height + spacing
-
-            self.imageEdgeInsets = UIEdgeInsetsMake(-(totalHeight - imageSize.height)/7, self.frame.size.width/7.5, 0.0, 0.0)
-            
-            self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width, -(totalHeight - titleSize.height)*2, 0.0)
+        let spacing: CGFloat = 6.0
+        let imageSize: CGSize = self.imageView!.image!.size
+        let labelString = NSString(string: self.titleLabel!.text!)
+        let titleSize = labelString.sizeWithAttributes([NSFontAttributeName: self.titleLabel!.font])
+        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0
+        
+        self.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
+        if DeviceType.IS_IPHONE_6P {
+            self.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing)*2, 0.0)
+            self.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset*3.5, 0.0, edgeOffset, 0.0)
+        } else {
+            self.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing)*1.5, 0.0)
+            self.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset*2, 0.0, edgeOffset, 0.0)
         }
+
+        
     }
     
 }
