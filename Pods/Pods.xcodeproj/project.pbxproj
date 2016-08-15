@@ -1508,6 +1508,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					27533A6098E2BDD80827924FA8F4E742 = {
+						DevelopmentTeam = V7QHHUD2M5;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1980,6 +1985,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BE6FE4A9D854BFA4DFC54F3E67AEBE3 /* CircleMenu.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2114,6 +2120,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BE6FE4A9D854BFA4DFC54F3E67AEBE3 /* CircleMenu.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;

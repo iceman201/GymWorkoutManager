@@ -123,11 +123,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 curentUser!.profilePicture = nil
             }
             curentUser!.profilePicture = imageSourceData
+            profilePicture.setImage(UIImage(data: imageSourceData), forState: .Normal)
         }
-        let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: curentUser!.profilePicture!)!)
-        profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
-        profilePicture.setTitle("", forState: .Normal)
 
+	
         DatabaseHelper.sharedInstance.commitTransaction()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         guard let numberOfUser = cusers?.count else {
@@ -153,6 +152,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     private func resizeToAspectFit(viewSize: CGSize, bounds: CGRect, sourceImage: UIImage) -> UIImage {
         UIGraphicsBeginImageContext(viewSize)
         sourceImage.drawInRect(bounds)
+        
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
@@ -255,6 +255,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.addKeyboardDismissRecognizer()
         self.subscribeToKeyboardNotifications()
         
+        profilePicture.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        profilePicture.imageView?.layer.cornerRadius = 0.5 * profilePicture.bounds.width
         
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         self.navigationController?.navigationBar.topItem?.title = "Profile"
@@ -266,9 +268,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let user = curentUser {
             DatabaseHelper.sharedInstance.beginTransaction()
             if let userPicture = user.profilePicture{
-                let sizedImage = resizeToAspectFit(profilePicture.frame.size, bounds: profilePicture.bounds, sourceImage: UIImage(data: userPicture)!)
-                profilePicture.backgroundColor = UIColor(patternImage: sizedImage)
-                profilePicture.setTitle("", forState: .Normal)
+                profilePicture.setImage(UIImage(data: userPicture), forState: .Normal)
             }
             name.text = user.name
             bodyHeight.text = user.height

@@ -728,14 +728,14 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRx-3N-EJF">
                                         <rect key="frame" x="20" y="0.0" width="414" height="266"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ug7-hL-vnD" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ug7-hL-vnD" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
                                                 <rect key="frame" x="132" y="58" width="150" height="150"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="Yc4-aP-nTy"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="mGW-8r-RNs"/>
                                                     <constraint firstAttribute="width" constant="150" id="qEi-5k-wxO"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Optima-ExtraBlack" family="Optima" pointSize="60"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="96"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" red="0.86583981860000003" green="1" blue="0.4396262084" alpha="1" colorSpace="calibratedRGB"/>
