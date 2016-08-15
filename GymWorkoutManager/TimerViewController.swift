@@ -164,7 +164,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = "Timer"
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Claim", style: .Plain, target: self, action: #selector(claimRecord))
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Record", style: .Plain, target: self, action: #selector(claimRecord))
 
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1
