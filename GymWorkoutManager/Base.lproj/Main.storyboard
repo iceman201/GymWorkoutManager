@@ -289,6 +289,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="tapStartButton:" destination="aMi-tv-usv" eventType="touchUpInside" id="H3c-eh-NHJ"/>
                                     <outlet property="delegate" destination="aMi-tv-usv" id="hm2-qo-0Ch"/>
                                 </connections>
                             </button>
@@ -299,13 +300,23 @@
                                     <constraint firstAttribute="width" constant="120" id="uY2-ag-jPV"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="os7-em-gHX">
+                                <rect key="frame" x="157" y="444" width="100" height="28"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Y4o-Nl-gOU" firstAttribute="centerY" secondItem="L9l-Gm-MPS" secondAttribute="centerY" constant="-1" id="0G9-gr-WIA"/>
+                            <constraint firstItem="os7-em-gHX" firstAttribute="leading" secondItem="XWk-df-IPc" secondAttribute="leading" id="FGV-rG-tU9"/>
+                            <constraint firstItem="os7-em-gHX" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="XRx-Dh-T33"/>
                             <constraint firstItem="XWk-df-IPc" firstAttribute="centerY" secondItem="L9l-Gm-MPS" secondAttribute="centerY" id="aST-pr-2o1"/>
+                            <constraint firstItem="os7-em-gHX" firstAttribute="trailing" secondItem="XWk-df-IPc" secondAttribute="trailing" id="bh0-xQ-KrE"/>
                             <constraint firstItem="Y4o-Nl-gOU" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="h4D-Rd-PMP"/>
                             <constraint firstItem="XWk-df-IPc" firstAttribute="centerX" secondItem="L9l-Gm-MPS" secondAttribute="centerX" id="tjU-ph-2Fd"/>
+                            <constraint firstItem="os7-em-gHX" firstAttribute="top" secondItem="Y4o-Nl-gOU" secondAttribute="bottom" constant="17" id="zKb-Yf-4Kl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0wO-dn-uAL"/>
@@ -315,6 +326,7 @@
                     <connections>
                         <outlet property="backLayer" destination="Y4o-Nl-gOU" id="cBJ-G2-hBk"/>
                         <outlet property="startButton" destination="XWk-df-IPc" id="fc3-Zz-WZ8"/>
+                        <outlet property="startLabel" destination="os7-em-gHX" id="XqG-Tf-Y2O"/>
                         <segue destination="9pv-A4-QxB" kind="show" identifier="timer" id="8Ca-Jn-i9z"/>
                         <segue destination="XSD-KX-JDS" kind="show" identifier="record" id="3Ch-kY-08T"/>
                         <segue destination="AZ4-yU-AC7" kind="show" identifier="analysis" id="d50-b1-scW"/>

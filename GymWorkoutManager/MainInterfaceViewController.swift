@@ -15,6 +15,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     
     @IBOutlet var startButton: CircleMenu!
     @IBOutlet var backLayer: UIImageView!
+    @IBOutlet var startLabel: UILabel!
     
     let items: [(icon: String, color: UIColor, Name: String)] = [
         ("icon_timer", GWMColorBlue, "Timer"),
@@ -26,6 +27,9 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    @IBAction func tapStartButton(sender: AnyObject) {
+        startLabel.hidden = !startLabel.hidden
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -66,7 +70,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         button.setImage(UIImage(imageLiteral: items[atIndex].icon), forState: .Normal)
         button.setTitle(items[atIndex].Name, forState: .Normal)
         button.setImageAndTitleLeft(0.0)
-
+        
         // set highlited image
         let highlightedImage  = UIImage(imageLiteral: items[atIndex].icon).imageWithRenderingMode(.AlwaysTemplate)
         button.setImage(highlightedImage, forState: .Highlighted)
@@ -75,6 +79,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     func menuCollapsed(circleMenu: CircleMenu) {
         backLayer.hidden = false
     }
+    
     func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
         switch atIndex {
         case 0:
@@ -110,8 +115,9 @@ extension UIButton {
         if let imageSize =  self.imageView?.frame.size,
             let titleSize = self.titleLabel?.frame.size {
             let totalHeight = imageSize.height + titleSize.height + spacing
-            
+
             self.imageEdgeInsets = UIEdgeInsetsMake(-(totalHeight - imageSize.height)/7, self.frame.size.width/7.5, 0.0, 0.0)
+            
             self.titleEdgeInsets = UIEdgeInsetsMake(0, -imageSize.width, -(totalHeight - titleSize.height)*2, 0.0)
         }
     }
