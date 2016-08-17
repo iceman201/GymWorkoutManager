@@ -2,7 +2,7 @@
 //  GymWorkoutManagerUITests.swift
 //  GymWorkoutManagerUITests
 //
-//  Created by Liguo Jiao on 4/08/16.
+//  Created by Liguo Jiao on 17/08/16.
 //  Copyright © 2016 McKay. All rights reserved.
 //
 

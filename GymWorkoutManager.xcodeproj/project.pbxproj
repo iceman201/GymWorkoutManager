@@ -45,10 +45,10 @@
 		3E2190BF137B04E5E1632998 /* Pods_GymWorkoutManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C83447117386E69C04A6BB3 /* Pods_GymWorkoutManager.framework */; };
 		E6294A371D36075B00EB88FC /* PedmeterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6294A361D36075B00EB88FC /* PedmeterViewCell.swift */; };
 		E62AB4901C55A55500EB15BC /* MainInterfaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */; };
+		E664F95B1D6413E4001ACF91 /* GymWorkoutManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E664F95A1D6413E4001ACF91 /* GymWorkoutManagerUITests.swift */; };
 		E66AD44C1D345A4700390CD5 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = E66AD44B1D345A4700390CD5 /* user.png */; };
 		E66AD44E1D346F4A00390CD5 /* 1466238314_running.png in Resources */ = {isa = PBXBuildFile; fileRef = E66AD44D1D346F4A00390CD5 /* 1466238314_running.png */; };
 		E66AD4501D346F6200390CD5 /* 1463131048_dumbbell.png in Resources */ = {isa = PBXBuildFile; fileRef = E66AD44F1D346F6200390CD5 /* 1463131048_dumbbell.png */; };
-		E6A20D821D52B482008BCBA5 /* GymWorkoutManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A20D811D52B482008BCBA5 /* GymWorkoutManagerUITests.swift */; };
 		E6A20D901D52B77F008BCBA5 /* GymWorkoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6A20D8F1D52B77F008BCBA5 /* GymWorkoutManagerTests.swift */; };
 		E6AD9D891C4C5F28004F6437 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D881C4C5F28004F6437 /* AppDelegate.swift */; };
 		E6AD9D8B1C4C5F28004F6437 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6AD9D8A1C4C5F28004F6437 /* TimerViewController.swift */; };
@@ -61,7 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E6A20D841D52B482008BCBA5 /* PBXContainerItemProxy */ = {
+		E664F95D1D6413E4001ACF91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E6AD9D7D1C4C5F28004F6437 /* Project object */;
 			proxyType = 1;
@@ -125,10 +125,12 @@
 		CABCE037BAF667446A1F59FE /* Pods-GymWorkoutManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerTests/Pods-GymWorkoutManagerTests.release.xcconfig"; sourceTree = "<group>"; };
 		E6294A361D36075B00EB88FC /* PedmeterViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedmeterViewCell.swift; sourceTree = "<group>"; };
 		E62AB48F1C55A55500EB15BC /* MainInterfaceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainInterfaceViewController.swift; sourceTree = "<group>"; };
+		E664F9581D6413E3001ACF91 /* GymWorkoutManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymWorkoutManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E664F95A1D6413E4001ACF91 /* GymWorkoutManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutManagerUITests.swift; sourceTree = "<group>"; };
+		E664F95C1D6413E4001ACF91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E66AD44B1D345A4700390CD5 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		E66AD44D1D346F4A00390CD5 /* 1466238314_running.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1466238314_running.png; sourceTree = "<group>"; };
 		E66AD44F1D346F6200390CD5 /* 1463131048_dumbbell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463131048_dumbbell.png; sourceTree = "<group>"; };
-		E6A20D7F1D52B481008BCBA5 /* GymWorkoutManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymWorkoutManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6A20D811D52B482008BCBA5 /* GymWorkoutManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymWorkoutManagerUITests.swift; sourceTree = "<group>"; };
 		E6A20D831D52B482008BCBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E6A20D8D1D52B77F008BCBA5 /* GymWorkoutManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GymWorkoutManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,7 +155,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E6A20D7C1D52B481008BCBA5 /* Frameworks */ = {
+		E664F9551D6413E3001ACF91 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -277,6 +279,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E664F9591D6413E4001ACF91 /* GymWorkoutManagerUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E664F95A1D6413E4001ACF91 /* GymWorkoutManagerUITests.swift */,
+				E664F95C1D6413E4001ACF91 /* Info.plist */,
+			);
+			path = GymWorkoutManagerUITests;
+			sourceTree = "<group>";
+		};
 		E6A20D801D52B482008BCBA5 /* GymWorkoutManagerUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +317,7 @@
 				E6AD9DA91C4C5F28004F6437 /* GymWorkoutManagerUITests */,
 				E6A20D801D52B482008BCBA5 /* GymWorkoutManagerUITests */,
 				E6A20D8E1D52B77F008BCBA5 /* GymWorkoutManagerTests */,
+				E664F9591D6413E4001ACF91 /* GymWorkoutManagerUITests */,
 				E6AD9D861C4C5F28004F6437 /* Products */,
 				9362B02994748E37E71F65CE /* Frameworks */,
 				E095E2C4F2433260439CCBE5 /* Pods */,
@@ -316,8 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				E6AD9D851C4C5F28004F6437 /* GymWorkoutManager.app */,
-				E6A20D7F1D52B481008BCBA5 /* GymWorkoutManagerUITests.xctest */,
 				E6A20D8D1D52B77F008BCBA5 /* GymWorkoutManagerTests.xctest */,
+				E664F9581D6413E3001ACF91 /* GymWorkoutManagerUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -387,22 +399,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E6A20D7E1D52B481008BCBA5 /* GymWorkoutManagerUITests */ = {
+		E664F9571D6413E3001ACF91 /* GymWorkoutManagerUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E6A20D861D52B482008BCBA5 /* Build configuration list for PBXNativeTarget "GymWorkoutManagerUITests" */;
+			buildConfigurationList = E664F95F1D6413E4001ACF91 /* Build configuration list for PBXNativeTarget "GymWorkoutManagerUITests" */;
 			buildPhases = (
-				E6A20D7B1D52B481008BCBA5 /* Sources */,
-				E6A20D7C1D52B481008BCBA5 /* Frameworks */,
-				E6A20D7D1D52B481008BCBA5 /* Resources */,
+				E664F9541D6413E3001ACF91 /* Sources */,
+				E664F9551D6413E3001ACF91 /* Frameworks */,
+				E664F9561D6413E3001ACF91 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E6A20D851D52B482008BCBA5 /* PBXTargetDependency */,
+				E664F95E1D6413E4001ACF91 /* PBXTargetDependency */,
 			);
 			name = GymWorkoutManagerUITests;
 			productName = GymWorkoutManagerUITests;
-			productReference = E6A20D7F1D52B481008BCBA5 /* GymWorkoutManagerUITests.xctest */;
+			productReference = E664F9581D6413E3001ACF91 /* GymWorkoutManagerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		E6A20D8C1D52B77F008BCBA5 /* GymWorkoutManagerTests */ = {
@@ -453,7 +465,7 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = McKay;
 				TargetAttributes = {
-					E6A20D7E1D52B481008BCBA5 = {
+					E664F9571D6413E3001ACF91 = {
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = E6AD9D841C4C5F28004F6437;
 					};
@@ -482,13 +494,13 @@
 			targets = (
 				E6AD9D841C4C5F28004F6437 /* GymWorkoutManager */,
 				E6A20D8C1D52B77F008BCBA5 /* GymWorkoutManagerTests */,
-				E6A20D7E1D52B481008BCBA5 /* GymWorkoutManagerUITests */,
+				E664F9571D6413E3001ACF91 /* GymWorkoutManagerUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E6A20D7D1D52B481008BCBA5 /* Resources */ = {
+		E664F9561D6413E3001ACF91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -586,11 +598,11 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E6A20D7B1D52B481008BCBA5 /* Sources */ = {
+		E664F9541D6413E3001ACF91 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6A20D821D52B482008BCBA5 /* GymWorkoutManagerUITests.swift in Sources */,
+				E664F95B1D6413E4001ACF91 /* GymWorkoutManagerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,10 +646,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E6A20D851D52B482008BCBA5 /* PBXTargetDependency */ = {
+		E664F95E1D6413E4001ACF91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E6AD9D841C4C5F28004F6437 /* GymWorkoutManager */;
-			targetProxy = E6A20D841D52B482008BCBA5 /* PBXContainerItemProxy */;
+			targetProxy = E664F95D1D6413E4001ACF91 /* PBXContainerItemProxy */;
 		};
 		E6A20D931D52B77F008BCBA5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -666,7 +678,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		E6A20D871D52B482008BCBA5 /* Debug */ = {
+		E664F9601D6413E4001ACF91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -679,7 +691,7 @@
 			};
 			name = Debug;
 		};
-		E6A20D881D52B482008BCBA5 /* Release */ = {
+		E664F9611D6413E4001ACF91 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
@@ -849,14 +861,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E6A20D861D52B482008BCBA5 /* Build configuration list for PBXNativeTarget "GymWorkoutManagerUITests" */ = {
+		E664F95F1D6413E4001ACF91 /* Build configuration list for PBXNativeTarget "GymWorkoutManagerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E6A20D871D52B482008BCBA5 /* Debug */,
-				E6A20D881D52B482008BCBA5 /* Release */,
+				E664F9601D6413E4001ACF91 /* Debug */,
+				E664F9611D6413E4001ACF91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		E6A20D941D52B77F008BCBA5 /* Build configuration list for PBXNativeTarget "GymWorkoutManagerTests" */ = {
 			isa = XCConfigurationList;
