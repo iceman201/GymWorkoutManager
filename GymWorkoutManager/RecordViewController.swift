@@ -46,6 +46,16 @@ class RecordViewController: UITableViewController {
                 infoCell.name.text = user.name
                 if user.weight != "" {
                     infoCell.weight.text = user.weight + " KG"
+                } else {
+                    if infoCell.name.text?.isEmpty == true {
+                        infoCell.hidden = true
+                        if let messageCell = self.tableView.dequeueReusableCellWithIdentifier("messageCell") {
+                            messageCell.textLabel?.text = "Reminder:"
+                            messageCell.detailTextLabel?.text = "Please enter your details on the profile page."
+                            messageCell.detailTextLabel?.textColor = GWMColorYellow
+                            return messageCell
+                        }
+                    }
                 }
                 
                 if let pictureData = user.profilePicture {

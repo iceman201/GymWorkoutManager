@@ -125,6 +125,9 @@ class AnalysisViewController: UITableViewController {
         self.tableView.backgroundColor = GWMColorBackground
         self.tableView.separatorColor = UIColor.clearColor()
         self.tableView.delegate = self
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+        }
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)

@@ -171,6 +171,9 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         print(Realm.Configuration.defaultConfiguration.fileURL)
         self.time = timeDate(receivedTime)
         self.totalTime = timeDate(receivedTime)
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+        }
     }
     
     // MARK: - TimeSetUpViewControllerDelegate

@@ -34,6 +34,7 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
         setPlan.backgroundColor = GWMColorPurple
         setPlan.tintColor = GWMColorYellow
         selectedDay = calendarView.presentedDate.commonDescription
+
     }
     
     func dayLabelWeekdayInTextColor() -> UIColor {

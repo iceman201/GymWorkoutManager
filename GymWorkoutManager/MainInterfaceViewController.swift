@@ -21,12 +21,14 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         ("icon_timer", GWMColorBlue, "Timer"),
         ("icon_record", GWMColorGreen, "Record"),
         ("icon-profile", GWMColorRed, "Profile"),
-        ("icon-analysis", UIColor.whiteColor(), "Analysis"),
-        ]
+        ("icon-analysis", UIColor.whiteColor(), "Analysis")]
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+        }
     }
     @IBAction func tapStartButton(sender: AnyObject) {
         startLabel.hidden = !startLabel.hidden

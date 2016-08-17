@@ -95,7 +95,9 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         super.viewDidLoad()
         self.timePicker.delegate = self
         self.timePicker.dataSource = self
-        
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+        }
         // Do any additional setup after loading the view.
     }
     

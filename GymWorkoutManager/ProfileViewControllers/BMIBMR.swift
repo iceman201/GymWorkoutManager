@@ -34,7 +34,9 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BMIBMR.handleSingleTap(_:)))
         tapRecognizer?.numberOfTapsRequired = 1
         tapRecognizer?.delegate = self
-        
+        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+        }
     }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
