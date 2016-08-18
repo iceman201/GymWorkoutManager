@@ -23,6 +23,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBOutlet weak var femaleButton: UIButton!
     @IBOutlet weak var viewForAdaptForKeyboard: UIView!
     
+    var keyboardIsShown = false
+    
     var tapRecognizer: UITapGestureRecognizer? = nil
 
     //@IBOutlet weak var backgroundScrollView: UIScrollView!
@@ -257,6 +259,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         self.addKeyboardDismissRecognizer()
         self.subscribeToKeyboardNotifications()
         
+        keyboardIsShown = false
+        
         profilePicture.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         profilePicture.imageView?.layer.cornerRadius = 0.5 * profilePicture.bounds.width
         
@@ -305,6 +309,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
 extension ProfileViewController:UIGestureRecognizerDelegate {
     
+    
     func addKeyboardDismissRecognizer() {
         print("add keyboard dissmiss recognizer")
         view.addGestureRecognizer(tapRecognizer!)
@@ -340,14 +345,18 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
     func keyboardWillShow(notification: NSNotification) {
         print("keyboard will show")
         print("height is " + String(getKeyboardHeight(notification)/2))
-        if(view.frame.origin.y == 0.0){
+        print("view frame origin y is " + String(view.frame.origin.y))
+        if(!keyboardIsShown){
             view.frame.origin.y -= getKeyboardHeight(notification) / 2
         }
+        keyboardIsShown = true
     }
+
     
     func keyboardWillHide(notification: NSNotification) {
         print("keyboard will hide")
         view.frame.origin.y = 0.0
+        keyboardIsShown = false
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
