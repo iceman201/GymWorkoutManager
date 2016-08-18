@@ -29,7 +29,8 @@
 	* what's those stand for and whats those name means such as `BMR` & `BMI`
 	
 * Self Challenge
-	* Note: this function may develop on future version, since we cant solve the server issue atm.¯\_(ツ)_/¯
+	* Note: this function may develop on future version, since we cant solve the server issue atm.
+	* `¯\_(ツ)_/¯`
 
 ######Frame Tree
 ![Alt text](http://g.gravizo.com/g?
