@@ -126,15 +126,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             }
             curentUser!.profilePicture = imageSourceData
             profilePicture.setImage(UIImage(data: imageSourceData), forState: .Normal)
+//            profilePicture.setBackgroundImage(UIImage(data: imageSourceData), forState: .Normal)
         }
-
-	
         DatabaseHelper.sharedInstance.commitTransaction()
+        
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         guard let numberOfUser = cusers?.count else {
             return
         }
         checkUser(numberOfUser)
+        
         
         self.dismissViewControllerAnimated(true, completion: nil)
     }

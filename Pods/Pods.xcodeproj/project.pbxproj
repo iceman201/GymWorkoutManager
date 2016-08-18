@@ -1510,7 +1510,7 @@
 				LastUpgradeCheck = 0700;
 				TargetAttributes = {
 					27533A6098E2BDD80827924FA8F4E742 = {
-						DevelopmentTeam = V7QHHUD2M5;
+						DevelopmentTeam = AY9238W7MW;
 					};
 				};
 			};
@@ -2003,6 +2003,7 @@
 				MODULEMAP_FILE = "Target Support Files/CircleMenu/CircleMenu.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = CircleMenu;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2138,6 +2139,7 @@
 				MODULEMAP_FILE = "Target Support Files/CircleMenu/CircleMenu.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = CircleMenu;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

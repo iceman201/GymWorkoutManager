@@ -16,6 +16,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     @IBOutlet var startButton: CircleMenu!
     @IBOutlet var backLayer: UIImageView!
     @IBOutlet var startLabel: UILabel!
+    var mainButtonTouched : Bool?
     
     let items: [(icon: String, color: UIColor, Name: String)] = [
         ("icon_timer", GWMColorBlue, "Timer"),
@@ -29,6 +30,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
             self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
         }
+
     }
     @IBAction func tapStartButton(sender: AnyObject) {
         startLabel.hidden = !startLabel.hidden
@@ -46,6 +48,11 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        startLabel.hidden = false
+        if mainButtonTouched == true {
+            startButton.sendActionsForControlEvents(.TouchUpInside)
+            startLabel.hidden = true
+        }
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -83,6 +90,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     }
     
     func circleMenu(circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
+        self.mainButtonTouched = true
         switch atIndex {
         case 0:
             self.performSegueWithIdentifier("timer", sender: self)
