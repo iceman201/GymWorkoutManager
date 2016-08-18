@@ -475,7 +475,7 @@
 					};
 					E6AD9D841C4C5F28004F6437 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 8436A3G9R2;
+						DevelopmentTeam = V7QHHUD2M5;
 					};
 				};
 			};
@@ -829,7 +829,7 @@
 				INFOPLIST_FILE = GymWorkoutManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.liguojiao.gymworkoutmanager;
+				PRODUCT_BUNDLE_IDENTIFIER = liguojiao.gymworkoutmanager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GymWorkoutManager/GymWorkoutManager-Bridging-Header.h";
@@ -850,7 +850,7 @@
 				INFOPLIST_FILE = GymWorkoutManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.liguojiao.gymworkoutmanager;
+				PRODUCT_BUNDLE_IDENTIFIER = liguojiao.gymworkoutmanager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GymWorkoutManager/GymWorkoutManager-Bridging-Header.h";

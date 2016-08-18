@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6AD9D9A1C4C5F28004F6437"
+               BlueprintIdentifier = "E6A20D8C1D52B77F008BCBA5"
                BuildableName = "GymWorkoutManagerTests.xctest"
                BlueprintName = "GymWorkoutManagerTests"
                ReferencedContainer = "container:GymWorkoutManager.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E6AD9DA51C4C5F28004F6437"
+               BlueprintIdentifier = "E664F9571D6413E3001ACF91"
                BuildableName = "GymWorkoutManagerUITests.xctest"
                BlueprintName = "GymWorkoutManagerUITests"
                ReferencedContainer = "container:GymWorkoutManager.xcodeproj">

@@ -4,37 +4,37 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>CircleMenu.xcscheme</key>
+		<key>CircleMenu 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
-		<key>Graphs.xcscheme</key>
+		<key>Graphs 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>Pods-GymWorkoutManager.xcscheme</key>
+		<key>Pods-GymWorkoutManager 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
 		</dict>
-		<key>Pods-GymWorkoutManagerTests.xcscheme</key>
+		<key>Pods-GymWorkoutManagerTests 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>4</integer>
 		</dict>
-		<key>Pods-GymWorkoutManagerUITests.xcscheme</key>
+		<key>Pods-GymWorkoutManagerUITests 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
-		<key>Realm.xcscheme</key>
+		<key>Realm 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>RealmSwift.xcscheme</key>
+		<key>RealmSwift 2.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>7</integer>
