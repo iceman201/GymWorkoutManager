@@ -11,6 +11,7 @@ PODS:
   - Realm/Headers (1.0.1)
   - RealmSwift (1.0.1):
     - Realm (= 1.0.1)
+  - ScrollableGraphView (2.0.0)
 
 DEPENDENCIES:
   - AVOSCloud
@@ -20,6 +21,7 @@ DEPENDENCIES:
   - Graphs (~> 0.1.2)
   - JVFloatLabeledTextField
   - RealmSwift
+  - ScrollableGraphView
 
 SPEC CHECKSUMS:
   AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
@@ -30,7 +32,8 @@ SPEC CHECKSUMS:
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
   RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
+  ScrollableGraphView: b91f73335220890103a43a33d9fb8d93c547a86d
 
-PODFILE CHECKSUM: 7edc283c4d9db110268313de92dd4fb6de829657
+PODFILE CHECKSUM: 6f144c9daa3063544b0540437cc62986eeb69ddc
 
 COCOAPODS: 1.0.1
