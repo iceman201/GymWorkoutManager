@@ -1,16 +1,3 @@
-GymWorkoutManager.xcodeproj/xcuserdata/gl.xcuserdatad/xcschemes/xcschememanagement.plist
-
-GymWorkoutManager.xcworkspace/xcuserdata/gl.xcuserdatad/UserInterfaceState.xcuserstate
-
-GymWorkoutManager.xcworkspace/xcuserdata/gl.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
-
-Pods/Pods.xcodeproj/xcuserdata/gl.xcuserdatad/xcschemes/xcschememanagement.plist
-
-GymWorkoutManager/TimeSetupViewController.swift
-
-GymWorkoutManager.xcworkspace/xcuserdata/liguojiao.xcuserdatad/UserInterfaceState.xcuserstate
-
-GymWorkoutManager.xcworkspace/xcuserdata/Liguo_Jiao.xcuserdatad/UserInterfaceState.xcuserstate
 
 *.xcuserstate
 
@@ -20,6 +7,10 @@ GymWorkoutManager.xcworkspace/xcuserdata/Liguo_Jiao.xcuserdatad/UserInterfaceSta
 
 *.xcuserstate
 
-GymWorkoutManager.xcworkspace/xcuserdata/liguojiao.xcuserdatad/UserInterfaceState.xcuserstate
+*.DS_Store
 
-GymWorkoutManager.xcworkspace/xcuserdata/liguojiao.xcuserdatad/xcdebugger/Breakpoints_v2.xcbkptlist
+*.xcuserstate
+
+*.xcbkptlist
+
+*.xcuserstate
