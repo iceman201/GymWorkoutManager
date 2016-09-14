@@ -9,7 +9,7 @@
 import UIKit
 
 public final class CVCalendarViewAnimator {
-    private unowned let calendarView: CalendarView
+    fileprivate unowned let calendarView: CalendarView
     
     // MARK: - Public properties
     public weak var delegate: CVCalendarViewAnimatorDelegate!
@@ -29,15 +29,15 @@ public final class CVCalendarViewAnimator {
 // MARK: - Public methods
 
 extension CVCalendarViewAnimator {
-    public func animateSelectionOnDayView(dayView: DayView) {
+    public func animateSelectionOnDayView(_ dayView: DayView) {
         let selectionAnimation = delegate.selectionAnimation()
-        dayView.setSelectedWithType(.Single)
+        dayView.setSelectedWithType(.single)
         selectionAnimation(dayView) { [unowned dayView] _ in
             // Something...
         }
     }
     
-    public func animateDeselectionOnDayView(dayView: DayView) {
+    public func animateDeselectionOnDayView(_ dayView: DayView) {
         let deselectionAnimation = delegate.deselectionAnimation()
         deselectionAnimation(dayView) { [weak dayView] _ in
             if let selectedDayView = dayView {
@@ -65,12 +65,12 @@ private extension CVCalendarViewAnimator {
     func selectionWithBounceEffect() -> ((DayView, ((Bool) -> ())) -> ()) {
         return {
             dayView, completion in
-            dayView.dayLabel?.transform = CGAffineTransformMakeScale(0.5, 0.5)
-            dayView.selectionView?.transform = CGAffineTransformMakeScale(0.5, 0.5)
+            dayView.dayLabel?.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            dayView.selectionView?.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
             
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.BeginFromCurrentState, animations: {
-                dayView.selectionView?.transform = CGAffineTransformMakeScale(1, 1)
-                dayView.dayLabel?.transform = CGAffineTransformMakeScale(1, 1)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.1, options: UIViewAnimationOptions.beginFromCurrentState, animations: {
+                dayView.selectionView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                dayView.dayLabel?.transform = CGAffineTransform(scaleX: 1, y: 1)
             }, completion: completion)
         }
     }
@@ -78,12 +78,12 @@ private extension CVCalendarViewAnimator {
     func deselectionWithBubbleEffect() -> ((DayView, ((Bool) -> ())) -> ()) {
         return {
             dayView, completion in
-            UIView.animateWithDuration(0.15, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-                dayView.selectionView!.transform = CGAffineTransformMakeScale(1.3, 1.3)
+            UIView.animate(withDuration: 0.15, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.8, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                dayView.selectionView!.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
             }) { _ in
-                UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
+                UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
                     if let selectionView = dayView.selectionView {
-                        selectionView.transform = CGAffineTransformMakeScale(0.1, 0.1)
+                        selectionView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                     }
                 }, completion: completion)
             }
@@ -93,7 +93,7 @@ private extension CVCalendarViewAnimator {
     func deselectionWithFadeOutEffect() -> ((DayView, ((Bool) -> ())) -> ()) {
         return {
             dayView, completion in
-            UIView.animateWithDuration(0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [], animations: {
+            UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0, options: [], animations: {
                 dayView.setDeselectedWithClearing(false) // return labels' defaults while circle view disappearing
                 if let selectionView = dayView.selectionView {
                     selectionView.alpha = 0
@@ -105,8 +105,8 @@ private extension CVCalendarViewAnimator {
     func deselectionWithRollingEffect() -> ((DayView, ((Bool) -> ())) -> ()) {
         return {
             dayView, completion in
-            UIView.animateWithDuration(0.25, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: { () -> Void in
-                dayView.selectionView?.transform = CGAffineTransformMakeScale(0.1, 0.1)
+            UIView.animate(withDuration: 0.25, delay: 0, options: UIViewAnimationOptions(), animations: { () -> Void in
+                dayView.selectionView?.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
                 dayView.selectionView?.alpha = 0.0
             }, completion: completion)
         }

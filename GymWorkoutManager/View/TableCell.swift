@@ -11,6 +11,6 @@ import UIKit
 class TableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = UIColor.blueColor()
+        self.backgroundColor = UIColor.blue
     }
 }

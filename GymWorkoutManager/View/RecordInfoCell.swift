@@ -26,11 +26,11 @@ class RecordInfoCell: UITableViewCell {
         super.awakeFromNib()
         profileImage.layer.borderWidth = 1.0
         profileImage.layer.masksToBounds = false
-        profileImage.layer.borderColor = UIColor.whiteColor().CGColor
+        profileImage.layer.borderColor = UIColor.white.cgColor
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
     }
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         return CGSize(width: 414, height: 152)
     }
 }

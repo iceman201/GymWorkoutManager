@@ -11,9 +11,9 @@ import RealmSwift
 
 struct DatabaseHelper {
     
-    private var realm:Realm?
+    fileprivate var realm:Realm?
     
-    private init(){
+    fileprivate init(){
         realm = try! Realm()
     }
     
@@ -23,25 +23,25 @@ struct DatabaseHelper {
 
 
 extension DatabaseHelper {
-    func insert(object:Object) {
+    func insert(_ object:Object) {
         try! realm?.write({
             realm?.add(object)
         })
     }
     
-    func delete(object:Object) {
+    func delete(_ object:Object) {
         try! realm?.write({
             realm?.delete(object)
         })
     }
     
-    func update(object:Object) {
+    func update(_ object:Object) {
         try! realm?.write({
             realm?.add(object, update: true)
         })
     }
     
-    func queryAll<T:Object>(clazz:T) -> Array<T>? {
+    func queryAll<T:Object>(_ clazz:T) -> Array<T>? {
         var array:[T] = []
         if realm != nil {
             let objs:Results<T> = (realm?.objects(T))!
