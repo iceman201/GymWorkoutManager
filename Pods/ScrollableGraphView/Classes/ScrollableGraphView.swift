@@ -1579,9 +1579,9 @@ private class GradientDrawingLayer : ScrollableGraphViewDrawingLayer {
         
         switch(gradientType) {
         case .Linear:
-            CGContextDrawLinearGradient(ctx, gradient, topCentre, bottomCentre, .DrawsAfterEndLocation)
+            CGContextDrawLinearGradient(ctx, gradient!, topCentre, bottomCentre, .DrawsAfterEndLocation)
         case .Radial:
-            CGContextDrawRadialGradient(ctx, gradient, topCentre, startRadius, topCentre, endRadius, .DrawsAfterEndLocation)
+            CGContextDrawRadialGradient(ctx, gradient!, topCentre, startRadius, topCentre, endRadius, .DrawsAfterEndLocation)
         }
     }
 }

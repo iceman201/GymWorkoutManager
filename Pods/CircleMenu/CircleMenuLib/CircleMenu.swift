@@ -404,6 +404,7 @@ public class CircleMenu: UIButton {
             $0.initialVelocity = 0
             $0.beginTime       = CACurrentMediaTime() + delay
         }
+        
         let fade = Init(CABasicAnimation(keyPath: "opacity")) {
             $0.duration            = NSTimeInterval(0.01)
             $0.toValue             = 0

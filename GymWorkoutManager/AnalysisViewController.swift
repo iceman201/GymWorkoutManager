@@ -130,10 +130,16 @@ class AnalysisViewController: UITableViewController {
             return cell
         }
     }
-    /*
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if
-    }*/
+        if isNonData() {
+            self.performSegueWithIdentifier("graphView", sender: self)
+        } else {
+            if indexPath.section == 1 {
+                self.performSegueWithIdentifier("graphView", sender: self)
+            }
+        }
+    }
     
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()

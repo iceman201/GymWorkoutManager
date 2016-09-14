@@ -72,28 +72,28 @@ internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
         let ps = self.points(lineGraph, rect: rect)
         
         let context = UIGraphicsGetCurrentContext()
-        CGContextSetStrokeColorWithColor(context, config.lineColor.CGColor ?? UIColor.blackColor().CGColor)
-        CGContextSetLineWidth(context, self.config.lineWidth)
+        CGContextSetStrokeColorWithColor(context!, config.lineColor.CGColor ?? UIColor.blackColor().CGColor)
+        CGContextSetLineWidth(context!, self.config.lineWidth)
         
         ps.forEach({point in
             if point == ps.first {
-                CGContextMoveToPoint(context, point.x, point.y)
+                CGContextMoveToPoint(context!, point.x, point.y)
             }
             else {
-                CGContextAddLineToPoint(context, point.x, point.y)
-                CGContextStrokePath(context)
-                CGContextMoveToPoint(context, point.x, point.y)
+                CGContextAddLineToPoint(context!, point.x, point.y)
+                CGContextStrokePath(context!)
+                CGContextMoveToPoint(context!, point.x, point.y)
             }
         })
         
-        CGContextSetLineWidth(context, 0.0)
-        CGContextSetFillColorWithColor(context, config.lineColor.CGColor ?? UIColor.blackColor().CGColor)
+        CGContextSetLineWidth(context!, 0.0)
+        CGContextSetFillColorWithColor(context!, config.lineColor.CGColor ?? UIColor.blackColor().CGColor)
         
         if self.config.dotEnable {
             ps.forEach({point in
                 let r = CGRect(x: point.x - CGFloat(self.config.dotDiameter / 2.0), y: point.y - CGFloat(self.config.dotDiameter / 2.0), width: CGFloat(self.config.dotDiameter), height: CGFloat(self.config.dotDiameter))
-                CGContextStrokeEllipseInRect(context, r)
-                CGContextFillEllipseInRect(context, r)
+                CGContextStrokeEllipseInRect(context!, r)
+                CGContextFillEllipseInRect(context!, r)
             })
         }
         
