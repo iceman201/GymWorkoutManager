@@ -9,16 +9,16 @@
 import Foundation
 
 public enum CVScrollDirection {
-    case none
-    case right
-    case left
+    case None
+    case Right
+    case Left
     
     var description: String {
         get {
             switch self {
-            case .left: return "Left"
-            case .right: return "Right"
-            case .none: return "None"
+            case .Left: return "Left"
+            case .Right: return "Right"
+            case .None: return "None"
             }
         }
     }

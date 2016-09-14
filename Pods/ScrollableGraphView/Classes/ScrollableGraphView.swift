@@ -2,7 +2,7 @@ import UIKit
 
 // MARK: - ScrollableGraphView
 @IBDesignable
-@objc open class ScrollableGraphView: UIScrollView, UIScrollViewDelegate, ScrollableGraphViewDrawingDelegate {
+@objc public class ScrollableGraphView: UIScrollView, UIScrollViewDelegate, ScrollableGraphViewDrawingDelegate {
     
     // MARK: - Public Properties
     // Use these to customise the graph.
@@ -12,10 +12,10 @@ import UIKit
     // ###########
     
     /// Specifies how thick the graph of the line is. In points.
-    @IBInspectable open var lineWidth: CGFloat = 2
+    @IBInspectable public var lineWidth: CGFloat = 2
     /// The color of the graph line. UIColor.
     // We must not use type inferring here or else the property won't show up in IB
-    @IBInspectable open var lineColor: UIColor = UIColor.black
+    @IBInspectable public var lineColor: UIColor = UIColor.blackColor()
     
     @IBInspectable var lineStyle_: Int {
         get { return lineStyle.rawValue }
@@ -26,35 +26,35 @@ import UIKit
         }
     }
     /// Whether or not the line should be rendered using bezier curves are straight lines.
-    open var lineStyle = ScrollableGraphViewLineStyle.straight
+    public var lineStyle = ScrollableGraphViewLineStyle.Straight
     /// How each segment in the line should connect. Takes any of the Core Animation LineJoin values.
-    @IBInspectable open var lineJoin: String = kCALineJoinRound
+    @IBInspectable public var lineJoin: String = kCALineJoinRound
     /// The line caps. Takes any of the Core Animation LineCap values.
-    @IBInspectable open var lineCap: String = kCALineCapRound
-    @IBInspectable open var lineCurviness: CGFloat = 0.5
+    @IBInspectable public var lineCap: String = kCALineCapRound
+    @IBInspectable public var lineCurviness: CGFloat = 0.5
     
     // Bar styles
     // ##########
     
     /// Whether bars should be drawn or not. If you want a bar graph, this should be set to true.
-    @IBInspectable open var shouldDrawBarLayer: Bool = false
+    @IBInspectable public var shouldDrawBarLayer: Bool = false
     /// The width of an individual bar on the graph.
-    @IBInspectable open var barWidth: CGFloat = 25;
+    @IBInspectable public var barWidth: CGFloat = 25;
     /// The actual colour of the bar.
-    @IBInspectable open var barColor: UIColor = UIColor.gray
+    @IBInspectable public var barColor: UIColor = UIColor.grayColor()
     /// The width of the outline of the bar
-    @IBInspectable open var barLineWidth: CGFloat = 1
+    @IBInspectable public var barLineWidth: CGFloat = 1
     /// The colour of the bar outline
-    @IBInspectable open var barLineColor: UIColor = UIColor.darkGray
+    @IBInspectable public var barLineColor: UIColor = UIColor.darkGrayColor()
     
     // Fill Styles
     // ###########
     
     /// The background colour for the entire graph view, not just the plotted graph.
-    @IBInspectable open var backgroundFillColor: UIColor = UIColor.white
+    @IBInspectable public var backgroundFillColor: UIColor = UIColor.whiteColor()
     
     /// Specifies whether or not the plotted graph should be filled with a colour or gradient.
-    @IBInspectable open var shouldFill: Bool = false
+    @IBInspectable public var shouldFill: Bool = false
     
     @IBInspectable var fillType_: Int {
         get { return fillType.rawValue }
@@ -65,13 +65,13 @@ import UIKit
         }
     }
     /// Specifies whether to fill the graph with a solid colour or gradient.
-    open var fillType = ScrollableGraphViewFillType.solid
+    public var fillType = ScrollableGraphViewFillType.Solid
     /// If fillType is set to .Solid then this colour will be used to fill the graph.
-    @IBInspectable open var fillColor: UIColor = UIColor.black
+    @IBInspectable public var fillColor: UIColor = UIColor.blackColor()
     /// If fillType is set to .Gradient then this will be the starting colour for the gradient.
-    @IBInspectable open var fillGradientStartColor: UIColor = UIColor.white
+    @IBInspectable public var fillGradientStartColor: UIColor = UIColor.whiteColor()
     /// If fillType is set to .Gradient, then this will be the ending colour for the gradient.
-    @IBInspectable open var fillGradientEndColor: UIColor = UIColor.black
+    @IBInspectable public var fillGradientEndColor: UIColor = UIColor.blackColor()
     
     @IBInspectable var fillGradientType_: Int {
         get { return fillGradientType.rawValue }
@@ -82,21 +82,21 @@ import UIKit
         }
     }
     /// If fillType is set to .Gradient, then this defines whether the gradient is rendered as a linear gradient or radial gradient.
-    open var fillGradientType = ScrollableGraphViewGradientType.linear
+    public var fillGradientType = ScrollableGraphViewGradientType.Linear
     
     // Spacing
     // #######
     
     /// How far the "maximum" reference line is from the top of the view's frame. In points.
-    @IBInspectable open var topMargin: CGFloat = 10
+    @IBInspectable public var topMargin: CGFloat = 10
     /// How far the "minimum" reference line is from the bottom of the view's frame. In points.
-    @IBInspectable open var bottomMargin: CGFloat = 10
+    @IBInspectable public var bottomMargin: CGFloat = 10
     /// How far the first point on the graph should be placed from the left hand side of the view.
-    @IBInspectable open var leftmostPointPadding: CGFloat = 50
+    @IBInspectable public var leftmostPointPadding: CGFloat = 50
     /// How far the final point on the graph should be placed from the right hand side of the view.
-    @IBInspectable open var rightmostPointPadding: CGFloat = 50
+    @IBInspectable public var rightmostPointPadding: CGFloat = 50
     /// How much space should be between each data point.
-    @IBInspectable open var dataPointSpacing: CGFloat = 40
+    @IBInspectable public var dataPointSpacing: CGFloat = 40
     
     @IBInspectable var direction_: Int {
         get { return direction.rawValue }
@@ -107,43 +107,43 @@ import UIKit
         }
     }
     /// Which side of the graph the user is expected to scroll from.
-    open var direction = ScrollableGraphViewDirection.leftToRight
+    public var direction = ScrollableGraphViewDirection.LeftToRight
     
     // Graph Range
     // ###########
     
     /// If this is set to true, then the range will automatically be detected from the data the graph is given.
-    @IBInspectable open var shouldAutomaticallyDetectRange: Bool = false
+    @IBInspectable public var shouldAutomaticallyDetectRange: Bool = false
     /// Forces the graph's minimum to always be zero. Used in conjunction with shouldAutomaticallyDetectRange or shouldAdaptRange, if you want to force the minimum to stay at 0 rather than the detected minimum.
-    @IBInspectable open var shouldRangeAlwaysStartAtZero: Bool = false // Used in conjunction with shouldAutomaticallyDetectRange, if you want to force the min to stay at 0.
+    @IBInspectable public var shouldRangeAlwaysStartAtZero: Bool = false // Used in conjunction with shouldAutomaticallyDetectRange, if you want to force the min to stay at 0.
     /// The minimum value for the y-axis. This is ignored when shouldAutomaticallyDetectRange or shouldAdaptRange = true
-    @IBInspectable open var rangeMin: Double = 0
+    @IBInspectable public var rangeMin: Double = 0
     /// The maximum value for the y-axis. This is ignored when shouldAutomaticallyDetectRange or shouldAdaptRange = true
-    @IBInspectable open var rangeMax: Double = 100
+    @IBInspectable public var rangeMax: Double = 100
     
     // Data Point Drawing
     // ##################
     
     /// Whether or not to draw a symbol for each data point.
-    @IBInspectable open var shouldDrawDataPoint: Bool = true
+    @IBInspectable public var shouldDrawDataPoint: Bool = true
     /// The shape to draw for each data point.
-    open var dataPointType = ScrollableGraphViewDataPointType.circle
+    public var dataPointType = ScrollableGraphViewDataPointType.Circle
     /// The size of the shape to draw for each data point.
-    @IBInspectable open var dataPointSize: CGFloat = 5
+    @IBInspectable public var dataPointSize: CGFloat = 5
     /// The colour with which to fill the shape.
-    @IBInspectable open var dataPointFillColor: UIColor = UIColor.black
+    @IBInspectable public var dataPointFillColor: UIColor = UIColor.blackColor()
     /// If dataPointType is set to .Custom then you,can provide a closure to create any kind of shape you would like to be displayed instead of just a circle or square. The closure takes a CGPoint which is the centre of the shape and it should return a complete UIBezierPath.
-    open var customDataPointPath: ((_ centre: CGPoint) -> UIBezierPath)?
+    public var customDataPointPath: ((centre: CGPoint) -> UIBezierPath)?
     
     // Adapting & Animations
     // #####################
     
     /// Whether or not the y-axis' range should adapt to the points that are visible on screen. This means if there are only 5 points visible on screen at any given time, the maximum on the y-axis will be the maximum of those 5 points. This is updated automatically as the user scrolls along the graph.
-    @IBInspectable open var shouldAdaptRange: Bool = false
+    @IBInspectable public var shouldAdaptRange: Bool = false
     /// If shouldAdaptRange is set to true then this specifies whether or not the points on the graph should animate to their new positions. Default is set to true.
-    @IBInspectable open var shouldAnimateOnAdapt: Bool = true
+    @IBInspectable public var shouldAnimateOnAdapt: Bool = true
     /// How long the animation should take. Affects both the startup animation and the animation when the range of the y-axis adapts to onscreen points.
-    @IBInspectable open var animationDuration: Double = 1
+    @IBInspectable public var animationDuration: Double = 1
     
     @IBInspectable var adaptAnimationType_: Int {
         get { return adaptAnimationType.rawValue }
@@ -154,21 +154,21 @@ import UIKit
         }
     }
     /// The animation style.
-    open var adaptAnimationType = ScrollableGraphViewAnimationType.easeOut
+    public var adaptAnimationType = ScrollableGraphViewAnimationType.EaseOut
     /// If adaptAnimationType is set to .Custom, then this is the easing function you would like applied for the animation.
-    open var customAnimationEasingFunction: ((_ t: Double) -> Double)?
+    public var customAnimationEasingFunction: ((t: Double) -> Double)?
     /// Whether or not the graph should animate to their positions when the graph is first displayed.
-    @IBInspectable open var shouldAnimateOnStartup: Bool = true
+    @IBInspectable public var shouldAnimateOnStartup: Bool = true
     
     // Reference Lines
     // ###############
     
     /// Whether or not to show the y-axis reference lines and labels.
-    @IBInspectable open var shouldShowReferenceLines: Bool = true
+    @IBInspectable public var shouldShowReferenceLines: Bool = true
     /// The colour for the reference lines.
-    @IBInspectable open var referenceLineColor: UIColor = UIColor.black
+    @IBInspectable public var referenceLineColor: UIColor = UIColor.blackColor()
     /// The thickness of the reference lines.
-    @IBInspectable open var referenceLineThickness: CGFloat = 0.5
+    @IBInspectable public var referenceLineThickness: CGFloat = 0.5
     
     @IBInspectable var referenceLinePosition_: Int {
         get { return referenceLinePosition.rawValue }
@@ -179,111 +179,111 @@ import UIKit
         }
     }
     /// Where the labels should be displayed on the reference lines.
-    open var referenceLinePosition = ScrollableGraphViewReferenceLinePosition.left
+    public var referenceLinePosition = ScrollableGraphViewReferenceLinePosition.Left
     /// The type of reference lines. Currently only .Cover is available.
-    open var referenceLineType = ScrollableGraphViewReferenceLineType.cover
+    public var referenceLineType = ScrollableGraphViewReferenceLineType.Cover
     
     /// How many reference lines should be between the minimum and maximum reference lines. If you want a total of 4 reference lines, you would set this to 2. This can be set to 0 for no intermediate reference lines.This can be used to create reference lines at specific intervals. If the desired result is to have a reference line at every 10 units on the y-axis, you could, for example, set rangeMax to 100, rangeMin to 0 and numberOfIntermediateReferenceLines to 9.
-    @IBInspectable open var numberOfIntermediateReferenceLines: Int = 3
+    @IBInspectable public var numberOfIntermediateReferenceLines: Int = 3
     /// Whether or not to add labels to the intermediate reference lines.
-    @IBInspectable open var shouldAddLabelsToIntermediateReferenceLines: Bool = true
+    @IBInspectable public var shouldAddLabelsToIntermediateReferenceLines: Bool = true
     /// Whether or not to add units specified by the referenceLineUnits variable to the labels on the intermediate reference lines.
-    @IBInspectable open var shouldAddUnitsToIntermediateReferenceLineLabels: Bool = false
+    @IBInspectable public var shouldAddUnitsToIntermediateReferenceLineLabels: Bool = false
     
     // Reference Line Labels
     // #####################
     
     /// The font to be used for the reference line labels.
-    open var referenceLineLabelFont = UIFont.systemFont(ofSize: 8)
+    public var referenceLineLabelFont = UIFont.systemFontOfSize(8)
     /// The colour of the reference line labels.
-    @IBInspectable open var referenceLineLabelColor: UIColor = UIColor.black
+    @IBInspectable public var referenceLineLabelColor: UIColor = UIColor.blackColor()
     
     /// Whether or not to show the units on the reference lines.
-    @IBInspectable open var shouldShowReferenceLineUnits: Bool = true
+    @IBInspectable public var shouldShowReferenceLineUnits: Bool = true
     /// The units that the y-axis is in. This string is used for labels on the reference lines.
-    @IBInspectable open var referenceLineUnits: String?
+    @IBInspectable public var referenceLineUnits: String?
     /// The number of decimal places that should be shown on the reference line labels.
-    @IBInspectable open var referenceLineNumberOfDecimalPlaces: Int = 0
+    @IBInspectable public var referenceLineNumberOfDecimalPlaces: Int = 0
     /// The NSNumberFormatterStyle that reference lines should use to display
-    @IBInspectable open var referenceLineNumberStyle: NumberFormatter.Style = .none
+    @IBInspectable public var referenceLineNumberStyle: NSNumberFormatterStyle = .NoStyle
     
     // Data Point Labels
     // #################
     
     /// Whether or not to show the labels on the x-axis for each point.
-    @IBInspectable open var shouldShowLabels: Bool = true
+    @IBInspectable public var shouldShowLabels: Bool = true
     /// How far from the "minimum" reference line the data point labels should be rendered.
-    @IBInspectable open var dataPointLabelTopMargin: CGFloat = 10
+    @IBInspectable public var dataPointLabelTopMargin: CGFloat = 10
     /// How far from the bottom of the view the data point labels should be rendered.
-    @IBInspectable open var dataPointLabelBottomMargin: CGFloat = 0
+    @IBInspectable public var dataPointLabelBottomMargin: CGFloat = 0
     /// The font for the data point labels.
-    @IBInspectable open var dataPointLabelColor: UIColor = UIColor.black
+    @IBInspectable public var dataPointLabelColor: UIColor = UIColor.blackColor()
     /// The colour for the data point labels.
-    open var dataPointLabelFont: UIFont? = UIFont.systemFont(ofSize: 10)
+    public var dataPointLabelFont: UIFont? = UIFont.systemFontOfSize(10)
     /// Used to force the graph to show every n-th dataPoint label
-    @IBInspectable open var dataPointLabelsSparsity: Int = 1
+    @IBInspectable public var dataPointLabelsSparsity: Int = 1
   
     // MARK: - Private State
     // #####################
     
     // Graph Data for Display
-    fileprivate var data = [Double]()
-    fileprivate var labels = [String]()
+    private var data = [Double]()
+    private var labels = [String]()
     
-    fileprivate var isInitialSetup = true
-    fileprivate var dataNeedsReloading = true
-    fileprivate var isCurrentlySettingUp = false
+    private var isInitialSetup = true
+    private var dataNeedsReloading = true
+    private var isCurrentlySettingUp = false
     
-    fileprivate var viewportWidth: CGFloat = 0 {
+    private var viewportWidth: CGFloat = 0 {
         didSet { if(oldValue != viewportWidth) { viewportDidChange() }}
     }
-    fileprivate var viewportHeight: CGFloat = 0 {
+    private var viewportHeight: CGFloat = 0 {
         didSet { if(oldValue != viewportHeight) { viewportDidChange() }}
     }
     
-    fileprivate var totalGraphWidth: CGFloat = 0
-    fileprivate var offsetWidth: CGFloat = 0
+    private var totalGraphWidth: CGFloat = 0
+    private var offsetWidth: CGFloat = 0
     
     // Graph Line
-    fileprivate var currentLinePath = UIBezierPath()
-    fileprivate var zeroYPosition: CGFloat = 0
+    private var currentLinePath = UIBezierPath()
+    private var zeroYPosition: CGFloat = 0
     
     // Labels
-    fileprivate var labelsView = UIView()
-    fileprivate var labelPool = LabelPool()
+    private var labelsView = UIView()
+    private var labelPool = LabelPool()
     
     // Graph Drawing
-    fileprivate var graphPoints = [GraphPoint]()
+    private var graphPoints = [GraphPoint]()
     
-    fileprivate var drawingView = UIView()
-    fileprivate var barLayer: BarDrawingLayer?
-    fileprivate var lineLayer: LineDrawingLayer?
-    fileprivate var dataPointLayer: DataPointDrawingLayer?
-    fileprivate var fillLayer: FillDrawingLayer?
-    fileprivate var gradientLayer: GradientDrawingLayer?
+    private var drawingView = UIView()
+    private var barLayer: BarDrawingLayer?
+    private var lineLayer: LineDrawingLayer?
+    private var dataPointLayer: DataPointDrawingLayer?
+    private var fillLayer: FillDrawingLayer?
+    private var gradientLayer: GradientDrawingLayer?
     
     // Reference Lines
-    fileprivate var referenceLineView: ReferenceLineDrawingView?
+    private var referenceLineView: ReferenceLineDrawingView?
     
     // Animation
-    fileprivate var displayLink: CADisplayLink!
-    fileprivate var previousTimestamp: CFTimeInterval = 0
-    fileprivate var currentTimestamp: CFTimeInterval = 0
+    private var displayLink: CADisplayLink!
+    private var previousTimestamp: CFTimeInterval = 0
+    private var currentTimestamp: CFTimeInterval = 0
     
-    fileprivate var currentAnimations = [GraphPointAnimation]()
+    private var currentAnimations = [GraphPointAnimation]()
     
     // Active Points & Range Calculation
     
-    fileprivate var previousActivePointsInterval: CountableRange<Int> = -1 ..< -1
-    fileprivate var activePointsInterval: CountableRange<Int> = -1 ..< -1 {
+    private var previousActivePointsInterval: Range<Int> = -1 ..< -1
+    private var activePointsInterval: Range<Int> = -1 ..< -1 {
         didSet {
-            if(oldValue.lowerBound != activePointsInterval.lowerBound || oldValue.upperBound != activePointsInterval.upperBound) {
+            if(oldValue.startIndex != activePointsInterval.startIndex || oldValue.endIndex != activePointsInterval.endIndex) {
                 if !isCurrentlySettingUp { activePointsDidChange() }
             }
         }
     }
     
-    fileprivate var range: (min: Double, max: Double) = (0, 100) {
+    private var range: (min: Double, max: Double) = (0, 100) {
         didSet {
             if(oldValue.min != range.min || oldValue.max != range.max) {
                 if !isCurrentlySettingUp { rangeDidChange() }
@@ -306,13 +306,13 @@ import UIKit
         displayLink?.invalidate()
     }
     
-    open override func prepareForInterfaceBuilder() {
+    public override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         
         setData([10, 2, 34, 11, 22, 11, 44, 9, 12, 4], withLabels: ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"])
     }
     
-    fileprivate func setup() {
+    private func setup() {
         
         isCurrentlySettingUp = true
         
@@ -332,7 +332,7 @@ import UIKit
         #if TARGET_INTERFACE_BUILDER
             self.offsetWidth = 0
         #else
-        if (direction == .rightToLeft) {
+        if (direction == .RightToLeft) {
             self.offsetWidth = self.contentSize.width - viewportWidth
         }
             // Otherwise start of all the way to the left.
@@ -402,8 +402,8 @@ import UIKit
         #if !TARGET_INTERFACE_BUILDER
         // Animation loop for when the range adapts
         displayLink = CADisplayLink(target: self, selector: #selector(animationUpdate))
-        displayLink.add(to: RunLoop.main, forMode: RunLoopMode.commonModes)
-        displayLink.isPaused = true
+        displayLink.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
+        displayLink.paused = true
         #endif
         
         isCurrentlySettingUp = false
@@ -413,7 +413,7 @@ import UIKit
     }
     
     // Makes sure everything is in a clean state for when we want to reset the data for a graph.
-    fileprivate func reset() {
+    private func reset() {
         drawingView.removeFromSuperview()
         referenceLineView?.removeFromSuperview()
         
@@ -435,7 +435,7 @@ import UIKit
         range = (0, 100)
     }
     
-    fileprivate func addDrawingLayers(inViewport viewport: CGRect) {
+    private func addDrawingLayers(inViewport viewport: CGRect) {
         
         // Line Layer
         lineLayer = LineDrawingLayer(frame: viewport, lineWidth: lineWidth, lineColor: lineColor, lineStyle: lineStyle, lineJoin: lineJoin, lineCap: lineCap)
@@ -452,7 +452,7 @@ import UIKit
         // Gradient and Fills
         switch (self.fillType) {
             
-        case .solid:
+        case .Solid:
             if(shouldFill) {
                 // Setup fill
                 fillLayer = FillDrawingLayer(frame: viewport, fillColor: fillColor)
@@ -460,7 +460,7 @@ import UIKit
                 drawingView.layer.insertSublayer(fillLayer!, below: lineLayer)
             }
             
-        case .gradient:
+        case .Gradient:
             if(shouldFill) {
                 gradientLayer = GradientDrawingLayer(frame: viewport, startColor: fillGradientStartColor, endColor: fillGradientEndColor, gradientType: fillGradientType)
                 gradientLayer!.graphViewDrawingDelegate = self
@@ -481,7 +481,7 @@ import UIKit
         }
     }
     
-    fileprivate func addReferenceLines(inViewport viewport: CGRect) {
+    private func addReferenceLines(inViewport viewport: CGRect) {
         var referenceLineBottomMargin = bottomMargin
         if(shouldShowLabels && dataPointLabelFont != nil) {
             referenceLineBottomMargin += (dataPointLabelFont!.pointSize + dataPointLabelTopMargin + dataPointLabelBottomMargin)
@@ -515,7 +515,7 @@ import UIKit
     }
     
     // If the view has changed we have to make sure we're still displaying the right data.
-    override open func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         
         // while putting the view on the IB, we may get calls with frame too small
@@ -531,7 +531,7 @@ import UIKit
         }
     }
     
-    fileprivate func updateUI() {
+    private func updateUI() {
         
         // Make sure we have data, if don't, just get out. We can't do anything without any data.
         guard data.count > 0 else {
@@ -577,7 +577,7 @@ import UIKit
         }
     }
     
-    fileprivate func updateOffsetWidths() {
+    private func updateOffsetWidths() {
         drawingView.frame.origin.x = offsetWidth
         drawingView.bounds.origin.x = offsetWidth
         
@@ -586,7 +586,7 @@ import UIKit
         referenceLineView?.frame.origin.x = offsetWidth
     }
     
-    fileprivate func updateFrames() {
+    private func updateFrames() {
         // Drawing view needs to always be the same size as the scrollview.
         drawingView.frame.size.width = viewportWidth
         drawingView.frame.size.height = viewportHeight
@@ -604,7 +604,7 @@ import UIKit
     // MARK: - Public Methods
     // ######################
     
-    open func setData(_ data: [Double], withLabels labels: [String]) {
+    public func setData(data: [Double], withLabels labels: [String]) {
         
         // If we are setting exactly the same data and labels, there's no need to re-init everything.
         if(self.data == data && self.labels == labels) {
@@ -626,7 +626,7 @@ import UIKit
     // MARK: Animation
     
     // Animation update loop for co-domain changes.
-    @objc fileprivate func animationUpdate() {
+    @objc private func animationUpdate() {
         let dt = timeSinceLastFrame()
         
         for animation in currentAnimations {
@@ -641,7 +641,7 @@ import UIKit
         updatePaths()
     }
     
-    fileprivate func animatePoint(_ point: GraphPoint, toPosition position: CGPoint, withDelay delay: Double = 0) {
+    private func animatePoint(point: GraphPoint, toPosition position: CGPoint, withDelay delay: Double = 0) {
         let currentPoint = CGPoint(x: point.x, y: point.y)
         let animation = GraphPointAnimation(fromPoint: currentPoint, toPoint: position, forGraphPoint: point)
         animation.animationEasing = getAnimationEasing()
@@ -650,13 +650,13 @@ import UIKit
         enqueueAnimation(animation)
     }
     
-    fileprivate func getAnimationEasing() -> (Double) -> Double {
+    private func getAnimationEasing() -> (Double) -> Double {
         switch(self.adaptAnimationType) {
-        case .elastic:
+        case .Elastic:
             return Easings.EaseOutElastic
-        case .easeOut:
+        case .EaseOut:
             return Easings.EaseOutQuad
-        case .custom:
+        case .Custom:
             if let customEasing = customAnimationEasingFunction {
                 return customEasing
             }
@@ -668,36 +668,36 @@ import UIKit
         }
     }
     
-    fileprivate func enqueueAnimation(_ animation: GraphPointAnimation) {
+    private func enqueueAnimation(animation: GraphPointAnimation) {
         if (currentAnimations.count == 0) {
             // Need to kick off the loop.
-            displayLink.isPaused = false
+            displayLink.paused = false
         }
         currentAnimations.append(animation)
     }
     
-    fileprivate func dequeueAnimation(_ animation: GraphPointAnimation) {
-        if let index = currentAnimations.index(of: animation) {
-            currentAnimations.remove(at: index)
+    private func dequeueAnimation(animation: GraphPointAnimation) {
+        if let index = currentAnimations.indexOf(animation) {
+            currentAnimations.removeAtIndex(index)
         }
         
         if(currentAnimations.count == 0) {
             // Stop animation loop.
-            displayLink.isPaused = true
+            displayLink.paused = true
         }
     }
     
-    fileprivate func dequeueAllAnimations() {
+    private func dequeueAllAnimations() {
         
         for animation in currentAnimations {
             animation.animationDidFinish()
         }
         
         currentAnimations.removeAll()
-        displayLink.isPaused = true
+        displayLink.paused = true
     }
     
-    fileprivate func timeSinceLastFrame() -> Double {
+    private func timeSinceLastFrame() -> Double {
         if previousTimestamp == 0 {
             previousTimestamp = displayLink.timestamp
         } else {
@@ -717,7 +717,7 @@ import UIKit
     
     // MARK: Layout Calculations
     
-    fileprivate func calculateActivePointsInterval() -> CountableRange<Int> {
+    private func calculateActivePointsInterval() -> Range<Int> {
         
         // Calculate the "active points"
         let min = Int((offsetWidth) / dataPointSpacing)
@@ -735,7 +735,7 @@ import UIKit
         return actualMin ... actualMax
     }
     
-    fileprivate func calculateRangeForActivePointsInterval(_ interval: Range<Int>) -> (min: Double, max: Double) {
+    private func calculateRangeForActivePointsInterval(interval: Range<Int>) -> (min: Double, max: Double) {
         
         let dataForActivePoints = data[interval]
         
@@ -750,12 +750,12 @@ import UIKit
         }
     }
     
-    fileprivate func calculateRangeForEntireDataset(_ data: [Double]) -> (min: Double, max: Double) {
+    private func calculateRangeForEntireDataset(data: [Double]) -> (min: Double, max: Double) {
         let range = calculateRange(self.data)
         return cleanRange(range)
     }
     
-    fileprivate func calculateRange<T: Collection>(_ data: T) -> (min: Double, max: Double) where T.Iterator.Element == Double {
+    private func calculateRange<T: CollectionType where T.Generator.Element == Double>(data: T) -> (min: Double, max: Double) {
         
         var rangeMin: Double = Double(Int.max)
         var rangeMax: Double = Double(Int.min)
@@ -772,7 +772,7 @@ import UIKit
         return (min: rangeMin, max: rangeMax)
     }
     
-    fileprivate func cleanRange(_ range: (min: Double, max: Double)) -> (min: Double, max: Double){
+    private func cleanRange(range: (min: Double, max: Double)) -> (min: Double, max: Double){
         if(range.min == range.max) {
             
             let min = shouldRangeAlwaysStartAtZero ? 0 : range.min
@@ -797,12 +797,12 @@ import UIKit
         }
     }
     
-    fileprivate func graphWidthForNumberOfDataPoints(_ numberOfPoints: Int) -> CGFloat {
+    private func graphWidthForNumberOfDataPoints(numberOfPoints: Int) -> CGFloat {
         let width: CGFloat = (CGFloat(numberOfPoints - 1) * dataPointSpacing) + (leftmostPointPadding + rightmostPointPadding)
         return width
     }
     
-    fileprivate func calculatePosition(_ index: Int, value: Double) -> CGPoint {
+    private func calculatePosition(index: Int, value: Double) -> CGPoint {
         
         // Set range defaults based on settings:
         
@@ -828,7 +828,7 @@ import UIKit
         return CGPoint(x: x, y: y)
     }
     
-    fileprivate func clamp<T: Comparable>(_ value:T, min:T, max:T) -> T {
+    private func clamp<T: Comparable>(value:T, min:T, max:T) -> T {
         if (value < min) {
             return min
         }
@@ -842,64 +842,64 @@ import UIKit
     
     // MARK: Line Path Creation
     
-    fileprivate func createLinePath() -> UIBezierPath {
+    private func createLinePath() -> UIBezierPath {
         
         currentLinePath.removeAllPoints()
         
-        let pathSegmentAdder = lineStyle == .straight ? addStraightLineSegment : addCurvedLineSegment
+        let pathSegmentAdder = lineStyle == .Straight ? addStraightLineSegment : addCurvedLineSegment
         
         zeroYPosition = calculatePosition(0, value: self.range.min).y
         
         // Connect the line to the starting edge if we are filling it.
         if(shouldFill) {
             // Add a line from the base of the graph to the first data point.
-            let firstDataPoint = graphPoints[activePointsInterval.lowerBound]
+            let firstDataPoint = graphPoints[activePointsInterval.startIndex]
             
             let viewportLeftZero = CGPoint(x: firstDataPoint.x - (leftmostPointPadding), y: zeroYPosition)
             let leftFarEdgeTop = CGPoint(x: firstDataPoint.x - (leftmostPointPadding + viewportWidth), y: zeroYPosition)
             let leftFarEdgeBottom = CGPoint(x: firstDataPoint.x - (leftmostPointPadding + viewportWidth), y: viewportHeight)
             
-            currentLinePath.move(to: leftFarEdgeBottom)
-            pathSegmentAdder(leftFarEdgeBottom, leftFarEdgeTop, currentLinePath)
-            pathSegmentAdder(leftFarEdgeTop, viewportLeftZero, currentLinePath)
-            pathSegmentAdder(viewportLeftZero, CGPoint(x: firstDataPoint.x, y: firstDataPoint.y), currentLinePath)
+            currentLinePath.moveToPoint(leftFarEdgeBottom)
+            pathSegmentAdder(startPoint: leftFarEdgeBottom, endPoint: leftFarEdgeTop, inPath: currentLinePath)
+            pathSegmentAdder(startPoint: leftFarEdgeTop, endPoint: viewportLeftZero, inPath: currentLinePath)
+            pathSegmentAdder(startPoint: viewportLeftZero, endPoint: CGPoint(x: firstDataPoint.x, y: firstDataPoint.y), inPath: currentLinePath)
         }
         else {
-            let firstDataPoint = graphPoints[activePointsInterval.lowerBound]
-            currentLinePath.move(to: firstDataPoint.location)
+            let firstDataPoint = graphPoints[activePointsInterval.startIndex]
+            currentLinePath.moveToPoint(firstDataPoint.location)
         }
         
         // Connect each point on the graph with a segment.
-        for i in activePointsInterval.lowerBound ..< activePointsInterval.upperBound - 1 {
+        for i in activePointsInterval.startIndex ..< activePointsInterval.endIndex - 1 {
             
             let startPoint = graphPoints[i].location
             let endPoint = graphPoints[i+1].location
             
-            pathSegmentAdder(startPoint, endPoint, currentLinePath)
+            pathSegmentAdder(startPoint: startPoint, endPoint: endPoint, inPath: currentLinePath)
         }
         
         // Connect the line to the ending edge if we are filling it.
         if(shouldFill) {
             // Add a line from the last data point to the base of the graph.
-            let lastDataPoint = graphPoints[activePointsInterval.upperBound - 1]
+            let lastDataPoint = graphPoints[activePointsInterval.endIndex - 1]
             
             let viewportRightZero = CGPoint(x: lastDataPoint.x + (rightmostPointPadding), y: zeroYPosition)
             let rightFarEdgeTop = CGPoint(x: lastDataPoint.x + (rightmostPointPadding + viewportWidth), y: zeroYPosition)
             let rightFarEdgeBottom = CGPoint(x: lastDataPoint.x + (rightmostPointPadding + viewportWidth), y: viewportHeight)
             
-            pathSegmentAdder(lastDataPoint.location, viewportRightZero, currentLinePath)
-            pathSegmentAdder(viewportRightZero, rightFarEdgeTop, currentLinePath)
-            pathSegmentAdder(rightFarEdgeTop, rightFarEdgeBottom, currentLinePath)
+            pathSegmentAdder(startPoint: lastDataPoint.location, endPoint: viewportRightZero, inPath: currentLinePath)
+            pathSegmentAdder(startPoint: viewportRightZero, endPoint: rightFarEdgeTop, inPath: currentLinePath)
+            pathSegmentAdder(startPoint: rightFarEdgeTop, endPoint: rightFarEdgeBottom, inPath: currentLinePath)
         }
         
         return currentLinePath
     }
     
-    fileprivate func addStraightLineSegment(_ startPoint: CGPoint, endPoint: CGPoint, inPath path: UIBezierPath) {
-        path.addLine(to: endPoint)
+    private func addStraightLineSegment(startPoint startPoint: CGPoint, endPoint: CGPoint, inPath path: UIBezierPath) {
+        path.addLineToPoint(endPoint)
     }
     
-    fileprivate func addCurvedLineSegment(_ startPoint: CGPoint, endPoint: CGPoint, inPath path: UIBezierPath) {
+    private func addCurvedLineSegment(startPoint startPoint: CGPoint, endPoint: CGPoint, inPath path: UIBezierPath) {
         // calculate control points
         let difference = endPoint.x - startPoint.x
         
@@ -912,13 +912,13 @@ import UIKit
         let controlPointTwo = CGPoint(x: x, y: y)
         
         // add curve from start to end
-        currentLinePath.addCurve(to: endPoint, controlPoint1: controlPointOne, controlPoint2: controlPointTwo)
+        currentLinePath.addCurveToPoint(endPoint, controlPoint1: controlPointOne, controlPoint2: controlPointTwo)
     }
     
     // MARK: Events
     
     // If the active points (the points we can actually see) change, then we need to update the path.
-    fileprivate func activePointsDidChange() {
+    private func activePointsDidChange() {
         
       let deactivatedPoints = determineDeactivatedPoints()
       let activatedPoints = determineActivatedPoints()
@@ -931,7 +931,7 @@ import UIKit
       }
   }
   
-    fileprivate func rangeDidChange() {
+    private func rangeDidChange() {
         
         // If shouldAnimateOnAdapt is enabled it will kickoff any animations that need to occur.
         startAnimations()
@@ -939,7 +939,7 @@ import UIKit
         referenceLineView?.setRange(range)
     }
     
-    fileprivate func viewportDidChange() {
+    private func viewportDidChange() {
         
         // We need to make sure all the drawing views are the same size as the viewport.
         updateFrames()
@@ -963,7 +963,7 @@ import UIKit
     }
     
     // Update any paths with the new path based on visible data points.
-    fileprivate func updatePaths() {
+    private func updatePaths() {
         
         createLinePath()
         
@@ -981,7 +981,7 @@ import UIKit
     }
     
     // Update any labels for any new points that have been activated and deactivated.
-    fileprivate func updateLabels(_ deactivatedPoints: [Int], _ activatedPoints: [Int]) {
+    private func updateLabels(deactivatedPoints: [Int], _ activatedPoints: [Int]) {
         
         // Disable any labels for the deactivated points.
         for point in deactivatedPoints {
@@ -1009,7 +1009,7 @@ import UIKit
         }
     }
     
-    fileprivate func repositionActiveLabels() {
+    private func repositionActiveLabels() {
         for label in labelPool.activeLabels {
             
             let rangeMin = (shouldAutomaticallyDetectRange || shouldAdaptRange) ? self.range.min : self.rangeMin
@@ -1020,34 +1020,34 @@ import UIKit
     }
     
     // Returns the indices of any points that became inactive (that is, "off screen"). (No order)
-    fileprivate func determineDeactivatedPoints() -> [Int] {
+    private func determineDeactivatedPoints() -> [Int] {
         let prevSet = setFromClosedRange(previousActivePointsInterval)
         let currSet = setFromClosedRange(activePointsInterval)
         
-        let deactivatedPoints = prevSet.subtracting(currSet)
+        let deactivatedPoints = prevSet.subtract(currSet)
         
         return Array(deactivatedPoints)
     }
     
     // Returns the indices of any points that became active (on screen). (No order)
-    fileprivate func determineActivatedPoints() -> [Int] {
+    private func determineActivatedPoints() -> [Int] {
         let prevSet = setFromClosedRange(previousActivePointsInterval)
         let currSet = setFromClosedRange(activePointsInterval)
         
-        let activatedPoints = currSet.subtracting(prevSet)
+        let activatedPoints = currSet.subtract(prevSet)
         
         return Array(activatedPoints)
     }
     
-    fileprivate func setFromClosedRange(_ range: Range<Int>) -> Set<Int> {
+    private func setFromClosedRange(range: Range<Int>) -> Set<Int> {
         var set = Set<Int>()
-        for index in range.lowerBound...range.upperBound {
+        for index in range.startIndex...range.endIndex {
             set.insert(index)
         }
         return set
     }
   
-  fileprivate func filterPointsForLabels(fromPoints points:[Int]) -> [Int] {
+  private func filterPointsForLabels(fromPoints points:[Int]) -> [Int] {
     
     if(self.dataPointLabelsSparsity == 1) {
       return points
@@ -1055,7 +1055,7 @@ import UIKit
     return points.filter({ $0 % self.dataPointLabelsSparsity == 0 })
   }
   
-    fileprivate func startAnimations(withStaggerValue stagger: Double = 0) {
+    private func startAnimations(withStaggerValue stagger: Double = 0) {
         
         var pointsToAnimate = 0 ..< 0
         
@@ -1077,7 +1077,7 @@ import UIKit
         
         // Update any non-visible & non-animating points so they come on to screen at the right scale.
         for i in 0 ..< graphPoints.count {
-            if(i > pointsToAnimate.lowerBound && i < pointsToAnimate.upperBound || graphPoints[i].currentlyAnimatingToPosition) {
+            if(i > pointsToAnimate.startIndex && i < pointsToAnimate.endIndex || graphPoints[i].currentlyAnimatingToPosition) {
                 continue
             }
             
@@ -1088,19 +1088,19 @@ import UIKit
     }
     
     // MARK: - Drawing Delegate
-    fileprivate func currentPath() -> UIBezierPath {
+    private func currentPath() -> UIBezierPath {
         return currentLinePath
     }
     
-    fileprivate func intervalForActivePoints() -> CountableRange<Int> {
+    private func intervalForActivePoints() -> Range<Int> {
         return activePointsInterval
     }
     
-    fileprivate func rangeForActivePoints() -> (min: Double, max: Double) {
+    private func rangeForActivePoints() -> (min: Double, max: Double) {
         return range
     }
     
-    fileprivate func graphPointForIndex(_ index: Int) -> GraphPoint {
+    private func graphPointForIndex(index: Int) -> GraphPoint {
         return graphPoints[index]
     }
 }
@@ -1112,7 +1112,7 @@ private class LabelPool {
     var relations = [Int : Int]()
     var unused = [Int]()
     
-    func deactivateLabelForPointIndex(_ pointIndex: Int){
+    func deactivateLabelForPointIndex(pointIndex: Int){
         
         if let unusedLabelIndex = relations[pointIndex] {
             unused.append(unusedLabelIndex)
@@ -1120,7 +1120,7 @@ private class LabelPool {
         relations[pointIndex] = nil
     }
     
-    func activateLabelForPointIndex(_ pointIndex: Int) -> UILabel {
+    func activateLabelForPointIndex(pointIndex: Int) -> UILabel {
         var label: UILabel
         
         if(unused.count >= 1) {
@@ -1133,7 +1133,7 @@ private class LabelPool {
         else {
             label = UILabel()
             labels.append(label)
-            let newLabelIndex = labels.index(of: label)!
+            let newLabelIndex = labels.indexOf(label)!
             relations[pointIndex] = newLabelIndex
         }
         
@@ -1163,7 +1163,7 @@ private class GraphPoint {
     var location = CGPoint(x: 0, y: 0)
     var currentlyAnimatingToPosition = false
     
-    fileprivate var x: CGFloat {
+    private var x: CGFloat {
         get {
             return location.x
         }
@@ -1172,7 +1172,7 @@ private class GraphPoint {
         }
     }
     
-    fileprivate var y: CGFloat {
+    private var y: CGFloat {
         get {
             return location.y
         }
@@ -1181,7 +1181,7 @@ private class GraphPoint {
         }
     }
     
-    init(position: CGPoint = CGPoint.zero) {
+    init(position: CGPoint = CGPointZero) {
         x = position.x
         y = position.y
     }
@@ -1193,18 +1193,18 @@ private class GraphPointAnimation : Equatable {
     var animationEasing = Easings.EaseOutQuad
     var duration: Double = 1
     var delay: Double = 0
-    fileprivate(set) var finished = false
-    fileprivate(set) var animationKey: String
+    private(set) var finished = false
+    private(set) var animationKey: String
     
     // Private State
-    fileprivate var startingPoint: CGPoint
-    fileprivate var endingPoint: CGPoint
+    private var startingPoint: CGPoint
+    private var endingPoint: CGPoint
     
-    fileprivate var elapsedTime: Double = 0
-    fileprivate var graphPoint: GraphPoint?
-    fileprivate var multiplier: Double = 1
+    private var elapsedTime: Double = 0
+    private var graphPoint: GraphPoint?
+    private var multiplier: Double = 1
     
-    static fileprivate var animationsCreated = 0
+    static private var animationsCreated = 0
     
     init(fromPoint: CGPoint, toPoint: CGPoint, forGraphPoint graphPoint: GraphPoint, forKey key: String = "animation\(animationsCreated)") {
         self.startingPoint = fromPoint
@@ -1216,7 +1216,7 @@ private class GraphPointAnimation : Equatable {
         GraphPointAnimation.animationsCreated += 1
     }
     
-    func update(_ dt: Double) {
+    func update(dt: Double) {
         
         if(!finished) {
             
@@ -1265,9 +1265,9 @@ private func ==(lhs: GraphPointAnimation, rhs: GraphPointAnimation) -> Bool {
 
 // MARK: Delegate definition that provides the data required by the drawing layers.
 private protocol ScrollableGraphViewDrawingDelegate {
-    func intervalForActivePoints() -> CountableRange<Int>
+    func intervalForActivePoints() -> Range<Int>
     func rangeForActivePoints() -> (min: Double, max: Double)
-    func graphPointForIndex(_ index: Int) -> GraphPoint
+    func graphPointForIndex(index: Int) -> GraphPoint
     
     func currentPath() -> UIBezierPath
 }
@@ -1306,12 +1306,12 @@ private class ScrollableGraphViewDrawingLayer : CAShapeLayer {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func setup() {
+    private func setup() {
         // Get rid of any animations.
         self.actions = ["position" : NSNull(), "bounds" : NSNull()]
     }
     
-    fileprivate func offsetDidChange() {
+    private func offsetDidChange() {
         self.frame.origin.x = offset
         self.bounds.origin.x = offset
     }
@@ -1324,16 +1324,16 @@ private class ScrollableGraphViewDrawingLayer : CAShapeLayer {
 // MARK: Drawing the bars
 private class BarDrawingLayer: ScrollableGraphViewDrawingLayer {
     
-    fileprivate var barPath = UIBezierPath()
-    fileprivate var barWidth: CGFloat = 4
+    private var barPath = UIBezierPath()
+    private var barWidth: CGFloat = 4
     
     init(frame: CGRect, barWidth: CGFloat, barColor: UIColor, barLineWidth: CGFloat, barLineColor: UIColor) {
         super.init(viewportWidth: frame.size.width, viewportHeight: frame.size.height)
         
         self.barWidth = barWidth
         self.lineWidth = barLineWidth
-        self.strokeColor = barLineColor.cgColor
-        self.fillColor = barColor.cgColor
+        self.strokeColor = barLineColor.CGColor
+        self.fillColor = barColor.CGColor
         
         self.lineJoin = lineJoin
         self.lineCap = lineCap
@@ -1343,11 +1343,11 @@ private class BarDrawingLayer: ScrollableGraphViewDrawingLayer {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func createBarPath(_ centre: CGPoint) -> UIBezierPath {
+    private func createBarPath(centre: CGPoint) -> UIBezierPath {
         
         let squarePath = UIBezierPath()
         
-        squarePath.move(to: centre)
+        squarePath.moveToPoint(centre)
         let barWidthOffset: CGFloat = self.barWidth / 2
         
         let topLeft = CGPoint(x: centre.x - barWidthOffset, y: centre.y)
@@ -1355,16 +1355,16 @@ private class BarDrawingLayer: ScrollableGraphViewDrawingLayer {
         let bottomLeft = CGPoint(x: centre.x - barWidthOffset, y: zeroYPosition)
         let bottomRight = CGPoint(x: centre.x + barWidthOffset, y: zeroYPosition)
         
-        squarePath.move(to: topLeft)
-        squarePath.addLine(to: topRight)
-        squarePath.addLine(to: bottomRight)
-        squarePath.addLine(to: bottomLeft)
-        squarePath.addLine(to: topLeft)
+        squarePath.moveToPoint(topLeft)
+        squarePath.addLineToPoint(topRight)
+        squarePath.addLineToPoint(bottomRight)
+        squarePath.addLineToPoint(bottomLeft)
+        squarePath.addLineToPoint(topLeft)
         
         return squarePath
     }
     
-    fileprivate func createPath () -> UIBezierPath {
+    private func createPath () -> UIBezierPath {
         
         barPath.removeAllPoints()
         
@@ -1377,14 +1377,14 @@ private class BarDrawingLayer: ScrollableGraphViewDrawingLayer {
         
         for i in activePointsInterval {
             
-            var location = CGPoint.zero
+            var location = CGPointZero
             
             if let pointLocation = self.graphViewDrawingDelegate?.graphPointForIndex(i).location {
                 location = pointLocation
             }
             
             let pointPath = createBarPath(location)
-            barPath.append(pointPath)
+            barPath.appendPath(pointPath)
         }
         
         return barPath
@@ -1392,7 +1392,7 @@ private class BarDrawingLayer: ScrollableGraphViewDrawingLayer {
     
     override func updatePath() {
         
-        self.path = createPath ().cgPath
+        self.path = createPath ().CGPath
     }
     
 }
@@ -1404,13 +1404,13 @@ private class LineDrawingLayer : ScrollableGraphViewDrawingLayer {
         super.init(viewportWidth: frame.size.width, viewportHeight: frame.size.height)
         
         self.lineWidth = lineWidth
-        self.strokeColor = lineColor.cgColor
+        self.strokeColor = lineColor.CGColor
         
         self.lineJoin = lineJoin
         self.lineCap = lineCap
         
         // Setup
-        self.fillColor = UIColor.clear.cgColor // This is handled by the fill drawing layer.
+        self.fillColor = UIColor.clearColor().CGColor // This is handled by the fill drawing layer.
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -1418,20 +1418,20 @@ private class LineDrawingLayer : ScrollableGraphViewDrawingLayer {
     }
     
     override func updatePath() {
-        self.path = graphViewDrawingDelegate?.currentPath().cgPath
+        self.path = graphViewDrawingDelegate?.currentPath().CGPath
     }
 }
 
 // MARK: Drawing the Individual Data Points
 private class DataPointDrawingLayer: ScrollableGraphViewDrawingLayer {
     
-    fileprivate var dataPointPath = UIBezierPath()
-    fileprivate var dataPointSize: CGFloat = 5
-    fileprivate var dataPointType: ScrollableGraphViewDataPointType = .circle
+    private var dataPointPath = UIBezierPath()
+    private var dataPointSize: CGFloat = 5
+    private var dataPointType: ScrollableGraphViewDataPointType = .Circle
     
-    fileprivate var customDataPointPath: ((_ centre: CGPoint) -> UIBezierPath)?
+    private var customDataPointPath: ((centre: CGPoint) -> UIBezierPath)?
     
-    init(frame: CGRect, fillColor: UIColor, dataPointType: ScrollableGraphViewDataPointType, dataPointSize: CGFloat, customDataPointPath: ((_ centre: CGPoint) -> UIBezierPath)? = nil) {
+    init(frame: CGRect, fillColor: UIColor, dataPointType: ScrollableGraphViewDataPointType, dataPointSize: CGFloat, customDataPointPath: ((centre: CGPoint) -> UIBezierPath)? = nil) {
         
         self.dataPointType = dataPointType
         self.dataPointSize = dataPointSize
@@ -1439,14 +1439,14 @@ private class DataPointDrawingLayer: ScrollableGraphViewDrawingLayer {
         
         super.init(viewportWidth: frame.size.width, viewportHeight: frame.size.height)
         
-        self.fillColor = fillColor.cgColor
+        self.fillColor = fillColor.CGColor
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func createDataPointPath() -> UIBezierPath {
+    private func createDataPointPath() -> UIBezierPath {
         
         dataPointPath.removeAllPoints()
         
@@ -1461,50 +1461,50 @@ private class DataPointDrawingLayer: ScrollableGraphViewDrawingLayer {
         
         for i in activePointsInterval {
             
-            var location = CGPoint.zero
+            var location = CGPointZero
             
             if let pointLocation = self.graphViewDrawingDelegate?.graphPointForIndex(i).location {
                 location = pointLocation
             }
             
-            let pointPath = pointPathCreator(location)
-            dataPointPath.append(pointPath)
+            let pointPath = pointPathCreator(centre: location)
+            dataPointPath.appendPath(pointPath)
         }
         
         return dataPointPath
     }
     
-    fileprivate func createCircleDataPoint(_ centre: CGPoint) -> UIBezierPath {
+    private func createCircleDataPoint(centre: CGPoint) -> UIBezierPath {
         return UIBezierPath(arcCenter: centre, radius: dataPointSize, startAngle: 0, endAngle: CGFloat(2.0 * M_PI), clockwise: true)
     }
     
-    fileprivate func createSquareDataPoint(_ centre: CGPoint) -> UIBezierPath {
+    private func createSquareDataPoint(centre: CGPoint) -> UIBezierPath {
         
         let squarePath = UIBezierPath()
         
-        squarePath.move(to: centre)
+        squarePath.moveToPoint(centre)
         
         let topLeft = CGPoint(x: centre.x - dataPointSize, y: centre.y - dataPointSize)
         let topRight = CGPoint(x: centre.x + dataPointSize, y: centre.y - dataPointSize)
         let bottomLeft = CGPoint(x: centre.x - dataPointSize, y: centre.y + dataPointSize)
         let bottomRight = CGPoint(x: centre.x + dataPointSize, y: centre.y + dataPointSize)
         
-        squarePath.move(to: topLeft)
-        squarePath.addLine(to: topRight)
-        squarePath.addLine(to: bottomRight)
-        squarePath.addLine(to: bottomLeft)
-        squarePath.addLine(to: topLeft)
+        squarePath.moveToPoint(topLeft)
+        squarePath.addLineToPoint(topRight)
+        squarePath.addLineToPoint(bottomRight)
+        squarePath.addLineToPoint(bottomLeft)
+        squarePath.addLineToPoint(topLeft)
         
         return squarePath
     }
     
-    fileprivate func getPointPathCreator() -> (_ centre: CGPoint) -> UIBezierPath {
+    private func getPointPathCreator() -> (centre: CGPoint) -> UIBezierPath {
         switch(self.dataPointType) {
-        case .circle:
+        case .Circle:
             return createCircleDataPoint
-        case .square:
+        case .Square:
             return createSquareDataPoint
-        case .custom:
+        case .Custom:
             if let customCreator = self.customDataPointPath {
                 return customCreator
             }
@@ -1518,23 +1518,23 @@ private class DataPointDrawingLayer: ScrollableGraphViewDrawingLayer {
     }
     
     override func updatePath() {
-        self.path = createDataPointPath().cgPath
+        self.path = createDataPointPath().CGPath
     }
 }
 
 // MARK: Drawing the Graph Gradient Fill
 private class GradientDrawingLayer : ScrollableGraphViewDrawingLayer {
     
-    fileprivate var startColor: UIColor
-    fileprivate var endColor: UIColor
-    fileprivate var gradientType: ScrollableGraphViewGradientType
+    private var startColor: UIColor
+    private var endColor: UIColor
+    private var gradientType: ScrollableGraphViewGradientType
     
-    lazy fileprivate var gradientMask: CAShapeLayer = ({
+    lazy private var gradientMask: CAShapeLayer = ({
         let mask = CAShapeLayer()
         
         mask.frame = CGRect(x: 0, y: 0, width: self.viewportWidth, height: self.viewportHeight)
         mask.fillRule = kCAFillRuleEvenOdd
-        mask.path = self.graphViewDrawingDelegate?.currentPath().cgPath
+        mask.path = self.graphViewDrawingDelegate?.currentPath().CGPath
         mask.lineJoin = self.lineJoin
         
         return mask
@@ -1556,20 +1556,20 @@ private class GradientDrawingLayer : ScrollableGraphViewDrawingLayer {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func addMaskLayer() {
+    private func addMaskLayer() {
         self.mask = gradientMask
     }
     
     override func updatePath() {
-        gradientMask.path = graphViewDrawingDelegate?.currentPath().cgPath
+        gradientMask.path = graphViewDrawingDelegate?.currentPath().CGPath
     }
     
-    override func draw(in ctx: CGContext) {
+    override func drawInContext(ctx: CGContext) {
         
-        let colors = [startColor.cgColor, endColor.cgColor]
+        let colors = [startColor.CGColor, endColor.CGColor]
         let colorSpace = CGColorSpaceCreateDeviceRGB()
         let locations: [CGFloat] = [0.0, 1.0]
-        let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: locations)
+        let gradient = CGGradientCreateWithColors(colorSpace, colors, locations)
         
         let displacement = ((viewportWidth / viewportHeight) / 2.5) * self.bounds.height
         let topCentre = CGPoint(x: offset + self.bounds.width / 2, y: -displacement)
@@ -1578,10 +1578,10 @@ private class GradientDrawingLayer : ScrollableGraphViewDrawingLayer {
         let endRadius: CGFloat = self.bounds.width
         
         switch(gradientType) {
-        case .linear:
-            ctx.drawLinearGradient(gradient!, start: topCentre, end: bottomCentre, options: .drawsAfterEndLocation)
-        case .radial:
-            ctx.drawRadialGradient(gradient!, startCenter: topCentre, startRadius: startRadius, endCenter: topCentre, endRadius: endRadius, options: .drawsAfterEndLocation)
+        case .Linear:
+            CGContextDrawLinearGradient(ctx, gradient, topCentre, bottomCentre, .DrawsAfterEndLocation)
+        case .Radial:
+            CGContextDrawRadialGradient(ctx, gradient, topCentre, startRadius, topCentre, endRadius, .DrawsAfterEndLocation)
         }
     }
 }
@@ -1591,7 +1591,7 @@ private class FillDrawingLayer : ScrollableGraphViewDrawingLayer {
     
     init(frame: CGRect, fillColor: UIColor) {
         super.init(viewportWidth: frame.size.width, viewportHeight: frame.size.height)
-        self.fillColor = fillColor.cgColor
+        self.fillColor = fillColor.CGColor
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -1599,7 +1599,7 @@ private class FillDrawingLayer : ScrollableGraphViewDrawingLayer {
     }
     
     override func updatePath() {
-        self.path = graphViewDrawingDelegate?.currentPath().cgPath
+        self.path = graphViewDrawingDelegate?.currentPath().CGPath
     }
 }
 
@@ -1610,10 +1610,10 @@ private class ReferenceLineDrawingView : UIView {
     // PUBLIC PROPERTIES
     
     // Reference line settings.
-    var referenceLineColor: UIColor = UIColor.black
+    var referenceLineColor: UIColor = UIColor.blackColor()
     var referenceLineThickness: CGFloat = 0.5
-    var referenceLinePosition = ScrollableGraphViewReferenceLinePosition.left
-    var referenceLineType = ScrollableGraphViewReferenceLineType.cover
+    var referenceLinePosition = ScrollableGraphViewReferenceLinePosition.Left
+    var referenceLineType = ScrollableGraphViewReferenceLineType.Cover
     
     var numberOfIntermediateReferenceLines = 3 // Number of reference lines between the min and max line.
     
@@ -1622,31 +1622,31 @@ private class ReferenceLineDrawingView : UIView {
     var shouldAddUnitsToIntermediateReferenceLineLabels: Bool = false
     
     var labelUnits: String?
-    var labelFont: UIFont = UIFont.systemFont(ofSize: 8)
-    var labelColor: UIColor = UIColor.black
+    var labelFont: UIFont = UIFont.systemFontOfSize(8)
+    var labelColor: UIColor = UIColor.blackColor()
     var labelDecimalPlaces: Int = 2
-    var labelNumberStyle: NumberFormatter.Style = .none
+    var labelNumberStyle: NSNumberFormatterStyle = .NoStyle
     
     // PRIVATE PROPERTIES
     
-    fileprivate var intermediateLineWidthMultiplier: CGFloat = 1 //FUTURE: Can make the intermediate lines shorter using this.
-    fileprivate var referenceLineWidth: CGFloat = 100 // FUTURE: Used when referenceLineType == .Edge
+    private var intermediateLineWidthMultiplier: CGFloat = 1 //FUTURE: Can make the intermediate lines shorter using this.
+    private var referenceLineWidth: CGFloat = 100 // FUTURE: Used when referenceLineType == .Edge
     
-    fileprivate var labelMargin: CGFloat = 4
-    fileprivate var leftLabelInset: CGFloat = 10
-    fileprivate var rightLabelInset: CGFloat = 10
+    private var labelMargin: CGFloat = 4
+    private var leftLabelInset: CGFloat = 10
+    private var rightLabelInset: CGFloat = 10
     
     // Store information about the ScrollableGraphView
-    fileprivate var currentRange: (min: Double, max: Double) = (0,100)
-    fileprivate var topMargin: CGFloat = 10
-    fileprivate var bottomMargin: CGFloat = 10
+    private var currentRange: (min: Double, max: Double) = (0,100)
+    private var topMargin: CGFloat = 10
+    private var bottomMargin: CGFloat = 10
     
     // Partition recursion depth // FUTURE: For .Edge
     // private var referenceLinePartitions: Int = 3
     
-    fileprivate var lineWidth: CGFloat {
+    private var lineWidth: CGFloat {
         get {
-            if(self.referenceLineType == ScrollableGraphViewReferenceLineType.cover) {
+            if(self.referenceLineType == ScrollableGraphViewReferenceLineType.Cover) {
                 return self.bounds.width
             }
             else {
@@ -1655,7 +1655,7 @@ private class ReferenceLineDrawingView : UIView {
         }
     }
     
-    fileprivate var units: String {
+    private var units: String {
         get {
             if let units = self.labelUnits {
                 return " \(units)"
@@ -1666,9 +1666,9 @@ private class ReferenceLineDrawingView : UIView {
     }
     
     // Layers
-    fileprivate var labels = [UILabel]()
-    fileprivate let referenceLineLayer = CAShapeLayer()
-    fileprivate let referenceLinePath = UIBezierPath()
+    private var labels = [UILabel]()
+    private let referenceLineLayer = CAShapeLayer()
+    private let referenceLinePath = UIBezierPath()
     
     init(frame: CGRect, topMargin: CGFloat, bottomMargin: CGFloat, referenceLineColor: UIColor, referenceLineThickness: CGFloat) {
         super.init(frame: frame)
@@ -1678,7 +1678,7 @@ private class ReferenceLineDrawingView : UIView {
         
         // The reference line layer draws the reference lines and we handle the labels elsewhere.
         self.referenceLineLayer.frame = self.frame
-        self.referenceLineLayer.strokeColor = referenceLineColor.cgColor
+        self.referenceLineLayer.strokeColor = referenceLineColor.CGColor
         self.referenceLineLayer.lineWidth = referenceLineThickness
         
         self.layer.addSublayer(referenceLineLayer)
@@ -1688,14 +1688,14 @@ private class ReferenceLineDrawingView : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func createLabelAtPosition(_ position: CGPoint, withText text: String) -> UILabel {
+    private func createLabelAtPosition(position: CGPoint, withText text: String) -> UILabel {
         let frame = CGRect(x: position.x, y: position.y, width: 0, height: 0)
         let label = UILabel(frame: frame)
         
         return label
     }
     
-    fileprivate func createReferenceLinesPath() -> UIBezierPath {
+    private func createReferenceLinesPath() -> UIBezierPath {
         
         referenceLinePath.removeAllPoints()
         for label in labels {
@@ -1711,8 +1711,8 @@ private class ReferenceLineDrawingView : UIView {
         
         let numberFormatter = referenceNumberFormatter()
         
-        let maxString = numberFormatter.string(from: NSNumber(self.currentRange.max))! + units
-        let minString = numberFormatter.string(from: NSNumber(self.currentRange.min))! + units
+        let maxString = numberFormatter.stringFromNumber(self.currentRange.max)! + units
+        let minString = numberFormatter.stringFromNumber(self.currentRange.min)! + units
         
         addLineWithTag(maxString, from: maxLineStart, to: maxLineEnd, inPath: referenceLinePath)
         addLineWithTag(minString, from: minLineStart, to: minLineEnd, inPath: referenceLinePath)
@@ -1724,8 +1724,8 @@ private class ReferenceLineDrawingView : UIView {
         return referenceLinePath
     }
     
-    fileprivate func referenceNumberFormatter() -> NumberFormatter {
-        let numberFormatter = NumberFormatter()
+    private func referenceNumberFormatter() -> NSNumberFormatter {
+        let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = labelNumberStyle
         numberFormatter.minimumFractionDigits = labelDecimalPlaces
         numberFormatter.maximumFractionDigits = labelDecimalPlaces
@@ -1733,7 +1733,7 @@ private class ReferenceLineDrawingView : UIView {
         return numberFormatter
     }
     
-    fileprivate func createIntermediateReferenceLines(_ rect: CGRect, numberOfIntermediateReferenceLines: Int, forPath path: UIBezierPath) {
+    private func createIntermediateReferenceLines(rect: CGRect, numberOfIntermediateReferenceLines: Int, forPath path: UIBezierPath) {
         
         let height = rect.size.height
         let spacePerPartition = height / CGFloat(numberOfIntermediateReferenceLines + 1)
@@ -1748,7 +1748,7 @@ private class ReferenceLineDrawingView : UIView {
     }
     
     // FUTURE: Can use the recursive version to create a ruler like look on the edge.
-    fileprivate func recursiveCreateIntermediateReferenceLines(_ rect: CGRect, width: CGFloat, forPath path: UIBezierPath, remainingPartitions: Int) -> UIBezierPath {
+    private func recursiveCreateIntermediateReferenceLines(rect: CGRect, width: CGFloat, forPath path: UIBezierPath, remainingPartitions: Int) -> UIBezierPath {
         
         if(remainingPartitions <= 0) {
             return path
@@ -1777,12 +1777,12 @@ private class ReferenceLineDrawingView : UIView {
         return path
     }
     
-    fileprivate func createReferenceLineFrom(from lineStart: CGPoint, to lineEnd: CGPoint, inPath path: UIBezierPath) {
+    private func createReferenceLineFrom(from lineStart: CGPoint, to lineEnd: CGPoint, inPath path: UIBezierPath) {
         if(shouldAddLabelsToIntermediateReferenceLines) {
             
             let value = calculateYAxisValueForPoint(lineStart)
             let numberFormatter = referenceNumberFormatter()
-            var valueString = numberFormatter.string(from: NSNumber(value))!
+            var valueString = numberFormatter.stringFromNumber(value)!
             
             if(shouldAddUnitsToIntermediateReferenceLineLabels) {
                 valueString += " \(units)"
@@ -1795,7 +1795,7 @@ private class ReferenceLineDrawingView : UIView {
         }
     }
     
-    fileprivate func addLineWithTag(_ tag: String, from: CGPoint, to: CGPoint, inPath path: UIBezierPath) {
+    private func addLineWithTag(tag: String, from: CGPoint, to: CGPoint, inPath path: UIBezierPath) {
         
         let boundingSize = boundingSizeForText(tag)
         let leftLabel = createLabelWithText(tag)
@@ -1822,17 +1822,17 @@ private class ReferenceLineDrawingView : UIView {
         
         switch(self.referenceLinePosition) {
             
-        case .left:
+        case .Left:
             gaps.append((start: leftLabelStart.x, end: leftLabelEnd.x))
             self.addSubview(leftLabel)
             self.labels.append(leftLabel)
             
-        case .right:
+        case .Right:
             gaps.append((start: rightLabelStart.x, end: rightLabelEnd.x))
             self.addSubview(rightLabel)
             self.labels.append(rightLabel)
             
-        case .both:
+        case .Both:
             gaps.append((start: leftLabelStart.x, end: leftLabelEnd.x))
             gaps.append((start: rightLabelStart.x, end: rightLabelEnd.x))
             self.addSubview(leftLabel)
@@ -1844,7 +1844,7 @@ private class ReferenceLineDrawingView : UIView {
         addLineWithGaps(from, to: to, withGaps: gaps, inPath: path)
     }
     
-    fileprivate func addLineWithGaps(_ from: CGPoint, to: CGPoint, withGaps gaps: [(start: CGFloat, end: CGFloat)], inPath path: UIBezierPath) {
+    private func addLineWithGaps(from: CGPoint, to: CGPoint, withGaps gaps: [(start: CGFloat, end: CGFloat)], inPath path: UIBezierPath) {
         
         // If there are no gaps, just add a single line.
         if(gaps.count <= 0) {
@@ -1888,16 +1888,16 @@ private class ReferenceLineDrawingView : UIView {
         }
     }
     
-    fileprivate func addLineFrom(_ from: CGPoint, to: CGPoint, inPath path: UIBezierPath) {
-        path.move(to: from)
-        path.addLine(to: to)
+    private func addLineFrom(from: CGPoint, to: CGPoint, inPath path: UIBezierPath) {
+        path.moveToPoint(from)
+        path.addLineToPoint(to)
     }
     
-    fileprivate func boundingSizeForText(_ text: String) -> CGSize {
-        return (text as NSString).size(attributes: [NSFontAttributeName:labelFont])
+    private func boundingSizeForText(text: String) -> CGSize {
+        return (text as NSString).sizeWithAttributes([NSFontAttributeName:labelFont])
     }
     
-    fileprivate func calculateYAxisValueForPoint(_ point: CGPoint) -> Double {
+    private func calculateYAxisValueForPoint(point: CGPoint) -> Double {
         
         let graphHeight = self.frame.size.height - (topMargin + bottomMargin)
         
@@ -1918,7 +1918,7 @@ private class ReferenceLineDrawingView : UIView {
         return Double(value)
     }
     
-    fileprivate func createLabelWithText(_ text: String) -> UILabel {
+    private func createLabelWithText(text: String) -> UILabel {
         let label = UILabel()
         
         label.text = text
@@ -1930,61 +1930,61 @@ private class ReferenceLineDrawingView : UIView {
     
     // Public functions to update the reference lines with any changes to the range and viewport (phone rotation, etc).
     // When the range changes, need to update the max for the new range, then update all the labels that are showing for the axis and redraw the reference lines.
-    func setRange(_ range: (min: Double, max: Double)) {
+    func setRange(range: (min: Double, max: Double)) {
         self.currentRange = range
-        self.referenceLineLayer.path = createReferenceLinesPath().cgPath
+        self.referenceLineLayer.path = createReferenceLinesPath().CGPath
     }
     
-    func setViewport(_ viewportWidth: CGFloat, viewportHeight: CGFloat) {
+    func setViewport(viewportWidth: CGFloat, viewportHeight: CGFloat) {
         self.frame.size.width = viewportWidth
         self.frame.size.height = viewportHeight
-        self.referenceLineLayer.path = createReferenceLinesPath().cgPath
+        self.referenceLineLayer.path = createReferenceLinesPath().CGPath
     }
 }
 
 // MARK: - ScrollableGraphView Settings Enums
 
 @objc public enum ScrollableGraphViewLineStyle : Int {
-    case straight
-    case smooth
+    case Straight
+    case Smooth
 }
 
 @objc public enum ScrollableGraphViewFillType : Int {
-    case solid
-    case gradient
+    case Solid
+    case Gradient
 }
 
 @objc public enum ScrollableGraphViewGradientType : Int {
-    case linear
-    case radial
+    case Linear
+    case Radial
 }
 
 @objc public enum ScrollableGraphViewDataPointType : Int {
-    case circle
-    case square
-    case custom
+    case Circle
+    case Square
+    case Custom
 }
 
 @objc public enum ScrollableGraphViewReferenceLinePosition : Int {
-    case left
-    case right
-    case both
+    case Left
+    case Right
+    case Both
 }
 
 @objc public enum ScrollableGraphViewReferenceLineType : Int {
-    case cover
+    case Cover
     //case Edge // FUTURE: Implement
 }
 
 @objc public enum ScrollableGraphViewAnimationType : Int {
-    case easeOut
-    case elastic
-    case custom
+    case EaseOut
+    case Elastic
+    case Custom
 }
 
 @objc public enum ScrollableGraphViewDirection : Int {
-    case leftToRight
-    case rightToLeft
+    case LeftToRight
+    case RightToLeft
 }
 
 // Simplified easing functions from: http://www.joshondesign.com/2013/03/01/improvedEasingEquations

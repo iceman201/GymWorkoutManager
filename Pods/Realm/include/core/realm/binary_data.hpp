@@ -40,11 +40,9 @@ namespace realm {
 class BinaryData {
 public:
     BinaryData() noexcept : m_data(nullptr), m_size(0) {}
-    BinaryData(const char* external_data, size_t data_size) noexcept:
-        m_data(external_data), m_size(data_size) {}
+    BinaryData(const char* data, size_t size) noexcept: m_data(data), m_size(size) {}
     template<size_t N>
-    explicit BinaryData(const char (&external_data)[N]):
-        m_data(external_data), m_size(N) {}
+    explicit BinaryData(const char (&data)[N]): m_data(data), m_size(N) {}
     template<class T, class A>
     explicit BinaryData(const std::basic_string<char, T, A>&);
 
@@ -111,8 +109,7 @@ public:
     using OwnedData::OwnedData;
 
     OwnedBinaryData() = default;
-    OwnedBinaryData(const BinaryData& binary_data):
-        OwnedData(binary_data.data(), binary_data.size()) { }
+    OwnedBinaryData(const BinaryData& data) : OwnedData(data.data(), data.size()) { }
 
     BinaryData get() const
     {

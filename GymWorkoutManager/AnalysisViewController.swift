@@ -15,8 +15,8 @@ struct graphData<T: Hashable, U: NumericType> : GraphData {
     typealias GraphDataKey = T
     typealias GraphDataValue = U
     
-    fileprivate let _key: T
-    fileprivate let _value: U
+    private let _key: T
+    private let _value: U
     
     init(key: T, value: U) {
         self._key = key
@@ -34,25 +34,25 @@ class AnalysisViewController: UITableViewController {
     let activityManager = CMMotionActivityManager()
     let pedoMeter = CMPedometer()
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if isNonData() {
             return 1
         } else {
             return 2
         }
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath as NSIndexPath).section == 0 {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
             return 223
         } else {
             return 225
         }
     }
-    fileprivate func isNonData() -> Bool {
+    private func isNonData() -> Bool {
         if curentUser?.getPercentageOfWorkout("0").isNaN == true &&
             curentUser?.getPercentageOfWorkout("1").isNaN == true &&
             curentUser?.getPercentageOfWorkout("2").isNaN == true {
@@ -61,13 +61,13 @@ class AnalysisViewController: UITableViewController {
             return false
         }
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var startIndexAt: Int = 0
         if isNonData() {
             startIndexAt = -1
         }
-        if (indexPath as NSIndexPath).section == startIndexAt {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "graphicCell", for: indexPath) as? GraphViewCell else {
+        if indexPath.section == startIndexAt {
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("graphicCell", forIndexPath: indexPath) as? GraphViewCell else {
                 return UITableViewCell()
             }
             let data = [
@@ -88,7 +88,7 @@ class AnalysisViewController: UITableViewController {
                     textColor: UIColor(red: 119.0/255.0, green: 136.0/255.0, blue: 153.0/255.0, alpha: 1.0)
                 )
             }
-            view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
             cell.title.text = "Proportion of Workout"
             for each in data {
                 guard !each._value.isNaN else { return cell }
@@ -96,34 +96,34 @@ class AnalysisViewController: UITableViewController {
             cell.graphicView.addSubview(view)
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "pedmeterCell", for: indexPath) as? PedmeterViewCell else {
+            guard let cell = tableView.dequeueReusableCellWithIdentifier("pedmeterCell", forIndexPath: indexPath) as? PedmeterViewCell else {
                 return UITableViewCell()
             }
             if CMPedometer.isStepCountingAvailable() {
-                let serialQueue : DispatchQueue  = DispatchQueue(label: "com.pedometer.MyQueue", attributes: [])
-                let formatter = DateFormatter()
+                let serialQueue : dispatch_queue_t  = dispatch_queue_create("com.pedometer.MyQueue", nil)
+                let formatter = NSDateFormatter()
                 formatter.dateFormat = "d MMM"
-                serialQueue.sync(execute: { () -> Void in
+                dispatch_sync(serialQueue, { () -> Void in
                     for day in 0...6 {
-                        let startDate = Date(timeIntervalSinceNow: Double(-7 + day) * 86400)
-                        let endDate = Date(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
-                        let dateString = formatter.string(from: endDate)
-                        self.pedoMeter.queryPedometerData(from: startDate, to: endDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
+                        let startDate = NSDate(timeIntervalSinceNow: Double(-7 + day) * 86400)
+                        let endDate = NSDate(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
+                        let dateString = formatter.stringFromDate(endDate)
+                        self.pedoMeter.queryPedometerDataFromDate(startDate, toDate: endDate) { (CMData: CMPedometerData?, errors:NSError?) -> Void in
                             guard let data = CMData else { return }
                             cell.numberSteps.text = "\(data.numberOfSteps)"
                             self.days.append(dateString)
-                            self.result.append(data.numberOfSteps.intValue)
+                            self.result.append(data.numberOfSteps.integerValue)
                             if(self.days.count == 7){
-                                DispatchQueue.main.sync(execute: { () -> Void in
+                                dispatch_sync(dispatch_get_main_queue(), { () -> Void in
                                     let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
-                                    view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                                    view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                                     cell.graphicView.addSubview(view)
                                     //cell.graphicView.layer.borderWidth = 1
                                     //cell.graphicView.layer.borderColor = GWMColorRed.CGColor
                                 })
                             }
                             
-                        } as! CMPedometerHandler as! CMPedometerHandler as! CMPedometerHandler as! CMPedometerHandler as! CMPedometerHandler as! CMPedometerHandler as! CMPedometerHandler
+                        }
                     }
                 })
             }
@@ -135,15 +135,15 @@ class AnalysisViewController: UITableViewController {
         if
     }*/
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor.clear
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        cell.backgroundColor = UIColor.clearColor()
         if isNonData() {
-            return cell.selectionStyle = .default
+            return cell.selectionStyle = .Default
         } else {
-            if (indexPath as NSIndexPath).section == 0 {
-                return cell.selectionStyle = .none
+            if indexPath.section == 0 {
+                return cell.selectionStyle = .None
             } else {
-                return cell.selectionStyle = .default
+                return cell.selectionStyle = .Default
             }
         }
 
@@ -153,13 +153,13 @@ class AnalysisViewController: UITableViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = "Analysis"
         self.tableView.backgroundColor = GWMColorBackground
-        self.tableView.separatorColor = UIColor.clear
+        self.tableView.separatorColor = UIColor.clearColor()
         self.tableView.delegate = self
         if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
-            self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         curentUser = cusers?.first

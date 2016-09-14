@@ -42,14 +42,14 @@ public final class CVCalendarView: UIView {
     
     public var (weekViewSize, dayViewSize): (CGSize?, CGSize?)
     
-    fileprivate var validated = false
+    private var validated = false
     
     public var firstWeekday: Weekday {
         get {
             if let delegate = delegate {
                 return delegate.firstWeekday()
             } else {
-                return .sunday
+                return .Sunday
             }
         }
     }
@@ -72,7 +72,7 @@ public final class CVCalendarView: UIView {
     
     public var shouldAnimateResizing: Bool {
         get {
-            if let delegate = delegate, let should = delegate.shouldAnimateResizing?() {
+            if let delegate = delegate, should = delegate.shouldAnimateResizing?() {
                 return should
             }
             
@@ -82,7 +82,7 @@ public final class CVCalendarView: UIView {
     
     public var shouldAutoSelectDayOnMonthChange: Bool{
         get {
-            if let delegate = delegate, let should = delegate.shouldAutoSelectDayOnMonthChange?() {
+            if let delegate = delegate, should = delegate.shouldAutoSelectDayOnMonthChange?() {
                 return should
             }
             return true
@@ -91,7 +91,7 @@ public final class CVCalendarView: UIView {
     
     public var shouldAutoSelectDayOnWeekChange: Bool{
         get {
-            if let delegate = delegate, let should = delegate.shouldAutoSelectDayOnWeekChange?() {
+            if let delegate = delegate, should = delegate.shouldAutoSelectDayOnWeekChange?() {
                 return should
             }
             return true
@@ -100,7 +100,7 @@ public final class CVCalendarView: UIView {
     
     public var shouldScrollOnOutDayViewSelection: Bool{
         get {
-            if let delegate = delegate, let should = delegate.shouldScrollOnOutDayViewSelection?() {
+            if let delegate = delegate, should = delegate.shouldScrollOnOutDayViewSelection?() {
                 return should
             }
             return true
@@ -184,19 +184,19 @@ public final class CVCalendarView: UIView {
     // MARK: - Initialization
     
     public init() {
-        super.init(frame: CGRect.zero)
-        isHidden = true
+        super.init(frame: CGRectZero)
+        hidden = true
     }
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        isHidden = true
+        hidden = true
     }
 
     /// IB Initialization
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        isHidden = true
+        hidden = true
     }
 }
 
@@ -207,7 +207,7 @@ extension CVCalendarView {
         if let _ = delegate, let contentController = contentController {
             let contentViewSize = contentController.bounds.size
             let selfSize = bounds.size
-            let screenSize = UIScreen.main.bounds.size
+            let screenSize = UIScreen.mainScreen().bounds.size
             
             let allowed = selfSize.width <= screenSize.width && selfSize.height <= screenSize.height
             
@@ -221,29 +221,29 @@ extension CVCalendarView {
                 
                 if let mode = calendarMode {
                     switch mode {
-                    case .weekView:
+                    case .WeekView:
                         height = selfSize.height
-                    case .monthView :
+                    case .MonthView :
                         height = (selfSize.height / countOfWeeks) - (vSpace * countOfWeeks)
                     }
                     
                     // If no height constraint found we set it manually.
                     var found = false
                     for constraint in constraints {
-                        if constraint.firstAttribute == .height {
+                        if constraint.firstAttribute == .Height {
                             found = true
                         }
                     }
                     
                     if !found {
-                        addConstraint(NSLayoutConstraint(item: self, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: frame.height))
+                        addConstraint(NSLayoutConstraint(item: self, attribute: .Height, relatedBy: .Equal, toItem: nil, attribute: .Height, multiplier: 1, constant: frame.height))
                     }
                     
-                    weekViewSize = CGSize(width: width, height: height)
-                    dayViewSize = CGSize(width: (width / 7.0) - hSpace, height: height)
+                    weekViewSize = CGSizeMake(width, height)
+                    dayViewSize = CGSizeMake((width / 7.0) - hSpace, height)
                     validated = true
                     
-                    contentController.updateFrames(selfSize != contentViewSize ? bounds : CGRect.zero)
+                    contentController.updateFrames(selfSize != contentViewSize ? bounds : CGRectZero)
                 }
             }
         }
@@ -253,7 +253,7 @@ extension CVCalendarView {
 // MARK: - Coordinator callback
 
 extension CVCalendarView {
-    public func didSelectDayView(_ dayView: CVCalendarDayView) {
+    public func didSelectDayView(dayView: CVCalendarDayView) {
         if let controller = contentController {
             presentedDate = dayView.date
             delegate?.didSelectDayView?(dayView, animationDidFinish: false)
@@ -265,16 +265,16 @@ extension CVCalendarView {
 // MARK: - Convenience API
 
 extension CVCalendarView {
-    public func changeDaysOutShowingState(_ shouldShow: Bool) {
+    public func changeDaysOutShowingState(shouldShow: Bool) {
         contentController.updateDayViews(shouldShow)
     }
     
-    public func toggleViewWithDate(_ date: Foundation.Date) {
+    public func toggleViewWithDate(date: NSDate) {
         contentController.togglePresentedDate(date)
     }
     
     public func toggleCurrentDayView() {
-        contentController.togglePresentedDate(Foundation.Date())
+        contentController.togglePresentedDate(NSDate())
     }
     
     public func loadNextView() {
@@ -285,16 +285,16 @@ extension CVCalendarView {
         contentController.presentPreviousView(nil)
     }
     
-    public func changeMode(_ mode: CalendarMode, completion: @escaping () -> () = {}) {
-        if let selectedDate = coordinator.selectedDayView?.date.convertedDate() , calendarMode != mode {
+    public func changeMode(mode: CalendarMode, completion: () -> () = {}) {
+        if let selectedDate = coordinator.selectedDayView?.date.convertedDate() where calendarMode != mode {
             calendarMode = mode
             
             let newController: ContentController
             switch mode {
-            case .weekView:
+            case .WeekView:
                 contentController.updateHeight(dayViewSize!.height, animated: true)
                 newController = WeekContentViewController(calendarView: self, frame: bounds, presentedDate: selectedDate)
-            case .monthView:
+            case .MonthView:
                 contentController.updateHeight(contentController.presentedMonthView.potentialSize.height, animated: true)
                 newController = MonthContentViewController(calendarView: self, frame: bounds, presentedDate: selectedDate)
             }
@@ -304,7 +304,7 @@ extension CVCalendarView {
             newController.scrollView.alpha = 0
             addSubview(newController.scrollView)
             
-            UIView.animate(withDuration: 0.5, delay: 0, options: UIViewAnimationOptions(), animations: {
+            UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseInOut, animations: {
                 self.contentController.scrollView.alpha = 0
                 newController.scrollView.alpha = 1
             }) { _ in
@@ -324,8 +324,8 @@ private extension CVCalendarView {
         if let delegate = delegate {
             calendarMode = delegate.presentationMode()
             switch delegate.presentationMode() {
-                case .monthView: contentController = MonthContentViewController(calendarView: self, frame: bounds)
-                case .weekView: contentController = WeekContentViewController(calendarView: self, frame: bounds)
+                case .MonthView: contentController = MonthContentViewController(calendarView: self, frame: bounds)
+                case .WeekView: contentController = WeekContentViewController(calendarView: self, frame: bounds)
             }
             
             addSubview(contentController.scrollView)

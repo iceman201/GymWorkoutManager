@@ -1,23 +1,16 @@
 PODS:
-  - AVOSCloud (3.4.0)
-  - AVOSCloudIM (3.4.0):
-    - AVOSCloud (= 3.4.0)
-    - AVOSCloudIM/_ARC (= 3.4.0)
-    - AVOSCloudIM/_NOARC (= 3.4.0)
-  - AVOSCloudIM/_ARC (3.4.0):
-    - AVOSCloud (= 3.4.0)
-    - AVOSCloudIM/_NOARC (= 3.4.0)
-  - AVOSCloudIM/_NOARC (3.4.0):
-    - AVOSCloud (= 3.4.0)
+  - AVOSCloud (3.3.5)
+  - AVOSCloudIM (3.3.5):
+    - AVOSCloud
   - CircleMenu (1.0.7)
   - CVCalendar (1.2.9)
   - Graphs (0.1.2)
-  - JVFloatLabeledTextField (1.1.1)
-  - Realm (1.0.2):
-    - Realm/Headers (= 1.0.2)
-  - Realm/Headers (1.0.2)
-  - RealmSwift (1.0.2):
-    - Realm (= 1.0.2)
+  - JVFloatLabeledTextField (1.1.0)
+  - Realm (1.0.1):
+    - Realm/Headers (= 1.0.1)
+  - Realm/Headers (1.0.1)
+  - RealmSwift (1.0.1):
+    - Realm (= 1.0.1)
   - ScrollableGraphView (2.0.0)
 
 DEPENDENCIES:
@@ -31,14 +24,14 @@ DEPENDENCIES:
   - ScrollableGraphView
 
 SPEC CHECKSUMS:
-  AVOSCloud: 771c8d77bc9b9f2cc8ac2eb4b58eaf368337ac95
-  AVOSCloudIM: 288597efc0cff96620fc380ea146ccf89a8a8d48
+  AVOSCloud: 1fe170768bee7e05bc3ea86e38d5bddb105cb957
+  AVOSCloudIM: dc307c48e951fcd861f4ae6db6d807e7b40639c8
   CircleMenu: ddd8000fe2774497c367b8f6fcc2354a9a28f4db
   CVCalendar: 0799256e0bc3b43e83b7e86c0729ce9ff0624cb6
   Graphs: 08e8c2ee01dc13c96222dfd92ccb018d14748f4c
-  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
-  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
-  RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
+  JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
+  Realm: 2e15e39d35b08abb529e212ed5d8af107b5236c8
+  RealmSwift: d73ea2af08c3676dbdd5e4b669651a0f492162a4
   ScrollableGraphView: b91f73335220890103a43a33d9fb8d93c547a86d
 
 PODFILE CHECKSUM: 6f144c9daa3063544b0540437cc62986eeb69ddc

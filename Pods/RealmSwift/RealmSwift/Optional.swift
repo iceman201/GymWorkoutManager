@@ -18,9 +18,7 @@
 
 import Realm
 
-#if swift(>=3.0)
-
-/// Types that can be represented in a `RealmOptional`.
+/// A protocol describing types that can parameterize a `RealmOptional`.
 public protocol RealmOptionalType {}
 extension Int: RealmOptionalType {}
 extension Int8: RealmOptionalType {}
@@ -36,13 +34,13 @@ private func realmOptionalToAnyObject<T: RealmOptionalType>(value: T?) -> AnyObj
     if let anyObjectValue: AnyObject = value as? AnyObject {
         return anyObjectValue
     } else if let int8Value = value as? Int8 {
-        return NSNumber(value: int8Value)
+        return NSNumber(long: Int(int8Value))
     } else if let int16Value = value as? Int16 {
-        return NSNumber(value: int16Value)
+        return NSNumber(long: Int(int16Value))
     } else if let int32Value = value as? Int32 {
-        return NSNumber(value: int32Value)
+        return NSNumber(long: Int(int32Value))
     } else if let int64Value = value as? Int64 {
-        return NSNumber(value: int64Value)
+        return NSNumber(longLong: int64Value)
     }
     return nil
 }
@@ -50,85 +48,13 @@ private func realmOptionalToAnyObject<T: RealmOptionalType>(value: T?) -> AnyObj
 // Not all RealmOptionalType's can be cast from AnyObject, so handle casting logic here.
 private func anyObjectToRealmOptional<T: RealmOptionalType>(anyObject: AnyObject?) -> T? {
     if T.self is Int8.Type {
-        return (anyObject as! NSNumber?)?.int8Value as! T?
+        return ((anyObject as! NSNumber?)?.longValue).map { Int8($0) } as! T?
     } else if T.self is Int16.Type {
-        return (anyObject as! NSNumber?)?.int16Value as! T?
+        return ((anyObject as! NSNumber?)?.longValue).map { Int16($0) } as! T?
     } else if T.self is Int32.Type {
-        return (anyObject as! NSNumber?)?.int32Value as! T?
+        return ((anyObject as! NSNumber?)?.longValue).map { Int32($0) } as! T?
     } else if T.self is Int64.Type {
-        return (anyObject as! NSNumber?)?.int64Value as! T?
-    }
-    return anyObject as! T?
-}
-
-/**
-A `RealmOptional` represents a optional value for types that can't be directly
-declared as `dynamic` in Swift, such as `Int`s, `Float`, `Double`, and `Bool`.
-
-It encapsulates a value in its `value` property, which is the only way to mutate
-a `RealmOptional` property on an `Object`.
-*/
-public final class RealmOptional<T: RealmOptionalType>: RLMOptionalBase {
-    /// The value this optional represents.
-    public var value: T? {
-        get {
-            return anyObjectToRealmOptional(anyObject: underlyingValue as AnyObject?)
-        }
-        set {
-            underlyingValue = realmOptionalToAnyObject(value: newValue)
-        }
-    }
-
-    /**
-    Creates a `RealmOptional` with the given default value (defaults to `nil`).
-
-    - parameter value: The default value for this optional.
-    */
-    public init(_ value: T? = nil) {
-        super.init()
-        self.value = value
-    }
-}
-
-#else
-
-/// A protocol describing types that can parameterize a `RealmOptional`.
-public protocol RealmOptionalType {}
-extension Int: RealmOptionalType {}
-extension Int8: RealmOptionalType {}
-extension Int16: RealmOptionalType {}
-extension Int32: RealmOptionalType {}
-extension Int64: RealmOptionalType {}
-extension Float: RealmOptionalType {}
-extension Double: RealmOptionalType {}
-extension Bool: RealmOptionalType {}
-
-// Not all RealmOptionalType's can be cast to AnyObject, so handle casting logic here.
-private func realmOptionalToAnyObject<T: RealmOptionalType>(_ value: T?) -> AnyObject? {
-    if let anyObjectValue: AnyObject = value as? AnyObject {
-        return anyObjectValue
-    } else if let int8Value = value as? Int8 {
-        return NSNumber(value: Int(int8Value) as Int)
-    } else if let int16Value = value as? Int16 {
-        return NSNumber(value: Int(int16Value) as Int)
-    } else if let int32Value = value as? Int32 {
-        return NSNumber(value: Int(int32Value) as Int)
-    } else if let int64Value = value as? Int64 {
-        return NSNumber(value: int64Value as Int64)
-    }
-    return nil
-}
-
-// Not all RealmOptionalType's can be cast from AnyObject, so handle casting logic here.
-private func anyObjectToRealmOptional<T: RealmOptionalType>(_ anyObject: AnyObject?) -> T? {
-    if T.self is Int8.Type {
-        return ((anyObject as! NSNumber?)?.intValue).map { Int8($0) } as! T?
-    } else if T.self is Int16.Type {
-        return ((anyObject as! NSNumber?)?.intValue).map { Int16($0) } as! T?
-    } else if T.self is Int32.Type {
-        return ((anyObject as! NSNumber?)?.intValue).map { Int32($0) } as! T?
-    } else if T.self is Int64.Type {
-        return (anyObject as! NSNumber?)?.int64Value as! T?
+        return (anyObject as! NSNumber?)?.longLongValue as! T?
     }
     return anyObject as! T?
 }
@@ -160,5 +86,3 @@ public final class RealmOptional<T: RealmOptionalType>: RLMOptionalBase {
         self.value = value
     }
 }
-
-#endif

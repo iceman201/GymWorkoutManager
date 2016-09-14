@@ -11,9 +11,9 @@ import UIKit
 
 @objc
 public protocol CVCalendarMenuViewDelegate {
-    @objc optional func firstWeekday() -> Weekday
-    @objc optional func dayOfWeekTextColor() -> UIColor
-    @objc optional func dayOfWeekTextUppercase() -> Bool
-    @objc optional func dayOfWeekFont() -> UIFont
-    @objc optional func weekdaySymbolType() -> WeekdaySymbolType
+    optional func firstWeekday() -> Weekday
+    optional func dayOfWeekTextColor() -> UIColor
+    optional func dayOfWeekTextUppercase() -> Bool
+    optional func dayOfWeekFont() -> UIFont
+    optional func weekdaySymbolType() -> WeekdaySymbolType
 }

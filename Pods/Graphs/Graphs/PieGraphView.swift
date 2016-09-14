@@ -24,57 +24,53 @@ public struct PieGraphViewConfig {
         contentInsets: UIEdgeInsets? = nil
     ) {
         self.pieColors = pieColors
-        self.textColor = textColor ?? DefaultColorType.pieText.color()
-        self.textFont = textFont ?? UIFont.systemFont(ofSize: 10.0)
+        self.textColor = textColor ?? DefaultColorType.PieText.color()
+        self.textFont = textFont ?? UIFont.systemFontOfSize(10.0)
         self.isDounut = isDounut
-        self.contentInsets = contentInsets ?? UIEdgeInsets.zero
+        self.contentInsets = contentInsets ?? UIEdgeInsetsZero
     }
     
 }
 
 internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
     
-    fileprivate var graph: PieGraph<T, U>? {
+    private var graph: PieGraph<T, U>? {
         didSet {
             self.config.pieColors = DefaultColorType.pieColors(graph?.units.count ?? 0)
             self.setNeedsDisplay()
         }
     }
-    fileprivate var config: PieGraphViewConfig
+    private var config: PieGraphViewConfig
     
     init(frame: CGRect, graph: PieGraph<T, U>?) {
         
         self.config = PieGraphViewConfig(pieColors: DefaultColorType.pieColors(graph?.units.count ?? 0))
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clearColor()
         self.graph = graph
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
-    func setPieGraphViewConfig(_ config: PieGraphViewConfig?) {
+    func setPieGraphViewConfig(config: PieGraphViewConfig?) {
         self.config = config ?? PieGraphViewConfig()
         self.setNeedsDisplay()
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
         
         guard let graph = self.graph else { return }
         
-        func convert<S: NumericType>(_ s: S, arr: [S], f: (S) -> S) -> [S] {
+        func convert<S: NumericType>(s: S, arr: [S], f: (S) -> S) -> [S] {
             switch arr.match {
-            case let .some(h, t):   return [f(h) + s] as! [_] + convert(h + s, arr:t, f: f)
-            case .none:             return []
+            case let .Some(h, t):   return [f(h) + s] + convert(h + s, arr:t, f: f)
+            case .None:             return []
             }
         }
         
         let colors = self.config.pieColors ?? DefaultColorType.pieColors(graph.units.count)
         
         let values = graph.units.map({ max($0.value, U(0)) })
-        let total = values.reduce(U(0), { $0 + $1 })
+        let total = values.reduce(U(0), combine: { $0 + $1 })
         let percentages = values.map({ Double($0.floatValue() / total.floatValue()) })
         
         let rect = self.graphFrame()
@@ -94,40 +90,40 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
         
         var startAngle = -M_PI / 2.0
 
-        percentages.enumerated().forEach { (index, f) in
+        percentages.enumerate().forEach { (index, f) in
             let endAngle = startAngle + M_PI * 2.0 * f
-            context?.move(to: CGPoint(x: x, y: y));
+            CGContextMoveToPoint(context, x, y);
             CGContextAddArc(context, x, y, radius, CGFloat(startAngle), CGFloat(endAngle), 0);
 
             if self.config.isDounut {
                 CGContextAddArc(context, x, y, radius/2,  CGFloat(endAngle), CGFloat(startAngle), 1)
             }
             
-            context?.setFillColor(colors[index].cgColor.components!)
-            context?.closePath();
-            context?.fillPath();
+            CGContextSetFillColor(context, CGColorGetComponents( colors[index].CGColor ))
+            CGContextClosePath(context);
+            CGContextFillPath(context);
             startAngle = endAngle
         }
         
         zip(graph.units, centers).forEach { (u, center) in
             
-            guard let str = self.graph?.graphTextDisplay()(u, total) else {
+            guard let str = self.graph?.graphTextDisplay()(unit: u, totalValue: total) else {
                 return
             }
             
             let paragraph = NSMutableParagraphStyle()
-            paragraph.alignment = .center
+            paragraph.alignment = .Center
             
             let attrStr = NSAttributedString(string: str, attributes: [
                 NSForegroundColorAttributeName:self.config.textColor,
-                NSFontAttributeName: UIFont.systemFont(ofSize: 10.0),
+                NSFontAttributeName: UIFont.systemFontOfSize(10.0),
                 NSParagraphStyleAttributeName: paragraph
             ])
             
             let size = attrStr.size()
             
-            attrStr.draw(
-                in: CGRect(
+            attrStr.drawInRect(
+                CGRect(
                     origin: CGPoint(
                         x: center.x - size.width / 2.0,
                         y: center.y - size.height / 2.0
@@ -138,7 +134,7 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
         }
     }
     
-    fileprivate func graphFrame() -> CGRect {
+    private func graphFrame() -> CGRect {
         return CGRect(
             x: self.config.contentInsets.left,
             y: self.config.contentInsets.top,

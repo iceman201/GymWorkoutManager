@@ -19,20 +19,17 @@
 #ifndef REALM_OBJECT_STORE_HPP
 #define REALM_OBJECT_STORE_HPP
 
+#include "object_schema.hpp"
 #include "property.hpp"
 
-#include <realm/table_ref.hpp>
-
 #include <functional>
-#include <string>
-#include <vector>
+
+#include <realm/group.hpp>
+#include <realm/link_view.hpp>
 
 namespace realm {
-    class Group;
-    class ObjectSchema;
     class ObjectSchemaValidationException;
     class Schema;
-    class StringData;
 
     class ObjectStore {
       public:

@@ -18,7 +18,6 @@
 
 #include "schema.hpp"
 
-#include "object_schema.hpp"
 #include "object_store.hpp"
 #include "property.hpp"
 

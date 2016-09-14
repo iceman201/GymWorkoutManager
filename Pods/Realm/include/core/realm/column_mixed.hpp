@@ -222,18 +222,16 @@ private:
 
 #ifdef REALM_DEBUG
     void do_verify(const Table*, size_t col_ndx) const;
-    void leaf_to_dot(MemRef, ArrayParent*, size_t, std::ostream&) const override;
+    void leaf_to_dot(MemRef, ArrayParent*, size_t,
+                     std::ostream&) const override {} // Not used
 #endif
 };
 
-// LCOV_EXCL_START
 inline StringData MixedColumn::get_index_data(size_t, StringIndex::StringConversionBuffer&) const noexcept
 {
     REALM_ASSERT(false && "Index not supported for MixedColumn yet.");
     REALM_UNREACHABLE();
-    return {};
 }
-// LCOV_EXCL_STOP
 
 
 class MixedColumn::RefsColumn: public SubtableColumnBase {

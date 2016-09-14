@@ -15,15 +15,15 @@ class RecordViewController: UITableViewController {
     var result : Results<Exercise>!
     var curentUser:Person?
     
-    func addRecord(_ item:String, time:String){
+    func addRecord(item:String, time:String){
         let item = ""
         let time = ""
         totalRecord.append("you have been doing\n\(item)\n\(time)")
     }
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 2
     }
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
         } else {
@@ -31,14 +31,14 @@ class RecordViewController: UITableViewController {
         }
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         curentUser = cusers?.first
         if curentUser == nil{
             curentUser = Person()
         }
-        if (indexPath as NSIndexPath).section == 0 {
-            let infoCell = self.tableView.dequeueReusableCell(withIdentifier: "picture", for: indexPath) as! RecordInfoCell
+        if indexPath.section == 0 {
+            let infoCell = self.tableView.dequeueReusableCellWithIdentifier("picture", forIndexPath: indexPath) as! RecordInfoCell
             
             if let user = curentUser {
                 DatabaseHelper.sharedInstance.beginTransaction()
@@ -48,8 +48,8 @@ class RecordViewController: UITableViewController {
                     infoCell.weight.text = user.weight + " KG"
                 } else {
                     if infoCell.name.text?.isEmpty == true {
-                        infoCell.isHidden = true
-                        if let messageCell = self.tableView.dequeueReusableCell(withIdentifier: "messageCell") {
+                        infoCell.hidden = true
+                        if let messageCell = self.tableView.dequeueReusableCellWithIdentifier("messageCell") {
                             messageCell.textLabel?.text = "Reminder:"
                             messageCell.detailTextLabel?.text = "Please enter your details on the profile page."
                             messageCell.detailTextLabel?.textColor = GWMColorYellow
@@ -59,9 +59,9 @@ class RecordViewController: UITableViewController {
                 }
                 
                 if let pictureData = user.profilePicture {
-                    infoCell.profileImage.image = UIImage(data: pictureData as Data)
+                    infoCell.profileImage.image = UIImage(data: pictureData)
                 } else {
-                    infoCell.profileImage.layer.borderColor = UIColor.clear.cgColor
+                    infoCell.profileImage.layer.borderColor = UIColor.clearColor().CGColor
                 }
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
@@ -71,13 +71,13 @@ class RecordViewController: UITableViewController {
             }
             return infoCell
         } else {
-            let recordCell = self.tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath)
+            let recordCell = self.tableView.dequeueReusableCellWithIdentifier("contentCell", forIndexPath: indexPath)
             guard let user = curentUser else {
                 return UITableViewCell()
             }
             
-            let eachExercise = user.exercise[(indexPath as NSIndexPath).row]
-            recordCell.accessoryView?.frame = CGRect(x: 0.0, y: 0.0, width: 22.0, height: 22.0)
+            let eachExercise = user.exercise[indexPath.row]
+            recordCell.accessoryView?.frame = CGRectMake(0.0, 0.0, 22.0, 22.0)
             let image = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: 22, height: 22))
             
             if eachExercise.workoutType == 0 {
@@ -95,28 +95,28 @@ class RecordViewController: UITableViewController {
             return recordCell
         }
     }
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if (indexPath as NSIndexPath).section == 0 {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.section == 0 {
             return false
         } else {
             return true
         }
     }
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if (indexPath as NSIndexPath).section == 1 {
-            cell.backgroundColor = UIColor.clear
+    override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            cell.backgroundColor = UIColor.clearColor()
             cell.textLabel?.textColor = GWMColorPurple
-            cell.detailTextLabel?.textColor = UIColor.black
+            cell.detailTextLabel?.textColor = UIColor.blackColor()
         }
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == UITableViewCellEditingStyle.delete) {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if(editingStyle == UITableViewCellEditingStyle.Delete) {
             do {
                 let realm = try Realm()
                 try realm.write {
-                    realm.delete(result[(indexPath as NSIndexPath).row])
+                    realm.delete(result[indexPath.row])
                 }
             } catch let error as NSError {
                 print(error)
@@ -126,15 +126,15 @@ class RecordViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if (indexPath as NSIndexPath).section == 0 {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
             return 183
         } else {
             return 55
         }
     }
 
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
@@ -145,7 +145,7 @@ class RecordViewController: UITableViewController {
         self.view.backgroundColor = GWMColorBackground
         
         self.navigationController?.navigationBar.topItem?.title = "Report"
-        self.edgesForExtendedLayout=UIRectEdge()
+        self.edgesForExtendedLayout=UIRectEdge.None
         self.extendedLayoutIncludesOpaqueBars = false
         self.automaticallyAdjustsScrollViewInsets = false
         do {
@@ -155,11 +155,11 @@ class RecordViewController: UITableViewController {
         } catch {
             print("loading realm faild")
         }
-        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editTable))
+        self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .Plain, target: self, action: #selector(editTable))
     }
     
     func editTable() {
-        if self.tableView.isEditing {
+        if self.tableView.editing {
             self.tableView.setEditing(false, animated: true)
         } else {
             self.tableView.setEditing(true, animated: true)

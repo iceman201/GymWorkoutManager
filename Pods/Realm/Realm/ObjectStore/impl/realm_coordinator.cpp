@@ -22,7 +22,6 @@
 #include "impl/external_commit_helper.hpp"
 #include "impl/transact_log_handler.hpp"
 #include "impl/weak_realm_notifier.hpp"
-#include "object_schema.hpp"
 #include "object_store.hpp"
 #include "schema.hpp"
 
@@ -32,7 +31,6 @@
 #include <realm/string_data.hpp>
 
 #include <unordered_map>
-#include <algorithm>
 
 using namespace realm;
 using namespace realm::_impl;
@@ -77,16 +75,16 @@ std::shared_ptr<Realm> RealmCoordinator::get_realm(Realm::Config config)
     }
     else {
         if (m_config.read_only != config.read_only) {
-            throw MismatchedConfigException("Realm at path '%1' already opened with different read permissions.", config.path);
+            throw MismatchedConfigException("Realm at path already opened with different read permissions.");
         }
         if (m_config.in_memory != config.in_memory) {
-            throw MismatchedConfigException("Realm at path '%1' already opened with different inMemory settings.", config.path);
+            throw MismatchedConfigException("Realm at path already opened with different inMemory settings.");
         }
         if (m_config.encryption_key != config.encryption_key) {
-            throw MismatchedConfigException("Realm at path '%1' already opened with a different encryption key.", config.path);
+            throw MismatchedConfigException("Realm at path already opened with a different encryption key.");
         }
         if (m_config.schema_version != config.schema_version && config.schema_version != ObjectStore::NotVersioned) {
-            throw MismatchedConfigException("Realm at path '%1' already opened with different schema version.", config.path);
+            throw MismatchedConfigException("Realm at path already opened with different schema version.");
         }
         // FIXME: verify that schema is compatible
         // Needs to verify that all tables present in both are identical, and
@@ -95,7 +93,7 @@ std::shared_ptr<Realm> RealmCoordinator::get_realm(Realm::Config config)
         // Public API currently doesn't make it possible to have non-matching
         // schemata so it's not a huge issue
         if ((false) && m_config.schema != config.schema) {
-            throw MismatchedConfigException("Realm at path '%1' already opened with different schema", config.path);
+            throw MismatchedConfigException("Realm at path already opened with different schema");
         }
     }
 

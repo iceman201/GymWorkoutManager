@@ -10,14 +10,14 @@ import UIKit
 
 public enum GraphColorType {
     case
-    mat(UIColor),
-    gradation(UIColor, UIColor)
+    Mat(UIColor),
+    Gradation(UIColor, UIColor)
 }
 
 extension UIColor {
     
     func matColor() -> GraphColorType {
-        return .mat(self)
+        return .Mat(self)
     }
 }
 
@@ -40,13 +40,13 @@ public struct BarGraphViewConfig {
         textVisible: Bool? = nil,
         contentInsets: UIEdgeInsets? = nil
     ) {
-        self.barColor = (barColor ?? DefaultColorType.bar.color()).matColor()
-        self.textColor = textColor ?? DefaultColorType.barText.color()
-        self.textFont = textFont ?? UIFont.systemFont(ofSize: 10.0)
+        self.barColor = (barColor ?? DefaultColorType.Bar.color()).matColor()
+        self.textColor = textColor ?? DefaultColorType.BarText.color()
+        self.textFont = textFont ?? UIFont.systemFontOfSize(10.0)
         self.barWidthScale = barWidthScale ?? 0.8
         self.zeroLineVisible = zeroLineVisible ?? true
         self.textVisible = textVisible ?? true
-        self.contentInsets = contentInsets ?? UIEdgeInsets.zero
+        self.contentInsets = contentInsets ?? UIEdgeInsetsZero
     }
 }
 
@@ -56,28 +56,24 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
     
     internal var graph: BarGraph<T, U>?
     
-    fileprivate var config = BarGraphViewConfig()
+    private var config = BarGraphViewConfig()
     
     init(frame: CGRect, graph: BarGraph<T, U>?) {
         
         self.graph = graph
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clearColor()
         self.setNeedsDisplay()
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
-    func setBarGraphViewConfig(_ config: BarGraphViewConfig?) {
+    func setBarGraphViewConfig(config: BarGraphViewConfig?) {
         
         self.config = config ?? BarGraphViewConfig()
         self.setNeedsDisplay()
     }
     
-    fileprivate func graphFrame() -> CGRect {
+    private func graphFrame() -> CGRect {
         return CGRect(
             x: self.config.contentInsets.left,
             y: self.config.contentInsets.top,
@@ -86,8 +82,8 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
         )
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
         
         guard let graph = self.graph else { return }
         
@@ -101,11 +97,11 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
         
         let zero = rect.size.height / CGFloat((max - min).floatValue()) * CGFloat(min.floatValue())
         
-        graph.units.enumerated().forEach({ (index, u) in
+        graph.units.enumerate().forEach({ (index, u) in
             
             switch self.config.barColor {
-            case let .mat(color):   color.setFill()
-            case .gradation(_, _):  break
+            case let .Mat(color):   color.setFill()
+            case .Gradation(_, _):  break
             }
             
             let height = { () -> CGFloat in
@@ -133,14 +129,14 @@ internal class BarGraphView<T: Hashable, U: NumericType>: UIView {
             )
             path.fill()
             
-            if let str = self.graph?.graphTextDisplay()(u, total) {
+            if let str = self.graph?.graphTextDisplay()(unit: u, totalValue: total) {
                 
                 let attrStr = NSAttributedString.graphAttributedString(str, color: self.config.textColor, font: self.config.textFont)
                 
                 let size = attrStr.size()
                 
-                attrStr.draw(
-                    in: CGRect(
+                attrStr.drawInRect(
+                    CGRect(
                         origin: CGPoint(
                             x: sectionWidth * CGFloat(index) + rect.origin.x,
                             y: u.value >= U(0)

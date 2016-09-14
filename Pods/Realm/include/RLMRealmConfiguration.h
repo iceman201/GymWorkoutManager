@@ -91,7 +91,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic) BOOL deleteRealmIfMigrationNeeded;
 
-/// The classes managed by the Realm.
+/// The classes persisted in the Realm.
 @property (nonatomic, copy, nullable) NSArray *objectClasses;
 
 @end

@@ -9,14 +9,14 @@
 import UIKit
 
 public final class CVDate: NSObject {
-    fileprivate let date: Foundation.Date
+    private let date: NSDate
     
     public let year: Int
     public let month: Int
     public let week: Int
     public let day: Int
     
-   public init(date: Foundation.Date) {
+   public init(date: NSDate) {
         let dateRange = Manager.dateRange(date)
         
         self.date = date
@@ -32,7 +32,7 @@ public final class CVDate: NSObject {
         if let date = Manager.dateFromYear(year, month: month, week: week, day: day) {
             self.date = date
         } else {
-            self.date = Foundation.Date()
+            self.date = NSDate()
         }
         
         self.year = year
@@ -45,16 +45,16 @@ public final class CVDate: NSObject {
 }
 
 extension CVDate {
-    public func convertedDate() -> Foundation.Date? {
-        let calendar = Calendar.current
-        var comps = Manager.componentsForDate(Foundation.Date())
+    public func convertedDate() -> NSDate? {
+        let calendar = NSCalendar.currentCalendar()
+        let comps = Manager.componentsForDate(NSDate())
         
         comps.year = year
         comps.month = month
         comps.weekOfMonth = week
         comps.day = day
         
-        return calendar.date(from: comps)
+        return calendar.dateFromComponents(comps)
     }
 }
 
@@ -75,9 +75,9 @@ extension CVDate {
 }
 
 private extension CVDate {
-    func dateFormattedStringWithFormat(_ format: String, fromDate date: Foundation.Date) -> String {
-        let formatter = DateFormatter()
+    func dateFormattedStringWithFormat(format: String, fromDate date: NSDate) -> String {
+        let formatter = NSDateFormatter()
         formatter.dateFormat = format
-        return formatter.string(from: date)
+        return formatter.stringFromDate(date)
     }
 }

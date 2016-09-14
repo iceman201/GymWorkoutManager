@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: - Variables
     var curentUser:Person?
     
-    @IBAction func female(_ sender: AnyObject) {
+    @IBAction func female(sender: AnyObject) {
         femaleButton.backgroundColor = GWMColorPurple
         maleButton.backgroundColor = GWMColorYellow
         DatabaseHelper.sharedInstance.beginTransaction()
@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
         checkUser(numberOfUser)
     }
-    @IBAction func male(_ sender: AnyObject) {
+    @IBAction func male(sender: AnyObject) {
         maleButton.backgroundColor = GWMColorPurple
         femaleButton.backgroundColor = GWMColorYellow
         DatabaseHelper.sharedInstance.beginTransaction()
@@ -57,43 +57,43 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         checkUser(numberOfUser)
     }
     
-    fileprivate func checkUser(_ numberOfUser:Int) {
+    private func checkUser(numberOfUser:Int) {
         if numberOfUser <= 0 {
-            curentUser!.id = UUID.init().uuidString
+            curentUser!.id = NSUUID.init().UUIDString
             DatabaseHelper.sharedInstance.insert(curentUser!)
         }
     }
     
     
     // MARK: Profile Image
-    @IBAction func selectPicture(_ sender: AnyObject) {
-        let alert = UIAlertController(title: "Profile image", message: "Upload your profile image.", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
-            self.popupImageSelection(UIImagePickerControllerSourceType.camera)
+    @IBAction func selectPicture(sender: AnyObject) {
+        let alert = UIAlertController(title: "Profile image", message: "Upload your profile image.", preferredStyle: .ActionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .Default, handler: { (UIAlertAction) in
+            self.popupImageSelection(UIImagePickerControllerSourceType.Camera)
         }))
-        alert.addAction(UIAlertAction(title: "Choose from Library", style: .default, handler: { (UIAlertAction) in
-            self.popupImageSelection(UIImagePickerControllerSourceType.photoLibrary)
+        alert.addAction(UIAlertAction(title: "Choose from Library", style: .Default, handler: { (UIAlertAction) in
+            self.popupImageSelection(UIImagePickerControllerSourceType.PhotoLibrary)
         }))
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
-    fileprivate func popupImageSelection(_ type: UIImagePickerControllerSourceType) {
+    private func popupImageSelection(type: UIImagePickerControllerSourceType) {
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = type
         myPickerController.allowsEditing = true
-        self.present(myPickerController, animated: true, completion: nil)
+        self.presentViewController(myPickerController, animated: true, completion: nil)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         self.removeKeyboardDismissRecognizer()
         self.unsubscribeToKeyboardNotifications()
         
         DatabaseHelper.sharedInstance.beginTransaction()
         curentUser?.name = name.text ?? ""
-        curentUser?.age = Int(age.text ?? "0") as NSNumber? ?? 0
+        curentUser?.age = Int(age.text ?? "0") ?? 0
         curentUser?.weight = bodyWeight.text ?? ""
         curentUser?.height = bodyHeight.text ?? ""
         DatabaseHelper.sharedInstance.commitTransaction()
@@ -105,7 +105,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         viewForAdaptForKeyboard.frame.origin.y = 0
     }
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField.placeholder != name.placeholder {
             return numberEnterOnly(replacementString: string)
         } else {
@@ -113,7 +113,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             return
         }
@@ -125,7 +125,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 curentUser!.profilePicture = nil
             }
             curentUser!.profilePicture = imageSourceData
-            profilePicture.setImage(UIImage(data: imageSourceData), for: UIControlState())
+            profilePicture.setImage(UIImage(data: imageSourceData), forState: .Normal)
 //            profilePicture.setBackgroundImage(UIImage(data: imageSourceData), forState: .Normal)
         }
         DatabaseHelper.sharedInstance.commitTransaction()
@@ -137,94 +137,94 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         checkUser(numberOfUser)
         
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    fileprivate func fixOrientation(_ image:UIImage) -> UIImage {
-        if (image.imageOrientation == UIImageOrientation.up) {
+    private func fixOrientation(image:UIImage) -> UIImage {
+        if (image.imageOrientation == UIImageOrientation.Up) {
             return image
         }
         UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
         let rect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
-        image.draw(in: rect)
-        let normalizedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        image.drawInRect(rect)
+        let normalizedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return normalizedImage
     }
     
-    fileprivate func resizeToAspectFit(_ viewSize: CGSize, bounds: CGRect, sourceImage: UIImage) -> UIImage {
+    private func resizeToAspectFit(viewSize: CGSize, bounds: CGRect, sourceImage: UIImage) -> UIImage {
         UIGraphicsBeginImageContext(viewSize)
-        sourceImage.draw(in: bounds)
+        sourceImage.drawInRect(bounds)
         
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image
     }
     
-    fileprivate func profilePictureStyleSheet() {
+    private func profilePictureStyleSheet() {
         profilePicture.layer.borderWidth = 1
         profilePicture.backgroundColor = GWMColorPurple
-        profilePicture.layer.shadowColor = UIColor.black.cgColor
+        profilePicture.layer.shadowColor = UIColor.blackColor().CGColor
         profilePicture.layer.shadowOffset = CGSize(width: 0, height: 0)
         profilePicture.layer.shadowRadius = 15
         profilePicture.layer.shadowOpacity = 0.8
     }
     
     // MARK: Navigation Controller
-    fileprivate func navigationControllerStyleSheet() {
+    private func navigationControllerStyleSheet() {
         self.navigationController?.navigationBar.topItem?.title = "Profile"
         // make the navigation bar edge disappear
-        let navBarLineView = UIView(frame: CGRect(x: 0,
-            y: (navigationController?.navigationBar.frame)!.height,
-            width: (self.navigationController?.navigationBar.frame)!.width,
-            height: 1))
+        let navBarLineView = UIView(frame: CGRectMake(0,
+            CGRectGetHeight((navigationController?.navigationBar.frame)!),
+            CGRectGetWidth((self.navigationController?.navigationBar.frame)!),
+            1))
         navBarLineView.backgroundColor = GWMColorYellow
         self.navigationController?.navigationBar.addSubview(navBarLineView)
 
         self.tabBarController?.tabBar.backgroundColor = GWMColorYellow
         self.tabBarController?.tabBar.tintColor = GWMColorPurple
         self.tabBarController?.tabBar.barTintColor = GWMColorYellow
-        self.tabBarController?.tabBar.isTranslucent = false
+        self.tabBarController?.tabBar.translucent = false
     }
     
     // MARK: textFieldStyleSheet
-    fileprivate func setLayer(_ input:JVFloatLabeledTextField) -> CALayer {
+    private func setLayer(input:JVFloatLabeledTextField) -> CALayer {
         let border = CALayer()
         let width = CGFloat(2.0)
-        border.borderColor = GWMColorYellow.cgColor
+        border.borderColor = GWMColorYellow.CGColor
         border.frame = CGRect(x: 0, y: input.frame.size.height - width, width:  input.frame.size.width, height: input.frame.size.height)
         border.borderWidth = width
         return border
     }
     
-    fileprivate func textFieldStyleSheet() {
+    private func textFieldStyleSheet() {
         name.layer.addSublayer(setLayer(name))
-        name.textColor = UIColor.white
+        name.textColor = UIColor.whiteColor()
         name.layer.masksToBounds = true
         name.delegate = self
         
         bodyWeight.layer.addSublayer(setLayer(bodyWeight))
-        bodyWeight.textColor = UIColor.white
+        bodyWeight.textColor = UIColor.whiteColor()
         bodyWeight.layer.masksToBounds = true
         bodyWeight.delegate = self
         
         bodyHeight.layer.addSublayer(setLayer(bodyHeight))
-        bodyHeight.textColor = UIColor.white
+        bodyHeight.textColor = UIColor.whiteColor()
         bodyHeight.layer.masksToBounds = true
         bodyHeight.delegate = self
         
         age.layer.addSublayer(setLayer(age))
-        age.textColor = UIColor.white
+        age.textColor = UIColor.whiteColor()
         age.layer.masksToBounds = true
         age.delegate = self
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if name.isFirstResponder {
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        if name.isFirstResponder() {
             age.becomeFirstResponder()
-        } else if age.isFirstResponder {
+        } else if age.isFirstResponder() {
             bodyHeight.becomeFirstResponder()
-        } else if bodyHeight.isFirstResponder {
+        } else if bodyHeight.isFirstResponder() {
             bodyWeight.becomeFirstResponder()
         } else {
             view.endEditing(true)
@@ -251,10 +251,10 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         tapRecognizer?.numberOfTapsRequired = 1
         tapRecognizer?.delegate = self
         if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
-            self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
         }
     }
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
         self.addKeyboardDismissRecognizer()
@@ -262,7 +262,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         keyboardIsShown = false
         
-        profilePicture.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+        profilePicture.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
         profilePicture.imageView?.layer.cornerRadius = 0.5 * profilePicture.bounds.width
         
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
@@ -275,7 +275,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let user = curentUser {
             DatabaseHelper.sharedInstance.beginTransaction()
             if let userPicture = user.profilePicture{
-                profilePicture.setImage(UIImage(data: userPicture as Data), for: UIControlState())
+                profilePicture.setImage(UIImage(data: userPicture), forState: .Normal)
             }
             name.text = user.name
             bodyHeight.text = user.height
@@ -320,11 +320,11 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
         view.removeGestureRecognizer(tapRecognizer!)
     }
     
-    func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+    func handleSingleTap(recognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         if let view = touch.view {
             if view is UIButton{
                 return false
@@ -334,19 +334,19 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
     }
     
     func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeToKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
-    func keyboardWillShow(_ notification: Foundation.Notification) {
+    func keyboardWillShow(notification: NSNotification) {
         print("keyboard will show")
-        print("height is " + String(describing: getKeyboardHeight(notification)/2))
-        print("view frame origin y is " + String(describing: view.frame.origin.y))
+        print("height is " + String(getKeyboardHeight(notification)/2))
+        print("view frame origin y is " + String(view.frame.origin.y))
         if(!keyboardIsShown){
             view.frame.origin.y -= getKeyboardHeight(notification) / 2
         }
@@ -354,15 +354,15 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
     }
 
     
-    func keyboardWillHide(_ notification: Foundation.Notification) {
+    func keyboardWillHide(notification: NSNotification) {
         print("keyboard will hide")
         view.frame.origin.y = 0.0
         keyboardIsShown = false
     }
     
-    func getKeyboardHeight(_ notification: Foundation.Notification) -> CGFloat {
-        let userInfo = (notification as NSNotification).userInfo
+    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
+        let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.cgRectValue.height
+        return keyboardSize.CGRectValue().height
     }
 }

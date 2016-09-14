@@ -9,7 +9,7 @@
 import Foundation
 
 @objc public enum CVWeekdaySymbolType: Int {
-    case normal
-    case short
-    case veryShort
+    case Normal
+    case Short
+    case VeryShort
 }

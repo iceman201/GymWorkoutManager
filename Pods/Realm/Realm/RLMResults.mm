@@ -173,7 +173,7 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
     }
 
     Query query = translateErrors([&] { return _results.get_query(); });
-    query.and_query(RLMPredicateToQuery(predicate, _objectSchema, _realm.schema, *_realm.group));
+    RLMUpdateQueryWithPredicate(&query, predicate, _realm.schema, _objectSchema);
 
     query.sync_view_if_needed();
 
@@ -327,7 +327,8 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
         if (_results.get_mode() == Results::Mode::Empty) {
             return self;
         }
-        auto query = RLMPredicateToQuery(predicate, _objectSchema, _realm.schema, *_realm.group);
+        auto query = _objectSchema.table->where();
+        RLMUpdateQueryWithPredicate(&query, predicate, _realm.schema, _objectSchema);
         return [RLMResults resultsWithObjectSchema:_objectSchema
                                            results:_results.filter(std::move(query))];
     });
@@ -344,7 +345,7 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
         }
 
         return [RLMResults resultsWithObjectSchema:_objectSchema
-                                           results:_results.sort(RLMSortOrderFromDescriptors(*_objectSchema.table, properties))];
+                                           results:_results.sort(RLMSortOrderFromDescriptors(_objectSchema, properties))];
     });
 }
 
@@ -409,7 +410,7 @@ static inline void RLMResultsValidateInWriteTransaction(__unsafe_unretained RLMR
 #pragma clang diagnostic ignored "-Wmismatched-parameter-types"
 - (RLMNotificationToken *)addNotificationBlock:(void (^)(RLMResults *, RLMCollectionChange *, NSError *))block {
     [_realm verifyNotificationsAreSupported];
-    return RLMAddNotificationBlock(self, _results, block, true);
+    return RLMAddNotificationBlock(self, _results, block, false);
 }
 #pragma clang diagnostic pop
 

@@ -26,7 +26,7 @@
 #import <objc/runtime.h>
 
 @interface RLMOptionalBase ()
-@property (nonatomic) id unmanagedValue;
+@property (nonatomic) id standaloneValue;
 @end
 
 @implementation RLMOptionalBase
@@ -40,7 +40,7 @@
         return RLMDynamicGet(_object, _property);
     }
     else {
-        return _unmanagedValue;
+        return _standaloneValue;
     }
 }
 
@@ -51,7 +51,7 @@
     else {
         NSString *propertyName = _property.name;
         [_object willChangeValueForKey:propertyName];
-        _unmanagedValue = underlyingValue;
+        _standaloneValue = underlyingValue;
         [_object didChangeValueForKey:propertyName];
     }
 }

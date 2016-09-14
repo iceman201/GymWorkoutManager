@@ -24,7 +24,6 @@
 
 #include <realm/group_shared.hpp>
 #include <realm/lang_bind_helper.hpp>
-#include <algorithm>
 
 using namespace realm;
 

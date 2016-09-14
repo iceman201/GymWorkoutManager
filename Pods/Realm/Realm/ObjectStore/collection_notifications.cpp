@@ -41,7 +41,7 @@ NotificationToken::~NotificationToken()
     }
 }
 
-NotificationToken::NotificationToken(NotificationToken&&) = default;
+NotificationToken::NotificationToken(NotificationToken&& rgt) = default;
 
 NotificationToken& NotificationToken::operator=(realm::NotificationToken&& rgt)
 {

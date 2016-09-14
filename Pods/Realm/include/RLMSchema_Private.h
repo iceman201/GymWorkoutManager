@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 // shallow copy for reusing schema properties accross the same Realm on multiple threads
 - (instancetype)shallowCopy;
 
-+ (nullable RLMObjectSchema *)sharedSchemaForClass:(Class)cls;
++ (RLMObjectSchema *)sharedSchemaForClass:(Class)cls;
 
 @end
 

@@ -180,7 +180,7 @@ public:
     template<class U>
     Optional(std::reference_wrapper<U> ref) : m_ptr(&ref.get()) {}
 
-    constexpr Optional(T& init_value) : m_ptr(&init_value) {}
+    constexpr Optional(T& value) : m_ptr(&value) {}
     Optional(T&& value) = delete; // Catches accidental references to rvalue temporaries.
 
     Optional<T&>& operator=(None) { m_ptr = nullptr; return *this; }
@@ -272,12 +272,12 @@ Optional<T>::Optional(const Optional<T>& other): Storage(none)
 }
 
 template<class T>
-constexpr Optional<T>::Optional(T&& r_value): Storage(_impl::constexpr_move(r_value))
+constexpr Optional<T>::Optional(T&& value): Storage(_impl::constexpr_move(value))
 {
 }
 
 template<class T>
-constexpr Optional<T>::Optional(const T& l_value): Storage(l_value)
+constexpr Optional<T>::Optional(const T& value): Storage(value)
 {
 }
 
@@ -345,13 +345,13 @@ Optional<T>& Optional<T>::operator=(const Optional<T>& other)
 
 template<class T>
 template<class U, class>
-Optional<T>& Optional<T>::operator=(U&& r_value)
+Optional<T>& Optional<T>::operator=(U&& value)
 {
     if (m_engaged) {
-        m_value = std::forward<U>(r_value);
+        m_value = std::forward<U>(value);
     }
     else {
-        new(&m_value) T(std::forward<U>(r_value));
+        new(&m_value) T(std::forward<U>(value));
         m_engaged = true;
     }
     return *this;

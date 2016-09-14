@@ -69,10 +69,8 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     self.textContainer.lineFragmentPadding = 0;
     
     _placeholderLabel = [[UILabel alloc] initWithFrame:self.frame];
-    if (!self.font) {
-        // by default self.font may be nil - so make UITextView use UILabel's default
-        self.font = _placeholderLabel.font;
-    }
+    // by default self.font is nil - so make UITextView use UILabel's default
+    self.font = _placeholderLabel.font;
     _placeholderLabel.font = self.font;
     _placeholderLabel.text = self.placeholder;
     _placeholderLabel.numberOfLines = 0;
@@ -173,7 +171,7 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     
     _floatingLabel.frame = CGRectMake(_floatingLabel.frame.origin.x,
                                       _floatingLabel.frame.origin.y,
-                                      self.frame.size.width,
+                                      floatingLabelSize.width,
                                       floatingLabelSize.height);
     
     CGSize placeholderLabelSize = [_placeholderLabel sizeThatFits:_placeholderLabel.superview.bounds.size];
@@ -189,7 +187,7 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
     BOOL firstResponder = self.isFirstResponder;
     _floatingLabel.textColor = (firstResponder && self.text && self.text.length > 0 ?
                                 self.labelActiveColor : self.floatingLabelTextColor);
-    if ((!self.text || 0 == [self.text length]) && !self.alwaysShowFloatingLabel) {
+    if (!self.text || 0 == [self.text length]) {
         [self hideFloatingLabel:firstResponder];
     }
     else {
@@ -206,12 +204,6 @@ static CGFloat const kFloatingLabelHideAnimationDuration = 0.3f;
         return [self performSelector:@selector(tintColor)];
     }
     return [UIColor blueColor];
-}
-
-- (void)setAlwaysShowFloatingLabel:(BOOL)alwaysShowFloatingLabel
-{
-    _alwaysShowFloatingLabel = alwaysShowFloatingLabel;
-    [self setNeedsLayout];
 }
 
 - (void)showFloatingLabel:(BOOL)animated

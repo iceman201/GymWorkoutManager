@@ -27,24 +27,24 @@ public struct LineGraphViewConfig {
         dotDiameter: CGFloat? = nil,
         contentInsets: UIEdgeInsets? = nil
     ) {
-        self.lineColor = lineColor ?? DefaultColorType.line.color()
+        self.lineColor = lineColor ?? DefaultColorType.Line.color()
         self.lineWidth = lineWidth ?? 3.0
-        self.textColor = textColor ?? DefaultColorType.lineText.color()
-        self.textFont = textFont ?? UIFont.systemFont(ofSize: 10.0)
+        self.textColor = textColor ?? DefaultColorType.LineText.color()
+        self.textFont = textFont ?? UIFont.systemFontOfSize(10.0)
         self.dotEnable = true
         self.dotDiameter = dotDiameter ?? 10.0
-        self.contentInsets = contentInsets ?? UIEdgeInsets.zero
+        self.contentInsets = contentInsets ?? UIEdgeInsetsZero
     }
 }
 
 internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
     
-    fileprivate var graph: LineGraph<T, U>?
-    fileprivate var config: LineGraphViewConfig
+    private var graph: LineGraph<T, U>?
+    private var config: LineGraphViewConfig
     
     var lineColor: UIColor? = nil {
         didSet {
-            self.config.lineColor = lineColor ?? DefaultColorType.line.color()
+            self.config.lineColor = lineColor ?? DefaultColorType.Line.color()
             self.setNeedsDisplay()
         }
     }
@@ -53,21 +53,17 @@ internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
         
         self.config = LineGraphViewConfig()
         super.init(frame: frame)
-        self.backgroundColor = UIColor.clear
+        self.backgroundColor = UIColor.clearColor()
         self.graph = graph
     }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
-    func setLineGraphViewConfig(_ config: LineGraphViewConfig?) {
+    func setLineGraphViewConfig(config: LineGraphViewConfig?) {
         self.config = config ?? LineGraphViewConfig()
         self.setNeedsDisplay()
     }
     
-    override func draw(_ rect: CGRect) {
-        super.draw(rect)
+    override func drawRect(rect: CGRect) {
+        super.drawRect(rect)
         
         guard let lineGraph = self.graph else { return }
         let rect = self.graphFrame()
@@ -76,34 +72,34 @@ internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
         let ps = self.points(lineGraph, rect: rect)
         
         let context = UIGraphicsGetCurrentContext()
-        context?.setStrokeColor(config.lineColor.cgColor ?? UIColor.black.cgColor)
-        context?.setLineWidth(self.config.lineWidth)
+        CGContextSetStrokeColorWithColor(context, config.lineColor.CGColor ?? UIColor.blackColor().CGColor)
+        CGContextSetLineWidth(context, self.config.lineWidth)
         
         ps.forEach({point in
             if point == ps.first {
-                context?.move(to: CGPoint(x: point.x, y: point.y))
+                CGContextMoveToPoint(context, point.x, point.y)
             }
             else {
-                context?.addLine(to: CGPoint(x: point.x, y: point.y))
-                context?.strokePath()
-                context?.move(to: CGPoint(x: point.x, y: point.y))
+                CGContextAddLineToPoint(context, point.x, point.y)
+                CGContextStrokePath(context)
+                CGContextMoveToPoint(context, point.x, point.y)
             }
         })
         
-        context?.setLineWidth(0.0)
-        context?.setFillColor(config.lineColor.cgColor ?? UIColor.black.cgColor)
+        CGContextSetLineWidth(context, 0.0)
+        CGContextSetFillColorWithColor(context, config.lineColor.CGColor ?? UIColor.blackColor().CGColor)
         
         if self.config.dotEnable {
             ps.forEach({point in
                 let r = CGRect(x: point.x - CGFloat(self.config.dotDiameter / 2.0), y: point.y - CGFloat(self.config.dotDiameter / 2.0), width: CGFloat(self.config.dotDiameter), height: CGFloat(self.config.dotDiameter))
-                context?.strokeEllipse(in: r)
-                context?.fillEllipse(in: r)
+                CGContextStrokeEllipseInRect(context, r)
+                CGContextFillEllipseInRect(context, r)
             })
         }
         
         zip(lineGraph.units, ps).forEach { (u, p) in
             
-            guard let str = self.graph?.graphTextDisplay()(u, total) else {
+            guard let str = self.graph?.graphTextDisplay()(unit: u, totalValue: total) else {
                 return
             }
             
@@ -111,8 +107,8 @@ internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
             
             let size = attrStr.size()
             
-            attrStr.draw(
-                in: CGRect(
+            attrStr.drawInRect(
+                CGRect(
                     origin: CGPoint(
                         x: p.x - sectionWidth / 2.0,
                         y: u.value >= U(0)
@@ -128,7 +124,7 @@ internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
         }
     }
     
-    fileprivate func graphFrame() -> CGRect {
+    private func graphFrame() -> CGRect {
         return CGRect(
             x: self.config.contentInsets.left,
             y: self.config.contentInsets.top,
@@ -137,11 +133,11 @@ internal class LineGraphView<T: Hashable, U: NumericType>: UIView {
         )
     }
     
-    fileprivate func points(_ graph: LineGraph<T, U>, rect: CGRect) -> [CGPoint] {
+    private func points(graph: LineGraph<T, U>, rect: CGRect) -> [CGPoint] {
         
         let sectionWidth = rect.width / CGFloat(graph.units.count)
         
-        return graph.units.enumerated().map {
+        return graph.units.enumerate().map {
             CGPoint(
                 x: CGFloat($0) * sectionWidth + (sectionWidth / 2.0) + rect.origin.x,
                 y: rect.size.height - rect.size.height * CGFloat(($1.value - graph.range.min).floatValue() / (graph.range.max - graph.range.min).floatValue()) + rect.origin.y
