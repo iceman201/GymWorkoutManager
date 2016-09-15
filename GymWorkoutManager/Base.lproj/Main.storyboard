@@ -1117,7 +1117,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <color key="value" red="0.2666666667" green="0.2666666667" blue="0.2666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="dataPointSpacing">
-                                <real key="value" value="56"/>
+                                <real key="value" value="66"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="dataPointSize">
                                 <real key="value" value="2"/>

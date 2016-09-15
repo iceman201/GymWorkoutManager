@@ -23,7 +23,7 @@ class AnalysisGraphViewController: UIViewController {
         guard let data = data, let labels = labels else {
             return
         }
-        self.title = "Slide for more->"
+        self.title = "History"
         graphView?.setData(data, withLabels: formatingDate(labels))
         graphView.referenceLineLabelFont = UIFont(name: "HelveticaNeue", size: 12)!
     }
