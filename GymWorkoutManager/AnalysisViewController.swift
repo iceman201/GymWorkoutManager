@@ -29,7 +29,7 @@ struct graphData<T: Hashable, U: NumericType> : GraphData {
 
 class AnalysisViewController: UITableViewController {
     var curentUser:Person?
-    var result : [Int] = []
+    var result : [Double] = []
     var days:[String] = []
     let activityManager = CMMotionActivityManager()
     let pedoMeter = CMPedometer()
@@ -49,7 +49,7 @@ class AnalysisViewController: UITableViewController {
         if indexPath.section == 0 {
             return 223
         } else {
-            return 225
+            return 305
         }
     }
     private func isNonData() -> Bool {
@@ -112,14 +112,12 @@ class AnalysisViewController: UITableViewController {
                             guard let data = CMData else { return }
                             cell.numberSteps.text = "\(data.numberOfSteps)"
                             self.days.append(dateString)
-                            self.result.append(data.numberOfSteps.integerValue)
+                            self.result.append(data.numberOfSteps.doubleValue)
                             if(self.days.count == 7){
                                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
+                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed,textColor:GWMColorYellow, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
                                     view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                                     cell.graphicView.addSubview(view)
-                                    //cell.graphicView.layer.borderWidth = 1
-                                    //cell.graphicView.layer.borderColor = GWMColorRed.CGColor
                                 })
                             }
                             
@@ -173,7 +171,15 @@ class AnalysisViewController: UITableViewController {
             curentUser = Person()
         }
     }
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "graphView" {
+            guard let destinationVC = segue.destinationViewController as? AnalysisGraphViewController else {
+                return
+            }
+            destinationVC.data = result
+            destinationVC.labels = days
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

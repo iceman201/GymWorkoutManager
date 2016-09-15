@@ -12,6 +12,8 @@ import ScrollableGraphView
 class AnalysisGraphViewController: UIViewController {
 
     @IBOutlet var graphView: ScrollableGraphView!
+    let numberOfDataItems = 29
+
     var data: [Double]?
     var labels: [String]?
     
@@ -21,7 +23,17 @@ class AnalysisGraphViewController: UIViewController {
         guard let data = data, let labels = labels else {
             return
         }
-        graphView?.setData(data, withLabels: labels)
+        self.title = "Slide for more->"
+        graphView?.setData(data, withLabels: formatingDate(labels))
+        graphView.referenceLineLabelFont = UIFont(name: "HelveticaNeue", size: 12)!
+    }
+    
+    private func formatingDate(dates:[String]) -> [String] {
+        var result: [String] = []
+        for eachDate in dates {
+            result.append(eachDate.stringByReplacingOccurrencesOfString(" ", withString: "-"))
+        }
+        return result
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,15 +41,4 @@ class AnalysisGraphViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
