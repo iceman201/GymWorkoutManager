@@ -49,25 +49,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ScrollableGraphView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>16A4E4C5361AB6426E94593C5E775F38</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>27533A6098E2BDD80827924FA8F4E742</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2E1FB9435473D61408BB5B2CAD9721BD</key>
+		<key>2AFDA1EE6147720A484BF7E84031663D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3248D8C37C3D656B0F63210352EAE924</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5FAACBAC9311E33406B0A9021FA7CE4C</key>
+		<key>45DBE719E6408F39EF2CD1C0AE031205</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7496F048E2D8D104AE987B6FB8BA2D42</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7753C16F44C2A261776BEFA4A8169F69</key>
+		<key>9DEC06FBD46B147BAB557A7BD3E011B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C73DDFD1EB430FEE7EBAE2C4F32FED1A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>D9D31A7ECD48D53E170B20BA419477B9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E4DA02AE87DD2012CB6D956C01AEA18E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

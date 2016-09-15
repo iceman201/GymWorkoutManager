@@ -29,13 +29,17 @@ struct graphData<T: Hashable, U: NumericType> : GraphData {
 
 class AnalysisViewController: UITableViewController {
     var curentUser:Person?
-    var result : [Int] = []
+    var result : [Double] = []
     var days:[String] = []
     let activityManager = CMMotionActivityManager()
     let pedoMeter = CMPedometer()
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        if isNonData() {
+            return 1
+        } else {
+            return 2
+        }
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -45,12 +49,24 @@ class AnalysisViewController: UITableViewController {
         if indexPath.section == 0 {
             return 223
         } else {
-            return 370
+            return 305
         }
     }
-    
+    private func isNonData() -> Bool {
+        if curentUser?.getPercentageOfWorkout("0").isNaN == true &&
+            curentUser?.getPercentageOfWorkout("1").isNaN == true &&
+            curentUser?.getPercentageOfWorkout("2").isNaN == true {
+            return true
+        } else {
+            return false
+        }
+    }
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        var startIndexAt: Int = 0
+        if isNonData() {
+            startIndexAt = -1
+        }
+        if indexPath.section == startIndexAt {
             guard let cell = tableView.dequeueReusableCellWithIdentifier("graphicCell", forIndexPath: indexPath) as? GraphViewCell else {
                 return UITableViewCell()
             }
@@ -60,7 +76,8 @@ class AnalysisViewController: UITableViewController {
                 //Weights
                 graphData(key: "", value: curentUser?.getPercentageOfWorkout("1") ?? 0.0),
                 //Hiit
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)]
+                graphData(key: "", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)
+            ]
             
             let view = data.pieGraph() { (unit, totalValue) -> String? in
                 return unit.key! + "\n" + String(format: "%.0f%%", unit.value / totalValue * 100.0)
@@ -95,14 +112,12 @@ class AnalysisViewController: UITableViewController {
                             guard let data = CMData else { return }
                             cell.numberSteps.text = "\(data.numberOfSteps)"
                             self.days.append(dateString)
-                            self.result.append(data.numberOfSteps.integerValue)
+                            self.result.append(data.numberOfSteps.doubleValue)
                             if(self.days.count == 7){
                                 dispatch_sync(dispatch_get_main_queue(), { () -> Void in
-                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
+                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed,textColor:GWMColorYellow, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
                                     view.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
                                     cell.graphicView.addSubview(view)
-                                    cell.graphicView.layer.borderWidth = 1
-                                    cell.graphicView.layer.borderColor = GWMColorRed.CGColor
                                 })
                             }
                             
@@ -114,9 +129,28 @@ class AnalysisViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if isNonData() {
+            self.performSegueWithIdentifier("graphView", sender: self)
+        } else {
+            if indexPath.section == 1 {
+                self.performSegueWithIdentifier("graphView", sender: self)
+            }
+        }
+    }
+    
     override func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         cell.backgroundColor = UIColor.clearColor()
-        cell.selectionStyle = .None
+        if isNonData() {
+            return cell.selectionStyle = .Default
+        } else {
+            if indexPath.section == 0 {
+                return cell.selectionStyle = .None
+            } else {
+                return cell.selectionStyle = .Default
+            }
+        }
+
     }
     
     override func viewDidLoad() {
@@ -137,7 +171,15 @@ class AnalysisViewController: UITableViewController {
             curentUser = Person()
         }
     }
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "graphView" {
+            guard let destinationVC = segue.destinationViewController as? AnalysisGraphViewController else {
+                return
+            }
+            destinationVC.data = result
+            destinationVC.labels = days
+        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

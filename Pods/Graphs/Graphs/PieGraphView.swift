@@ -92,16 +92,16 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
 
         percentages.enumerate().forEach { (index, f) in
             let endAngle = startAngle + M_PI * 2.0 * f
-            CGContextMoveToPoint(context, x, y);
-            CGContextAddArc(context, x, y, radius, CGFloat(startAngle), CGFloat(endAngle), 0);
+            CGContextMoveToPoint(context!, x, y);
+            CGContextAddArc(context!, x, y, radius, CGFloat(startAngle), CGFloat(endAngle), 0);
 
             if self.config.isDounut {
-                CGContextAddArc(context, x, y, radius/2,  CGFloat(endAngle), CGFloat(startAngle), 1)
+                CGContextAddArc(context!, x, y, radius/2,  CGFloat(endAngle), CGFloat(startAngle), 1)
             }
             
-            CGContextSetFillColor(context, CGColorGetComponents( colors[index].CGColor ))
-            CGContextClosePath(context);
-            CGContextFillPath(context);
+            CGContextSetFillColor(context!, CGColorGetComponents( colors[index].CGColor ))
+            CGContextClosePath(context!);
+            CGContextFillPath(context!);
             startAngle = endAngle
         }
         

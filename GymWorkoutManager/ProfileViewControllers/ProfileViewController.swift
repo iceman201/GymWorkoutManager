@@ -147,7 +147,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
         let rect = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
         image.drawInRect(rect)
-        let normalizedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let normalizedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return normalizedImage
     }
@@ -156,7 +156,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         UIGraphicsBeginImageContext(viewSize)
         sourceImage.drawInRect(bounds)
         
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return image
     }

@@ -9,11 +9,15 @@
 import UIKit
 
 class PedmeterViewCell: UITableViewCell {
+    
+    @IBOutlet weak var bottomLabel: UILabel!
     @IBOutlet weak var graphicView: UIImageView!
     @IBOutlet var numberSteps: UILabel!
     @IBOutlet var stepsLabel: UILabel!
     override func awakeFromNib() {
         numberSteps.textColor = UIColor.whiteColor()
         stepsLabel.textColor = UIColor.whiteColor()
+        bottomLabel.text = "* Tap for details"
+        bottomLabel.textColor = UIColor.whiteColor()
     }
 }
