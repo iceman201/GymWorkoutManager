@@ -1,22 +1,21 @@
 /*************************************************************************
  *
- * REALM CONFIDENTIAL
- * __________________
+ * Copyright 2016 Realm Inc.
  *
- *  [2011] - [2015] Realm Inc
- *  All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- * NOTICE:  All information contained herein is, and remains
- * the property of Realm Incorporated and its suppliers,
- * if any.  The intellectual and technical concepts contained
- * herein are proprietary to Realm Incorporated
- * and its suppliers and may be covered by U.S. and Foreign Patents,
- * patents in process, and are protected by trade secret or copyright law.
- * Dissemination of this information or reproduction of this material
- * is strictly forbidden unless prior written permission is obtained
- * from Realm Incorporated.
+ * http://www.apache.org/licenses/LICENSE-2.0
  *
- *************************************************************************/
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ **************************************************************************/
+
 #ifndef REALM_UTIL_FEATURES_H
 #define REALM_UTIL_FEATURES_H
 
@@ -45,6 +44,10 @@
 #    define REALM_ENABLE_ASSERTIONS     0
 #  endif
 
+#  ifndef REALM_ENABLE_MEMDEBUG
+#    define REALM_ENABLE_MEMDEBUG       0
+#  endif
+
 #  ifndef _WIN32
 #    define REALM_INSTALL_PREFIX      "/usr/local"
 #    define REALM_INSTALL_EXEC_PREFIX REALM_INSTALL_PREFIX
@@ -62,6 +65,9 @@
 #  define REALM_MAX_BPNODE_SIZE 1000
 #endif
 
+
+#define REALM_QUOTE_2(x) #x
+#define REALM_QUOTE(x) REALM_QUOTE_2(x)
 
 /* See these links for information about feature check macroes in GCC,
  * Clang, and MSVC:
@@ -87,7 +93,7 @@
 #endif
 
 #if defined(__GNUC__) // clang or GCC
-#  define REALM_PRAGMA(v) _Pragma(REALM_QUOTE2(v))
+#  define REALM_PRAGMA(v) _Pragma(REALM_QUOTE_2(v))
 #elif defined(_MSC_VER) // VS
 #  define REALM_PRAGMA(v) __pragma(v)
 #else
@@ -111,6 +117,12 @@
     REALM_DIAG(ignored "-Wtautological-compare")
 #else
 #  define REALM_DIAG_IGNORE_TAUTOLOGICAL_COMPARE()
+#endif
+
+#ifdef _MSC_VER
+#  define REALM_DIAG_IGNORE_UNSIGNED_MINUS() REALM_PRAGMA(warning(disable:4146)) 
+#else
+#  define REALM_DIAG_IGNORE_UNSIGNED_MINUS() 
 #endif
 
 /* Compiler is MSVC (Microsoft Visual C++) */
@@ -231,7 +243,7 @@
 #  define REALM_COOKIE_CHECK
 #endif
 
-#if !REALM_IOS && !REALM_WATCHOS && !REALM_TVOS && !defined(_WIN32)
+#if !REALM_IOS && !REALM_WATCHOS && !REALM_TVOS && !defined(_WIN32) && !REALM_ANDROID
 #  define REALM_ASYNC_DAEMON
 #endif
 

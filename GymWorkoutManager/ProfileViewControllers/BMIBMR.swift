@@ -23,22 +23,22 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = false
 
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "profileBackground.jpg")!)
         bodyFat.delegate = self
         styleTextField()
-        indexDisplayLabel.textColor = UIColor.whiteColor()
+        indexDisplayLabel.textColor = UIColor.white
         
         /* Configure tap recognizer */
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(BMIBMR.handleSingleTap(_:)))
         tapRecognizer?.numberOfTapsRequired = 1
         tapRecognizer?.delegate = self
         if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
-            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+            self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
         }
     }
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.addKeyboardDismissRecognizer()
@@ -58,49 +58,49 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         }
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.removeKeyboardDismissRecognizer()
         self.unsubscribeToKeyboardNotifications()
     }
     
-    @IBAction func BMRCalculation(sender: AnyObject) {
+    @IBAction func BMRCalculation(_ sender: AnyObject) {
         if bodyFat.text?.isEmpty == true {
-            let alert = UIAlertController(title: "Message", message: "Please enter your body fat percentage", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "Message", message: "Please enter your body fat percentage", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         } else {
             let result = BMRCalculation1(age, w: Float(weight ?? "") ?? 0.0, h: Float(height ?? "") ?? 0.0, gender: gender)
             indexDisplayLabel.text = String(result)
         }
     }
     
-    @IBAction func BMICalculation(sender: AnyObject) {
+    @IBAction func BMICalculation(_ sender: AnyObject) {
         let result = BMICalculator(Float(weight ?? "") ?? 0.0, heights: Float(height ?? "") ?? 0.0)
         indexDisplayLabel.text = String(result)
     }
 
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return numberEnterOnly(replacementString: string)
     }
     
-    private func setLayer(input:JVFloatLabeledTextField) -> CALayer {
+    fileprivate func setLayer(_ input:JVFloatLabeledTextField) -> CALayer {
         let border = CALayer()
         let width = CGFloat(2.0)
-        border.borderColor = self.view.tintColor.CGColor
+        border.borderColor = self.view.tintColor.cgColor
         border.frame = CGRect(x: 0, y: input.frame.size.height - width, width:  input.frame.size.width, height: input.frame.size.height)
         border.borderWidth = width
         return border
     }
     
-    private func styleTextField() {
+    fileprivate func styleTextField() {
         bodyFat.layer.addSublayer(setLayer(bodyFat))
-        bodyFat.backgroundColor = UIColor.clearColor()
-        bodyFat.textColor = UIColor.whiteColor()
+        bodyFat.backgroundColor = UIColor.clear
+        bodyFat.textColor = UIColor.white
         bodyFat.layer.masksToBounds = true
     }
     
-    private func BMRCalculation1(a:Int, w:Float, h:Float, gender:Int) -> Float{
+    fileprivate func BMRCalculation1(_ a:Int, w:Float, h:Float, gender:Int) -> Float{
         /* Harris Benedict Method
            BMR Men: BMR = 66.5 + ( 13.75 x weight in kg ) + ( 5.003 x height in cm ) – ( 6.755 x age in years )
            BMR Women: BMR = 655.1 + ( 9.563 x weight in kg ) + ( 1.850 x height in cm ) – ( 4.676 x age in years ) */
@@ -112,7 +112,7 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         }
         return result
     }
-    private func BMRCalculation2(age:Int, weights:Float, bodyFat:Float) -> Float {
+    fileprivate func BMRCalculation2(_ age:Int, weights:Float, bodyFat:Float) -> Float {
         /*  Katch & McArdle Method
             BMR (Men + Women) = 370 + (21.6 * Lean Mass in kg)
             Lean Mass = weight in kg – (weight in kg * body fat %)
@@ -123,13 +123,13 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
         result = 370 + (21.6 * leanMass)
         return result
     }
-    private func BMICalculator(weights:Float, heights:Float) -> Float {
+    fileprivate func BMICalculator(_ weights:Float, heights:Float) -> Float {
         // Metric Units: BMI = Weight (kg) / (Height (m) x Height (m))
         let result = 10000*(weights / (heights * heights))
         return result
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
     }
@@ -150,11 +150,11 @@ extension BMIBMR:UIGestureRecognizerDelegate {
         view.removeGestureRecognizer(tapRecognizer!)
     }
     
-    func handleSingleTap(recognizer: UITapGestureRecognizer) {
+    func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if let view = touch.view {
             if view is UIButton{
                 return false
@@ -164,32 +164,32 @@ extension BMIBMR:UIGestureRecognizerDelegate {
     }
     
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func unsubscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         print("keyboard will show")
-        print("height is " + String(getKeyboardHeight(notification)/2))
+        print("height is " + String(describing: getKeyboardHeight(notification)/2))
         if(view.frame.origin.y == 0.0){
             view.frame.origin.y -= getKeyboardHeight(notification) / 2
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(_ notification: Notification) {
         print("keyboard will hide")
         view.frame.origin.y = 0.0
     }
     
-    func getKeyboardHeight(notification: NSNotification) -> CGFloat {
-        let userInfo = notification.userInfo
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
+        let userInfo = (notification as NSNotification).userInfo
         let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
-        return keyboardSize.CGRectValue().height
+        return keyboardSize.cgRectValue.height
     }
 }
 
