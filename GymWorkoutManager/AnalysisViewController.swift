@@ -109,7 +109,7 @@ class AnalysisViewController: UITableViewController {
                         let endDate = Date(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
                         let dateString = formatter.string(from: endDate)
                         
-                        self.pedoMeter.queryPedometerData(from: startDate, to: endDate, withHandler: { (CMData:CMPedometerData?, errors: NSError?) in
+                        self.pedoMeter.queryPedometerData(from: startDate, to: endDate, withHandler: { (CMData:CMPedometerData?, errors: NSError?) -> Void in
                             guard let data = CMData else {
                                 return
                             }
@@ -124,7 +124,7 @@ class AnalysisViewController: UITableViewController {
                                 })
                             }
 
-                        })
+                        } as! CMPedometerHandler)
                         
                     }
                 })

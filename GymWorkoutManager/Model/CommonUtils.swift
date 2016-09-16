@@ -59,7 +59,7 @@ extension Date {
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
         let d = dateStringFormatter.date(from: dateString)!
-        (self as NSDate).init(timeInterval:0, since:d)
+        self.init(timeInterval:0, since:d)
     }
 }
 

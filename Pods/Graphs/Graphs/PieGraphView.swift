@@ -66,7 +66,7 @@ internal class PieGraphView<T: Hashable, U: NumericType>: UIView {
         
         func convert<S: NumericType>(_ s: S, arr: [S], f: (S) -> S) -> [S] {
             switch arr.match {
-            case let .some(h, t):   return [f(h) + s]// /*as! [_]*/ + convert(h + s, arr:t, f: f)
+            case let .some(h, t):   return [f(h) + s]// as! [_] + convert(h + s, arr:t, f: f)
             case .none:             return []
             }
         }
