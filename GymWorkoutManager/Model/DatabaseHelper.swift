@@ -44,7 +44,7 @@ extension DatabaseHelper {
     func queryAll<T:Object>(_ clazz:T) -> Array<T>? {
         var array:[T] = []
         if realm != nil {
-            let objs:Results<T> = (realm?.objects(T))!
+            let objs:Results<T> = (realm?.objects(T.self))!
             for result in objs {
                 array.append(result)
             }

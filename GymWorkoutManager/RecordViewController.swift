@@ -57,12 +57,10 @@ class RecordViewController: UITableViewController {
                         }
                     }
                 }
-                
+                /*
                 if let pictureData = user.profilePicture {
                     infoCell.profileImage.image = UIImage(data: pictureData as Data)
-                } else {
-                    infoCell.profileImage.layer.borderColor = UIColor.clear.cgColor
-                }
+                }*/
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
             if let effectIndex = curentUser?.effectiveIndex {
@@ -82,11 +80,14 @@ class RecordViewController: UITableViewController {
             
             if eachExercise.workoutType == 0 {
                 image.image = UIImage(named: "1466238314_running.png")
+                recordCell.backgroundColor = GWMPieGraphColorCardio
             } else if eachExercise.workoutType == 1 {
                 image.image = UIImage(named: "1463131048_dumbbell.png")
+                recordCell.backgroundColor = GWMPieGraphColorWeights
                 
             } else if eachExercise.workoutType == 2 {
                 image.image = UIImage(named: "push_up-256.png")
+                recordCell.backgroundColor = GWMPieGraphColorHiit
             }
             recordCell.accessoryView = image
             recordCell.textLabel?.text = "[\(eachExercise.date)] \(eachExercise.exerciseName)"
@@ -105,10 +106,11 @@ class RecordViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (indexPath as NSIndexPath).section == 1 {
-            cell.backgroundColor = UIColor.clear
-            cell.textLabel?.textColor = GWMColorPurple
             cell.detailTextLabel?.textColor = UIColor.black
+            cell.textLabel?.textColor = UIColor(hex: "40E0D0")
+            
         }
+        cell.selectionStyle = .none
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -150,7 +152,7 @@ class RecordViewController: UITableViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         do {
             let r = try Realm()
-            result = r.objects(Exercise)
+            result = r.objects(Exercise.self)
             tableView.reloadData()
         } catch {
             print("loading realm faild")

@@ -57,13 +57,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GymWorkoutManager/AnalysisViewController.swift"
-            timestampString = "495730411.473411"
+            filePath = "GymWorkoutManager/ProfileViewControllers/BMIBMR.swift"
+            timestampString = "495797429.249237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "BMRCalculation(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -181,3 +181,38 @@ extension UIColor {
     }
 }
 
+extension UIImageView {
+    func zoomOutWithEasing(duration: TimeInterval = 7.7, easingOffset: CGFloat = 0.23) {
+        let easeScale = 1.0 + easingOffset
+        let easingDuration = TimeInterval(easingOffset) * duration / TimeInterval(easeScale)
+        let scalingDuration = duration - easingDuration
+        UIView.animate(withDuration: easingDuration, delay: 0.0, options: [.repeat,.curveEaseOut], animations: { () -> Void in
+            self.transform = CGAffineTransform(scaleX: easeScale, y: easeScale)
+            }, completion: { (completed: Bool) -> Void in
+                UIView.animate(withDuration: scalingDuration, delay: 0.0, options: [.repeat,.curveEaseOut], animations: { () -> Void in
+                    self.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+                    }, completion: { (completed: Bool) -> Void in
+                })
+        })
+    }
+}
+
+extension UIButton {
+    func setImageAndTitleLeft(_ spacing:CGFloat){
+        let spacing: CGFloat = 6.0
+        let imageSize: CGSize = self.imageView!.image!.size
+        let labelString = NSString(string: self.titleLabel!.text!)
+        let titleSize = labelString.size(attributes: [NSFontAttributeName: self.titleLabel!.font])
+        let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0
+        
+        self.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
+        if DeviceType.IS_IPHONE_6P {
+            self.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing)*2, 0.0)
+            self.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset*3.5, 0.0, edgeOffset, 0.0)
+        } else {
+            self.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing)*1.5, 0.0)
+            self.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset*2, 0.0, edgeOffset, 0.0)
+        }
+    }
+}
+

@@ -61,7 +61,7 @@ class PlannerViewController: UIViewController,CVCalendarMenuViewDelegate,CVCalen
         self.navigationController?.navigationBar.topItem?.title = "Planner"
         do {
             let r = try Realm()
-            results = r.objects(Plan)
+            results = r.objects(Plan.self)
             calendarView.contentController.refreshPresentedMonth()
             displayPlan(calendarView.presentedDate.commonDescription,plans: results!)
         } catch {

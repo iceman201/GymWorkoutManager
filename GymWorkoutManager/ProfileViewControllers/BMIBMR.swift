@@ -70,13 +70,13 @@ class BMIBMR: UIViewController, UITextFieldDelegate {
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true, completion: nil)
         } else {
-            let result = BMRCalculation1(age, w: Float(weight ?? "") ?? 0.0, h: Float(height ?? "") ?? 0.0, gender: gender)
+            let result = BMRCalculation1(age, w: Float(weight) ?? 0.0, h: Float(height) ?? 0.0, gender: gender)
             indexDisplayLabel.text = String(result)
         }
     }
     
     @IBAction func BMICalculation(_ sender: AnyObject) {
-        let result = BMICalculator(Float(weight ?? "") ?? 0.0, heights: Float(height ?? "") ?? 0.0)
+        let result = BMICalculator(Float(weight) ?? 0.0, heights: Float(height) ?? 0.0)
         indexDisplayLabel.text = String(result)
     }
 

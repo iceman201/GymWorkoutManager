@@ -103,7 +103,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
             }
             
             DatabaseHelper.sharedInstance.beginTransaction()
-            newExecrise.set = self.startRound ?? "0"
+            newExecrise.set = self.startRound 
             newExecrise.times = self.totalWorkoutTimer.text ?? "None"
             newExecrise.reps = repsTextField.text ?? "0"
             newExecrise.exerciseName = execriseNameTextField.text ?? "None"

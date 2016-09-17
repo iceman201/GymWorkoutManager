@@ -124,9 +124,11 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
             if curentUser!.profilePicture != nil {
                 curentUser!.profilePicture = nil
             }
+            profilePicture.setTitle("", for: UIControlState.normal)
             curentUser!.profilePicture = imageSourceData
             profilePicture.setImage(UIImage(data: imageSourceData), for: UIControlState())
-//            profilePicture.setBackgroundImage(UIImage(data: imageSourceData), forState: .Normal)
+            
+            //profilePicture.setBackgroundImage(UIImage(data: imageSourceData), for: .normal)
         }
         DatabaseHelper.sharedInstance.commitTransaction()
         
@@ -150,15 +152,6 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         let normalizedImage : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return normalizedImage
-    }
-    
-    fileprivate func resizeToAspectFit(_ viewSize: CGSize, bounds: CGRect, sourceImage: UIImage) -> UIImage {
-        UIGraphicsBeginImageContext(viewSize)
-        sourceImage.draw(in: bounds)
-        
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return image
     }
     
     fileprivate func profilePictureStyleSheet() {
@@ -237,14 +230,12 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        profilePictureStyleSheet()
+//profilePictureStyleSheet()
         navigationControllerStyleSheet()
         textFieldStyleSheet()
-        //backgroundScrollView.contentSize.height = 2500
-        let backgroundImage = resizeToAspectFit(self.view.frame.size,bounds: self.view.bounds, sourceImage: UIImage(named: "profileBackground.jpg")!)
-        self.view.backgroundColor = UIColor(patternImage: backgroundImage)
-        let image = resizeToAspectFit(headerView.frame.size,bounds: headerView.bounds, sourceImage: UIImage(named: "profileHeader.png")!)
-        self.headerView.backgroundColor = UIColor(patternImage: image)
+
+
+        self.view.backgroundColor = GWMColorBackground
         
         /* Configure tap recognizer */
         tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.handleSingleTap(_:)))
@@ -274,7 +265,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         if let user = curentUser {
             DatabaseHelper.sharedInstance.beginTransaction()
-            if let userPicture = user.profilePicture{
+            if let userPicture = user.profilePicture {
+                profilePicture.setTitle("", for: UIControlState.normal)
                 profilePicture.setImage(UIImage(data: userPicture as Data), for: UIControlState())
             }
             name.text = user.name
