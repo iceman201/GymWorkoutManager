@@ -693,15 +693,16 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRx-3N-EJF">
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profileHeader.png" translatesAutoresizingMaskIntoConstraints="NO" id="cpP-Ru-HzU"/>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ug7-hL-vnD" customClass="RoundButton" customModule="GymWorkoutManager" customModuleProvider="target">
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="138" id="Yc4-aP-nTy"/>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="138" id="mGW-8r-RNs"/>
-                                                    <constraint firstAttribute="width" constant="138" id="qEi-5k-wxO"/>
+                                                    <constraint firstAttribute="width" secondItem="ug7-hL-vnD" secondAttribute="height" multiplier="1:1" id="Acu-bq-pRs"/>
+                                                    <constraint firstAttribute="width" constant="138" id="CBZ-4J-YTS"/>
+                                                    <constraint firstAttribute="height" constant="138" id="RKs-qT-gc9"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="95"/>
                                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="＋">
+                                                <state key="normal" title="+">
                                                     <color key="titleColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
@@ -712,9 +713,13 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="266" id="5rG-5Y-EAn"/>
-                                            <constraint firstItem="ug7-hL-vnD" firstAttribute="centerY" secondItem="mRx-3N-EJF" secondAttribute="centerY" id="9KP-jj-mkG"/>
-                                            <constraint firstItem="ug7-hL-vnD" firstAttribute="centerX" secondItem="mRx-3N-EJF" secondAttribute="centerX" id="L15-EB-7uU"/>
+                                            <constraint firstItem="cpP-Ru-HzU" firstAttribute="width" secondItem="mRx-3N-EJF" secondAttribute="width" id="7QJ-cW-vDs"/>
+                                            <constraint firstItem="cpP-Ru-HzU" firstAttribute="centerX" secondItem="mRx-3N-EJF" secondAttribute="centerX" id="FPh-pr-pkX"/>
+                                            <constraint firstItem="ug7-hL-vnD" firstAttribute="centerX" secondItem="mRx-3N-EJF" secondAttribute="centerX" id="KW6-QG-7Hi"/>
                                             <constraint firstAttribute="width" constant="414" id="eam-Da-7de"/>
+                                            <constraint firstItem="cpP-Ru-HzU" firstAttribute="centerY" secondItem="mRx-3N-EJF" secondAttribute="centerY" id="hEN-xr-AHE"/>
+                                            <constraint firstItem="cpP-Ru-HzU" firstAttribute="height" secondItem="mRx-3N-EJF" secondAttribute="height" id="i1T-eE-Ux2"/>
+                                            <constraint firstItem="ug7-hL-vnD" firstAttribute="centerY" secondItem="mRx-3N-EJF" secondAttribute="centerY" id="n9W-sc-npY"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0e-Fq-dWh">
@@ -783,6 +788,11 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                                 <state key="normal" image="Male.png">
                                                     <color key="titleColor" red="0.37254901959999998" green="0.16078431369999999" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="35"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="male:" destination="tlL-yk-gWd" eventType="touchUpInside" id="Tkh-4I-2pX"/>
                                                 </connections>
@@ -842,6 +852,11 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                                 <state key="normal" image="Female.png">
                                                     <color key="titleColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="35"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="female:" destination="tlL-yk-gWd" eventType="touchUpInside" id="4yA-dd-xuO"/>
                                                 </connections>
@@ -911,7 +926,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LHa-Vi-936" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-899" y="1719"/>
+            <point key="canvasLocation" x="-899.20000000000005" y="1718.1409295352325"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="qZ1-Rf-2ag">
@@ -945,7 +960,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="28" width="414" height="224"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="za9-tB-qoq" id="yVb-rp-EGt">
-                                    <frame key="frameInset" width="414" height="223"/>
+                                    <frame key="frameInset" width="414" height="224"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tji-dj-0YB">
@@ -1017,7 +1032,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="252" width="414" height="305"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="09B-wb-rkt" id="2ha-Hp-dCs">
-                                    <frame key="frameInset" width="414" height="304"/>
+                                    <frame key="frameInset" width="414" height="305"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhC-fK-nCq">
@@ -1201,7 +1216,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="92" width="414" height="159"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HL2-gv-n2J" id="SU8-cO-ret">
-                                    <frame key="frameInset" width="414" height="158"/>
+                                    <frame key="frameInset" width="414" height="159"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actived Days:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TW7-ho-klW">
@@ -1280,13 +1295,6 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2tL-5N-Cep">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="100" id="0ks-G8-VJ1"/>
-                                                <constraint firstAttribute="width" secondItem="2tL-5N-Cep" secondAttribute="height" multiplier="1:1" id="6YM-sM-8xy"/>
-                                                <constraint firstAttribute="width" constant="100" id="qSJ-8D-8he"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMJ-je-SMs">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="50" id="MW0-k9-96L"/>
@@ -1305,6 +1313,18 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="2tL-5N-Cep">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="121" id="09F-EG-I1w"/>
+                                                <constraint firstAttribute="width" constant="121" id="upP-fq-UNN"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="50"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="shadow" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="TLy-Il-23m" firstAttribute="centerY" secondItem="TW7-ho-klW" secondAttribute="centerY" id="2hG-Lv-gMa"/>
@@ -1312,7 +1332,6 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <constraint firstItem="ubC-mK-vJI" firstAttribute="top" secondItem="nMJ-je-SMs" secondAttribute="bottom" constant="7" id="7fu-Zt-MYW"/>
                                         <constraint firstItem="r9J-dx-r1P" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="8Dh-NT-vXt"/>
                                         <constraint firstItem="HGm-V7-muD" firstAttribute="leading" secondItem="nMJ-je-SMs" secondAttribute="trailing" constant="13" id="8VC-KE-50h"/>
-                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="trailing" secondItem="SU8-cO-ret" secondAttribute="trailingMargin" id="DRU-29-fQj"/>
                                         <constraint firstItem="SUj-9s-dgp" firstAttribute="top" secondItem="qxe-DD-JRR" secondAttribute="bottom" constant="9" id="Djg-fH-vV2"/>
                                         <constraint firstItem="TLy-Il-23m" firstAttribute="leading" secondItem="TW7-ho-klW" secondAttribute="trailing" constant="25" id="F2D-TX-HyK"/>
                                         <constraint firstItem="TW7-ho-klW" firstAttribute="top" secondItem="SUj-9s-dgp" secondAttribute="bottom" constant="8" id="FF7-bT-sI5"/>
@@ -1326,12 +1345,13 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <constraint firstItem="nMJ-je-SMs" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="Zji-cV-y2k"/>
                                         <constraint firstItem="BwU-1d-FuE" firstAttribute="centerY" secondItem="SUj-9s-dgp" secondAttribute="centerY" id="dSK-lo-cUM"/>
                                         <constraint firstItem="TLy-Il-23m" firstAttribute="leading" secondItem="BwU-1d-FuE" secondAttribute="leading" id="eXp-E6-Glx"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="trailing" secondItem="SU8-cO-ret" secondAttribute="trailingMargin" constant="-6" id="fQG-hg-Pn7"/>
                                         <constraint firstItem="WAa-dn-X4D" firstAttribute="leading" secondItem="BwU-1d-FuE" secondAttribute="leading" constant="25" id="flF-gw-Vtd"/>
                                         <constraint firstItem="TW7-ho-klW" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="gtv-2U-zju"/>
-                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="centerY" secondItem="SUj-9s-dgp" secondAttribute="centerY" id="jd8-xQ-AdK"/>
                                         <constraint firstItem="qxe-DD-JRR" firstAttribute="leading" secondItem="ubC-mK-vJI" secondAttribute="trailing" constant="4" id="lZd-M1-4vF"/>
                                         <constraint firstItem="WAa-dn-X4D" firstAttribute="leading" secondItem="r9J-dx-r1P" secondAttribute="trailing" constant="18" id="m6F-gT-0im"/>
-                                        <constraint firstItem="TLy-Il-23m" firstAttribute="trailing" secondItem="BwU-1d-FuE" secondAttribute="trailing" id="msP-Qu-5aI"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="centerY" secondItem="SU8-cO-ret" secondAttribute="centerY" constant="2" id="mdT-4W-A3s"/>
+                                        <constraint firstItem="TLy-Il-23m" firstAttribute="trailing" secondItem="BwU-1d-FuE" secondAttribute="trailing" constant="-85" id="msP-Qu-5aI"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1340,7 +1360,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <outlet property="effectiveIndex" destination="BwU-1d-FuE" id="6bn-NI-aqb"/>
                                     <outlet property="lastTimeWorkout" destination="WAa-dn-X4D" id="lbh-DA-1RC"/>
                                     <outlet property="name" destination="HGm-V7-muD" id="nkp-Vs-47p"/>
-                                    <outlet property="profileImage" destination="2tL-5N-Cep" id="3Nz-A5-nf1"/>
+                                    <outlet property="profileImage" destination="2tL-5N-Cep" id="zDH-jd-aSa"/>
                                     <outlet property="weight" destination="qxe-DD-JRR" id="NZ3-l0-Uta"/>
                                 </connections>
                             </tableViewCell>
@@ -1348,18 +1368,18 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="251" width="414" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ej3-CC-fci" id="SK7-Vx-zyc">
-                                    <frame key="frameInset" width="414" height="53"/>
+                                    <frame key="frameInset" width="414" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lhu-eK-hrr">
-                                            <frame key="frameInset" minX="15" minY="8" width="36" height="22"/>
+                                            <frame key="frameInset" minX="15" minY="9" width="35.5" height="21.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L4P-fX-rVZ">
-                                            <frame key="frameInset" minX="15" minY="30" width="44" height="15"/>
+                                            <frame key="frameInset" minX="15" minY="30.5" width="44" height="14.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1372,18 +1392,18 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                 <rect key="frame" x="0.0" y="305" width="414" height="46"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oN3-zd-Zzh" id="3Sw-4S-MlX">
-                                    <frame key="frameInset" width="414" height="45"/>
+                                    <frame key="frameInset" width="414" height="46"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V9t-PW-Ul4">
-                                            <frame key="frameInset" minX="15" minY="12" width="91" height="21"/>
+                                            <frame key="frameInset" minX="15" minY="13" width="91" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RqC-I6-Jqa">
-                                            <frame key="frameInset" minX="112" minY="12" width="44" height="21"/>
+                                            <frame key="frameInset" minX="112" minY="13" width="44" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1403,7 +1423,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UWu-kL-eav" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1789" y="308"/>
+            <point key="canvasLocation" x="1788.8" y="307.64617691154427"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wRA-0l-rcd">
@@ -1433,5 +1453,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
         <image name="first" width="320" height="240"/>
         <image name="icon_close" width="128" height="128"/>
         <image name="icon_menu" width="128" height="128"/>
+        <image name="logo.png" width="256" height="256"/>
+        <image name="profileHeader.png" width="300" height="250"/>
     </resources>
 </document>

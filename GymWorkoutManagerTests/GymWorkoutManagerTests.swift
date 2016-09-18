@@ -2,8 +2,8 @@
 //  GymWorkoutManagerTests.swift
 //  GymWorkoutManagerTests
 //
-//  Created by Liguo Jiao on 4/08/16.
-//  Copyright © 2016 McKay. All rights reserved.
+//  Created by Liguo Jiao on 16/9/17.
+//  Copyright © 2016年 McKay. All rights reserved.
 //
 
 import XCTest
@@ -27,7 +27,7 @@ class GymWorkoutManagerTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

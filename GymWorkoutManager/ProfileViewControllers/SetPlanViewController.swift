@@ -21,7 +21,7 @@ class SetPlanViewController: UIViewController, UITextViewDelegate {
     var curentUser : Person?
     
     //MARK: function
-    @IBAction func saveButton(sender: AnyObject) {
+    @IBAction func saveButton(_ sender: AnyObject) {
         guard chooseType.selectedSegmentIndex != -1 else {
             alertMessage("Reminder", alertMessage: "Please select your workout type.", cancleButtonTitle: "OK")
             return
@@ -55,27 +55,27 @@ class SetPlanViewController: UIViewController, UITextViewDelegate {
         }
 
         if let localUser = self.curentUser {
-            if localUser.plans.contains({ $0.date == newPlan.date }) {
+            if localUser.plans.contains(where: { $0.date == newPlan.date }) {
                 DatabaseHelper.sharedInstance.commitTransaction()
             } else {
                 localUser.plans.append(newPlan)
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
         }
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
-    private func alertMessage(alertTitle:String, alertMessage:String, cancleButtonTitle:String) {
-        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: cancleButtonTitle, style: .Cancel, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+    fileprivate func alertMessage(_ alertTitle:String, alertMessage:String, cancleButtonTitle:String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: cancleButtonTitle, style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         planContent.delegate = self
         planContent.floatingLabelShouldLockToTop = true
-        planContent.floatingLabel.font = UIFont.systemFontOfSize(18)
+        planContent.floatingLabel.font = UIFont.systemFont(ofSize: 18)
         
         if let updateplan = updateplan {
             dateDisplayLabel.text = updateplan.date

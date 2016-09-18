@@ -16,9 +16,9 @@ class Person: Object {
     dynamic var height = ""
     dynamic var weight = ""
     dynamic var bodyFat : NSNumber = 0
-    dynamic var profilePicture : NSData?
+    dynamic var profilePicture : Data?
     dynamic var activedDays : NSNumber = 0
-    dynamic var lastTimeUseApp : NSDate?
+    dynamic var lastTimeUseApp : Date?
     
     let exercise = List<Exercise>()
     let plans = List<Plan>()
@@ -64,8 +64,8 @@ class Person: Object {
                 }
             }
             if hasWeightTraining {
-                let averageReps = reps.reduce(0, combine: +)/reps.count
-                let averageSets = sets.reduce(0, combine: +)/sets.count
+                let averageReps = reps.reduce(0, +)/reps.count
+                let averageSets = sets.reduce(0, +)/sets.count
                 if averageReps >= 8 && averageReps <= 16 {
                     if averageSets > 3 && averageSets <= 5 {
                         result += 1
@@ -84,7 +84,7 @@ class Person: Object {
         }
     }
     
-    func getPercentageOfWorkout(whichWorkout:String) -> Double {
+    func getPercentageOfWorkout(_ whichWorkout:String) -> Double {
         let allTypes = exercise.map({"\($0.workoutType)"})
         var counter = 0.0
         for each in allTypes{

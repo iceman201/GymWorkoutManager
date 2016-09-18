@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 protocol TimeSetupViewControllerDelegate: NSObjectProtocol {
-    func timeSetupFinish(timeSetupViewController: TimeSetupViewController, result: [String])
+    func timeSetupFinish(_ timeSetupViewController: TimeSetupViewController, result: [String])
 }
 
 class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource {
@@ -30,13 +30,13 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     
     // MARK: - IBOutlet
     @IBOutlet weak var NOR: UILabel!
-    @IBAction func roundNumberStepper(sender: UIStepper) {
+    @IBAction func roundNumberStepper(_ sender: UIStepper) {
         NOR.text = String(Int(sender.value))
     }
     
     @IBOutlet var timePicker: UIPickerView!
     @IBOutlet weak var doneButton: UIButton!
-    @IBAction func confirmButton(sender: AnyObject) {
+    @IBAction func confirmButton(_ sender: AnyObject) {
         if self.NOR.text == "" {
             self.result[2] = "0"
         } else {
@@ -47,16 +47,16 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         if let del = delegate {
             del.timeSetupFinish(self, result: self.result)
         }
-        navigationController?.popViewControllerAnimated(true)
+        navigationController?.popViewController(animated: true)
     }
     
     // MARK: - PickerView
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 4
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
         if component == 0 || component == 2{
             return 1
@@ -67,21 +67,21 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         }
     }
     
-    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let attributedString : NSAttributedString
         if component == 0 {
-            attributedString = NSAttributedString(string: "Mins", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+            attributedString = NSAttributedString(string: "Mins", attributes: [NSForegroundColorAttributeName : UIColor.white])
         } else if component == 1 {
-            attributedString = NSAttributedString(string: String(minutes[row]), attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+            attributedString = NSAttributedString(string: String(minutes[row]), attributes: [NSForegroundColorAttributeName : UIColor.white])
         } else if component == 2 {
-            attributedString = NSAttributedString(string: "Sec", attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+            attributedString = NSAttributedString(string: "Sec", attributes: [NSForegroundColorAttributeName : UIColor.white])
         } else {
-            attributedString = NSAttributedString(string: String(seconds[row]), attributes: [NSForegroundColorAttributeName : UIColor.whiteColor()])
+            attributedString = NSAttributedString(string: String(seconds[row]), attributes: [NSForegroundColorAttributeName : UIColor.white])
         }
         return attributedString
     }
 
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 1 {
             result[0] = String(minutes[row])
         } else if component == 3 {
@@ -96,7 +96,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         self.timePicker.delegate = self
         self.timePicker.dataSource = self
         if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
-            self.view.transform = CGAffineTransformMakeScale(0.85, 0.85)
+            self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
         }
         // Do any additional setup after loading the view.
     }
@@ -106,7 +106,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
     

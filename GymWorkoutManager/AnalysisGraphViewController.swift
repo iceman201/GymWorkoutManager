@@ -28,10 +28,10 @@ class AnalysisGraphViewController: UIViewController {
         graphView.referenceLineLabelFont = UIFont(name: "HelveticaNeue", size: 12)!
     }
     
-    private func formatingDate(dates:[String]) -> [String] {
+    fileprivate func formatingDate(_ dates:[String]) -> [String] {
         var result: [String] = []
         for eachDate in dates {
-            result.append(eachDate.stringByReplacingOccurrencesOfString(" ", withString: "-"))
+            result.append(eachDate.replacingOccurrences(of: " ", with: "-"))
         }
         return result
     }

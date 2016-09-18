@@ -2,8 +2,8 @@
 //  GymWorkoutManagerUITests.swift
 //  GymWorkoutManagerUITests
 //
-//  Created by Liguo Jiao on 17/08/16.
-//  Copyright © 2016 McKay. All rights reserved.
+//  Created by Liguo Jiao on 16/9/17.
+//  Copyright © 2016年 McKay. All rights reserved.
 //
 
 import XCTest

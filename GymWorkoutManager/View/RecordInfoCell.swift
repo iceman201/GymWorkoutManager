@@ -10,7 +10,7 @@ import UIKit
 
 class RecordInfoCell: UITableViewCell {
     
-    @IBOutlet var profileImage: UIImageView!
+    @IBOutlet weak var profileImage: UIImageView!
     
     @IBOutlet weak var name: UILabel!
     
@@ -24,13 +24,15 @@ class RecordInfoCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        profileImage.layer.borderWidth = 1.0
-        profileImage.layer.masksToBounds = false
-        profileImage.layer.borderColor = UIColor.whiteColor().CGColor
-        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
-        profileImage.clipsToBounds = true
+        self.layoutIfNeeded()
+        profileImage.layer.borderColor = GWMColorYellow.cgColor
+        profileImage.layer.borderWidth = 5
+        
+        profileImage.layer.cornerRadius = profileImage.frame.size.height * 0.5
+        profileImage.layer.masksToBounds = true
+        profileImage.image = UIImage(named: "logo.png")// 这行只是我刚才添加的
     }
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         return CGSize(width: 414, height: 152)
     }
 }

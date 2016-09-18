@@ -15,9 +15,9 @@ class PedmeterViewCell: UITableViewCell {
     @IBOutlet var numberSteps: UILabel!
     @IBOutlet var stepsLabel: UILabel!
     override func awakeFromNib() {
-        numberSteps.textColor = UIColor.whiteColor()
-        stepsLabel.textColor = UIColor.whiteColor()
+        numberSteps.textColor = UIColor.white
+        stepsLabel.textColor = UIColor.white
         bottomLabel.text = "* Tap for details"
-        bottomLabel.textColor = UIColor.whiteColor()
+        bottomLabel.textColor = UIColor.white
     }
 }

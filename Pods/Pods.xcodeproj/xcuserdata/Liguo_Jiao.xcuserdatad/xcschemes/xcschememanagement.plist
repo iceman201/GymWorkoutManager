@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>AVOSCloud.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>AVOSCloudIM.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CVCalendar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,22 +67,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>16A4E4C5361AB6426E94593C5E775F38</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>27533A6098E2BDD80827924FA8F4E742</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2AFDA1EE6147720A484BF7E84031663D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>45DBE719E6408F39EF2CD1C0AE031205</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -82,17 +77,37 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DEC06FBD46B147BAB557A7BD3E011B8</key>
+		<key>83501CBDA0D87D9E183DD94F65DC3F81</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BA14B622689766F6B8A4F42FD9DE552F</key>
+		<key>950F7C72C3170AEB14DFEF0755003480</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C73DDFD1EB430FEE7EBAE2C4F32FED1A</key>
+		<key>A3268F21A6FD08877E497CE98C7D5FD1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B99A0B78FFC07364D8B19591D7FC11D9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CCC02DA9AC15FDE5E62536C8CDE5F465</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D71D2669EAF2956CF85D0328A8063149</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D995A915306559617244AA459FEE5145</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +117,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E4DA02AE87DD2012CB6D956C01AEA18E</key>
+		<key>E5AB88E8333B9568826C9AA252037278</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F46D5F37C9C267AAC6472F69CC138F5E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
