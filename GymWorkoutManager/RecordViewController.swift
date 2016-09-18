@@ -39,7 +39,6 @@ class RecordViewController: UITableViewController {
         }
         if (indexPath as NSIndexPath).section == 0 {
             let infoCell = self.tableView.dequeueReusableCell(withIdentifier: "picture", for: indexPath) as! RecordInfoCell
-            
             if let user = curentUser {
                 DatabaseHelper.sharedInstance.beginTransaction()
                 infoCell.activeDay.text = "\(user.activedDays)"
@@ -57,10 +56,12 @@ class RecordViewController: UITableViewController {
                         }
                     }
                 }
-                /*
+
                 if let pictureData = user.profilePicture {
+                    
                     infoCell.profileImage.image = UIImage(data: pictureData as Data)
-                }*/
+                    
+                }
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
             if let effectIndex = curentUser?.effectiveIndex {
@@ -145,7 +146,7 @@ class RecordViewController: UITableViewController {
         tableView.delegate = self
         tableView.dataSource = self
         self.view.backgroundColor = GWMColorBackground
-        
+
         self.navigationController?.navigationBar.topItem?.title = "Report"
         self.edgesForExtendedLayout=UIRectEdge()
         self.extendedLayoutIncludesOpaqueBars = false

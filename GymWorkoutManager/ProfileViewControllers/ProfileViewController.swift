@@ -230,7 +230,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-//profilePictureStyleSheet()
+        profilePictureStyleSheet()
         navigationControllerStyleSheet()
         textFieldStyleSheet()
 
