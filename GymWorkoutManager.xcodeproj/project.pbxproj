@@ -418,10 +418,10 @@
 				C154C99D52CBABFFBFA1DB34 /* [CP] Check Pods Manifest.lock */,
 				E6AD9D811C4C5F28004F6437 /* Sources */,
 				E6AD9D821C4C5F28004F6437 /* Frameworks */,
+				059F9E021D8ADC7600586BFA /* Run Script */,
 				E6AD9D831C4C5F28004F6437 /* Resources */,
 				1548E492CDC567C94C95F7A9 /* [CP] Embed Pods Frameworks */,
 				94069B9F05782851890A7BA5 /* [CP] Copy Pods Resources */,
-				059F9E021D8ADC7600586BFA /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -534,7 +534,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		059F9E021D8ADC7600586BFA /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -542,7 +542,7 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
