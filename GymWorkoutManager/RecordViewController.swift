@@ -90,6 +90,7 @@ class RecordViewController: UITableViewController {
                 image.image = UIImage(named: "push_up-256.png")
                 recordCell.backgroundColor = GWMPieGraphColorHiit
             }
+            
             recordCell.accessoryView = image
             recordCell.textLabel?.text = "[\(eachExercise.date)] \(eachExercise.exerciseName)"
             recordCell.detailTextLabel?.text = "   \(eachExercise.set) Sets - \(eachExercise.reps) Reps"

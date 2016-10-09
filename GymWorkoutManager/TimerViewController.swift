@@ -98,6 +98,9 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
             guard let localUser = self.curentUser else {
                 return
             }
+            if execriseNameTextField.text?.isEmpty == true {
+                execriseNameTextField.text = "None"
+            }
             if repsTextField.text == "" {
                 repsTextField.text = "0"
             }
@@ -124,7 +127,11 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         let day = components.day
         let month = components.month
         let year = components.year
-        let formater = "\(day)/\(month)/\(year)"
+        guard let d = day, let m = month, let y = year else {
+            return ""
+        }
+        let formater = "\(d)/\(m)/\(y)"
+        
         return formater
     }
     
