@@ -82,7 +82,7 @@ class AnalysisViewController: UITableViewController {
             let view = data.pieGraph() { (unit, totalValue) -> String? in
                 return unit.key! + "\n" + String(format: "%.0f%%", unit.value / totalValue * 100.0)
                 }.view(cell.graphicView.bounds)
-            view.pieGraphConfiguration{
+            _ = view.pieGraphConfiguration{
                 PieGraphViewConfig(pieColors: [GWMPieGraphColorCardio, GWMPieGraphColorWeights, GWMPieGraphColorHiit], textColor: UIColor(red: 119.0/255.0, green: 136.0/255.0, blue: 153.0/255.0, alpha: 1.0), textFont: UIFont(name: "DINCondensed-Bold", size: 14.0),
                                    isDounut: true,
                                    contentInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
@@ -167,6 +167,7 @@ class AnalysisViewController: UITableViewController {
             self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
@@ -175,6 +176,7 @@ class AnalysisViewController: UITableViewController {
             curentUser = Person()
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graphView" {
             guard let destinationVC = segue.destination as? AnalysisGraphViewController else {
@@ -184,9 +186,4 @@ class AnalysisViewController: UITableViewController {
             destinationVC.labels = days
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

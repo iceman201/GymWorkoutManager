@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         CommonUtils.scheduleLocalNotification()        
         print("--------- Realm path---------")
-        print(Realm.Configuration.defaultConfiguration.fileURL)
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
         
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = GWMColorYellow

@@ -29,6 +29,7 @@
 		056C9FB01CE6108A00CFCDDA /* 1463164731_scale.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */; };
 		056C9FB21CE610D500CFCDDA /* 1463164826_centimeter.png in Resources */ = {isa = PBXBuildFile; fileRef = 056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */; };
 		057946BF1CE74E790051A501 /* profileHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 057946BE1CE74E790051A501 /* profileHeader.png */; };
+		05947C5A1E34C4DE0096379E /* CountingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05947C591E34C4DE0096379E /* CountingTimer.swift */; };
 		059F9E011D8977A200586BFA /* AnalysisGraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059F9E001D8977A200586BFA /* AnalysisGraphViewController.swift */; };
 		05CD293A1D34E93C00776B39 /* GraphViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29351D34E93C00776B39 /* GraphViewCell.swift */; };
 		05CD293B1D34E93C00776B39 /* RecordInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05CD29361D34E93C00776B39 /* RecordInfoCell.swift */; };
@@ -59,8 +60,6 @@
 		E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D8E1C4C5F28004F6437 /* Main.storyboard */; };
 		E6AD9D921C4C5F28004F6437 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D911C4C5F28004F6437 /* Assets.xcassets */; };
 		E6AD9D951C4C5F28004F6437 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6AD9D931C4C5F28004F6437 /* LaunchScreen.storyboard */; };
-		E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */; };
-		E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +106,7 @@
 		056C9FAF1CE6108A00CFCDDA /* 1463164731_scale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164731_scale.png; sourceTree = "<group>"; };
 		056C9FB11CE610D500CFCDDA /* 1463164826_centimeter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1463164826_centimeter.png; sourceTree = "<group>"; };
 		057946BE1CE74E790051A501 /* profileHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileHeader.png; sourceTree = "<group>"; };
+		05947C591E34C4DE0096379E /* CountingTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingTimer.swift; sourceTree = "<group>"; };
 		059F9E001D8977A200586BFA /* AnalysisGraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalysisGraphViewController.swift; sourceTree = "<group>"; };
 		05CD29351D34E93C00776B39 /* GraphViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewCell.swift; sourceTree = "<group>"; };
 		05CD29361D34E93C00776B39 /* RecordInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordInfoCell.swift; sourceTree = "<group>"; };
@@ -146,8 +146,6 @@
 		E6AD9D911C4C5F28004F6437 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6AD9D941C4C5F28004F6437 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E6AD9D961C4C5F28004F6437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Done_total_set.mp3; path = SoundEffects/Done_total_set.mp3; sourceTree = "<group>"; };
-		E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Done.mp3; path = SoundEffects/Done.mp3; sourceTree = "<group>"; };
 		EE9905C3665D9FD903BBAFE4 /* Pods-GymWorkoutManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerTests/Pods-GymWorkoutManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FBD142EC11B7B24221B5DE4D /* Pods-GymWorkoutManagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymWorkoutManagerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GymWorkoutManagerUITests/Pods-GymWorkoutManagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -231,8 +229,6 @@
 		056D64541CB4FBA20057DC49 /* SoundEffects */ = {
 			isa = PBXGroup;
 			children = (
-				E6FD27BE1CBDB3A400DA4D66 /* Done_total_set.mp3 */,
-				E6FD27BF1CBDB3A400DA4D66 /* Done.mp3 */,
 			);
 			name = SoundEffects;
 			sourceTree = "<group>";
@@ -259,6 +255,7 @@
 				05CD29431D34E95200776B39 /* Exercise.swift */,
 				05CD29441D34E95200776B39 /* Person.swift */,
 				05CD29451D34E95200776B39 /* Plan.swift */,
+				05947C591E34C4DE0096379E /* CountingTimer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -439,7 +436,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = McKay;
 				TargetAttributes = {
 					0541EBFB1D8C2C4500B8B1AC = {
@@ -516,10 +513,8 @@
 				0507E68B1CEC792900923238 /* profileBackground.jpg in Resources */,
 				052B45891D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@2x.png in Resources */,
 				052B45871D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt.png in Resources */,
-				E6FD27C11CBDB3A400DA4D66 /* Done.mp3 in Resources */,
 				052B458D1D33C5BF0027E99D /* iPhone_Spotlight_iOS5-6_29pt.png in Resources */,
 				E66AD4501D346F6200390CD5 /* 1463131048_dumbbell.png in Resources */,
-				E6FD27C01CBDB3A400DA4D66 /* Done_total_set.mp3 in Resources */,
 				057946BF1CE74E790051A501 /* profileHeader.png in Resources */,
 				E6AD9D901C4C5F28004F6437 /* Main.storyboard in Resources */,
 				052B45931D33DA870027E99D /* logo.png in Resources */,
@@ -704,6 +699,7 @@
 				05CD29491D34E95200776B39 /* DatabaseHelper.swift in Sources */,
 				054B910E1CE6244000851D0E /* AnalysisViewController.swift in Sources */,
 				05CD29481D34E95200776B39 /* CommonUtils.swift in Sources */,
+				05947C5A1E34C4DE0096379E /* CountingTimer.swift in Sources */,
 				05CD293C1D34E93C00776B39 /* RoundButton.swift in Sources */,
 				05CD293E1D34E93C00776B39 /* TableCell.swift in Sources */,
 				05CD29541D34EA2300776B39 /* PlannerViewController.swift in Sources */,
@@ -754,6 +750,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FBD142EC11B7B24221B5DE4D /* Pods-GymWorkoutManagerUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -772,6 +769,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 686DA16FC9C82D87905FD416 /* Pods-GymWorkoutManagerUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
@@ -789,6 +787,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE9905C3665D9FD903BBAFE4 /* Pods-GymWorkoutManagerTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -808,6 +807,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CABCE037BAF667446A1F59FE /* Pods-GymWorkoutManagerTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

@@ -34,7 +34,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     var curentUser: Person?
     
     @IBAction func reset(_ sender: AnyObject) {
-        self.totalTime = timeDate(["0", "0", "0"])
+        self.totalTime = CountingTimer.shareTimer.timeDate(["0", "0", "0"])
         round = "0"
         startRound = "0"
         aroundNumber.text = "0"
@@ -67,7 +67,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     }
     
     
-    @objc fileprivate func claimRecord(_ sender: AnyObject) {
+    @objc private func claimRecord(_ sender: AnyObject) {
         //TODO: claim with workout type
         guard workoutType.selectedSegmentIndex != -1 else {
             let alert = UIAlertController(title: "oops!", message: "Please select which exercise you have done.", preferredStyle: .alert)
@@ -110,7 +110,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
             newExecrise.times = self.totalWorkoutTimer.text ?? "None"
             newExecrise.reps = repsTextField.text ?? "0"
             newExecrise.exerciseName = execriseNameTextField.text ?? "None"
-            newExecrise.date = self.getDate()
+            newExecrise.date = CountingTimer.shareTimer.getDate()
             newExecrise.workoutType = self.workoutType.selectedSegmentIndex
             localUser.exercise.append(newExecrise)
             DatabaseHelper.sharedInstance.commitTransaction()
@@ -120,44 +120,31 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
-    fileprivate func getDate() -> String {
-        let date = Date()
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.day, .month,.year], from: date)
-        let day = components.day
-        let month = components.month
-        let year = components.year
-        guard let d = day, let m = month, let y = year else {
-            return ""
-        }
-        let formater = "\(d)/\(m)/\(y)"
-        
-        return formater
-    }
     
-    func timeCountdown() {
+    
+    @objc private func timeCountdown() {
         if round == "0" {
             // this means rounds up, there comes the end.
-            playEffectSound("Done_total_set", type: "mp3")
+            AudioServicesPlaySystemSound (1016)
             repeatTimer.text = "00:00:00"
             stopTimeCountDown()
             return
         }
         
-        if timeString(time) == "00:00.00" {
+        if CountingTimer.shareTimer.timeDateString(time) == "00:00.00" {//date
             //this means time up, there comes a end.
-            playEffectSound("Done", type: "mp3")
-            time = timeDate(receivedTime)
+            AudioServicesPlaySystemSound (1016)
+            time = CountingTimer.shareTimer.timeDate(receivedTime)
             round = String(NumberFormatter().number(from: round)!.int32Value - 1)
-            repeatTimer.text = timeString(time)
+            repeatTimer.text = CountingTimer.shareTimer.timeDateString(time)//date
             aroundNumber.text = round
             stopTimeCountDown()
         } else {
             //Continue counting down.
             time = time.addingTimeInterval(-MILLI_SECOND)
             totalTime = totalTime.addingTimeInterval(MILLI_SECOND)
-            repeatTimer.text = self.timeString(time).replacingOccurrences(of: ".", with: ":")
-            totalWorkoutTimer.text = self.timeString(totalTime).replacingOccurrences(of: ".", with: ":")
+            repeatTimer.text = CountingTimer.shareTimer.timeDateString(time).replacingOccurrences(of: ".", with: ":")//date
+            totalWorkoutTimer.text = CountingTimer.shareTimer.timeDateString(totalTime).replacingOccurrences(of: ".", with: ":")//date
         }
     }
     
@@ -175,9 +162,9 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
 
         startButton.layer.cornerRadius = 16
         startButton.layer.borderWidth = 1
-        print(Realm.Configuration.defaultConfiguration.fileURL)
-        self.time = timeDate(receivedTime)
-        self.totalTime = timeDate(receivedTime)
+        print(Realm.Configuration.defaultConfiguration.fileURL ?? "")
+        self.time = CountingTimer.shareTimer.timeDate(receivedTime)
+        self.totalTime = CountingTimer.shareTimer.timeDate(receivedTime)
         if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
             self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
         }
@@ -189,31 +176,13 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         self.receivedTime = result
         self.round = result[2]
         self.startRound = round
-        self.time = timeDate(result)
-        self.repeatTimer.text = self.timeString(result).replacingOccurrences(of: ".", with: ":")
-        self.totalWorkoutTimer.text = self.timeString(totalTime).replacingOccurrences(of: ".", with: ":")
+        self.time = CountingTimer.shareTimer.timeDate(result)
+        self.repeatTimer.text = CountingTimer.shareTimer.timeString(result).replacingOccurrences(of: ".", with: ":")//string
+        self.totalWorkoutTimer.text = CountingTimer.shareTimer.timeDateString(totalTime).replacingOccurrences(of: ".", with: ":")//date
         self.aroundNumber.text = round
     }
     
-    // MARK: - Private Method
-    fileprivate func timeDate(_ time: [String]) -> Date {
-        let numberFormatter = NumberFormatter();
-        let repeatString = String.init(format: "%02d:%02d.00", numberFormatter.number(from: time[0])!.intValue, numberFormatter.number(from: time[1])!.intValue)
-        let dateFormatter = DateFormatter();
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "mm:ss.SS", options: 0, locale: Locale.current)
-        return dateFormatter.date(from: repeatString)!
-    }
 
-    fileprivate func timeString(_ time: [String]) -> String {
-        let numberFormatter = NumberFormatter();
-        return String.init(format: "%02d:%02d.00", numberFormatter.number(from: time[0])!.intValue, numberFormatter.number(from: time[1])!.intValue)
-    }
-    
-    fileprivate func timeString(_ timeDate: Date) -> String {
-        let dateFormatter = DateFormatter();
-        dateFormatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "mm:ss.SS", options: 0, locale: Locale.current)
-        return dateFormatter.string(from: timeDate)
-    }
     
     // MARK: - PrepareForSegue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -224,12 +193,5 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         if segue.identifier == "" {
             
         }
-    }
-    
-    func playEffectSound(_ name:String,type:String){
-        let alertSound = URL(fileURLWithPath: Bundle.main.path(forResource: name, ofType:type)!)
-        audioPlayer = try! AVAudioPlayer(contentsOf: alertSound, fileTypeHint: nil)
-        audioPlayer.prepareToPlay()
-        audioPlayer.play()
     }
 }
