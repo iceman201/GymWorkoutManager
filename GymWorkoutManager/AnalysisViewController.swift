@@ -8,24 +8,9 @@
 
 import UIKit
 import RealmSwift
-import Graphs
 import CoreMotion
+import Charts
 
-struct graphData<T: Hashable, U: NumericType> : GraphData {
-    typealias GraphDataKey = T
-    typealias GraphDataValue = U
-    
-    fileprivate let _key: T
-    fileprivate let _value: U
-    
-    init(key: T, value: U) {
-        self._key = key
-        self._value = value
-    }
-    
-    var key: T { get{ return self._key } }
-    var value: U { get{ return self._value } }
-}
 
 class AnalysisViewController: UITableViewController {
     var curentUser:Person?
@@ -70,30 +55,38 @@ class AnalysisViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "graphicCell", for: indexPath) as? GraphViewCell else {
                 return UITableViewCell()
             }
-            let data = [
-                //Cardio
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("0") ?? 0.0),
-                //Weights
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("1") ?? 0.0),
-                //Hiit
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)
+            let data = [curentUser?.getPercentageOfWorkout("0") ?? 0.0,
+                        curentUser?.getPercentageOfWorkout("1") ?? 0.0,
+                        curentUser?.getPercentageOfWorkout("2") ?? 0.0
             ]
+            let label = ["Cardio","Weights","Hiit"]
             
-            let view = data.pieGraph() { (unit, totalValue) -> String? in
-                return unit.key! + "\n" + String(format: "%.0f%%", unit.value / totalValue * 100.0)
-                }.view(cell.graphicView.bounds)
-            _ = view.pieGraphConfiguration{
-                PieGraphViewConfig(pieColors: [GWMPieGraphColorCardio, GWMPieGraphColorWeights, GWMPieGraphColorHiit], textColor: UIColor(red: 119.0/255.0, green: 136.0/255.0, blue: 153.0/255.0, alpha: 1.0), textFont: UIFont(name: "DINCondensed-Bold", size: 14.0),
-                                   isDounut: true,
-                                   contentInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
-                )
+            var dataEntries:[ChartDataEntry] = []
+            
+            for i in 0..<label.count {
+                if data[i] != 0.0 {
+                    let dataEntry = PieChartDataEntry(value: data[i], label: label[i])
+                    dataEntries.append(dataEntry)
+                } else {
+                    dataEntries.append(PieChartDataEntry())
+                }
             }
-            view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            let colors: [UIColor] = [GWMPieGraphColorCardio,
+                                     GWMPieGraphColorWeights,
+                                     GWMPieGraphColorHiit]
+            let textColor: [UIColor] = [UIColor.white, UIColor.black,UIColor.white]
             cell.title.text = "Proportion of Workout"
-            for each in data {
-                guard !each._value.isNaN else { return cell }
-            }
-            cell.graphicView.addSubview(view)
+            
+            let dataSet = PieChartDataSet(values: dataEntries, label: "")
+            dataSet.colors = colors
+            
+            dataSet.valueColors = textColor
+            
+            let pieChartDatas = PieChartData(dataSet: dataSet)
+            
+            cell.graphicView.data = pieChartDatas
+            
+            cell.graphicView.chartDescription?.text = ""
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "pedmeterCell", for: indexPath) as? PedmeterViewCell else {
@@ -118,9 +111,9 @@ class AnalysisViewController: UITableViewController {
                             self.result.append(data.numberOfSteps.doubleValue)
                             if(self.days.count == 7){
                                 DispatchQueue.main.sync(execute: { () -> Void in
-                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed,textColor:GWMColorYellow, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
-                                    view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                                    cell.graphicView.addSubview(view)
+//                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed,textColor:GWMColorYellow, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
+//                                    view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//                                    cell.graphicView.addSubview(view)
                                 })
                             }
 

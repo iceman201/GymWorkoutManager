@@ -180,7 +180,7 @@ public func ~= (lhs: Error, rhs: Swift.Error) -> Bool { // swiftlint:disable:thi
  }
  ```
 */
-public enum Error: ErrorProtocol {
+public enum Error: ErrorType {
     // swiftlint:disable variable_name
     /// :nodoc:
     public var _code: Int {
@@ -194,51 +194,51 @@ public enum Error: ErrorProtocol {
     // swiftlint:enable variable_name
 
     /// The `RLMError` value, which can be used to derive the error code.
-    fileprivate var rlmError: RLMError {
+    private var rlmError: RLMError {
         switch self {
-        case .fail:
-            return RLMError.fail
-        case .fileAccess:
-            return RLMError.fileAccess
-        case .filePermissionDenied:
-            return RLMError.filePermissionDenied
-        case .fileExists:
-            return RLMError.fileExists
-        case .fileNotFound:
-            return RLMError.fileNotFound
-        case .incompatibleLockFile:
-            return RLMError.incompatibleLockFile
-        case .fileFormatUpgradeRequired:
-            return RLMError.fileFormatUpgradeRequired
-        case .addressSpaceExhausted:
-            return RLMError.addressSpaceExhausted
-        case .schemaMismatch:
-            return RLMError.schemaMismatch
+        case .Fail:
+            return RLMError.Fail
+        case .FileAccess:
+            return RLMError.FileAccess
+        case .FilePermissionDenied:
+            return RLMError.FilePermissionDenied
+        case .FileExists:
+            return RLMError.FileExists
+        case .FileNotFound:
+            return RLMError.FileNotFound
+        case .IncompatibleLockFile:
+            return RLMError.IncompatibleLockFile
+        case .FileFormatUpgradeRequired:
+            return RLMError.FileFormatUpgradeRequired
+        case .AddressSpaceExhausted:
+            return RLMError.AddressSpaceExhausted
+        case .SchemaMismatch:
+            return RLMError.SchemaMismatch
         }
     }
 
     /// Denotes a general error that occurred when trying to open a Realm.
-    case fail
+    case Fail
 
     /// Denotes a file I/O error that occurred when trying to open a Realm.
-    case fileAccess
+    case FileAccess
 
     /// Denotes a file permission error that ocurred when trying to open a Realm.
     ///
     /// This error can occur if the user does not have permission to open or create
     /// the specified file in the specified access mode when opening a Realm.
-    case filePermissionDenied
+    case FilePermissionDenied
 
     /// Denotes an error where a file was to be written to disk, but another file with the same name
     /// already exists.
-    case fileExists
+    case FileExists
 
     /// Denotes an error that occurs if a file could not be found.
     ///
     /// This error may occur if a Realm file could not be found on disk when trying to open a
     /// Realm as read-only, or if the directory part of the specified path was not found when
     /// trying to write a copy.
-    case fileNotFound
+    case FileNotFound
 
     /// Denotes an error that occurs if the database file is currently open in another
     /// process which cannot share with the current process due to an
@@ -247,17 +247,17 @@ public enum Error: ErrorProtocol {
     /// This error may occur if trying to share a Realm file between an i386 (32-bit) iOS
     /// Simulator and the Realm Browser application. In this case, please use the 64-bit
     /// version of the iOS Simulator.
-    case incompatibleLockFile
+    case IncompatibleLockFile
 
     /// Denotes an error that occurs if a file format upgrade is required to open the file,
     /// but upgrades were explicitly disabled.
-    case fileFormatUpgradeRequired
+    case FileFormatUpgradeRequired
 
     /// Denotes an error that occurs when there is insufficient available address space.
-    case addressSpaceExhausted
+    case AddressSpaceExhausted
 
     /// Denotes an error that occurs if there is a schema version mismatch, so that a migration is required.
-    case schemaMismatch
+    case SchemaMismatch
 }
 
 // MARK: Equatable
@@ -265,7 +265,7 @@ public enum Error: ErrorProtocol {
 extension Error: Equatable {}
 
 /// Returns a Boolean indicating whether the errors are identical.
-public func == (lhs: ErrorProtocol, rhs: ErrorProtocol) -> Bool { // swiftlint:disable:this valid_docs
+public func == (lhs: ErrorType, rhs: ErrorType) -> Bool { // swiftlint:disable:this valid_docs
     return lhs._code == rhs._code
         && lhs._domain == rhs._domain
 }
@@ -276,7 +276,7 @@ public func == (lhs: ErrorProtocol, rhs: ErrorProtocol) -> Bool { // swiftlint:d
  Pattern matching matching for `Realm.Error`, so that the instances can be used with Swift's
  `do { ... } catch { ... }` syntax.
 */
-public func ~= (lhs: Error, rhs: ErrorProtocol) -> Bool { // swiftlint:disable:this valid_docs
+public func ~= (lhs: Error, rhs: ErrorType) -> Bool { // swiftlint:disable:this valid_docs
     return lhs == rhs
 }
 

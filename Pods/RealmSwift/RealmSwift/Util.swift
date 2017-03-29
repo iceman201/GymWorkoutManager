@@ -21,7 +21,7 @@ import Realm
 
 // MARK: Internal Helpers
 
-internal func notFoundToNil(_ index: UInt) -> Int? {
+internal func notFoundToNil(index: UInt) -> Int? {
     if index == UInt(NSNotFound) {
         return nil
     }
@@ -132,19 +132,19 @@ extension Optional: CustomObjectiveCBridgeable {
 
 #else
 
-internal func throwRealmException(_ message: String, userInfo: [String:AnyObject] = [:]) {
+internal func throwRealmException(message: String, userInfo: [String:AnyObject] = [:]) {
     NSException(name: RLMExceptionName, reason: message, userInfo: userInfo).raise()
 }
 
-internal func throwForNegativeIndex(_ int: Int, parameterName: String = "index") {
+internal func throwForNegativeIndex(int: Int, parameterName: String = "index") {
     if int < 0 {
         throwRealmException("Cannot pass a negative value for '\(parameterName)'.")
     }
 }
 
-internal func gsub(_ pattern: String, template: String, string: String, error: NSErrorPointer? = nil) -> String? {
+internal func gsub(pattern: String, template: String, string: String, error: NSErrorPointer = nil) -> String? {
     let regex = try? NSRegularExpression(pattern: pattern, options: [])
-    return regex?.stringByReplacingMatches(in: string, options: [],
+    return regex?.stringByReplacingMatchesInString(string, options: [],
                                                    range: NSRange(location: 0, length: string.utf16.count),
                                                    withTemplate: template)
 }
@@ -153,7 +153,7 @@ extension Object {
     // Must *only* be used to call Realm Objective-C APIs that are exposed on `RLMObject`
     // but actually operate on `RLMObjectBase`. Do not expose cast value to user.
     internal func unsafeCastToRLMObject() -> RLMObject {
-        return unsafeBitCast(self, to: RLMObject.self)
+        return unsafeBitCast(self, RLMObject.self)
     }
 }
 
@@ -179,40 +179,40 @@ internal func dynamicBridgeCast<T>(fromSwift x: T) -> AnyObject {
 internal protocol CustomObjectiveCBridgeable {
     /* FIXME: Remove protocol once SR-2393 bridges all integer types to `NSNumber`
      *        At this point, use `as! [SwiftType]` to cast between. */
-    static func bridging(objCValue: AnyObject) -> Self
+    static func bridging(objCValue objCValue: AnyObject) -> Self
     var objCValue: AnyObject { get }
 }
 
 extension Int8: CustomObjectiveCBridgeable {
-    static func bridging(objCValue: AnyObject) -> Int8 {
-        return (objCValue as! NSNumber).int8Value
+    static func bridging(objCValue objCValue: AnyObject) -> Int8 {
+        return (objCValue as! NSNumber).charValue
     }
     var objCValue: AnyObject {
-        return NSNumber(value: self as Int8)
+        return NSNumber(char: self)
     }
 }
 extension Int16: CustomObjectiveCBridgeable {
-    static func bridging(objCValue: AnyObject) -> Int16 {
-        return (objCValue as! NSNumber).int16Value
+    static func bridging(objCValue objCValue: AnyObject) -> Int16 {
+        return (objCValue as! NSNumber).shortValue
     }
     var objCValue: AnyObject {
-        return NSNumber(value: self as Int16)
+        return NSNumber(short: self)
     }
 }
 extension Int32: CustomObjectiveCBridgeable {
-    static func bridging(objCValue: AnyObject) -> Int32 {
-        return (objCValue as! NSNumber).int32Value
+    static func bridging(objCValue objCValue: AnyObject) -> Int32 {
+        return (objCValue as! NSNumber).intValue
     }
     var objCValue: AnyObject {
-        return NSNumber(value: self as Int32)
+        return NSNumber(int: self)
     }
 }
 extension Int64: CustomObjectiveCBridgeable {
-    static func bridging(objCValue: AnyObject) -> Int64 {
-        return (objCValue as! NSNumber).int64Value
+    static func bridging(objCValue objCValue: AnyObject) -> Int64 {
+        return (objCValue as! NSNumber).longLongValue
     }
     var objCValue: AnyObject {
-        return NSNumber(value: self as Int64)
+        return NSNumber(longLong: self)
     }
 }
 

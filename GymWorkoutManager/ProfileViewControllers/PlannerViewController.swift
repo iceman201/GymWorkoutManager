@@ -111,7 +111,7 @@ extension PlannerViewController:CVCalendarViewDelegate {
     }
     
     func supplementaryView(viewOnDayView dayView: DayView) -> UIView {
-        let pi = M_PI
+        let pi = Double.pi
         let ringSpacing: CGFloat = 4.0
         let ringInsetWidth: CGFloat = 1.0
         let ringVerticalOffset: CGFloat = 1.0
