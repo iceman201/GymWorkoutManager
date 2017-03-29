@@ -435,11 +435,11 @@ open class CircleMenu: UIButton {
 
 internal extension Float {
     var radians: Float {
-        return self * (Float(180) / Float(M_PI))
+        return self * (Float(180) / Float(Double.pi))
     }
     
     var degrees: Float {
-        return self  * Float(M_PI) / 180.0
+        return self  * Float(Double.pi) / 180.0
     }
 }
 

@@ -1995,6 +1995,6 @@ private struct Easings {
     
     static let EaseOutElastic = { (t: Double) -> Double in
         var p = 0.3;
-        return pow(2,-10*t) * sin((t-p/4)*(2*M_PI)/p) + 1;
+        return pow(2,-10*t) * sin((t-p/4)*(2*Double.pi)/p) + 1;
     }
 }

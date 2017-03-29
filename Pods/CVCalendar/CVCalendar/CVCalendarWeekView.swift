@@ -230,7 +230,7 @@ extension CVCalendarWeekView {
         for object in objects {
             if object == nil {
                 if collapsing {
-                    fatalError("Object { \(object) } must not be nil!")
+                    fatalError("Object { \(String(describing: object)) } must not be nil!")
                 } else {
                     return
                 }
