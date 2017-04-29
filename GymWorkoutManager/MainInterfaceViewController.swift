@@ -89,10 +89,13 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         if curentUser?.isProfileDetailsExist == true {
             button.isEnabled = true
         } else {
+            let alertView = UIAlertController(title: "Hello", message: "Please enter your profile details first.", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             button.isEnabled = false
             if atIndex == 2 {
                 button.isEnabled = true
             }
+            self.present(alertView, animated: true, completion: nil)
         }
 
         // set highlited image
