@@ -96,6 +96,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         curentUser?.age = Int(age.text ?? "0") as NSNumber? ?? 0
         curentUser?.weight = bodyWeight.text ?? ""
         curentUser?.height = bodyHeight.text ?? ""
+        curentUser?.isProfileDetailsExist = true
         DatabaseHelper.sharedInstance.commitTransaction()
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
         guard let numberOfUser = cusers?.count else {
@@ -285,6 +286,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
                 femaleButton.backgroundColor = GWMColorPurple
                 maleButton.backgroundColor = GWMColorYellow
             }
+            
             DatabaseHelper.sharedInstance.commitTransaction()
         }
         
