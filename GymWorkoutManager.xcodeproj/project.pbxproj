@@ -83,6 +83,7 @@
 		0507E68A1CEC792900923238 /* profileBackground.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = profileBackground.jpg; sourceTree = "<group>"; };
 		05083F9E1C4CE0A60008DD95 /* TimeSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSetupViewController.swift; sourceTree = "<group>"; };
 		051234821D14F6F700F8A24E /* push_up-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "push_up-256.png"; sourceTree = "<group>"; };
+		0521E0F61EB480C20005EEEA /* GymWorkoutManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GymWorkoutManager.entitlements; sourceTree = "<group>"; };
 		052B45731D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS5-6_57pt.png"; sourceTree = "<group>"; };
 		052B45741D33C5BF0027E99D /* iPhone_App_iOS5-6_57pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS5-6_57pt@2x.png"; sourceTree = "<group>"; };
 		052B45751D33C5BF0027E99D /* iPhone_App_iOS7-9_60pt@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone_App_iOS7-9_60pt@2x.png"; sourceTree = "<group>"; };
@@ -323,6 +324,7 @@
 		E6AD9D871C4C5F28004F6437 /* GymWorkoutManager */ = {
 			isa = PBXGroup;
 			children = (
+				0521E0F61EB480C20005EEEA /* GymWorkoutManager.entitlements */,
 				05F797CD1D37746800B5FEA6 /* developerfile.developerprofile */,
 				05CD293F1D34E95200776B39 /* Model */,
 				05CD29341D34E93C00776B39 /* View */,
@@ -454,8 +456,14 @@
 					};
 					E6AD9D841C4C5F28004F6437 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = V7QHHUD2M5;
+						DevelopmentTeam = 8436A3G9R2;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -937,14 +945,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V7QHHUD2M5;
+				DEVELOPMENT_TEAM = 8436A3G9R2;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = GymWorkoutManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = liguojiao.gymworkoutmanager;
+				PRODUCT_BUNDLE_IDENTIFIER = liguojiao.gymmeDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GymWorkoutManager/GymWorkoutManager-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -961,14 +970,15 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = V7QHHUD2M5;
+				DEVELOPMENT_TEAM = 8436A3G9R2;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				INFOPLIST_FILE = GymWorkoutManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = liguojiao.gymworkoutmanager;
+				PRODUCT_BUNDLE_IDENTIFIER = liguojiao.gymmeDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "GymWorkoutManager/GymWorkoutManager-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>GymmeDiary</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -22,6 +24,10 @@
 	<string>110</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Gymme workout manager need data from your iHealth</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>Gymme workout manager need data from your iHealth</string>
 	<key>NSMotionUsageDescription</key>
 	<string>Please allow the app access motion data of your device.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
