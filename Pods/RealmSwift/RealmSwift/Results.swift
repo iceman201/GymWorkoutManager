@@ -126,7 +126,7 @@ public final class Results<T: Object>: NSObject, NSFastEnumeration {
      Returns the index of the given object in the results, or `nil` if the object is not present.
      */
     public func index(of object: T) -> Int? {
-        return notFoundToNil(rlmResults.index(of: object.unsafeCastToRLMObject()))
+        return notFoundToNil(index: rlmResults.index(of: object.unsafeCastToRLMObject()))
     }
 
     /**
@@ -135,7 +135,7 @@ public final class Results<T: Object>: NSObject, NSFastEnumeration {
      - parameter predicate: The predicate with which to filter the objects.
      */
     public func index(matching predicate: NSPredicate) -> Int? {
-        return notFoundToNil(rlmResults.indexOfObject(with: predicate))
+        return notFoundToNil(index: rlmResults.indexOfObject(with: predicate))
     }
 
     /**
@@ -144,7 +144,7 @@ public final class Results<T: Object>: NSObject, NSFastEnumeration {
      - parameter predicateFormat: A predicate format string, optionally followed by a variable number of arguments.
      */
     public func index(matching predicateFormat: String, _ args: Any...) -> Int? {
-        return notFoundToNil(rlmResults.indexOfObject(with: NSPredicate(format: predicateFormat,
+        return notFoundToNil(index: rlmResults.indexOfObject(with: NSPredicate(format: predicateFormat,
                                                                                argumentArray: args)))
     }
 
@@ -445,7 +445,7 @@ extension Int8: MinMaxType {}
 extension Int16: MinMaxType {}
 extension Int32: MinMaxType {}
 extension Int64: MinMaxType {}
-extension Date: MinMaxType {}
+extension NSDate: MinMaxType {}
 
 // MARK: AddableType
 
@@ -466,11 +466,11 @@ extension Int64: AddableType {}
 
 /// :nodoc:
 /// Internal class. Do not use directly.
-open class ResultsBase: NSObject, NSFastEnumeration {
+public class ResultsBase: NSObject, NSFastEnumeration {
     internal let rlmResults: RLMResults
 
     /// Returns a human-readable description of the objects contained in these results.
-    open override var description: String {
+    public override var description: String {
         let type = "Results<\(rlmResults.objectClassName)>"
         return gsub("RLMResults <0x[a-z0-9]+>", template: type, string: rlmResults.description) ?? type
     }
@@ -483,10 +483,10 @@ open class ResultsBase: NSObject, NSFastEnumeration {
 
     // MARK: Fast Enumeration
 
-    open func countByEnumerating(with state: UnsafeMutablePointer<NSFastEnumerationState>,
-                                            objects buffer: AutoreleasingUnsafeMutablePointer<AutoreleasingUnsafeMutablePointer<AnyObject?>>,
+    public func countByEnumeratingWithState(state: UnsafeMutablePointer<NSFastEnumerationState>,
+                                            objects buffer: AutoreleasingUnsafeMutablePointer<AnyObject?>,
                                             count len: Int) -> Int {
-        return Int(rlmResults.countByEnumerating(with: state,
+        return Int(rlmResults.countByEnumeratingWithState(state,
                    objects: buffer,
                    count: UInt(len)))
     }
@@ -532,7 +532,7 @@ public final class Results<T: Object>: ResultsBase {
      The results collection becomes invalid if `invalidate()` is called on the containing `realm`.
      An invalidated results collection can be accessed, but will always be empty.
      */
-    public var invalidated: Bool { return rlmResults.isInvalidated }
+    public var invalidated: Bool { return rlmResults.invalidated }
 
     /// The number of objects in the results collection.
     public var count: Int { return Int(rlmResults.count) }
@@ -550,7 +550,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter object: An object.
      */
-    public func indexOf(_ object: T) -> Int? {
+    public func indexOf(object: T) -> Int? {
         return notFoundToNil(rlmResults.indexOfObject(object.unsafeCastToRLMObject()))
     }
 
@@ -559,7 +559,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter predicate: The predicate with which to filter the objects.
      */
-    public func indexOf(_ predicate: NSPredicate) -> Int? {
+    public func indexOf(predicate: NSPredicate) -> Int? {
         return notFoundToNil(rlmResults.indexOfObjectWithPredicate(predicate))
     }
 
@@ -568,7 +568,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter predicateFormat: A predicate format string, optionally followed by a variable number of arguments.
      */
-    public func indexOf(_ predicateFormat: String, _ args: AnyObject...) -> Int? {
+    public func indexOf(predicateFormat: String, _ args: AnyObject...) -> Int? {
         return notFoundToNil(rlmResults.indexOfObjectWithPredicate(NSPredicate(format: predicateFormat,
                                                                                argumentArray: args)))
     }
@@ -583,15 +583,15 @@ public final class Results<T: Object>: ResultsBase {
     public subscript(index: Int) -> T {
         get {
             throwForNegativeIndex(index)
-            return unsafeBitCast(rlmResults[UInt(index)], to: T.self)
+            return unsafeBitCast(rlmResults[UInt(index)], T.self)
         }
     }
 
     /// Returns the first object in the results, or `nil` if the results are empty.
-    public var first: T? { return unsafeBitCast(rlmResults.firstObject(), to: Optional<T>.self) }
+    public var first: T? { return unsafeBitCast(rlmResults.firstObject(), Optional<T>.self) }
 
     /// Returns the last object in the results, or `nil` if the results are empty.
-    public var last: T? { return unsafeBitCast(rlmResults.lastObject(), to: Optional<T>.self) }
+    public var last: T? { return unsafeBitCast(rlmResults.lastObject(), Optional<T>.self) }
 
     // MARK: KVC
 
@@ -600,8 +600,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter key: The name of the property whose values are desired.
      */
-    public override func value(forKey key: String) -> Any? {
-        return rlmResults.value(forKey: key)
+    public override func valueForKey(key: String) -> AnyObject? {
+        return rlmResults.valueForKey(key)
     }
 
     /**
@@ -609,8 +609,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter keyPath: The key path to the property whose values are desired.
      */
-    public override func value(forKeyPath keyPath: String) -> Any? {
-        return rlmResults.value(forKeyPath: keyPath)
+    public override func valueForKeyPath(keyPath: String) -> AnyObject? {
+        return rlmResults.valueForKeyPath(keyPath)
     }
 
     /**
@@ -622,7 +622,7 @@ public final class Results<T: Object>: ResultsBase {
      - parameter value: The object value.
      - parameter key:   The name of the property whose value should be set on each object.
      */
-    public override func setValue(_ value: Any?, forKey key: String) {
+    public override func setValue(value: AnyObject?, forKey key: String) {
         return rlmResults.setValue(value, forKey: key)
     }
 
@@ -633,7 +633,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter predicateFormat: A predicate format string, optionally followed by a variable number of arguments.
      */
-    public func filter(_ predicateFormat: String, _ args: AnyObject...) -> Results<T> {
+    public func filter(predicateFormat: String, _ args: AnyObject...) -> Results<T> {
         return Results<T>(rlmResults.objectsWithPredicate(NSPredicate(format: predicateFormat, argumentArray: args)))
     }
 
@@ -642,7 +642,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter predicate: The predicate with which to filter the objects.
      */
-    public func filter(_ predicate: NSPredicate) -> Results<T> {
+    public func filter(predicate: NSPredicate) -> Results<T> {
         return Results<T>(rlmResults.objectsWithPredicate(predicate))
     }
 
@@ -660,7 +660,7 @@ public final class Results<T: Object>: ResultsBase {
      - parameter property:  The name of the property to sort by.
      - parameter ascending: The direction to sort in.
      */
-    public func sorted(_ property: String, ascending: Bool = true) -> Results<T> {
+    public func sorted(property: String, ascending: Bool = true) -> Results<T> {
         return sorted([SortDescriptor(property: property, ascending: ascending)])
     }
 
@@ -674,7 +674,7 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter sortDescriptors: A sequence of `SortDescriptor`s to sort by.
      */
-    public func sorted<S: Sequence where S.Iterator.Element == SortDescriptor>(_ sortDescriptors: S) -> Results<T> {
+    public func sorted<S: SequenceType where S.Generator.Element == SortDescriptor>(sortDescriptors: S) -> Results<T> {
         return Results<T>(rlmResults.sortedResultsUsingDescriptors(sortDescriptors.map { $0.rlmSortDescriptorValue }))
     }
 
@@ -687,8 +687,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter property: The name of a property whose minimum value is desired.
      */
-    public func min<U: MinMaxType>(_ property: String) -> U? {
-        return rlmResults.min(ofProperty: property).map(dynamicBridgeCast)
+    public func min<U: MinMaxType>(property: String) -> U? {
+        return rlmResults.minOfProperty(property).map(dynamicBridgeCast)
     }
 
     /**
@@ -698,8 +698,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter property: The name of a property whose minimum value is desired.
      */
-    public func max<U: MinMaxType>(_ property: String) -> U? {
-        return rlmResults.max(ofProperty: property).map(dynamicBridgeCast)
+    public func max<U: MinMaxType>(property: String) -> U? {
+        return rlmResults.maxOfProperty(property).map(dynamicBridgeCast)
     }
 
     /**
@@ -709,8 +709,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter property: The name of a property whose values should be summed.
      */
-    public func sum<U: AddableType>(_ property: String) -> U {
-        return dynamicBridgeCast(fromObjectiveC: rlmResults.sum(ofProperty: property))
+    public func sum<U: AddableType>(property: String) -> U {
+        return dynamicBridgeCast(fromObjectiveC: rlmResults.sumOfProperty(property))
     }
 
     /**
@@ -720,8 +720,8 @@ public final class Results<T: Object>: ResultsBase {
 
      - parameter property: The name of a property whose average value should be calculated.
      */
-    public func average<U: AddableType>(_ property: String) -> U? {
-        return rlmResults.average(ofProperty: property).map(dynamicBridgeCast)
+    public func average<U: AddableType>(property: String) -> U? {
+        return rlmResults.averageOfProperty(property).map(dynamicBridgeCast)
     }
 
     // MARK: Notifications
@@ -782,7 +782,7 @@ public final class Results<T: Object>: ResultsBase {
      - returns: A token which must be held for as long as you want updates to be delivered.
      */
     @warn_unused_result(message="You must hold on to the NotificationToken returned from addNotificationBlock")
-    public func addNotificationBlock(_ block: ((RealmCollectionChange<Results>) -> Void)) -> NotificationToken {
+    public func addNotificationBlock(block: (RealmCollectionChange<Results> -> Void)) -> NotificationToken {
         return rlmResults.addNotificationBlock { results, change, error in
             block(RealmCollectionChange.fromObjc(self, change: change, error: error))
         }
@@ -793,7 +793,7 @@ extension Results: RealmCollectionType {
     // MARK: Sequence Support
 
     /// Returns an `RLMGenerator` that yields successive elements in the results.
-    public func makeIterator() -> RLMGenerator<T> {
+    public func generate() -> RLMGenerator<T> {
         return RLMGenerator(collection: rlmResults)
     }
 
@@ -809,7 +809,7 @@ extension Results: RealmCollectionType {
     public var endIndex: Int { return count }
 
     /// :nodoc:
-    public func _addNotificationBlock(_ block: (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
+    public func _addNotificationBlock(block: (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
         NotificationToken {
         let anyCollection = AnyRealmCollection(self)
         return rlmResults.addNotificationBlock { _, change, error in

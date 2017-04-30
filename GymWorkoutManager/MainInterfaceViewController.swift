@@ -9,6 +9,7 @@
 import UIKit
 import MediaPlayer
 import CircleMenu
+import RealmSwift
 
 class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     // MARK: - Variables
@@ -16,7 +17,9 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     @IBOutlet var startButton: CircleMenu!
     @IBOutlet var backLayer: UIImageView!
     @IBOutlet var startLabel: UILabel!
-    var mainButtonTouched : Bool?
+    var mainButtonTouched: Bool?
+    
+    var curentUser:Person?
     
     let items: [(icon: String, color: UIColor, Name: String)] = [
         ("icon_timer", GWMColorBlue, "Timer"),
@@ -49,6 +52,9 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         startLabel.isHidden = false
+        let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
+        self.curentUser = cusers?.first
+        
         if mainButtonTouched == true {
             startButton.sendActions(for: .touchUpInside)
             startLabel.isHidden = true
@@ -79,14 +85,27 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         button.setImage(UIImage(imageLiteralResourceName: items[atIndex].icon), for: UIControlState())
         button.setTitle(items[atIndex].Name, for: UIControlState())
         button.setImageAndTitleLeft(0.0)
-        
+
+        if curentUser?.isProfileDetailsExist == true {
+            button.isEnabled = true
+        } else {
+            let alertView = UIAlertController(title: "Hello", message: "Please enter your profile details first.", preferredStyle: .alert)
+            alertView.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            button.isEnabled = false
+            if atIndex == 2 {
+                button.isEnabled = true
+            }
+            self.present(alertView, animated: true, completion: nil)
+        }
+
         // set highlited image
         let highlightedImage  = UIImage(imageLiteralResourceName: items[atIndex].icon).withRenderingMode(.alwaysTemplate)
         button.setImage(highlightedImage, for: .highlighted)
         button.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
     }
+    
     func menuCollapsed(_ circleMenu: CircleMenu) {
-        backLayer.isHidden = false
+        backLayer.isHidden = true
     }
     
     func circleMenu(_ circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {

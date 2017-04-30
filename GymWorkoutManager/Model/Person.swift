@@ -19,6 +19,7 @@ class Person: Object {
     dynamic var profilePicture : Data?
     dynamic var activedDays : NSNumber = 0
     dynamic var lastTimeUseApp : Date?
+    dynamic var isProfileDetailsExist : Bool = false
     
     let exercise = List<Exercise>()
     let plans = List<Plan>()

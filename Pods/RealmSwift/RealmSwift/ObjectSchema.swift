@@ -145,7 +145,7 @@ extension ObjectSchema: Equatable {}
 
 /// Returns whether the two object schemas are equal.
 public func == (lhs: ObjectSchema, rhs: ObjectSchema) -> Bool { // swiftlint:disable:this valid_docs
-    return lhs.rlmObjectSchema.isEqual(to: rhs.rlmObjectSchema)
+    return lhs.rlmObjectSchema.isEqualToObjectSchema(rhs.rlmObjectSchema)
 }
 
 #endif

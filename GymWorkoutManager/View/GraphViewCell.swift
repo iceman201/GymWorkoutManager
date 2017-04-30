@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import Charts
 
 class GraphViewCell: UITableViewCell {
     
     @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var graphicView: UIView!
+    @IBOutlet weak var graphicView: PieChartView!
     
     @IBOutlet var cardioLabel: UILabel!
     @IBOutlet var weightLabel: UILabel!

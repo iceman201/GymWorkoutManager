@@ -128,7 +128,7 @@ extension Property: Equatable {}
 
 /// Returns whether the two property objects are equal.
 public func == (lhs: Property, rhs: Property) -> Bool { // swiftlint:disable:this valid_docs
-    return lhs.rlmProperty.isEqual(to: rhs.rlmProperty)
+    return lhs.rlmProperty.isEqualToProperty(rhs.rlmProperty)
 }
 
 #endif

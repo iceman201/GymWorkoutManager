@@ -62,7 +62,7 @@ class SetPlanViewController: UIViewController, UITextViewDelegate {
                 DatabaseHelper.sharedInstance.commitTransaction()
             }
         }
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     fileprivate func alertMessage(_ alertTitle:String, alertMessage:String, cancleButtonTitle:String) {

@@ -88,7 +88,7 @@ public final class List<T: Object>: ListBase {
      - parameter object: An object to find.
      */
     public func index(of object: T) -> Int? {
-        return notFoundToNil(_rlmArray.index(of: object.unsafeCastToRLMObject()))
+        return notFoundToNil(index: _rlmArray.index(of: object.unsafeCastToRLMObject()))
     }
 
     /**
@@ -97,7 +97,7 @@ public final class List<T: Object>: ListBase {
      - parameter predicate: The predicate with which to filter the objects.
     */
     public func index(matching predicate: NSPredicate) -> Int? {
-        return notFoundToNil(_rlmArray.indexOfObject(with: predicate))
+        return notFoundToNil(index: _rlmArray.indexOfObject(with: predicate))
     }
 
     /**
@@ -542,22 +542,22 @@ extension List {
 
 /// :nodoc:
 /// Internal class. Do not use directly.
-open class ListBase: RLMListBase {
+public class ListBase: RLMListBase {
     // Printable requires a description property defined in Swift (and not obj-c),
     // and it has to be defined as @objc override, which can't be done in a
     // generic class.
     /// Returns a human-readable description of the objects contained in the List.
-    @objc open override var description: String {
+    @objc public override var description: String {
         return descriptionWithMaxDepth(RLMDescriptionMaxDepth)
     }
 
-    @objc fileprivate func descriptionWithMaxDepth(_ depth: UInt) -> String {
+    @objc private func descriptionWithMaxDepth(depth: UInt) -> String {
         let type = "List<\(_rlmArray.objectClassName)>"
-        return gsub("RLMArray <0x[a-z0-9]+>", template: type, string: _rlmArray.description(withMaxDepth: depth)) ?? type
+        return gsub("RLMArray <0x[a-z0-9]+>", template: type, string: _rlmArray.descriptionWithMaxDepth(depth)) ?? type
     }
 
     /// Returns the number of objects in this List.
-    open var count: Int { return Int(_rlmArray.count) }
+    public var count: Int { return Int(_rlmArray.count) }
 }
 
 /**
@@ -585,7 +585,7 @@ public final class List<T: Object>: ListBase {
     }
 
     /// Indicates if the list can no longer be accessed.
-    public var invalidated: Bool { return _rlmArray.isInvalidated }
+    public var invalidated: Bool { return _rlmArray.invalidated }
 
     // MARK: Initializers
 
@@ -605,7 +605,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter object: An object to find.
      */
-    public func indexOf(_ object: T) -> Int? {
+    public func indexOf(object: T) -> Int? {
         return notFoundToNil(_rlmArray.indexOfObject(object.unsafeCastToRLMObject()))
     }
 
@@ -614,7 +614,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter predicate: The predicate with which to filter the objects.
      */
-    public func indexOf(_ predicate: NSPredicate) -> Int? {
+    public func indexOf(predicate: NSPredicate) -> Int? {
         return notFoundToNil(_rlmArray.indexOfObjectWithPredicate(predicate))
     }
 
@@ -623,7 +623,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter predicateFormat: A predicate format string, optionally followed by a variable number of arguments.
      */
-    public func indexOf(_ predicateFormat: String, _ args: AnyObject...) -> Int? {
+    public func indexOf(predicateFormat: String, _ args: AnyObject...) -> Int? {
         return indexOf(NSPredicate(format: predicateFormat, argumentArray: args))
     }
 
@@ -661,8 +661,8 @@ public final class List<T: Object>: ListBase {
 
      - parameter key: The name of the property whose values are desired.
      */
-    public override func value(forKey key: String) -> Any? {
-        return _rlmArray.value(forKey: key)
+    public override func valueForKey(key: String) -> AnyObject? {
+        return _rlmArray.valueForKey(key)
     }
 
     /**
@@ -671,8 +671,8 @@ public final class List<T: Object>: ListBase {
 
      - parameter keyPath: The key path to the property whose values are desired.
      */
-    public override func value(forKeyPath keyPath: String) -> Any? {
-        return _rlmArray.value(forKeyPath: keyPath)
+    public override func valueForKeyPath(keyPath: String) -> AnyObject? {
+        return _rlmArray.valueForKeyPath(keyPath)
     }
 
     /**
@@ -683,7 +683,7 @@ public final class List<T: Object>: ListBase {
      - parameter value: The object value.
      - parameter key:   The name of the property whose value should be set on each object.
      */
-    public override func setValue(_ value: Any?, forKey key: String) {
+    public override func setValue(value: AnyObject?, forKey key: String) {
         return _rlmArray.setValue(value, forKey: key)
     }
 
@@ -694,7 +694,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter predicateFormat: A predicate format string, optionally followed by a variable number of arguments.
     */
-    public func filter(_ predicateFormat: String, _ args: AnyObject...) -> Results<T> {
+    public func filter(predicateFormat: String, _ args: AnyObject...) -> Results<T> {
         return Results<T>(_rlmArray.objectsWithPredicate(NSPredicate(format: predicateFormat, argumentArray: args)))
     }
 
@@ -703,7 +703,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter predicate: The predicate with which to filter the objects.
      */
-    public func filter(_ predicate: NSPredicate) -> Results<T> {
+    public func filter(predicate: NSPredicate) -> Results<T> {
         return Results<T>(_rlmArray.objectsWithPredicate(predicate))
     }
 
@@ -721,7 +721,7 @@ public final class List<T: Object>: ListBase {
      - parameter property:  The name of the property to sort by.
      - parameter ascending: The direction to sort in.
      */
-    public func sorted(_ property: String, ascending: Bool = true) -> Results<T> {
+    public func sorted(property: String, ascending: Bool = true) -> Results<T> {
         return sorted([SortDescriptor(property: property, ascending: ascending)])
     }
 
@@ -735,7 +735,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter sortDescriptors: A sequence of `SortDescriptor`s to sort by.
      */
-    public func sorted<S: Sequence where S.Iterator.Element == SortDescriptor>(_ sortDescriptors: S) -> Results<T> {
+    public func sorted<S: SequenceType where S.Generator.Element == SortDescriptor>(sortDescriptors: S) -> Results<T> {
         return Results<T>(_rlmArray.sortedResultsUsingDescriptors(sortDescriptors.map { $0.rlmSortDescriptorValue }))
     }
 
@@ -749,7 +749,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter property: The name of a property whose minimum value is desired.
      */
-    public func min<U: MinMaxType>(_ property: String) -> U? {
+    public func min<U: MinMaxType>(property: String) -> U? {
         return filter(NSPredicate(value: true)).min(property)
     }
 
@@ -761,7 +761,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter property: The name of a property whose maximum value is desired.
      */
-    public func max<U: MinMaxType>(_ property: String) -> U? {
+    public func max<U: MinMaxType>(property: String) -> U? {
         return filter(NSPredicate(value: true)).max(property)
     }
 
@@ -772,7 +772,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter property: The name of a property whose values should be summed.
      */
-    public func sum<U: AddableType>(_ property: String) -> U {
+    public func sum<U: AddableType>(property: String) -> U {
         return filter(NSPredicate(value: true)).sum(property)
     }
 
@@ -783,7 +783,7 @@ public final class List<T: Object>: ListBase {
 
      - parameter property: The name of a property whose average value should be calculated.
      */
-    public func average<U: AddableType>(_ property: String) -> U? {
+    public func average<U: AddableType>(property: String) -> U? {
         return filter(NSPredicate(value: true)).average(property)
     }
 
@@ -799,8 +799,8 @@ public final class List<T: Object>: ListBase {
 
      - parameter object: An object.
      */
-    public func append(_ object: T) {
-        _rlmArray.add(object.unsafeCastToRLMObject())
+    public func append(object: T) {
+        _rlmArray.addObject(object.unsafeCastToRLMObject())
     }
 
     /**
@@ -810,9 +810,9 @@ public final class List<T: Object>: ListBase {
 
      - parameter objects: A sequence of objects.
     */
-    public func append<S: Sequence where S.Iterator.Element == T>(contentsOf objects: S) {
+    public func appendContentsOf<S: SequenceType where S.Generator.Element == T>(objects: S) {
         for obj in objects {
-            _rlmArray.add(obj.unsafeCastToRLMObject())
+            _rlmArray.addObject(obj.unsafeCastToRLMObject())
         }
     }
 
@@ -826,9 +826,9 @@ public final class List<T: Object>: ListBase {
      - parameter object: An object.
      - parameter index:  The index at which to insert the object.
      */
-    public func insert(_ object: T, at index: Int) {
+    public func insert(object: T, atIndex index: Int) {
         throwForNegativeIndex(index)
-        _rlmArray.insert(object.unsafeCastToRLMObject(), at: UInt(index))
+        _rlmArray.insertObject(object.unsafeCastToRLMObject(), atIndex: UInt(index))
     }
 
     /**
@@ -840,9 +840,9 @@ public final class List<T: Object>: ListBase {
 
      - parameter index: The index at which to remove the object.
     */
-    public func removeAtIndex(_ index: Int) {
+    public func removeAtIndex(index: Int) {
         throwForNegativeIndex(index)
-        _rlmArray.removeObject(at: UInt(index))
+        _rlmArray.removeObjectAtIndex(UInt(index))
     }
 
     /**
@@ -873,9 +873,9 @@ public final class List<T: Object>: ListBase {
      - parameter index:  The index of the object to be replaced.
      - parameter object: An object.
      */
-    public func replace(_ index: Int, object: T) {
+    public func replace(index: Int, object: T) {
         throwForNegativeIndex(index)
-        _rlmArray.replaceObject(at: UInt(index), with: object.unsafeCastToRLMObject())
+        _rlmArray.replaceObjectAtIndex(UInt(index), withObject: object.unsafeCastToRLMObject())
     }
 
     /**
@@ -888,10 +888,10 @@ public final class List<T: Object>: ListBase {
      - parameter from:  The index of the object to be moved.
      - parameter to:    index to which the object at `from` should be moved.
      */
-    public func move(from: Int, to: Int) { // swiftlint:disable:this variable_name
+    public func move(from from: Int, to: Int) { // swiftlint:disable:this variable_name
         throwForNegativeIndex(from)
         throwForNegativeIndex(to)
-        _rlmArray.moveObject(at: UInt(from), to: UInt(to))
+        _rlmArray.moveObjectAtIndex(UInt(from), toIndex: UInt(to))
     }
 
     /**
@@ -904,10 +904,10 @@ public final class List<T: Object>: ListBase {
      - parameter index1: The index of the object which should replace the object at index `index2`.
      - parameter index2: The index of the object which should replace the object at index `index1`.
     */
-    public func swap(_ index1: Int, _ index2: Int) {
+    public func swap(index1: Int, _ index2: Int) {
         throwForNegativeIndex(index1, parameterName: "index1")
         throwForNegativeIndex(index2, parameterName: "index2")
-        _rlmArray.exchangeObject(at: UInt(index1), withObjectAt: UInt(index2))
+        _rlmArray.exchangeObjectAtIndex(UInt(index1), withObjectAtIndex: UInt(index2))
     }
 
     // MARK: Notifications
@@ -972,18 +972,18 @@ public final class List<T: Object>: ListBase {
      - returns: A token which must be held for as long as you want updates to be delivered.
      */
     @warn_unused_result(message="You must hold on to the NotificationToken returned from addNotificationBlock")
-    public func addNotificationBlock(_ block: (RealmCollectionChange<List>) -> ()) -> NotificationToken {
+    public func addNotificationBlock(block: (RealmCollectionChange<List>) -> ()) -> NotificationToken {
         return _rlmArray.addNotificationBlock { list, change, error in
             block(RealmCollectionChange.fromObjc(self, change: change, error: error))
         }
     }
 }
 
-extension List: RealmCollectionType, RangeReplaceableCollection {
+extension List: RealmCollectionType, RangeReplaceableCollectionType {
     // MARK: Sequence Support
 
     /// Returns an `RLMGenerator` that yields successive elements in the list.
-    public func makeIterator() -> RLMGenerator<T> {
+    public func generate() -> RLMGenerator<T> {
         return RLMGenerator(collection: _rlmArray)
     }
 
@@ -995,13 +995,13 @@ extension List: RealmCollectionType, RangeReplaceableCollection {
      - parameter subRange:    The range of elements to be replaced.
      - parameter newElements: The new elements to be inserted into the list.
     */
-    public func replaceSubrange<C: Collection where C.Iterator.Element == T>(_ subRange: Range<Int>,
+    public func replaceRange<C: CollectionType where C.Generator.Element == T>(subRange: Range<Int>,
                                                                                with newElements: C) {
         for _ in subRange {
-            removeAtIndex(subRange.lowerBound)
+            removeAtIndex(subRange.startIndex)
         }
-        for x in newElements.reversed() {
-            insert(x, at: subRange.lowerBound)
+        for x in newElements.reverse() {
+            insert(x, atIndex: subRange.startIndex)
         }
     }
 
@@ -1015,7 +1015,7 @@ extension List: RealmCollectionType, RangeReplaceableCollection {
     public var endIndex: Int { return count }
 
     /// :nodoc:
-    public func _addNotificationBlock(_ block: (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
+    public func _addNotificationBlock(block: (RealmCollectionChange<AnyRealmCollection<T>>) -> Void) ->
         NotificationToken {
         let anyCollection = AnyRealmCollection(self)
         return _rlmArray.addNotificationBlock { _, change, error in

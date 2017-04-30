@@ -47,7 +47,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         if let del = delegate {
             del.timeSetupFinish(self, result: self.result)
         }
-        navigationController?.popViewController(animated: true)
+        _ = navigationController?.popViewController(animated: true)
     }
     
     // MARK: - PickerView
@@ -101,23 +101,7 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
         // Do any additional setup after loading the view.
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
-    /*
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
-    }
-    */
-    
 }

@@ -65,7 +65,7 @@ internal class CircleMenuLoader: UIView {
             arcCenter: CGPoint(x: radius, y: radius),
             radius: CGFloat(radius) - strokeWidth / 2.0,
             startAngle: CGFloat(0),
-            endAngle:CGFloat(M_PI * 2),
+            endAngle:CGFloat(Double.pi * 2),
             clockwise: true)
 
         let circle = Init(CAShapeLayer()) {

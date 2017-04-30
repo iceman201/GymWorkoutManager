@@ -10,7 +10,6 @@ import UIKit
 import ScrollableGraphView
 
 class AnalysisGraphViewController: UIViewController {
-
     @IBOutlet var graphView: ScrollableGraphView!
     let numberOfDataItems = 29
 
@@ -35,10 +34,4 @@ class AnalysisGraphViewController: UIViewController {
         }
         return result
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

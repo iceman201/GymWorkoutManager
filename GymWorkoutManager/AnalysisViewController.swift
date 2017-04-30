@@ -8,29 +8,13 @@
 
 import UIKit
 import RealmSwift
-import Graphs
 import CoreMotion
-
-struct graphData<T: Hashable, U: NumericType> : GraphData {
-    typealias GraphDataKey = T
-    typealias GraphDataValue = U
-    
-    fileprivate let _key: T
-    fileprivate let _value: U
-    
-    init(key: T, value: U) {
-        self._key = key
-        self._value = value
-    }
-    
-    var key: T { get{ return self._key } }
-    var value: U { get{ return self._value } }
-}
+import Charts
 
 class AnalysisViewController: UITableViewController {
     var curentUser:Person?
     var result : [Double] = []
-    var days:[String] = []
+
     let activityManager = CMMotionActivityManager()
     let pedoMeter = CMPedometer()
     
@@ -62,7 +46,18 @@ class AnalysisViewController: UITableViewController {
         }
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let label = ["Cardio","Weights","Hiit"]
+        let data = [curentUser?.getPercentageOfWorkout("0") ?? 0.0,
+                    curentUser?.getPercentageOfWorkout("1") ?? 0.0,
+                    curentUser?.getPercentageOfWorkout("2") ?? 0.0]
+        let colors: [UIColor] = [GWMPieGraphColorCardio,
+                                 GWMPieGraphColorWeights,
+                                 GWMPieGraphColorHiit]
+        
+        var dataEntryColor: [UIColor] = []
+        var dataEntries:[ChartDataEntry] = []
         var startIndexAt: Int = 0
+        
         if isNonData() {
             startIndexAt = -1
         }
@@ -70,67 +65,80 @@ class AnalysisViewController: UITableViewController {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "graphicCell", for: indexPath) as? GraphViewCell else {
                 return UITableViewCell()
             }
-            let data = [
-                //Cardio
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("0") ?? 0.0),
-                //Weights
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("1") ?? 0.0),
-                //Hiit
-                graphData(key: "", value: curentUser?.getPercentageOfWorkout("2") ?? 0.0)
-            ]
             
-            let view = data.pieGraph() { (unit, totalValue) -> String? in
-                return unit.key! + "\n" + String(format: "%.0f%%", unit.value / totalValue * 100.0)
-                }.view(cell.graphicView.bounds)
-            view.pieGraphConfiguration{
-                PieGraphViewConfig(pieColors: [GWMPieGraphColorCardio, GWMPieGraphColorWeights, GWMPieGraphColorHiit], textColor: UIColor(red: 119.0/255.0, green: 136.0/255.0, blue: 153.0/255.0, alpha: 1.0), textFont: UIFont(name: "DINCondensed-Bold", size: 14.0),
-                                   isDounut: true,
-                                   contentInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
-                )
+            for i in 0..<label.count {
+                if data[i] != 0.0 {
+                    let dataEntry = PieChartDataEntry(value: data[i], label: label[i])
+                    dataEntryColor.append(colors[i])
+                    dataEntries.append(dataEntry)
+                }
             }
-            view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
+            let textColor: [UIColor] = [UIColor.white, UIColor.black,UIColor.white]
             cell.title.text = "Proportion of Workout"
-            for each in data {
-                guard !each._value.isNaN else { return cell }
-            }
-            cell.graphicView.addSubview(view)
+            
+            let dataSet = PieChartDataSet(values: dataEntries, label: "")
+            dataSet.colors = dataEntryColor
+            dataSet.valueColors = textColor
+            
+            let pieChartDatas = PieChartData(dataSet: dataSet)
+            
+            cell.graphicView.data = pieChartDatas
+            cell.graphicView.legend.enabled = false
+            cell.graphicView.chartDescription?.text = ""
+            
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "pedmeterCell", for: indexPath) as? PedmeterViewCell else {
                 return UITableViewCell()
             }
+            /* TODO: Should use data from HealthKit instead of CoreMotion，
+                        as the result from CoreMotion isnt that accurate  */
             if CMPedometer.isStepCountingAvailable() {
                 let serialQueue : DispatchQueue  = DispatchQueue(label: "com.pedometer.MyQueue", attributes: [])
                 let formatter = DateFormatter()
                 formatter.dateFormat = "d MMM"
+                self.pedoMeter.startUpdates(from: getFormatDate(startDate: 7, requireEndDate: false), withHandler: { (CMData, error) in
+                    if let todayPedometerData = CMData {
+                        cell.numberSteps.text = "\(todayPedometerData.numberOfSteps)"
+                        cell.numberFloor.text = "\(todayPedometerData.floorsAscended)"
+                        cell.numberDistance.text = "\(todayPedometerData.distance)"
+                    }
+
+                })
                 serialQueue.sync(execute: { () -> Void in
-                    for day in 0...6 {
-                        let startDate = Date(timeIntervalSinceNow: Double(-7 + day) * 86400)
-                        let endDate = Date(timeIntervalSinceNow: Double(-7 + day + 1) * 86400)
-                        let dateString = formatter.string(from: endDate)
-                        
+                    for day in 1...7 {
+                        let startDate = getFormatDate(startDate: day, requireEndDate: false)
+                        let endDate = getFormatDate(startDate: day, requireEndDate: true)
                         self.pedoMeter.queryPedometerData(from: startDate, to: endDate, withHandler: { (CMData:CMPedometerData?, error) -> Void in
                             guard let data = CMData else {
                                 return
                             }
-                            cell.numberSteps.text = "\(data.numberOfSteps)"
-                            self.days.append(dateString)
                             self.result.append(data.numberOfSteps.doubleValue)
-                            if(self.days.count == 7){
-                                DispatchQueue.main.sync(execute: { () -> Void in
-                                    let view = self.result.lineGraph().view(cell.graphicView.bounds).lineGraphConfiguration({ LineGraphViewConfig(lineColor: GWMColorRed,textColor:GWMColorYellow, contentInsets: UIEdgeInsets(top: 32.0, left: 32.0, bottom: 32.0, right: 32.0)) })
-                                    view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                                    cell.graphicView.addSubview(view)
-                                })
-                            }
-
                         })
-                        
                     }
                 })
             }
             return cell
         }
+    }
+    
+    private func getFormatDate(startDate: Int, requireEndDate: Bool) -> Date {
+        let cal = Calendar.current
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        var comps = cal.dateComponents([.weekOfYear,.yearForWeekOfYear], from: startOfDay)
+        comps.weekday = startDate
+        
+        if requireEndDate {
+            comps.weekday = startDate + 1
+            comps.second = -1
+            if startDate == 7 {
+                comps.weekday = 0
+                comps.hour = 24
+            }
+        }
+        let mondayInWeek = cal.date(from: comps)!
+        return mondayInWeek
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -148,11 +156,8 @@ class AnalysisViewController: UITableViewController {
         if isNonData() {
             return cell.selectionStyle = .default
         } else {
-            if (indexPath as NSIndexPath).section == 0 {
-                return cell.selectionStyle = .none
-            } else {
-                return cell.selectionStyle = .default
-            }
+            return cell.selectionStyle = .none
+            
         }
 
     }
@@ -167,6 +172,7 @@ class AnalysisViewController: UITableViewController {
             self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
         }
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
@@ -175,18 +181,14 @@ class AnalysisViewController: UITableViewController {
             curentUser = Person()
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "graphView" {
             guard let destinationVC = segue.destination as? AnalysisGraphViewController else {
                 return
             }
             destinationVC.data = result
-            destinationVC.labels = days
+            destinationVC.labels = ["Sun","Mon","Tue","Wed","Thur","Fri","Sat"]
         }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

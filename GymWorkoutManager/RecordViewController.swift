@@ -109,7 +109,7 @@ class RecordViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if (indexPath as NSIndexPath).section == 1 {
             cell.detailTextLabel?.textColor = UIColor.black
-            cell.textLabel?.textColor = UIColor(hex: "40E0D0")
+            cell.textLabel?.textColor = UIColor(red: 64.0/255.0, green: 224.0/255.0, blue: 208.0/255.0, alpha: 1.0)
             
         }
         cell.selectionStyle = .none
@@ -168,10 +168,6 @@ class RecordViewController: UITableViewController {
         } else {
             self.tableView.setEditing(true, animated: true)
         }
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
 
