@@ -1090,60 +1090,70 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhC-fK-nCq">
-                                            <rect key="frame" x="264" y="8" width="130" height="69"/>
+                                            <rect key="frame" x="267" y="58" width="130" height="51"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="130" id="77D-0r-h58"/>
-                                                <constraint firstAttribute="height" constant="69" id="NDu-sf-Yvz"/>
+                                                <constraint firstAttribute="height" constant="51" id="9sP-KL-OKQ"/>
+                                                <constraint firstAttribute="width" constant="130" id="MAh-fZ-i0I"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L32-AW-V5Q">
-                                            <rect key="frame" x="16" y="26" width="224" height="33"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="33" id="jDP-Oc-aEI"/>
-                                                <constraint firstAttribute="width" constant="224" id="wD1-Qm-lQc"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq0-Ch-l7Z">
-                                            <rect key="frame" x="264" y="83" width="130" height="69"/>
+                                            <rect key="frame" x="267" y="117" width="130" height="51"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="69" id="F0M-Zj-efl"/>
-                                                <constraint firstAttribute="width" constant="130" id="yd9-uk-jp4"/>
+                                                <constraint firstAttribute="width" constant="130" id="Mox-cB-18z"/>
+                                                <constraint firstAttribute="height" constant="51" id="i3F-qs-vfr"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l0w-X8-Js4">
-                                            <rect key="frame" x="16" y="101" width="224" height="33"/>
+                                            <rect key="frame" x="17" y="126" width="224" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="224" id="EGe-1h-Ofg"/>
-                                                <constraint firstAttribute="height" constant="33" id="M6C-TS-pDy"/>
+                                                <constraint firstAttribute="width" constant="224" id="Mq4-vV-9Dz"/>
+                                                <constraint firstAttribute="height" constant="33" id="wzJ-2s-2XH"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSI-qW-oeH">
-                                            <rect key="frame" x="264" y="158" width="130" height="69"/>
+                                            <rect key="frame" x="267" y="176" width="130" height="51"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="69" id="4ev-wo-Rg1"/>
-                                                <constraint firstAttribute="width" constant="130" id="bRn-7o-Oj9"/>
+                                                <constraint firstAttribute="height" constant="51" id="0Nd-kZ-TMJ"/>
+                                                <constraint firstAttribute="width" constant="130" id="2Fe-CP-pfA"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Floor" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fik-DH-S69">
-                                            <rect key="frame" x="16" y="176" width="224" height="33"/>
+                                            <rect key="frame" x="17" y="185" width="224" height="33"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="224" id="9Eg-C0-bdw"/>
-                                                <constraint firstAttribute="height" constant="33" id="fpV-Ko-FNb"/>
+                                                <constraint firstAttribute="width" constant="224" id="Pif-IW-xSv"/>
+                                                <constraint firstAttribute="height" constant="33" id="wez-Zy-OF2"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTs-MZ-Aby">
+                                            <rect key="frame" x="17" y="20" width="380" height="39"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="39" id="CyA-L5-Zh5"/>
+                                                <constraint firstAttribute="width" constant="380" id="Hiw-od-86n"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steps" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L32-AW-V5Q">
+                                            <rect key="frame" x="17" y="67" width="224" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="224" id="qFf-ZT-JZG"/>
+                                                <constraint firstAttribute="height" constant="33" id="sAE-4n-znl"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1152,8 +1162,8 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTn-er-JIW">
                                             <rect key="frame" x="8" y="235" width="398" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="398" id="4y6-27-oqp"/>
-                                                <constraint firstAttribute="height" constant="20.5" id="YQa-8a-bxi"/>
+                                                <constraint firstAttribute="width" constant="398" id="DTT-U3-XWF"/>
+                                                <constraint firstAttribute="height" constant="21" id="HlB-Ud-xs9"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
@@ -1161,25 +1171,24 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="LTn-er-JIW" firstAttribute="centerX" secondItem="2ha-Hp-dCs" secondAttribute="centerX" id="0Ts-Rk-LcE"/>
-                                        <constraint firstItem="l0w-X8-Js4" firstAttribute="leading" secondItem="2ha-Hp-dCs" secondAttribute="leadingMargin" constant="8" id="2Cg-I4-m4S"/>
-                                        <constraint firstItem="LTn-er-JIW" firstAttribute="trailing" secondItem="2ha-Hp-dCs" secondAttribute="trailingMargin" id="6Jp-ZC-yvf"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="gSI-qW-oeH" secondAttribute="trailing" constant="12" id="CEB-Ug-fq2"/>
-                                        <constraint firstItem="fik-DH-S69" firstAttribute="top" secondItem="l0w-X8-Js4" secondAttribute="bottom" constant="42" id="Gv1-ot-2xN"/>
-                                        <constraint firstItem="fik-DH-S69" firstAttribute="leading" secondItem="2ha-Hp-dCs" secondAttribute="leadingMargin" constant="8" id="HDh-hK-SiR"/>
-                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" id="Ia4-fe-mb4"/>
-                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="leading" secondItem="L32-AW-V5Q" secondAttribute="trailing" constant="24" id="Ns2-pe-x1Z"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="lhC-fK-nCq" secondAttribute="trailing" constant="12" id="SyO-ei-16L"/>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" constant="18" id="U36-2Z-AXp"/>
-                                        <constraint firstItem="l0w-X8-Js4" firstAttribute="top" secondItem="L32-AW-V5Q" secondAttribute="bottom" constant="42" id="VzC-47-kR1"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="hq0-Ch-l7Z" secondAttribute="trailing" constant="12" id="ath-vl-KSu"/>
-                                        <constraint firstItem="gSI-qW-oeH" firstAttribute="leading" secondItem="fik-DH-S69" secondAttribute="trailing" constant="24" id="dg9-ta-Vwx"/>
-                                        <constraint firstItem="hq0-Ch-l7Z" firstAttribute="top" secondItem="lhC-fK-nCq" secondAttribute="bottom" constant="6" id="dw7-La-cFs"/>
-                                        <constraint firstItem="LTn-er-JIW" firstAttribute="leading" secondItem="2ha-Hp-dCs" secondAttribute="leadingMargin" id="ifZ-Vh-KTu"/>
-                                        <constraint firstItem="gSI-qW-oeH" firstAttribute="top" secondItem="hq0-Ch-l7Z" secondAttribute="bottom" constant="6" id="p51-mm-F5z"/>
-                                        <constraint firstItem="hq0-Ch-l7Z" firstAttribute="leading" secondItem="l0w-X8-Js4" secondAttribute="trailing" constant="24" id="rWD-bV-e2e"/>
-                                        <constraint firstItem="LTn-er-JIW" firstAttribute="top" secondItem="gSI-qW-oeH" secondAttribute="bottom" constant="8" id="sKM-yM-ZYf"/>
-                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="leading" secondItem="2ha-Hp-dCs" secondAttribute="leadingMargin" constant="8" id="wUZ-jV-etU"/>
+                                        <constraint firstItem="l0w-X8-Js4" firstAttribute="leading" secondItem="TTs-MZ-Aby" secondAttribute="leading" id="9vN-32-qpE"/>
+                                        <constraint firstItem="gSI-qW-oeH" firstAttribute="centerY" secondItem="fik-DH-S69" secondAttribute="centerY" id="CBr-od-31b"/>
+                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="centerY" secondItem="L32-AW-V5Q" secondAttribute="centerY" id="HaV-7N-iH7"/>
+                                        <constraint firstItem="fik-DH-S69" firstAttribute="leading" secondItem="TTs-MZ-Aby" secondAttribute="leading" id="LtT-Hm-9ww"/>
+                                        <constraint firstItem="TTs-MZ-Aby" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" constant="12" id="LzE-y4-cYZ"/>
+                                        <constraint firstItem="LTn-er-JIW" firstAttribute="top" secondItem="gSI-qW-oeH" secondAttribute="bottom" constant="8" id="NxZ-YF-JFQ"/>
+                                        <constraint firstItem="hq0-Ch-l7Z" firstAttribute="centerY" secondItem="l0w-X8-Js4" secondAttribute="centerY" id="PyZ-tu-NqQ"/>
+                                        <constraint firstItem="hq0-Ch-l7Z" firstAttribute="trailing" secondItem="TTs-MZ-Aby" secondAttribute="trailing" id="TU0-mP-VWB"/>
+                                        <constraint firstItem="TTs-MZ-Aby" firstAttribute="leading" secondItem="2ha-Hp-dCs" secondAttribute="leadingMargin" constant="9" id="VRY-eT-2qi"/>
+                                        <constraint firstItem="gSI-qW-oeH" firstAttribute="top" secondItem="hq0-Ch-l7Z" secondAttribute="bottom" constant="8" id="Wkl-1C-oGK"/>
+                                        <constraint firstItem="TTs-MZ-Aby" firstAttribute="centerX" secondItem="2ha-Hp-dCs" secondAttribute="centerX" id="Ypz-Ep-98g"/>
+                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="trailing" secondItem="TTs-MZ-Aby" secondAttribute="trailing" id="Zgd-mk-3Kf"/>
+                                        <constraint firstItem="L32-AW-V5Q" firstAttribute="leading" secondItem="TTs-MZ-Aby" secondAttribute="leading" id="dUF-1B-nH8"/>
+                                        <constraint firstItem="TTs-MZ-Aby" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" constant="12" id="h43-LM-4uw"/>
+                                        <constraint firstItem="hq0-Ch-l7Z" firstAttribute="top" secondItem="lhC-fK-nCq" secondAttribute="bottom" constant="8" id="hJ9-bw-0nR"/>
+                                        <constraint firstItem="lhC-fK-nCq" firstAttribute="top" secondItem="2ha-Hp-dCs" secondAttribute="topMargin" constant="50" id="qrX-9Z-S5e"/>
+                                        <constraint firstItem="LTn-er-JIW" firstAttribute="centerX" secondItem="2ha-Hp-dCs" secondAttribute="centerX" id="qwu-ab-zhd"/>
+                                        <constraint firstItem="gSI-qW-oeH" firstAttribute="trailing" secondItem="TTs-MZ-Aby" secondAttribute="trailing" id="zIA-3F-l54"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1190,6 +1199,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                     <outlet property="numberFloor" destination="gSI-qW-oeH" id="ajV-We-EZT"/>
                                     <outlet property="numberSteps" destination="lhC-fK-nCq" id="RWZ-Mm-Ol6"/>
                                     <outlet property="stepsLabel" destination="L32-AW-V5Q" id="qbr-Yi-oHJ"/>
+                                    <outlet property="topLabel" destination="TTs-MZ-Aby" id="z1E-Be-nIv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1366,8 +1376,8 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X.X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwU-1d-FuE">
-                                            <rect key="frame" x="142" y="71" width="129" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10.0 / 10.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwU-1d-FuE">
+                                            <rect key="frame" x="142" y="71" width="90" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="pyp-X7-OzB"/>
                                             </constraints>
@@ -1385,8 +1395,8 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                             <color key="textColor" red="0.86583989859999999" green="1" blue="0.43962627650000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxe-DD-JRR">
-                                            <rect key="frame" x="71" y="41" width="0.0" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxe-DD-JRR">
+                                            <rect key="frame" x="71" y="41" width="86" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="34" id="5ia-KL-ZTa"/>
                                                 <constraint firstAttribute="height" constant="21" id="Aqn-wg-Mna"/>
@@ -1433,8 +1443,7 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="2tL-5N-Cep">
                                             <rect key="frame" x="279" y="21" width="121" height="121"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="121" id="09F-EG-I1w"/>
-                                                <constraint firstAttribute="width" constant="121" id="upP-fq-UNN"/>
+                                                <constraint firstAttribute="width" secondItem="2tL-5N-Cep" secondAttribute="height" multiplier="1:1" id="roc-9F-8dv"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -1450,11 +1459,14 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <constraint firstItem="ubC-mK-vJI" firstAttribute="top" secondItem="nMJ-je-SMs" secondAttribute="bottom" constant="7" id="7fu-Zt-MYW"/>
                                         <constraint firstItem="r9J-dx-r1P" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="8Dh-NT-vXt"/>
                                         <constraint firstItem="HGm-V7-muD" firstAttribute="leading" secondItem="nMJ-je-SMs" secondAttribute="trailing" constant="13" id="8VC-KE-50h"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="centerY" secondItem="BwU-1d-FuE" secondAttribute="centerY" id="C40-3a-GDf"/>
                                         <constraint firstItem="SUj-9s-dgp" firstAttribute="top" secondItem="qxe-DD-JRR" secondAttribute="bottom" constant="9" id="Djg-fH-vV2"/>
                                         <constraint firstItem="TLy-Il-23m" firstAttribute="leading" secondItem="TW7-ho-klW" secondAttribute="trailing" constant="25" id="F2D-TX-HyK"/>
                                         <constraint firstItem="TW7-ho-klW" firstAttribute="top" secondItem="SUj-9s-dgp" secondAttribute="bottom" constant="8" id="FF7-bT-sI5"/>
                                         <constraint firstItem="WAa-dn-X4D" firstAttribute="centerY" secondItem="r9J-dx-r1P" secondAttribute="centerY" id="HKz-38-wIj"/>
                                         <constraint firstItem="HGm-V7-muD" firstAttribute="centerY" secondItem="nMJ-je-SMs" secondAttribute="centerY" id="IFZ-Ug-3xZ"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="2tL-5N-Cep" secondAttribute="trailing" constant="6" id="LES-HD-pJ7"/>
+                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="top" secondItem="SU8-cO-ret" secondAttribute="topMargin" constant="13" id="Mqx-4w-ypa"/>
                                         <constraint firstItem="nMJ-je-SMs" firstAttribute="top" secondItem="SU8-cO-ret" secondAttribute="topMargin" constant="5" id="NQg-xt-JSC"/>
                                         <constraint firstItem="r9J-dx-r1P" firstAttribute="top" secondItem="TLy-Il-23m" secondAttribute="bottom" constant="8" id="SPG-qt-Xl4"/>
                                         <constraint firstItem="ubC-mK-vJI" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="T1C-nA-SYK"/>
@@ -1463,13 +1475,11 @@ Your BMR is the amount of energy your body needs to function. We use about 60% o
                                         <constraint firstItem="nMJ-je-SMs" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="Zji-cV-y2k"/>
                                         <constraint firstItem="BwU-1d-FuE" firstAttribute="centerY" secondItem="SUj-9s-dgp" secondAttribute="centerY" id="dSK-lo-cUM"/>
                                         <constraint firstItem="TLy-Il-23m" firstAttribute="leading" secondItem="BwU-1d-FuE" secondAttribute="leading" id="eXp-E6-Glx"/>
-                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="trailing" secondItem="SU8-cO-ret" secondAttribute="trailingMargin" constant="-6" id="fQG-hg-Pn7"/>
                                         <constraint firstItem="WAa-dn-X4D" firstAttribute="leading" secondItem="BwU-1d-FuE" secondAttribute="leading" constant="25" id="flF-gw-Vtd"/>
                                         <constraint firstItem="TW7-ho-klW" firstAttribute="leading" secondItem="SU8-cO-ret" secondAttribute="leadingMargin" id="gtv-2U-zju"/>
                                         <constraint firstItem="qxe-DD-JRR" firstAttribute="leading" secondItem="ubC-mK-vJI" secondAttribute="trailing" constant="4" id="lZd-M1-4vF"/>
                                         <constraint firstItem="WAa-dn-X4D" firstAttribute="leading" secondItem="r9J-dx-r1P" secondAttribute="trailing" constant="18" id="m6F-gT-0im"/>
-                                        <constraint firstItem="2tL-5N-Cep" firstAttribute="centerY" secondItem="SU8-cO-ret" secondAttribute="centerY" constant="2" id="mdT-4W-A3s"/>
-                                        <constraint firstItem="TLy-Il-23m" firstAttribute="trailing" secondItem="BwU-1d-FuE" secondAttribute="trailing" constant="-85" id="msP-Qu-5aI"/>
+                                        <constraint firstItem="TLy-Il-23m" firstAttribute="trailing" secondItem="BwU-1d-FuE" secondAttribute="trailing" constant="-46" id="msP-Qu-5aI"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.25490196079999999" green="0.25490196079999999" blue="0.25490196079999999" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>

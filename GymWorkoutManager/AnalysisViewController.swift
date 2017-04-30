@@ -86,7 +86,9 @@ class AnalysisViewController: UITableViewController {
             cell.graphicView.data = pieChartDatas
             cell.graphicView.legend.enabled = false
             cell.graphicView.chartDescription?.text = ""
-            
+            if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+                cell.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            }
             return cell
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "pedmeterCell", for: indexPath) as? PedmeterViewCell else {
@@ -118,6 +120,9 @@ class AnalysisViewController: UITableViewController {
                         })
                     }
                 })
+            }
+            if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+                cell.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
             }
             return cell
         }
@@ -168,9 +173,6 @@ class AnalysisViewController: UITableViewController {
         self.tableView.backgroundColor = GWMColorBackground
         self.tableView.separatorColor = UIColor.clear
         self.tableView.delegate = self
-        if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
-            self.view.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

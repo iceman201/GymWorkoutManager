@@ -39,6 +39,9 @@ class RecordViewController: UITableViewController {
         }
         if (indexPath as NSIndexPath).section == 0 {
             let infoCell = self.tableView.dequeueReusableCell(withIdentifier: "picture", for: indexPath) as! RecordInfoCell
+            if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+                infoCell.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            }
             if let user = curentUser {
                 DatabaseHelper.sharedInstance.beginTransaction()
                 infoCell.activeDay.text = "\(user.activedDays)"
@@ -71,6 +74,9 @@ class RecordViewController: UITableViewController {
             return infoCell
         } else {
             let recordCell = self.tableView.dequeueReusableCell(withIdentifier: "contentCell", for: indexPath)
+            if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
+                recordCell.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+            }
             guard let user = curentUser else {
                 return UITableViewCell()
             }
@@ -144,6 +150,8 @@ class RecordViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         tableView.delegate = self
         tableView.dataSource = self
         self.view.backgroundColor = GWMColorBackground

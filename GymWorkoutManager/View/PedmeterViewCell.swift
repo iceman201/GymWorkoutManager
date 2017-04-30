@@ -23,8 +23,10 @@ class PedmeterViewCell: UITableViewCell {
     
     @IBOutlet weak var numberFloor: UILabel!
     
+    @IBOutlet weak var topLabel: UILabel!
     
     override func awakeFromNib() {
+        topLabel.textColor = .white
         numberSteps.textColor = .white
         numberDistance.textColor = .white
         numberFloor.textColor = .white
@@ -33,9 +35,9 @@ class PedmeterViewCell: UITableViewCell {
         floorLabel.textColor = .white
         distanceLabel.textColor = .white
         
-        stepsLabel.text = "Steps of today"
-        distanceLabel.text = "Walking Distance of today"
-        floorLabel.text = "Flights Climbed of today"
+        stepsLabel.text = "Steps"
+        distanceLabel.text = "Walking Distance"
+        floorLabel.text = "Flights Climbed"
         
         bottomLabel.textColor = UIColor.white
         bottomLabel.text = "* Tap for Steps history."
