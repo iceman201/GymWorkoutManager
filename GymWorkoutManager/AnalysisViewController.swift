@@ -74,17 +74,16 @@ class AnalysisViewController: UITableViewController {
                 }
             }
 
-            let textColor: [UIColor] = [UIColor.white, UIColor.black,UIColor.white]
             cell.title.text = "Proportion of Workout"
             
             let dataSet = PieChartDataSet(values: dataEntries, label: "")
             dataSet.colors = dataEntryColor
-            dataSet.valueColors = textColor
-            
+            dataSet.valueColors = [UIColor.clear]
             let pieChartDatas = PieChartData(dataSet: dataSet)
             
             cell.graphicView.data = pieChartDatas
             cell.graphicView.legend.enabled = false
+            
             cell.graphicView.chartDescription?.text = ""
             if DeviceType.IS_IPHONE_5 || DeviceType.IS_IPHONE_4_OR_LESS {
                 cell.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
