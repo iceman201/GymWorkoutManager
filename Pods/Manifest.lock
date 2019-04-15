@@ -1,4 +1,12 @@
 PODS:
+  - AppCenter (1.14.0):
+    - AppCenter/Analytics (= 1.14.0)
+    - AppCenter/Crashes (= 1.14.0)
+  - AppCenter/Analytics (1.14.0):
+    - AppCenter/Core
+  - AppCenter/Core (1.14.0)
+  - AppCenter/Crashes (1.14.0):
+    - AppCenter/Core
   - AVOSCloud (11.6.1)
   - AVOSCloudIM (11.6.1):
     - AVOSCloud (= 11.6.1)
@@ -26,6 +34,7 @@ PODS:
   - ScrollableGraphView (4.0.6)
 
 DEPENDENCIES:
+  - AppCenter
   - AVOSCloud
   - AVOSCloudIM
   - Charts
@@ -39,6 +48,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - AppCenter
     - AVOSCloud
     - AVOSCloudIM
     - Charts
@@ -51,6 +61,7 @@ SPEC REPOS:
     - ScrollableGraphView
 
 SPEC CHECKSUMS:
+  AppCenter: 02c5efe08d3bbab5421ae41d5f7aa7238906b817
   AVOSCloud: 75fe137e0d4eae392047824cea66c9b99a2ea574
   AVOSCloudIM: cc2079356c197f69d85d3cf6e1c99c5a1b6c0430
   Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
@@ -62,6 +73,6 @@ SPEC CHECKSUMS:
   RealmSwift: 12b8262fc08020b47de4fd88eb3d5c9425b34ec7
   ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
 
-PODFILE CHECKSUM: 1e6514497f150d87195e5847da3770c2a3981f07
+PODFILE CHECKSUM: 801ef273f1938dbb597e78ce443ef2f0dcbd0a1b
 
 COCOAPODS: 1.6.1
