@@ -8,6 +8,9 @@
 
 import UIKit
 import RealmSwift
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,8 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
+        MSAppCenter.start("9d9c4756-e81b-4a68-a39a-8c21fa93b372", withServices:[
+            MSAnalytics.self,
+            MSCrashes.self
+            ])
+        MSAppCenter.start("9d9c4756-e81b-4a68-a39a-8c21fa93b372", withServices:[ MSAnalytics.self, MSCrashes.self ])
 
-        
         CommonUtils.scheduleLocalNotification()        
         print("--------- Realm path---------")
         print(Realm.Configuration.defaultConfiguration.fileURL ?? "")

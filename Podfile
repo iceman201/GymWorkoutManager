@@ -11,6 +11,7 @@ pod 'JVFloatLabeledTextField'
 pod 'AVOSCloud' 
 pod 'AVOSCloudIM'
 pod 'CVCalendar'
+pod 'AppCenter'
 
 target 'GymWorkoutManager' do
 
