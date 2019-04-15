@@ -3,13 +3,14 @@ use_frameworks!
 
 pod 'Realm'
 pod 'RealmSwift'
-pod 'Charts/Realm'
-pod 'CircleMenu', '~> 1.0.0'
+pod 'Charts'
+pod 'ChartsRealm'
+pod 'CircleMenu'
 pod 'ScrollableGraphView'
 pod 'JVFloatLabeledTextField'
 pod 'AVOSCloud' 
 pod 'AVOSCloudIM'
-pod 'CVCalendar', '~> 1.4.0'
+pod 'CVCalendar'
 
 target 'GymWorkoutManager' do
 

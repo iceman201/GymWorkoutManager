@@ -12,24 +12,22 @@
 
 @interface AVUser ()
 
-@property (nonatomic, readwrite, copy) NSString *facebookToken;
-@property (nonatomic, readwrite, copy) NSString *twitterToken;
-@property (nonatomic, readwrite, copy) NSString *sinaWeiboToken;
-@property (nonatomic, readwrite, copy) NSString *qqWeiboToken;
 @property (nonatomic, readwrite) BOOL isNew;
 @property (nonatomic, readwrite) BOOL mobilePhoneVerified;
 
+- (BOOL)isAuthDataExistInMemory;
+
 + (AVUser *)userOrSubclassUser;
 
-+(NSString *)userTag;
-+(BOOL)isAutomaticUserEnabled;
-+(void)disableAutomaticUser;
++ (NSString *)userTag;
 
-+(NSString *)endPoint;
--(NSString *)internalClassName;
--(void)setNewFlag:(BOOL)isNew;
-
-+(void)removeCookies;
++ (NSString *)endPoint;
+- (NSString *)internalClassName;
+- (void)setNewFlag:(BOOL)isNew;
 
 - (NSArray *)linkedServiceNames;
+
++ (void)configAndChangeCurrentUserWithUser:(AVUser *)user
+                                    object:(id)object;
+
 @end

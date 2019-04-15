@@ -34,7 +34,7 @@ class CommonUtils {
 }
 
 func timeToSecond(_ time: String) -> Int {
-    let formater = time.characters.split{$0 == ":"}.map(String.init)
+    let formater = time.split{$0 == ":"}.map(String.init)
     let mins = Int(formater[0])
     let sec = Int(formater[1])
     guard let m = mins, let s = sec else {
@@ -72,7 +72,8 @@ extension UIColor {
             
             // Remove the leading "#"
             if(hexString[hexString.startIndex] == "#") {
-                cleanedHexString = hexString.substring(from: hexString.characters.index(hexString.startIndex, offsetBy: 1))
+                let index = hexString.index(hexString.startIndex, offsetBy: 1)
+                cleanedHexString = String(hexString[index...])
             }
             
             // TODO: Other cleanup. Allow for a "short" hex string, i.e., "#fff"
@@ -200,16 +201,16 @@ extension UIButton {
         let spacing: CGFloat = 6.0
         let imageSize: CGSize = self.imageView!.image!.size
         let labelString = NSString(string: self.titleLabel!.text!)
-        let titleSize = labelString.size(attributes: [NSFontAttributeName: self.titleLabel!.font])
+        let titleSize = labelString.size(withAttributes: [NSAttributedString.Key.font: self.titleLabel!.font])
         let edgeOffset = abs(titleSize.height - imageSize.height) / 2.0
         
-        self.imageEdgeInsets = UIEdgeInsetsMake(-(titleSize.height + spacing), 0.0, 0.0, -titleSize.width)
+        self.imageEdgeInsets = UIEdgeInsets(top: -(titleSize.height + spacing), left: 0.0, bottom: 0.0, right: -titleSize.width)
         if DeviceType.IS_IPHONE_6P {
-            self.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing)*2, 0.0)
-            self.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset*3.5, 0.0, edgeOffset, 0.0)
+            self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: -imageSize.width, bottom: -(imageSize.height + spacing)*2, right: 0.0)
+            self.contentEdgeInsets = UIEdgeInsets(top: edgeOffset*3.5, left: 0.0, bottom: edgeOffset, right: 0.0)
         } else {
-            self.titleEdgeInsets = UIEdgeInsetsMake(0.0, -imageSize.width, -(imageSize.height + spacing)*1.5, 0.0)
-            self.contentEdgeInsets = UIEdgeInsetsMake(edgeOffset*2, 0.0, edgeOffset, 0.0)
+            self.titleEdgeInsets = UIEdgeInsets(top: 0.0, left: -imageSize.width, bottom: -(imageSize.height + spacing)*1.5, right: 0.0)
+            self.contentEdgeInsets = UIEdgeInsets(top: edgeOffset*2, left: 0.0, bottom: edgeOffset, right: 0.0)
         }
     }
 }

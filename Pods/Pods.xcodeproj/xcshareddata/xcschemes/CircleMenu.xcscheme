@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0820"
+   LastUpgradeVersion = "1020"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "27533A6098E2BDD80827924FA8F4E742"
+               BlueprintIdentifier = "FE0EA4A854B31B97AB23A6135FCBFABD"
                BuildableName = "CircleMenu.framework"
                BlueprintName = "CircleMenu"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27533A6098E2BDD80827924FA8F4E742"
+            BlueprintIdentifier = "FE0EA4A854B31B97AB23A6135FCBFABD"
             BuildableName = "CircleMenu.framework"
             BlueprintName = "CircleMenu"
             ReferencedContainer = "container:Pods.xcodeproj">
@@ -63,7 +63,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "27533A6098E2BDD80827924FA8F4E742"
+            BlueprintIdentifier = "FE0EA4A854B31B97AB23A6135FCBFABD"
             BuildableName = "CircleMenu.framework"
             BlueprintName = "CircleMenu"
             ReferencedContainer = "container:Pods.xcodeproj">

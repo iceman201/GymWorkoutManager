@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    internal func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // this for AVOS settings
         AVOSCloud.setApplicationId("ms40eP4IP5JGJEHiKAqJqCHj-gzGzoHsz", clientKey: "EM5S0GFMiAtvhHh88opBM3FY")
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().tintColor = GWMColorPurple
         UINavigationBar.appearance().backgroundColor = GWMColorYellow
-        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName : GWMColorPurple]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor : GWMColorPurple]
         
         return true
     }
@@ -66,8 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let currentInstallation = AVInstallation.current()
-        currentInstallation?.setDeviceTokenFrom(deviceToken)
-        currentInstallation?.saveInBackground()
+        currentInstallation.setDeviceTokenFrom(deviceToken)
+        currentInstallation.saveInBackground()
     }
     
 

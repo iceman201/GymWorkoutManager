@@ -8,65 +8,51 @@
 
 #import <Foundation/Foundation.h>
 
-FOUNDATION_EXPORT NSString *const LCRouterDidUpdateNotification;
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NSString * const RouterCacheKey NS_TYPED_EXTENSIBLE_ENUM;
+FOUNDATION_EXPORT RouterCacheKey RouterCacheKeyApp;
+FOUNDATION_EXPORT RouterCacheKey RouterCacheKeyRTM;
 
 @interface LCRouter : NSObject
 
 + (instancetype)sharedInstance;
 
 /**
- Get API URL string.
+ Custom API version.
 
- @return API URL string.
+ @param APIVersion Format eg. '1.1'.
  */
-- (NSString *)APIURLString;
++ (void)setAPIVersion:(NSString *)APIVersion;
 
 /**
- Get versioned API URL string.
+ Custom RTM router API path.
 
- @return Versioned API URL string.
+ @param RTMRouterPath Format eg. '/v1/route'.
  */
-- (NSString *)versionedAPIURLString;
++ (void)setRTMRouterPath:(NSString *)RTMRouterPath;
 
 /**
- Get versioned API URL.
+ Custom router cache directory path.
 
- @return Versioned API URL.
+ @param directoryPath Path.
  */
-- (NSURL *)versionedAPIURL;
++ (void)setRouterCacheDirectoryPath:(NSString *)directoryPath;
 
 /**
- Get push router URL string.
+ Clean disk cache.
 
- @return push router URL string.
+ @param key Cache type.
+ @param error Error.
  */
-- (NSString *)pushRouterURLString;
+- (void)cleanCacheWithKey:(RouterCacheKey)key error:(NSError * __autoreleasing *)error;
 
-/**
- Cache API host for service region.
+// MARK: - Deprecated
 
- @param host          The API host to be cached.
- @param lastModified  The last modified timestamp since 1970 in seconds.
- @param TTL           The time-to-live timestamp in seconds.
- */
-- (void)cacheAPIHostWithHost:(NSString *)host
-                lastModified:(NSTimeInterval)lastModified
-                         TTL:(NSTimeInterval)TTL;
-
-/**
- Cache push router host for service region.
-
- @param host          The push router host to be cached.
- @param lastModified  The last modified timestamp since 1970 in seconds.
- @param TTL           The time-to-live timestamp in seconds.
- */
-- (void)cachePushRouterHostWithHost:(NSString *)host
-                       lastModified:(NSTimeInterval)lastModified
-                                TTL:(NSTimeInterval)TTL;
-
-/**
- Update router asynchronously.
- */
-- (void)updateInBackground;
+/// for compatibility
+- (NSString *)URLStringForPath:(NSString *)path __deprecated;
 
 @end
+
+NS_ASSUME_NONNULL_END
+

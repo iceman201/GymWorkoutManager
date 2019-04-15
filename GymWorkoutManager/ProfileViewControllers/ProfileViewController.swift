@@ -69,16 +69,16 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     @IBAction func selectPicture(_ sender: AnyObject) {
         let alert = UIAlertController(title: "Profile image", message: "Upload your profile image.", preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (UIAlertAction) in
-            self.popupImageSelection(UIImagePickerControllerSourceType.camera)
+            self.popupImageSelection(UIImagePickerController.SourceType.camera)
         }))
         alert.addAction(UIAlertAction(title: "Choose from Library", style: .default, handler: { (UIAlertAction) in
-            self.popupImageSelection(UIImagePickerControllerSourceType.photoLibrary)
+            self.popupImageSelection(UIImagePickerController.SourceType.photoLibrary)
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
-    fileprivate func popupImageSelection(_ type: UIImagePickerControllerSourceType) {
+    fileprivate func popupImageSelection(_ type: UIImagePickerController.SourceType) {
         let myPickerController = UIImagePickerController()
         myPickerController.delegate = self
         myPickerController.sourceType = type
@@ -114,20 +114,20 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         }
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
             return
         }
         
         let imageWithFixedDirection = fixOrientation(image)
         DatabaseHelper.sharedInstance.beginTransaction()
-        if let imageSourceData = UIImagePNGRepresentation(imageWithFixedDirection) {
+        if let imageSourceData = imageWithFixedDirection.pngData() {
             if curentUser!.profilePicture != nil {
                 curentUser!.profilePicture = nil
             }
-            profilePicture.setTitle("", for: UIControlState.normal)
+            profilePicture.setTitle("", for: UIControl.State.normal)
             curentUser!.profilePicture = imageSourceData
-            profilePicture.setImage(UIImage(data: imageSourceData), for: UIControlState())
+            profilePicture.setImage(UIImage(data: imageSourceData), for: UIControl.State())
             
             //profilePicture.setBackgroundImage(UIImage(data: imageSourceData), for: .normal)
         }
@@ -144,7 +144,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
     
     fileprivate func fixOrientation(_ image:UIImage) -> UIImage {
-        if (image.imageOrientation == UIImageOrientation.up) {
+        if (image.imageOrientation == UIImage.Orientation.up) {
             return image
         }
         UIGraphicsBeginImageContextWithOptions(image.size, false, image.scale)
@@ -254,7 +254,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         
         keyboardIsShown = false
         
-        profilePicture.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+        profilePicture.imageView?.contentMode = UIView.ContentMode.scaleAspectFill
         profilePicture.imageView?.layer.cornerRadius = 0.5 * profilePicture.bounds.width
         
         let cusers = DatabaseHelper.sharedInstance.queryAll(Person())
@@ -267,8 +267,8 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
         if let user = curentUser {
             DatabaseHelper.sharedInstance.beginTransaction()
             if let userPicture = user.profilePicture {
-                profilePicture.setTitle("", for: UIControlState.normal)
-                profilePicture.setImage(UIImage(data: userPicture as Data), for: UIControlState())
+                profilePicture.setTitle("", for: UIControl.State.normal)
+                profilePicture.setImage(UIImage(data: userPicture as Data), for: UIControl.State())
             }
             name.text = user.name
             bodyHeight.text = user.height
@@ -314,7 +314,7 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
         view.removeGestureRecognizer(tapRecognizer!)
     }
     
-    func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
+    @objc func handleSingleTap(_ recognizer: UITapGestureRecognizer) {
         view.endEditing(true)
     }
     
@@ -328,16 +328,16 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
     }
     
     func subscribeToKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeToKeyboardNotifications() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func keyboardWillShow(_ notification: Foundation.Notification) {
+    @objc func keyboardWillShow(_ notification: Foundation.Notification) {
         print("keyboard will show")
         print("height is " + String(describing: getKeyboardHeight(notification)/2))
         print("view frame origin y is " + String(describing: view.frame.origin.y))
@@ -348,7 +348,7 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
     }
 
     
-    func keyboardWillHide(_ notification: Foundation.Notification) {
+    @objc func keyboardWillHide(_ notification: Foundation.Notification) {
         print("keyboard will hide")
         view.frame.origin.y = 0.0
         keyboardIsShown = false
@@ -356,7 +356,7 @@ extension ProfileViewController:UIGestureRecognizerDelegate {
     
     func getKeyboardHeight(_ notification: Foundation.Notification) -> CGFloat {
         let userInfo = (notification as NSNotification).userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
 }

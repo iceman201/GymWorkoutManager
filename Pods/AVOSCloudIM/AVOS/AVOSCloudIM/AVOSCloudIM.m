@@ -6,26 +6,22 @@
 //  Copyright © 2016 LeanCloud Inc. All rights reserved.
 //
 
-#import <AVOSCloud/AVOSCloud.h>
-
 #import "AVOSCloudIM.h"
+
+@implementation AVIMOptions
+
+@end
 
 @implementation AVOSCloudIM
 
-+ (void)registerForRemoteNotification {
-    [AVOSCloud registerForRemoteNotification];
-}
-
-+ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories {
-    [AVOSCloud registerForRemoteNotificationTypes:types categories:categories];
-}
-
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken constructingInstallationWithBlock:(void (^)(AVInstallation *))block {
-    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken constructingInstallationWithBlock:block];
-}
-
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [AVOSCloud handleRemoteNotificationsWithDeviceToken:deviceToken];
++ (AVIMOptions *)defaultOptions
+{
+    static AVIMOptions *options;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        options = [[AVIMOptions alloc] init];
+    });
+    return options;
 }
 
 @end

@@ -12,15 +12,9 @@
 #import "AVIMTypedMessage_Internal.h"
 #import "AVIMGeneralObject.h"
 #import "AVIMMessage_Internal.h"
+#import "AVFile_Internal.h"
 
 NSMutableDictionary const *_typeDict = nil;
-
-@interface AVFile ()
-
-+(AVFile *)fileFromDictionary:(NSDictionary *)dict;
-+(NSDictionary *)dictionaryFromFile:(AVFile *)file;
-
-@end
 
 @interface AVGeoPoint ()
 
@@ -33,44 +27,6 @@ NSMutableDictionary const *_typeDict = nil;
 
 @synthesize file = _file;
 @synthesize location = _location;
-
-//+ (instancetype)messageWithText:(NSString *)text
-//                      mediaType:(AVIMMessageMediaType)mediaType
-//                  attachmentUrl:(NSString *)attachmentUrl {
-//    return [self messageWithText:text mediaType:mediaType attachmentUrl:attachmentUrl attributes:nil];
-//}
-//
-//+ (instancetype)messageWithText:(NSString *)text
-//                      mediaType:(AVIMMessageMediaType)mediaType
-//                  attachmentUrl:(NSString *)attachmentUrl
-//                     attributes:(NSDictionary *)attributes {
-//    AVIMTypedMessage *message = [[self alloc] init];
-//    message.text = text;
-//    message.mediaType = mediaType;
-//    message.attachmentUrl = attachmentUrl;
-//    message.attributes = attributes;
-//    message.ioType = AVIMMessageIOTypeOut;
-//    return message;
-//}
-//
-//+ (instancetype)messageWithText:(NSString *)text
-//                      mediaType:(AVIMMessageMediaType)mediaType
-//                           data:(NSData *)data {
-//    return [self messageWithText:text mediaType:mediaType data:data attributes:nil];
-//}
-//
-//+ (instancetype)messageWithText:(NSString *)text
-//                      mediaType:(AVIMMessageMediaType)mediaType
-//                           data:(NSData *)data
-//                     attributes:(NSDictionary *)attributes {
-//    AVIMTypedMessage *message = [[self alloc] init];
-//    message.text = text;
-//    message.mediaType = mediaType;
-//    message.attributes = attributes;
-//    message.ioType = AVIMMessageIOTypeOut;
-//    message.data = data;
-//    return message;
-//}
 
 + (void)registerSubclass {
     if ([self conformsToProtocol:@protocol(AVIMTypedMessageSubclassing)]) {
@@ -99,25 +55,21 @@ NSMutableDictionary const *_typeDict = nil;
 }
 
 + (instancetype)messageWithText:(NSString *)text
-                      mediaType:(AVIMMessageMediaType)mediaType
                attachedFilePath:(NSString *)attachedFilePath
-                     attributes:(NSDictionary *)attributes {
-    AVIMTypedMessage *message = [[self alloc] init];
-    message.text = text;
-    message.mediaType = mediaType;
-    message.attributes = attributes;
-    message.attachedFilePath = attachedFilePath;
-    return message;
-}
-
-+ (instancetype)messageWithText:(NSString *)text
-               attachedFilePath:(NSString *)attachedFilePath
-                     attributes:(NSDictionary *)attributes {
-    AVIMTypedMessage *message = [[self alloc] init];
-    message.text = text;
-    message.attributes = attributes;
-    message.attachedFilePath = attachedFilePath;
-    return message;
+                     attributes:(NSDictionary *)attributes
+{
+    NSError *error = nil;
+    
+    AVFile *file = [AVFile fileWithLocalPath:attachedFilePath error:&error];
+    
+    if (error) {
+        
+        AVLoggerError(AVLoggerDomainStorage, @"Error: %@", error);
+        
+        return nil;
+    }
+    
+    return [self messageWithText:text file:file attributes:attributes];
 }
 
 + (instancetype)messageWithText:(NSString *)text
@@ -131,7 +83,7 @@ NSMutableDictionary const *_typeDict = nil;
 }
 
 + (AVFile *)fileFromDictionary:(NSDictionary *)dictionary {
-    return dictionary ? [AVFile fileFromDictionary:dictionary] : nil;
+    return dictionary ? [[AVFile alloc] initWithRawJSONData:dictionary.mutableCopy] : nil;
 }
 
 + (AVGeoPoint *)locationFromDictionary:(NSDictionary *)dictionary {
@@ -163,11 +115,6 @@ NSMutableDictionary const *_typeDict = nil;
     AVIMTypedMessage *message = [super copyWithZone:zone];
     if (message) {
         message.messageObject = self.messageObject;
-//        message.mediaType = self.mediaType;
-//        message.text = self.text;
-////        message.attachmentUrl = self.attachmentUrl;
-//        message.attributes = self.attributes;
-        message.attachedFilePath = self.attachedFilePath;
         message.file = self.file;
         message.location = self.location;
     }
@@ -178,7 +125,6 @@ NSMutableDictionary const *_typeDict = nil;
     [super encodeWithCoder:coder];
     NSData *data = [self.messageObject messagePack];
     [coder encodeObject:data forKey:@"typedMessage"];
-    [coder encodeObject:self.attachedFilePath forKey:@"attachedFilePath"];
 }
 
 - (instancetype)init {
@@ -194,10 +140,8 @@ NSMutableDictionary const *_typeDict = nil;
 - (id)initWithCoder:(NSCoder *)coder {
     if ((self = [super initWithCoder:coder])) {
         NSData *data = [coder decodeObjectForKey:@"typedMessage"];
-        NSString *attachedFilePath = [coder decodeObjectForKey:@"attachedFilePath"];
         AVIMTypedMessageObject *object = [[AVIMTypedMessageObject alloc] initWithMessagePack:data];
         self.messageObject = object;
-        self.attachedFilePath = attachedFilePath;
         self.file = [[self class] fileFromDictionary:object._lcfile];
         self.location = [[self class] locationFromDictionary:object._lcloc];
     }
@@ -227,14 +171,6 @@ NSMutableDictionary const *_typeDict = nil;
     self.messageObject._lctext = text;
 }
 
-//- (NSString *)attachmentUrl {
-//    return self.messageObject.url;
-//}
-//
-//- (void)setAttachmentUrl:(NSString *)attachmentUrl {
-//    self.messageObject.url = attachmentUrl;
-//}
-//
 - (NSDictionary *)attributes {
     return self.messageObject._lcattrs;
 }
@@ -250,14 +186,14 @@ NSMutableDictionary const *_typeDict = nil;
     NSDictionary *dictionary = self.messageObject._lcfile;
 
     if (dictionary)
-        return [AVFile fileFromDictionary:dictionary];
+        return [[AVFile alloc] initWithRawJSONData:dictionary.mutableCopy];
 
     return nil;
 }
 
 - (void)setFile:(AVFile *)file {
     _file = file;
-    self.messageObject._lcfile = file ? [AVFile dictionaryFromFile:file] : nil;
+    self.messageObject._lcfile = file ? [file rawJSONDataCopy] : nil;
 }
 
 - (AVGeoPoint *)location {
@@ -281,6 +217,10 @@ NSMutableDictionary const *_typeDict = nil;
     [self.messageObject setObject:object forKey:key];
 }
 
+- (id)objectForKey:(NSString *)key {
+    return [self.messageObject objectForKey:key];
+}
+
 - (NSString *)payload {
     NSDictionary *dict = [self.messageObject dictionary];
 
@@ -291,12 +231,4 @@ NSMutableDictionary const *_typeDict = nil;
     }
 }
 
-//
-//- (NSDictionary *)metaData {
-//    return self.messageObject.metaData;
-//}
-//
-//- (void)setMetaData:(NSDictionary *)metaData {
-//    self.messageObject.metaData =metaData;
-//}
 @end

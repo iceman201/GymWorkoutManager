@@ -121,8 +121,8 @@ class RecordViewController: UITableViewController {
         cell.selectionStyle = .none
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == UITableViewCellEditingStyle.delete) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCell.EditingStyle.delete) {
             do {
                 let realm = try Realm()
                 try realm.write {
@@ -145,7 +145,7 @@ class RecordViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return UITableView.automaticDimension
     }
 
     override func viewDidLoad() {
@@ -170,7 +170,7 @@ class RecordViewController: UITableViewController {
         self.navigationController?.navigationBar.topItem?.rightBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(editTable))
     }
     
-    func editTable() {
+    @objc func editTable() {
         if self.tableView.isEditing {
             self.tableView.setEditing(false, animated: true)
         } else {

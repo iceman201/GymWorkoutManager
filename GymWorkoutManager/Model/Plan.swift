@@ -8,7 +8,7 @@
 import RealmSwift
 
 class Plan: Object {
-    dynamic var date = ""
-    dynamic var exerciseType = ""
-    dynamic var detail = ""
+    @objc dynamic var date = ""
+    @objc dynamic var exerciseType = ""
+    @objc dynamic var detail = ""
 }

@@ -7,6 +7,7 @@
 //
 
 #import "AVPersistenceUtils.h"
+#import <TargetConditionals.h>
 #import "AVUtils.h"
 
 #define LCRootDirName @"LeanCloud"
@@ -14,19 +15,13 @@
 
 @implementation AVPersistenceUtils
 
-#pragma mark - Base Path
-
-/// Base path, all paths depend it
-+ (NSString *)homeDirectoryPath {
-#if AV_IOS_ONLY
+// MARK: - Home Directory: ~/
++ (NSString *)homeDirectory
+{
+#if TARGET_OS_IPHONE
     return NSHomeDirectory();
-#else
-    return [self osxBaseDirectoryPath];
-#endif
-}
-
-/// ~/Library/Application Support/LeanCloud/appId
-+ (NSString *)osxBaseDirectoryPath {
+#elif TARGET_OS_OSX
+    /// ~/Library/Application Support/LeanCloud/appId
     NSAssert([AVOSCloud getApplicationId] != nil, @"Please call +[AVOSCloud setApplicationId:clientKey:] first.");
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString *directoryPath = [paths firstObject];
@@ -34,77 +29,87 @@
     directoryPath = [directoryPath stringByAppendingPathComponent:[AVOSCloud getApplicationId]];
     [self createDirectoryIfNeeded:directoryPath];
     return directoryPath;
+#else
+    return nil;
+#endif
+}
+
+// MARK: - ~/Library
++ (NSString *)homeDirectoryLibrary
+{
+    return [[self homeDirectory] stringByAppendingPathComponent:@"Library"];
+}
+
+// MARK: - ~/Library/Caches
++ (NSString *)homeDirectoryLibraryCaches
+{
+    return [[self homeDirectoryLibrary] stringByAppendingPathComponent:@"Caches"];
+}
+
+// MARK: - ~/Library/Caches/com.leancloud.caches
++ (NSString *)homeDirectoryLibraryCachesLeanCloudCaches
+{
+    return [[self homeDirectoryLibraryCaches] stringByAppendingPathComponent:@"com.leancloud.caches"];
+}
+
+// MARK: - ~/Library/Caches/com.leancloud.caches/Files
++ (NSString *)homeDirectoryLibraryCachesLeanCloudCachesFiles
+{
+    return [[self homeDirectoryLibraryCachesLeanCloudCaches] stringByAppendingPathComponent:@"Files"];
+}
+
+// MARK: - ~/Library/Caches/com.leancloud.caches/Router
++ (NSString *)homeDirectoryLibraryCachesLeanCloudCachesRouter
+{
+    return [[self homeDirectoryLibraryCachesLeanCloudCaches] stringByAppendingPathComponent:@"Router"];
 }
 
 #pragma mark - ~/Documents
 
-// ~/Documents
-+ (NSString *)appDocumentPath {
-    static NSString *path = nil;
-    
-    if (!path) {
-        path = [[self homeDirectoryPath] stringByAppendingPathComponent:@"Documents"];
-    }
-    
-    return path;
+// ~/Library/Caches/LeanCloud/{applicationId}
++ (NSString *)cacheSandboxPath {
+    NSString *applicationId = [AVOSCloud getApplicationId];
+
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *sandboxPath = [paths firstObject];
+
+    sandboxPath = [sandboxPath stringByAppendingPathComponent:LCRootDirName];
+    sandboxPath = [sandboxPath stringByAppendingPathComponent:applicationId];
+
+    [self createDirectoryIfNeeded:sandboxPath];
+
+    return sandboxPath;
 }
 
-// ~/Documents/LeanCloud
-+ (NSString *)leanDocumentPath {
-    NSString *path = [self appDocumentPath];
-    
-    path = [path stringByAppendingPathComponent:LCRootDirName];
-    
-    [self createDirectoryIfNeeded:path];
-    
-    return path;
-}
-
-// ~/Documents/LeanCloud/keyvalue
+// ~/Library/Caches/LeanCloud/{applicationId}/KeyValue
 + (NSString *)keyValueDatabasePath {
-    return [[self leanDocumentPath] stringByAppendingPathComponent:@"keyvalue"];
+    return [[self cacheSandboxPath] stringByAppendingPathComponent:@"KeyValue"];
 }
 
-// ~/Documents/LeanCloud/CommandCache
-+ (NSString *)commandCacheDatabasePath {
-    return [[self leanDocumentPath] stringByAppendingPathComponent:@"CommandCache"];
-}
-
+// ~/Library/Caches/LeanCloud/{applicationId}/ClientSessionToken
 + (NSString *)clientSessionTokenCacheDatabasePath {
-    return [[self leanDocumentPath] stringByAppendingPathComponent:@"ClientSessionToken"];
+    return [[self cacheSandboxPath] stringByAppendingPathComponent:@"ClientSessionToken"];
 }
 
-#pragma mark - ~/Library/Caches
+// ~/Library/Caches/LeanCloud/{applicationId}/UserDefaults
++ (NSString *)userDefaultsPath {
+    NSString *path = [self cacheSandboxPath];
 
-// ~/Library/Caches
-+ (NSString *)appCachePath {
-    static NSString *path = nil;
-    
-    if (!path) {
-        path = [[self homeDirectoryPath] stringByAppendingPathComponent:@"Library"];
-        path = [path stringByAppendingPathComponent:@"Caches"];
-    }
-    
+    path = [path stringByAppendingPathComponent:@"UserDefaults"];
+
     return path;
 }
 
 // ~/Library/Caches/AVPaasCache, for AVCacheManager
 + (NSString *)avCacheDirectory {
-    NSString *ret = [[AVPersistenceUtils appCachePath] stringByAppendingPathComponent:@"AVPaasCache"];
-    [self createDirectoryIfNeeded:ret];
-    return ret;
-}
-
-// ~/Library/Caches/AVPaasFiles
-+ (NSString *)avFileDirectory {
-    NSString *ret = [[AVPersistenceUtils appCachePath] stringByAppendingPathComponent:@"AVPaasFiles"];
+    NSString *ret = [[AVPersistenceUtils homeDirectoryLibraryCaches] stringByAppendingPathComponent:@"AVPaasCache"];
     [self createDirectoryIfNeeded:ret];
     return ret;
 }
 
 // ~/Library/Caches/LeanCloud/MessageCache
 + (NSString *)messageCachePath {
-    NSString *path = [self appCachePath];
+    NSString *path = [self homeDirectoryLibraryCaches];
     
     path = [path stringByAppendingPathComponent:LCRootDirName];
     path = [path stringByAppendingPathComponent:LCMessageCacheDirName];
@@ -129,7 +134,7 @@
 + (NSString *)libraryDirectory {
     static NSString *path = nil;
     if (!path) {
-        path = [[self homeDirectoryPath] stringByAppendingPathComponent:@"Library"];
+        path = [[self homeDirectory] stringByAppendingPathComponent:@"Library"];
     }
     return path;
 }
@@ -143,18 +148,15 @@
 
 #pragma mark -  Private Documents Concrete Path
 
-+ (NSString *)currentUserArchivePath
-{
++ (NSString *)currentUserArchivePath {
     NSString * path = [[AVPersistenceUtils privateDocumentsDirectory] stringByAppendingString:@"/currentUser"];
     return path;
 }
 
-+ (NSString *)currentUserClassArchivePath
-{
++ (NSString *)currentUserClassArchivePath {
     NSString *path = [[AVPersistenceUtils privateDocumentsDirectory] stringByAppendingString:@"/currentUserClass"];
     return path;
 }
-
 
 + (NSString *)currentInstallationArchivePath {
     NSString *path = [[AVPersistenceUtils privateDocumentsDirectory] stringByAppendingString:@"/currentInstallation"];

@@ -76,12 +76,6 @@
     return [type isEqualToString:@"Bytes"];
 }
 
-+(BOOL)isFileFromUrulu:(NSDictionary *)dict
-{
-    // ugly way to check dict whether is avfile
-    return ([dict objectForKey:@"mime_type"] != nil);
-}
-
 +(BOOL)isFile:(NSString *)type
 {
     return [type isEqualToString:@"File"];
@@ -181,22 +175,16 @@
     else if ([AVObjectUtils isPointer:type] ||
              [AVObjectUtils isAVObject:dict] )
     {
-        // the backend stores AVFile as AVObject, but in sdk AVFile is not subclass
-        // of AVObject, have to process the situation here.
+        /*
+         the backend stores AVFile as AVObject, but in sdk AVFile is not subclass of AVObject, have to process the situation here.
+         */
         if ([AVObjectUtils isFilePointer:dict]) {
-            return [AVFile fileFromDictionary:dict];
+            return [[AVFile alloc] initWithRawJSONData:[dict mutableCopy]];
         }
         return [AVObjectUtils avobjectFromDictionary:dict];
     }
-    else if ([AVObjectUtils isFile:type])
-    {
-        AVFile * file = [AVFile fileFromDictionary:dict];
-        return file;
-    }
-    else if ([AVObjectUtils isFileFromUrulu:dict])
-    {
-        AVFile * file = [AVFile fileFromDictionary:dict];
-        return file;
+    else if ([AVObjectUtils isFile:type]) {
+        return [[AVFile alloc] initWithRawJSONData:[dict mutableCopy]];
     }
     else if ([AVObjectUtils isGeoPoint:type])
     {
@@ -253,15 +241,9 @@
     else if ([AVObjectUtils isAVObject:dict]) {
         [target setObject:[AVObjectUtils objectFromDictionary:dict] forKey:key submit:NO];
     }
-    else if ([AVObjectUtils isFile:type])
-    {
-        AVFile * file = [AVFile fileFromDictionary:dict];
-        [target setObject:file forKey:key submit:NO];
-    }
-    else if ([AVObjectUtils isFileFromUrulu:dict])
-    {
-        AVFile * file = [AVFile fileFromDictionary:dict];
-        [target setObject:file forKey:key submit:NO];
+    else if ([AVObjectUtils isFile:type]) {
+        AVFile *file = [[AVFile alloc] initWithRawJSONData:[dict mutableCopy]];
+        [target setObject:file forKey:key submit:false];
     }
     else if ([AVObjectUtils isGeoPoint:type])
     {
@@ -443,7 +425,7 @@
 {
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     [dict setObject:[object internalClassName] forKey:classNameTag];
-    NSString *cid = [object objectId] != nil ? [object objectId] : [object uuid];
+    NSString *cid = [object objectId] != nil ? [object objectId] : [object _uuid];
     [dict setObject:cid forKey:@"cid"];
     [dict setObject:key forKey:@"key"];
     return dict;
@@ -503,21 +485,27 @@
 }
 
 + (NSMutableDictionary *)objectSnapshot:(AVObject *)object recursive:(BOOL)recursive {
-    NSArray * objects = @[object.localData, object.estimatedData];
+    __block NSDictionary *localDataCopy = nil;
+    [object internalSyncLock:^{
+        localDataCopy = object._localData.copy;
+    }];
+    NSArray * objects = @[localDataCopy, object._estimatedData];
     NSMutableDictionary * result = [NSMutableDictionary dictionary];
     [result setObject:@"Object" forKey:kAVTypeTag];
 
-    for(NSDictionary * dict in objects) {
-        NSArray * keys = [dict allKeys];
+    for (NSDictionary *object in objects) {
+        NSDictionary *dictionary = [object copy];
+        NSArray *keys = [dictionary allKeys];
+
         for(NSString * key in keys) {
-            id valueObject = [self snapshotDictionary:[dict objectForKey:key] recursive:recursive];
+            id valueObject = [self snapshotDictionary:dictionary[key] recursive:recursive];
             if (valueObject != nil) {
                 [result setObject:valueObject forKey:key];
             }
         }
     }
 
-    NSArray * keys = [object.relationData allKeys];
+    NSArray * keys = [object._relationData allKeys];
 
     for(NSString * key in keys) {
         NSString * childClassName = [object childClassNameForRelation:key];
@@ -528,18 +516,18 @@
     }
     
     NSSet *ignoreKeys = [NSSet setWithObjects:
-                         @"localData",
-                         @"relationData",
-                         @"estimatedData",
-                         @"isPointer",
-                         @"running",
-                         @"operationQueue",
-                         @"requestManager",
-                         @"inSetter",
-                         @"uuid",
-                         @"submit",
-                         @"hasDataForInitial",
-                         @"hasDataForCloud",
+                         @"_localData",
+                         @"_relationData",
+                         @"_estimatedData",
+                         @"_isPointer",
+                         @"_running",
+                         @"_operationQueue",
+                         @"_requestManager",
+                         @"_inSetter",
+                         @"_uuid",
+                         @"_submit",
+                         @"_hasDataForInitial",
+                         @"_hasDataForCloud",
                          @"fetchWhenSave",
                          @"isNew", // from AVUser
                          nil];
@@ -593,7 +581,7 @@
     AVObject *object = [AVObjectUtils avObjectForClass:className];
     [AVObjectUtils copyDictionary:src toObject:object];
     if ([AVObjectUtils isPointerDictionary:src]) {
-        object.isPointer = YES;
+        object._isPointer = YES;
     }
     return object;
 }
@@ -629,11 +617,11 @@
 
 +(NSDictionary *)dictionaryFromFile:(AVFile *)file
 {
-    return [AVFile dictionaryFromFile:file];
+    return [file rawJSONDataCopy];
 }
 
 +(NSDictionary *)dictionaryFromACL:(AVACL *)acl {
-    return acl.permissionsById;
+    return [acl.permissionsById copy];
 }
 
 +(NSDictionary *)dictionaryFromRelation:(AVRelation *)relation {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E2EF0A874A01FFC4D77FBAEED4802A12'
-               BlueprintName = 'CVCalendar'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'CVCalendar.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BFE27A46F3D36AC7CD2B59049047D202"
+               BuildableName = "CVCalendar.framework"
+               BlueprintName = "CVCalendar"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

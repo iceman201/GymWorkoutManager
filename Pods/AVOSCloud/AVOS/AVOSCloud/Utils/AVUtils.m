@@ -22,7 +22,6 @@
 
 #import "AVObjectUtils.h"
 #import "AVPaasClient.h"
-#import "AVGlobal.h"
 #import "AVCloudQueryResult.h"
 #import "AVKeychain.h"
 #import "LCURLConnection.h"
@@ -34,6 +33,19 @@
 #include<sys/socket.h>
 #include<netdb.h>
 #include<arpa/inet.h>
+
+NSInteger LCTimeZoneForSecondsFromGMT = 0;
+NSDate * LCDateFromString(NSString *string)
+{
+    if (!string || string.length == 0) {
+        return nil;
+    }
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:AV_DATE_FORMAT];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:LCTimeZoneForSecondsFromGMT]];
+    NSDate *date = [dateFormatter dateFromString:string];
+    return date;
+}
 
 static dispatch_queue_t AVUtilsDefaultSerialQueue = NULL;
 
@@ -172,6 +184,7 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert) {
     result = SecTrustCopyPublicKey(trust);
 
 _out:
+    if (policy) CFRelease(policy);
     if (certArr) CFRelease(certArr);
     if (trust) CFRelease(trust);
 
@@ -514,6 +527,28 @@ if (block) { \
     safeBlock(result);
 }
 
++ (dispatch_queue_t)asynchronousTaskQueue {
+    static dispatch_queue_t queue;
+    static dispatch_once_t onceToken;
+
+    if (queue)
+        return queue;
+
+    dispatch_once(&onceToken, ^{
+        queue = dispatch_queue_create("avos.common.dispatchQueue", DISPATCH_QUEUE_CONCURRENT);
+    });
+
+    return queue;
+}
+
++ (void)asynchronizeTask:(void (^)(void))task {
+    NSAssert(task != nil, @"Task cannot be nil.");
+
+    dispatch_async([self asynchronousTaskQueue], ^{
+        task();
+    });
+}
+
 #pragma mark - String Util
 + (NSString *)MIMEType:(NSString *)filePathOrName {
     CFStringRef UTI = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, (__bridge CFStringRef)[filePathOrName pathExtension], NULL);
@@ -549,199 +584,6 @@ if (block) { \
             return @"image/tiff";
     }
     return nil;
-}
-
-+ (NSString*)MD5ForFile:(NSString*)filePath{
-    
-    int chunkSizeForReadingData=1024*8;
-    
-    
-    
-    CFReadStreamRef readStream = NULL;
-    
-    CFURLRef fileURL =
-    CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
-                                  (CFStringRef)filePath,
-                                  kCFURLPOSIXPathStyle,
-                                  (Boolean)false);
-    if (!fileURL) return nil;
-    
-    
-    // Create and open the read stream
-    readStream = CFReadStreamCreateWithFile(kCFAllocatorDefault,fileURL);
-    if (!readStream) return nil;
-    
-    bool didSucceed = (bool)CFReadStreamOpen(readStream);
-    if (!didSucceed) return nil;
-    
-    
-    // Initialize the hash object
-    CC_MD5_CTX hashObject;
-    CC_MD5_Init(&hashObject);
-    
-    
-    // Feed the data to the hash object
-    bool hasMoreData = true;
-    while (hasMoreData) {
-        uint8_t buffer[chunkSizeForReadingData];
-        CFIndex readBytesCount = CFReadStreamRead(readStream,(UInt8 *)buffer,(CFIndex)sizeof(buffer));
-        if (readBytesCount == -1) break;
-        if (readBytesCount == 0) {
-            hasMoreData = false;
-            continue;
-        }
-        CC_MD5_Update(&hashObject,(const void *)buffer,(CC_LONG)readBytesCount);
-    }
-    
-    didSucceed = !hasMoreData;
-    
-    NSString *result = nil;
-    if (didSucceed) {
-        unsigned char digest[CC_MD5_DIGEST_LENGTH];
-        CC_MD5_Final(digest, &hashObject);
-        
-        char hash[2 * sizeof(digest) + 1];
-        for (size_t i = 0; i < sizeof(digest); ++i) {
-            snprintf(hash + (2 * i), 3, "%02x", (int)(digest[i]));
-        }
-        result = [NSString stringWithCString:(const char *)hash encoding:NSUTF8StringEncoding];
-    }
-    
-    
-    if (readStream) {
-        CFReadStreamClose(readStream);
-        CFRelease(readStream);
-    }
-    if (fileURL) {
-        CFRelease(fileURL);
-    }
-    return result;
-}
-
-+ (NSString*)SHAForFile:(NSString *)filePath {
-    int chunkSizeForReadingData=1024*8;
-    return [self SHAForFile:filePath chunkSizeForReadingData:chunkSizeForReadingData];
-}
-
-+ (NSString*)SHAForFile:(NSString *)filePath chunkSizeForReadingData:(size_t)chunkSizeForReadingData {
-    
-    CFReadStreamRef readStream = NULL;
-    
-    CFURLRef fileURL =
-    CFURLCreateWithFileSystemPath(kCFAllocatorDefault,
-                                  (CFStringRef)filePath,
-                                  kCFURLPOSIXPathStyle,
-                                  (Boolean)false);
-    if (!fileURL) return nil;
-    
-    
-    // Create and open the read stream
-    readStream = CFReadStreamCreateWithFile(kCFAllocatorDefault,fileURL);
-    if (!readStream) return nil;
-    
-    bool didSucceed = (bool)CFReadStreamOpen(readStream);
-    if (!didSucceed) return nil;
-    
-    
-    // Initialize the hash object
-    CC_SHA1_CTX hashObject;
-    CC_SHA1_Init(&hashObject);
-    
-    
-    // Feed the data to the hash object
-    bool hasMoreData = true;
-    while (hasMoreData) {
-        uint8_t buffer[chunkSizeForReadingData];
-        CFIndex readBytesCount = CFReadStreamRead(readStream,(UInt8 *)buffer,(CFIndex)sizeof(buffer));
-        if (readBytesCount == -1) break;
-        if (readBytesCount == 0) {
-            hasMoreData = false;
-            continue;
-        }
-        CC_SHA1_Update(&hashObject,(const void *)buffer,(CC_LONG)readBytesCount);
-    }
-    
-    didSucceed = !hasMoreData;
-    
-    NSString *result = nil;
-    if (didSucceed) {
-        unsigned char digest[CC_SHA1_DIGEST_LENGTH];
-        CC_SHA1_Final(digest, &hashObject);
-        
-        char hash[2 * sizeof(digest) + 1];
-        for (size_t i = 0; i < sizeof(digest); ++i) {
-            snprintf(hash + (2 * i), 3, "%02x", (int)(digest[i]));
-        }
-        result = [NSString stringWithCString:(const char *)hash encoding:NSUTF8StringEncoding];
-    }
-    
-    
-    if (readStream) {
-        CFReadStreamClose(readStream);
-        CFRelease(readStream);
-    }
-    if (fileURL) {
-        CFRelease(fileURL);
-    }
-    return result;
-}
-
-#pragma mark - Network Util
-
-#if !TARGET_OS_WATCH
-
-+ (BOOL)networkIsReachableOrBetter {
-    return [[self class] networkEqualOrHigherThan:AVNetworkReachabilityStatusReachableViaWWAN];
-}
-
-+ (BOOL)networkIs3GOrBetter {
-    return [[self class] networkEqualOrHigherThan:AVNetworkReachabilityStatusReachableViaWWAN];
-}
-
-+ (BOOL)networkIsWifiOrBetter {
-    return [[self class] networkEqualOrHigherThan:AVNetworkReachabilityStatusReachableViaWiFi];
-}
-
-+ (BOOL)networkEqualOrHigherThan:(AVNetworkReachabilityStatus)status {
-    return [AVPaasClient sharedInstance].clientImpl.networkReachabilityStatus >= status;
-}
-
-#endif
-
-+ (NSString *)getIpAddres:(NSString *)hostname {
-    const char *host = [hostname cStringUsingEncoding:NSUTF8StringEncoding];
-    char ip[100];
-    
-    if (av_hostname_to_ip(host, ip) == 0) {
-        return [NSString stringWithCString:ip encoding:NSUTF8StringEncoding];
-    }
-    
-    return nil;
-}
-
-int av_hostname_to_ip(const char * hostname , char* ip)
-{
-    struct hostent *he;
-    struct in_addr **addr_list;
-    int i;
-    
-    if ( (he = gethostbyname( hostname ) ) == NULL)
-    {
-        // get the host info
-        herror("gethostbyname");
-        return 1;
-    }
-    
-    addr_list = (struct in_addr **) he->h_addr_list;
-    
-    for(i = 0; addr_list[i] != NULL; /*i++*/)
-    {
-        //Return the first one;
-        strcpy(ip , inet_ntoa(*addr_list[i]) );
-        return 0;
-    }
-    
-    return 1;
 }
 
 @end
@@ -1173,3 +1015,31 @@ static Byte ivBuff[]   = {0xA,1,0xB,5,4,0xF,7,9,0x17,3,1,6,8,0xC,0xD,91};
 
 @end
 
+@implementation NSObject (__LeanCloud__)
+
++ (BOOL)lc__checkingType:(id)instance
+{
+    return (instance && [instance isKindOfClass:self]);
+}
+
++ (instancetype)lc__decodingDictionary:(NSDictionary *)dictionary key:(NSString *)key
+{
+    if (!dictionary || !key) {
+        return nil;
+    }
+    id value = dictionary[key];
+    if (value && [value isKindOfClass:self]) {
+        return value;
+    } else {
+        return nil;
+    }
+}
+
++ (instancetype)lc__decodingWithKey:(NSString *)key fromDic:(NSDictionary *)dic
+{
+    if (!key || !dic) { return nil; }
+    id value = dic[key];
+    return (value && [value isKindOfClass:self]) ? value : nil;
+}
+
+@end

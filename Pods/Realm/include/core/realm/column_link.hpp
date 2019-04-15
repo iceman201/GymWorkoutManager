@@ -31,7 +31,7 @@ namespace realm {
 /// The individual values in a link column are indexes of rows in the target
 /// table (offset with one to allow zero to indicate null links.) The target
 /// table is specified by the table descriptor.
-class LinkColumn: public LinkColumnBase {
+class LinkColumn : public LinkColumnBase {
 public:
     using LinkColumnBase::LinkColumnBase;
     ~LinkColumn() noexcept override;
@@ -67,17 +67,13 @@ public:
     void cascade_break_backlinks_to(size_t, CascadeState&) override;
     void cascade_break_backlinks_to_all_rows(size_t, CascadeState&) override;
 
-#ifdef REALM_DEBUG
     void verify(const Table&, size_t) const override;
-#endif
 
 protected:
     friend class BacklinkColumn;
     void do_nullify_link(size_t row_ndx, size_t old_target_row_ndx) override;
-    void do_update_link(size_t row_ndx, size_t old_target_row_ndx,
-                        size_t new_target_row_ndx) override;
-    void do_swap_link(size_t row_ndx, size_t target_row_ndx_1,
-                      size_t target_row_ndx_2) override;
+    void do_update_link(size_t row_ndx, size_t old_target_row_ndx, size_t new_target_row_ndx) override;
+    void do_swap_link(size_t row_ndx, size_t target_row_ndx_1, size_t target_row_ndx_2) override;
 
 private:
     void remove_backlinks(size_t row_ndx);
@@ -121,6 +117,8 @@ inline size_t LinkColumn::set_link(size_t row_ndx, size_t target_row_ndx)
 {
     int_fast64_t old_value = LinkColumnBase::get(row_ndx);
     size_t old_target_row_ndx = to_size_t(old_value) - size_t(1);
+    if (old_target_row_ndx == target_row_ndx)
+        return old_target_row_ndx; // Nothing to do
     if (old_value != 0)
         m_backlink_column->remove_one_backlink(old_target_row_ndx, row_ndx); // Throws
 
@@ -157,15 +155,13 @@ inline void LinkColumn::insert_null_link(size_t row_ndx)
     insert_link(row_ndx, realm::npos); // Throws
 }
 
-inline void LinkColumn::do_update_link(size_t row_ndx, size_t,
-                                       size_t new_target_row_ndx)
+inline void LinkColumn::do_update_link(size_t row_ndx, size_t, size_t new_target_row_ndx)
 {
     // Row pos is offset by one, to allow null refs
     LinkColumnBase::set(row_ndx, new_target_row_ndx + 1);
 }
 
-inline void LinkColumn::do_swap_link(size_t row_ndx, size_t target_row_ndx_1,
-                                     size_t target_row_ndx_2)
+inline void LinkColumn::do_swap_link(size_t row_ndx, size_t target_row_ndx_1, size_t target_row_ndx_2)
 {
     // Row pos is offset by one, to allow null refs
     ++target_row_ndx_1;
@@ -180,6 +176,6 @@ inline void LinkColumn::do_swap_link(size_t row_ndx, size_t target_row_ndx_1,
     }
 }
 
-} //namespace realm
+} // namespace realm
 
-#endif //REALM_COLUMN_LINK_HPP
+#endif // REALM_COLUMN_LINK_HPP

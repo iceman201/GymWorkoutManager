@@ -50,6 +50,8 @@ typedef NS_ENUM(int, AVCachePolicy) {
 
 // Errors
 
+FOUNDATION_EXPORT NSString * _Nonnull const kLeanCloudErrorDomain;
+FOUNDATION_EXPORT NSString * _Nonnull const kLeanCloudRESTAPIResponseError;
 
 /*! @abstract 1: Internal server error. No information available. */
 extern NSInteger const kAVErrorInternalServer;
@@ -157,24 +159,32 @@ extern NSInteger const kAVErrorUserWithMobilePhoneNotFound;
 extern NSInteger const kAVErrorUserMobilePhoneNumberTaken;
 /*! @abstract 215: Mobile phone number isn't verified. */
 extern NSInteger const kAVErrorUserMobilePhoneNotVerified;
+/*! @abstract 216: SNS Auth Data's format is invalid. */
+extern NSInteger const kAVErrorUserSNSAuthDataInvalid;
 /*! @abstract 250: Linked id missing from request */
 extern NSInteger const kAVErrorLinkedIdMissing;
 /*! @abstract 251: Invalid linked session */
 extern NSInteger const kAVErrorInvalidLinkedSession;
 
-typedef void (^AVBooleanResultBlock)(BOOL succeeded, NSError *error);
-typedef void (^AVIntegerResultBlock)(NSInteger number, NSError *error);
-typedef void (^AVArrayResultBlock)(NSArray *objects, NSError *error);
-typedef void (^AVObjectResultBlock)(AVObject *object, NSError *error);
-typedef void (^AVSetResultBlock)(NSSet *channels, NSError *error);
-typedef void (^AVUserResultBlock)(AVUser *user, NSError *error);
-typedef void (^AVDataResultBlock)(NSData *data, NSError *error);
-typedef void (^AVImageResultBlock)(UIImage * image, NSError *error);
-typedef void (^AVDataStreamResultBlock)(NSInputStream *stream, NSError *error);
-typedef void (^AVStringResultBlock)(NSString *string, NSError *error);
-typedef void (^AVIdResultBlock)(id object, NSError *error);
+typedef void (^AVBooleanResultBlock)(BOOL succeeded,  NSError * _Nullable error);
+typedef void (^AVIntegerResultBlock)(NSInteger number, NSError * _Nullable error);
+typedef void (^AVArrayResultBlock)(NSArray * _Nullable objects, NSError * _Nullable error);
+typedef void (^AVObjectResultBlock)(AVObject * _Nullable object, NSError * _Nullable error);
+typedef void (^AVSetResultBlock)(NSSet * _Nullable channels, NSError * _Nullable error);
+typedef void (^AVUserResultBlock)(AVUser * _Nullable user, NSError * _Nullable error);
+typedef void (^AVDataResultBlock)(NSData * _Nullable data, NSError * _Nullable error);
+#if AV_TARGET_OS_OSX
+typedef void (^AVImageResultBlock)(NSImage * _Nullable image, NSError * _Nullable error);
+#else
+typedef void (^AVImageResultBlock)(UIImage * _Nullable image, NSError * _Nullable error);
+#endif
+typedef void (^AVDataStreamResultBlock)(NSInputStream * _Nullable stream, NSError * _Nullable error);
+typedef void (^AVStringResultBlock)(NSString * _Nullable string, NSError * _Nullable error);
+typedef void (^AVIdResultBlock)(id _Nullable object, NSError * _Nullable error);
 typedef void (^AVProgressBlock)(NSInteger percentDone);
-typedef void (^AVFileResultBlock)(AVFile * file, NSError *error);
-typedef void (^AVDictionaryResultBlock)(NSDictionary * dict, NSError *error);
+typedef void (^AVFileResultBlock)(AVFile * _Nullable file, NSError * _Nullable error);
+typedef void (^AVDictionaryResultBlock)(NSDictionary * _Nullable dict, NSError * _Nullable error);
 
 #define AV_DEPRECATED(explain) __attribute__((deprecated(explain)))
+
+#define LC_WARN_UNUSED_RESULT __attribute__((warn_unused_result))

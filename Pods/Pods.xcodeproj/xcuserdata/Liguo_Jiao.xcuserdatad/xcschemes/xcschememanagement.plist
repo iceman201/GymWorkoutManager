@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>ChartsRealm.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>CircleMenu.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -66,67 +71,6 @@
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>24712DEB79F57D28F03EA1359679BACF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>288A6E512ABA7B290C198795E7118F53</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2A4448146C785C426971111F117D773C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>63119A1E8E51F63515AF810BA0C71DD4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>685614DC76DA52AF800D3319B5736895</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>699364E9658D24FF319736159FDC959C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9C3E9DBE7F8C43369CAD18267CED06E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ABD3645FA7E255717E14A951884F1266</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BBF0826E12E291D37196245A785ED5E4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DBEE922DF84ABEBF7A04B9C4FE3EBCEF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E2EF0A874A01FFC4D77FBAEED4802A12</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE0EA4A854B31B97AB23A6135FCBFABD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

@@ -8,12 +8,14 @@
 @class AVACL;
 @class AVSaveOption;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  An object that is a local representation of data persisted to the LeanCloud. This is the
  main class that is used to interact with objects in your app.
 */
 
-@interface AVObject : NSObject
+@interface AVObject : NSObject <NSCoding>
 
 #pragma mark Constructors
 
@@ -78,27 +80,27 @@
 /*!
  The id of the object.
  */
-@property (nonatomic, retain, readonly) NSString *objectId;
+@property (nonatomic, copy, readonly, nullable) NSString *objectId;
 
 /*!
  When the object was last updated.
  */
-@property (nonatomic, retain, readonly) NSDate *updatedAt;
+@property (nonatomic, strong, readonly, nullable) NSDate *updatedAt;
 
 /*!
  When the object was created.
  */
-@property (nonatomic, retain, readonly) NSDate *createdAt;
+@property (nonatomic, strong, readonly, nullable) NSDate *createdAt;
 
 /*!
  The class name of the object.
  */
-@property (readonly) NSString *className;
+@property (nonatomic, copy, readonly) NSString *className;
 
 /*!
  The ACL for this object.
  */
-@property (nonatomic, retain) AVACL *ACL;
+@property (nonatomic, strong, nullable) AVACL *ACL;
 
 /*!
  Returns an array of the keys contained in this object. This does not include
@@ -115,14 +117,14 @@
  @param key The key that the object is associated with.
  @return The value associated with the given key, or nil if no value is associated with key.
  */
-- (id)objectForKey:(NSString *)key;
+- (nullable id)objectForKey:(NSString *)key;
 
 /*!
  Sets the object associated with a given key.
  @param object The object.
  @param key The key.
  */
-- (void)setObject:(id)object forKey:(NSString *)key;
+- (void)setObject:(nullable id)object forKey:(NSString *)key;
 
 /*!
  Unsets a key on the object.
@@ -134,14 +136,14 @@
  * In LLVM 4.0 (XCode 4.5) or higher allows myAVObject[key].
  @param key The key.
  */
-- (id)objectForKeyedSubscript:(NSString *)key;
+- (nullable id)objectForKeyedSubscript:(NSString *)key;
 
 /*!
  * In LLVM 4.0 (XCode 4.5) or higher allows myObject[key] = value
  @param object The object.
  @param key The key.
  */
-- (void)setObject:(id)object forKeyedSubscript:(NSString *)key;
+- (void)setObject:(nullable id)object forKeyedSubscript:(NSString *)key;
 
 /*!
  Returns the relation object associated with the given key
@@ -235,12 +237,18 @@
 - (BOOL)save:(NSError **)error;
 
 /*!
+ An alias of `-[AVObject save:]` methods that supports Swift exception.
+ @seealso `-[AVObject save:]`
+ */
+- (BOOL)saveAndThrowsWithError:(NSError **)error;
+
+/*!
  * Saves the AVObject with option and sets an error if it occurs.
  * @param option Option for current save.
  * @param error  A pointer to an NSError that will be set if necessary.
  * @return Whether the save succeeded.
  */
-- (BOOL)saveWithOption:(AVSaveOption *)option error:(NSError **)error;
+- (BOOL)saveWithOption:(nullable AVSaveOption *)option error:(NSError **)error;
 
 /*!
  * Saves the AVObject with option and sets an error if it occurs.
@@ -250,7 +258,7 @@
  * @return Whether the save succeeded.
  * @note If eventually is specified to YES, request will be stored locally in an on-disk cache until it can be delivered to server.
  */
-- (BOOL)saveWithOption:(AVSaveOption *)option eventually:(BOOL)eventually error:(NSError **)error;
+- (BOOL)saveWithOption:(nullable AVSaveOption *)option eventually:(BOOL)eventually error:(NSError **)error;
 
 /*!
  Saves the AVObject asynchronously.
@@ -268,7 +276,7 @@
  * @param option Option for current save.
  * @param block  The block to execute. The block should have the following argument signature: (BOOL succeeded, NSError *error)
  */
-- (void)saveInBackgroundWithOption:(AVSaveOption *)option block:(AVBooleanResultBlock)block;
+- (void)saveInBackgroundWithOption:(nullable AVSaveOption *)option block:(AVBooleanResultBlock)block;
 
 /*!
  * Saves the AVObject with option asynchronously and executes the given callback block.
@@ -276,7 +284,7 @@
  * @param eventually Whether save in eventually or not.
  * @param block  The block to execute. The block should have the following argument signature: (BOOL succeeded, NSError *error)
  */
-- (void)saveInBackgroundWithOption:(AVSaveOption *)option eventually:(BOOL)eventually block:(AVBooleanResultBlock)block;
+- (void)saveInBackgroundWithOption:(nullable AVSaveOption *)option eventually:(BOOL)eventually block:(AVBooleanResultBlock)block;
 
 /*!
  Saves the AVObject asynchronously and calls the given callback.
@@ -291,7 +299,7 @@
  * @param target   The object to call selector on.
  * @param selector The selector to call. It should have the following signature: (void)callbackWithResult:(NSNumber *)result error:(NSError *)error. error will be nil on success and set if there was an error. [result boolValue] will tell you whether the call succeeded or not.
  */
-- (void)saveInBackgroundWithOption:(AVSaveOption *)option target:(id)target selector:(SEL)selector;
+- (void)saveInBackgroundWithOption:(nullable AVSaveOption *)option target:(id)target selector:(SEL)selector;
 
 /*!
   @see saveEventually:
@@ -392,6 +400,12 @@
 - (BOOL)refresh:(NSError **)error;
 
 /*!
+ An alias of `-[AVObject refresh:]` methods that supports Swift exception.
+ @seealso `-[AVObject refresh:]`
+ */
+- (BOOL)refreshAndThrowsWithError:(NSError **)error;
+
+/*!
  Refreshes the AVObject asynchronously and executes the given callback block.
  @param block The block to execute. The block should have the following argument signature: (AVObject *object, NSError *error)
  */
@@ -427,10 +441,16 @@
 - (BOOL)fetch:(NSError **)error;
 
 /*!
+ An alias of `-[AVObject fetch:]` methods that supports Swift exception.
+ @seealso `-[AVObject fetch:]`
+ */
+- (BOOL)fetchAndThrowsWithError:(NSError **)error;
+
+/*!
  Fetches the AVObject with the current data and specified keys from the server and sets an error if it occurs.
  @param keys Pointer to an NSArray that contains objects specified by the keys want to fetch.
  */
-- (void)fetchWithKeys:(NSArray *)keys;
+- (void)fetchWithKeys:(nullable NSArray *)keys;
 
 /*!
  Fetches the AVObject with the current data and specified keys from the server and sets an error if it occurs.
@@ -438,7 +458,7 @@
  @param error Pointer to an NSError that will be set if necessary.
  @return success or not
  */
-- (BOOL)fetchWithKeys:(NSArray *)keys
+- (BOOL)fetchWithKeys:(nullable NSArray *)keys
                 error:(NSError **)error;
 
 /*!
@@ -453,17 +473,23 @@
 - (AVObject *)fetchIfNeeded:(NSError **)error;
 
 /*!
+ An alias of `-[AVObject fetchIfNeeded:]` methods that supports Swift exception.
+ @seealso `-[AVObject fetchIfNeeded:]`
+ */
+- (AVObject *)fetchIfNeededAndThrowsWithError:(NSError **)error;
+
+/*!
  Fetches the AVObject's data from the server if isDataAvailable is false.
  @param keys Pointer to an NSArray that contains objects specified by the keys want to fetch.
  */
-- (AVObject *)fetchIfNeededWithKeys:(NSArray *)keys;
+- (AVObject *)fetchIfNeededWithKeys:(nullable NSArray *)keys;
 
 /*!
  Fetches the AVObject's data from the server if isDataAvailable is false.
  @param keys Pointer to an NSArray that contains objects specified by the keys want to fetch.
  @param error Pointer to an NSError that will be set if necessary.
  */
-- (AVObject *)fetchIfNeededWithKeys:(NSArray *)keys
+- (AVObject *)fetchIfNeededWithKeys:(nullable NSArray *)keys
                               error:(NSError **)error;
 
 /*!
@@ -477,7 +503,7 @@
  @param keys Pointer to an NSArray that contains objects specified by the keys want to fetch.
  @param block The block to execute. The block should have the following argument signature: (AVObject *object, NSError *error)
  */
-- (void)fetchInBackgroundWithKeys:(NSArray *)keys
+- (void)fetchInBackgroundWithKeys:(nullable NSArray *)keys
                             block:(AVObjectResultBlock)block;
 
 /*!
@@ -586,6 +612,12 @@
 - (BOOL)delete:(NSError **)error;
 
 /*!
+ An alias of `-[AVObject delete:]` methods that supports Swift exception.
+ @seealso `-[AVObject delete:]`
+ */
+- (BOOL)deleteAndThrowsWithError:(NSError **)error;
+
+/*!
  Deletes the AVObject asynchronously.
  */
 - (void)deleteInBackground;
@@ -662,7 +694,7 @@
  * Construct an AVObject or its subclass object with dictionary.
  * @param dictionary A dictionary to construct an AVObject. The dictionary should have className key which helps to create proper class.
  */
-+ (AVObject *)objectWithDictionary:(NSDictionary *)dictionary;
++ (nullable AVObject *)objectWithDictionary:(NSDictionary *)dictionary;
 
 /**
  *  Load object properties from JSON dictionary.
@@ -684,3 +716,5 @@
 - (AVRelation *)relationforKey:(NSString *)key AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.3. Use -[AVObject relationForKey:] instead.");
 
 @end
+
+NS_ASSUME_NONNULL_END

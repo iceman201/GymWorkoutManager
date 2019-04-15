@@ -8,9 +8,12 @@
 
 #import "LCIMCacheStore.h"
 
+@class AVIMClient;
 @class AVIMConversation;
 
 @interface LCIMConversationCacheStore : LCIMCacheStore
+
+@property (nonatomic, weak) AVIMClient *client;
 
 /*!
  * Cache conversations with max age.
@@ -45,9 +48,14 @@
 - (void)deleteConversationAndItsMessagesForId:(NSString *)conversationId;
 
 /*!
+ * update conversation lastMessageAt.
+ */
+- (void)updateConversationForLastMessageAt:(NSDate *)lastMessageAt conversationId:(NSString *)conversationId;
+
+/*!
  * Get conversation from cache by id.
  * @param conversationId Conversation id.
- * @param A conversation or nil if conversation not found or expired.
+ * @return A conversation or nil if conversation not found or expired.
  */
 - (AVIMConversation *)conversationForId:(NSString *)conversationId;
 
@@ -58,18 +66,6 @@
  * NOTE: If any conversation not found or expired, return an empty list.
  */
 - (NSArray *)conversationsForIds:(NSArray *)conversationIds;
-
-/*!
- * Get all conversations which are expired.
- * @return A conversation list.
- */
-- (NSArray *)allExpiredConversations;
-
-/*!
- * Get all conversations which are not expired.
- * @return A conversation list.
- */
-- (NSArray *)allAliveConversations;
 
 /*!
  * Clean all expired conversations.

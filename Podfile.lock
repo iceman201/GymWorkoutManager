@@ -1,50 +1,67 @@
 PODS:
-  - AVOSCloud (3.4.0)
-  - AVOSCloudIM (3.4.0):
-    - AVOSCloud (= 3.4.0)
-    - AVOSCloudIM/_ARC (= 3.4.0)
-    - AVOSCloudIM/_NOARC (= 3.4.0)
-  - AVOSCloudIM/_ARC (3.4.0):
-    - AVOSCloud (= 3.4.0)
-    - AVOSCloudIM/_NOARC (= 3.4.0)
-  - AVOSCloudIM/_NOARC (3.4.0):
-    - AVOSCloud (= 3.4.0)
-  - Charts/Core (3.0.1)
-  - Charts/Realm (3.0.1):
-    - Charts/Core
-    - RealmSwift (~> 1.1)
-  - CircleMenu (1.0.7)
-  - CVCalendar (1.4.0)
-  - JVFloatLabeledTextField (1.1.1)
-  - Realm (1.1.0):
-    - Realm/Headers (= 1.1.0)
-  - Realm/Headers (1.1.0)
-  - RealmSwift (1.1.0):
-    - Realm (= 1.1.0)
-  - ScrollableGraphView (2.0.0)
+  - AVOSCloud (11.6.1)
+  - AVOSCloudIM (11.6.1):
+    - AVOSCloud (= 11.6.1)
+    - AVOSCloudIM/_ARC (= 11.6.1)
+    - AVOSCloudIM/_NOARC (= 11.6.1)
+  - AVOSCloudIM/_ARC (11.6.1):
+    - AVOSCloud (= 11.6.1)
+    - AVOSCloudIM/_NOARC (= 11.6.1)
+  - AVOSCloudIM/_NOARC (11.6.1):
+    - AVOSCloud (= 11.6.1)
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
+  - ChartsRealm (3.2.1):
+    - Charts (~> 3.2.1)
+    - RealmSwift (~> 3.11.1)
+  - CircleMenu (4.1.0)
+  - CVCalendar (1.6.2)
+  - JVFloatLabeledTextField (1.2.1)
+  - Realm (3.11.2):
+    - Realm/Headers (= 3.11.2)
+  - Realm/Headers (3.11.2)
+  - RealmSwift (3.11.2):
+    - Realm (= 3.11.2)
+  - ScrollableGraphView (4.0.6)
 
 DEPENDENCIES:
   - AVOSCloud
   - AVOSCloudIM
-  - Charts/Realm
-  - CircleMenu (~> 1.0.0)
-  - CVCalendar (~> 1.4.0)
+  - Charts
+  - ChartsRealm
+  - CircleMenu
+  - CVCalendar
   - JVFloatLabeledTextField
   - Realm
   - RealmSwift
   - ScrollableGraphView
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AVOSCloud
+    - AVOSCloudIM
+    - Charts
+    - ChartsRealm
+    - CircleMenu
+    - CVCalendar
+    - JVFloatLabeledTextField
+    - Realm
+    - RealmSwift
+    - ScrollableGraphView
+
 SPEC CHECKSUMS:
-  AVOSCloud: 771c8d77bc9b9f2cc8ac2eb4b58eaf368337ac95
-  AVOSCloudIM: 288597efc0cff96620fc380ea146ccf89a8a8d48
-  Charts: 0e84f4418e87dad6a9edde221fba37ebb51d3ba7
-  CircleMenu: ddd8000fe2774497c367b8f6fcc2354a9a28f4db
-  CVCalendar: ec1a06a508f99d8e5067258754f811a8a1433a3f
-  JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
-  Realm: ceecf1a4540c4ce9efe196fe73fa9855bce05bd8
-  RealmSwift: 838058b2db95b12cb86bd0cf209df642c33fb60a
-  ScrollableGraphView: b91f73335220890103a43a33d9fb8d93c547a86d
+  AVOSCloud: 75fe137e0d4eae392047824cea66c9b99a2ea574
+  AVOSCloudIM: cc2079356c197f69d85d3cf6e1c99c5a1b6c0430
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
+  ChartsRealm: 8570ca829ee82715018e72a0935687de86e3b126
+  CircleMenu: a66095199a5e26f19acbb212f077010257767fe5
+  CVCalendar: 515092247b9c5059855643c2a2220f259bd5417f
+  JVFloatLabeledTextField: cfc44e3c4d493b2ed92ede8035e8e89c2912ba64
+  Realm: 864477d028db77f7c5a0cba64a4892ad53db128a
+  RealmSwift: 12b8262fc08020b47de4fd88eb3d5c9425b34ec7
+  ScrollableGraphView: 4af35d4ea9ecdec665d34a74da51da161ddff8ac
 
-PODFILE CHECKSUM: 349a2a70b28b891fbdb33108d93a55a6746fc418
+PODFILE CHECKSUM: 1e6514497f150d87195e5847da3770c2a3981f07
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.6.1

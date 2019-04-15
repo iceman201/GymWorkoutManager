@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '288A6E512ABA7B290C198795E7118F53'
-               BlueprintName = 'AVOSCloud'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'AVOSCloud.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CD7F0B5D0D21AC909853D3EEBEA9A173"
+               BuildableName = "AVOSCloud.framework"
+               BlueprintName = "AVOSCloud"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

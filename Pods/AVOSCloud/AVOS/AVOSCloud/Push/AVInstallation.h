@@ -7,6 +7,8 @@
 #import "AVObject.h"
 #import "AVQuery.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  A LeanCloud Framework Installation Object that is a local representation of an
  installation persisted to the LeanCloud. This class is a subclass of a
@@ -15,7 +17,7 @@
  checks.
  
  A valid AVInstallation can only be instantiated via
- [AVInstallation currentInstallation] because the required identifier fields
+ [AVInstallation defaultInstallation] because the required identifier fields
  are readonly. The timeZone and badge fields are also readonly properties which
  are automatically updated to match the device's time zone and application badge
  when the AVInstallation is saved, thus these fields might not reflect the
@@ -28,8 +30,7 @@
  applications running on OS X, because they cannot receive push notifications.
  */
 
-@interface AVInstallation : AVObject {
-}
+@interface AVInstallation : AVObject
 
 /** @name Targeting Installations */
 
@@ -42,44 +43,62 @@
 
 /** @name Accessing the Current Installation */
 
-/*!
- Gets the currently-running installation from disk and returns an instance of
- it. If this installation is not stored on disk, returns a AVInstallation
- with deviceType and installationId fields set to those of the
- current installation.
- @return a AVInstallation that represents the currently-running
- installation.
- */
-+ (AVInstallation *)currentInstallation;
+/**
+ Default Singleton Installation.
 
-/*!
- Sets the device token string property from an NSData-encoded token.
- 
- @param deviceTokenData  NSData-encoded device token.
+ @return Default Singleton Instance.
  */
-- (void)setDeviceTokenFromData:(NSData *)deviceTokenData;
++ (AVInstallation *)defaultInstallation;
+
+// Deprecated
++ (AVInstallation *)currentInstallation
+__deprecated_msg("use +[defaultInstallation] instead.");
 
 /** @name Properties */
 
 /// The device type for the AVInstallation.
-@property (nonatomic, readonly, retain) NSString *deviceType;
+@property (nonatomic, copy, readonly) NSString *deviceType;
 
 /// The installationId for the AVInstallation.
-@property (nonatomic, readonly, retain) NSString *installationId;
+@property (nonatomic, copy, readonly, nullable) NSString *installationId;
 
 /// The device token for the AVInstallation.
-@property (nonatomic, retain) NSString *deviceToken;
+@property (nonatomic, copy, nullable) NSString *deviceToken;
 
 /// The device profile for the AVInstallation.
-@property (nonatomic, retain) NSString *deviceProfile;
+@property (nonatomic, copy, nullable) NSString *deviceProfile;
 
 /// The badge for the AVInstallation.
 @property (nonatomic, assign) NSInteger badge;
 
 /// The timeZone for the AVInstallation.
-@property (nonatomic, readonly, retain) NSString *timeZone;
+@property (nonatomic, copy, readonly) NSString *timeZone;
 
 /// The channels for the AVInstallation.
-@property (nonatomic, retain) NSArray *channels;
+@property (nonatomic, strong, nullable) NSArray *channels;
+
+/// The apns topic for universal push notification.
+@property (nonatomic, copy, nullable) NSString *apnsTopic;
+
+/// The apns teamId for universal push notification.
+@property (nonatomic, copy, nullable) NSString *apnsTeamId;
+
+/*!
+ Sets the device token string property from an NSData-encoded token.
+ 
+ @param deviceTokenData NSData-encoded device token.
+ */
+- (void)setDeviceTokenFromData:(NSData *)deviceTokenData;
+
+/**
+ Sets the device token string property from an NSData-encoded token, with a team ID.
+ 
+ @param deviceTokenData NSData-encoded device token
+ @param teamId Team ID
+ */
+- (void)setDeviceTokenFromData:(NSData *)deviceTokenData
+                        teamId:(NSString * _Nullable)teamId;
 
 @end
+
+NS_ASSUME_NONNULL_END

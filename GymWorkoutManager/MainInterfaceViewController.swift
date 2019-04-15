@@ -42,7 +42,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIView.animate(withDuration: 2.0, delay: 0.3, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.animate(withDuration: 2.0, delay: 0.3, options: UIView.AnimationOptions.curveEaseOut, animations: {
             self.startButton.alpha = 1.0
         }, completion: nil)
         self.backLayer.zoomOutWithEasing()
@@ -82,8 +82,8 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         backLayer.isHidden = true
         button.backgroundColor = items[atIndex].color
-        button.setImage(UIImage(imageLiteralResourceName: items[atIndex].icon), for: UIControlState())
-        button.setTitle(items[atIndex].Name, for: UIControlState())
+        button.setImage(UIImage(imageLiteralResourceName: items[atIndex].icon), for: UIControl.State())
+        button.setTitle(items[atIndex].Name, for: UIControl.State())
         button.setImageAndTitleLeft(0.0)
 
         if curentUser?.isProfileDetailsExist == true {
@@ -101,7 +101,7 @@ class MainInterfaceViewController: UIViewController, CircleMenuDelegate {
         // set highlited image
         let highlightedImage  = UIImage(imageLiteralResourceName: items[atIndex].icon).withRenderingMode(.alwaysTemplate)
         button.setImage(highlightedImage, for: .highlighted)
-        button.tintColor = UIColor.init(colorLiteralRed: 0, green: 0, blue: 0, alpha: 0.3)
+        button.tintColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
     }
     
     func menuCollapsed(_ circleMenu: CircleMenu) {

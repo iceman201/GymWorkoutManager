@@ -1,0 +1,6 @@
+framework module ChartsRealm {
+  umbrella header "ChartsRealm-umbrella.h"
+
+  export *
+  module * { export * }
+}

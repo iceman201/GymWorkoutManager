@@ -102,9 +102,9 @@
     return [mutableArray copy];
 }
 
-- (void)addContinuousMessages:(NSArray *)messages forConversationId:(NSString *)conversationId {
-    if (![messages count])
-        return;
+- (void)addContinuousMessages:(NSArray *)messages forConversationId:(NSString *)conversationId
+{
+    if (messages.count == 0) { return; }
 
     NSMutableArray *allMessages = [[self messagesOrderedByTimestampDescending:messages] mutableCopy];
 
@@ -112,7 +112,7 @@
     AVIMMessage *newestMessage = [allMessages firstObject];
     NSArray     *newerMessages = [allMessages subarrayWithRange:NSMakeRange(0, [allMessages count] - 1)];
 
-    /* Update oldest message without breakpoint */
+    /* insert breakpoint message or update oldest message without breakpoint */
     [self insertMessageAndUpdateBreakpoint:oldestMessage forConversationId:conversationId];
 
     LCIMMessageCacheStore *cacheStore = [self cacheStoreWithConversationId:conversationId];
@@ -120,7 +120,7 @@
     BOOL newestMessageExisted = [cacheStore containMessage:newestMessage];
 
     /* Insert messages and remove their breakpoints */
-    [cacheStore insertMessages:newerMessages];
+    [cacheStore insertOrUpdateMessages:newerMessages];
 
     if (!newestMessageExisted) {
         AVIMMessage *nextMessage = [self nextMessageForMessage:newestMessage conversationId:conversationId];
@@ -137,7 +137,7 @@
     if ([cacheStore containMessage:message]) {
         [cacheStore updateMessageWithoutBreakpoint:message];
     } else {
-        [cacheStore insertMessage:message];
+        [cacheStore insertOrUpdateMessage:message];
         [cacheStore updateBreakpoint:YES forMessage:message];
     }
 }
@@ -146,11 +146,10 @@
     LCIMMessageCacheStore *cacheStore = [self cacheStoreWithConversationId:conversationId];
 
     for (AVIMMessage *message in messages) {
-        NSString *messageId = message.messageId;
         AVIMMessage *nextMessage = [self nextMessageForMessage:message conversationId:conversationId];
 
         [cacheStore updateBreakpoint:YES forMessage:nextMessage];
-        [cacheStore deleteMessageForId:messageId];
+        [cacheStore deleteMessage:message];
     }
 }
 
@@ -188,7 +187,7 @@
 
 - (void)cleanCacheForConversationId:(NSString *)conversationId {
     if (!conversationId) {
-        AVLoggerError(AVOSCloudIMErrorDomain, @"Conversation id can not be empty.");
+        AVLoggerError(AVLoggerDomainIM, @"Conversation id can not be empty.");
         return;
     }
 

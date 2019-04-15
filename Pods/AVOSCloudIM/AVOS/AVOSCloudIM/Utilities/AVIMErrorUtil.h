@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AVIMCommon.h"
 
-@interface AVIMErrorUtil : NSObject
-+ (NSError *)errorWithCode:(NSInteger)code reason:(NSString *)reason;
-@end
+NSString *AVIMErrorMessage(AVIMErrorCode code);

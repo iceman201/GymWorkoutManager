@@ -26,6 +26,9 @@ public final class CVCalendarMonthView: UIView {
         return calendarView.touchController
     }
 
+    var allowScrollToPreviousMonth = true
+    var allowScrollToNextMonth = true
+    
     // MARK: - Public properties
 
     public weak var calendarView: CVCalendarView!
@@ -38,12 +41,10 @@ public final class CVCalendarMonthView: UIView {
     public var currentDay: Int?
 
     public var potentialSize: CGSize {
-        get {
-            return CGSize(width: bounds.width,
-                          height: CGFloat(weekViews.count) * weekViews[0].bounds.height +
-                            calendarView.appearance.spaceBetweenWeekViews! *
-                            CGFloat(weekViews.count))
-        }
+        return CGSize(width: bounds.width,
+                      height: CGFloat(weekViews.count) * weekViews[0].bounds.height +
+                        calendarView.appearance.spaceBetweenWeekViews! *
+                        CGFloat(weekViews.count))
     }
 
     // MARK: - Initialization
@@ -77,11 +78,12 @@ public final class CVCalendarMonthView: UIView {
 extension CVCalendarMonthView {
     public func commonInit() {
         let calendarManager = calendarView.manager
-        safeExecuteBlock({
+      safeExecuteBlock({
+            let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
             self.numberOfWeeks = calendarManager?.monthDateRange(self.date).countOfWeeks
             self.weeksIn = calendarManager?.weeksWithWeekdaysForMonthDate(self.date).weeksIn
             self.weeksOut = calendarManager?.weeksWithWeekdaysForMonthDate(self.date).weeksOut
-            self.currentDay = Manager.dateRange(Foundation.Date()).day
+            self.currentDay = Manager.dateRange(Foundation.Date(), calendar: calendar).day
             }, collapsingOnNil: true, withObjects: date as AnyObject?)
     }
 }
@@ -92,7 +94,7 @@ extension CVCalendarMonthView {
     public func reloadViewsWithRect(_ frame: CGRect) {
         self.frame = frame
 
-        safeExecuteBlock({
+      safeExecuteBlock({
             for (index, weekView) in self.weekViews.enumerated() {
                 if let size = self.calendarView.weekViewSize {
                     weekView.frame = CGRect(x: 0, y: size.height * CGFloat(index),
@@ -115,11 +117,11 @@ extension CVCalendarMonthView {
     public func createWeekViews() {
         weekViews = [CVCalendarWeekView]()
 
-        safeExecuteBlock({
+      safeExecuteBlock({
             for i in 0..<self.numberOfWeeks! {
                 let weekView = CVCalendarWeekView(monthView: self, index: i)
 
-                self.safeExecuteBlock({
+              self.safeExecuteBlock({
                     self.weekViews!.append(weekView)
                     }, collapsingOnNil: true, withObjects: self.weekViews as AnyObject?)
 
@@ -133,7 +135,7 @@ extension CVCalendarMonthView {
 
 extension CVCalendarMonthView {
     public func updateInteractiveView() {
-        safeExecuteBlock({
+      safeExecuteBlock({
             let mode = self.calendarView!.calendarMode!
             if mode == .monthView {
                 if let interactiveView = self.interactiveView {
@@ -160,9 +162,9 @@ extension CVCalendarMonthView {
             }, collapsingOnNil: false, withObjects: calendarView)
     }
 
-    public func didPressInteractiveView(_ recognizer: UILongPressGestureRecognizer) {
+    @objc public func didPressInteractiveView(_ recognizer: UILongPressGestureRecognizer) {
         let location = recognizer.location(in: self.interactiveView)
-        let state: UIGestureRecognizerState = recognizer.state
+        let state: UIGestureRecognizer.State = recognizer.state
 
         switch state {
         case .began:
@@ -179,7 +181,7 @@ extension CVCalendarMonthView {
         }
     }
 
-    public func didTouchInteractiveView(_ recognizer: UITapGestureRecognizer) {
+    @objc public func didTouchInteractiveView(_ recognizer: UITapGestureRecognizer) {
         let location = recognizer.location(in: self.interactiveView)
         touchController.receiveTouchLocation(location, inMonthView: self,
                                              withSelectionType: .single)
@@ -189,18 +191,18 @@ extension CVCalendarMonthView {
 // MARK: - Safe execution
 
 extension CVCalendarMonthView {
-    public func safeExecuteBlock(_ block: (Void) -> Void, collapsingOnNil collapsing: Bool,
+    public func safeExecuteBlock(_ block: () -> Void, collapsingOnNil collapsing: Bool,
                                  withObjects objects: AnyObject?...) {
         for object in objects {
             if object == nil {
                 if collapsing {
-                    fatalError("Object { \(String(describing: object)) } must not be nil!")
+                  fatalError("Object { \(String(describing: object)) } must not be nil!") 
                 } else {
                     return
                 }
             }
         }
 
-        block()
+      block()
     }
 }

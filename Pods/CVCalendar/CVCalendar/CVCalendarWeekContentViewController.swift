@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class CVCalendarWeekContentViewController: CVCalendarContentViewController {
+public final class CVCalendarWeekContentViewController: CVCalendarContentViewController, CVCalendarContentPresentationCoordinator {
     fileprivate var weekViews: [Identifier : WeekView]
     fileprivate var monthViews: [Identifier : MonthView]
 
@@ -40,7 +40,8 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
         monthViews[following] = getFollowingMonth(presentedMonthView.date)
 
         presentedMonthView.mapDayViews { dayView in
-            if self.matchedDays(dayView.date, CVDate(date: date)) {
+            let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
+            if self.matchedDays(dayView.date, CVDate(date: date, calendar: calendar)) {
                 self.insertWeekView(dayView.weekView, withIdentifier: self.presented)
                 self.calendarView.coordinator.flush()
                 if self.calendarView.shouldAutoSelectDayOnWeekChange {
@@ -134,17 +135,7 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
     }
 
     public override func performedDayViewSelection(_ dayView: DayView) {
-        if dayView.isOut && calendarView.shouldScrollOnOutDayViewSelection {
-            if dayView.date.day > 20 {
-                let presentedDate = dayView.monthView.date
-                calendarView.presentedDate = CVDate(date: self.dateBeforeDate(presentedDate!))
-                presentPreviousView(dayView)
-            } else {
-                let presentedDate = dayView.monthView.date
-                calendarView.presentedDate = CVDate(date: self.dateAfterDate(presentedDate!))
-                presentNextView(dayView)
-            }
-        }
+        //In a week view mode we don't need to scroll for a next week when dayOut selected
     }
 
     public override func presentPreviousView(_ view: UIView?) {
@@ -157,24 +148,31 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
             }
 
             UIView.animate(withDuration: toggleDateAnimationDuration, delay: 0,
-                                       options: UIViewAnimationOptions.curveEaseInOut,
-                                       animations: {
-                self.prepareTopMarkersOnWeekView(presented, hidden: false)
+                                       options: UIView.AnimationOptions.curveEaseInOut,
+                                       animations: { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.prepareTopMarkersOnWeekView(presented, hidden: false)
 
-                extra.frame.origin.x += self.scrollView.frame.width
-                presented.frame.origin.x += self.scrollView.frame.width
-                previous.frame.origin.x += self.scrollView.frame.width
+                extra.frame.origin.x += strongSelf.scrollView.frame.width
+                presented.frame.origin.x += strongSelf.scrollView.frame.width
+                previous.frame.origin.x += strongSelf.scrollView.frame.width
 
-                self.replaceWeekView(presented, withIdentifier: self.following, animatable: false)
-                self.replaceWeekView(previous, withIdentifier: self.presented, animatable: false)
-            }) { _ in
+                strongSelf.replaceWeekView(presented, withIdentifier: strongSelf.following, animatable: false)
+                strongSelf.replaceWeekView(previous, withIdentifier: strongSelf.presented, animatable: false)
+            }) { [weak self] _ in
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 extra.removeFromSuperview()
-                self.insertWeekView(self.getPreviousWeek(previous), withIdentifier: self.previous)
-                self.updateSelection()
-                self.presentationEnabled = true
+                strongSelf.insertWeekView(strongSelf.getPreviousWeek(previous), withIdentifier: strongSelf.previous)
+                strongSelf.updateSelection()
+                strongSelf.presentationEnabled = true
 
-                for weekView in self.weekViews.values {
-                    self.prepareTopMarkersOnWeekView(weekView, hidden: false)
+                for weekView in strongSelf.weekViews.values {
+                    strongSelf.prepareTopMarkersOnWeekView(weekView, hidden: false)
                 }
             }
         }
@@ -190,46 +188,63 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
             }
 
             UIView.animate(withDuration: 0.5, delay: 0,
-                                       options: UIViewAnimationOptions(),
-                                       animations: {
-                self.prepareTopMarkersOnWeekView(presented, hidden: false)
+                                       options: UIView.AnimationOptions(),
+                                       animations: { [weak self] in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.prepareTopMarkersOnWeekView(presented, hidden: false)
 
-                extra.frame.origin.x -= self.scrollView.frame.width
-                presented.frame.origin.x -= self.scrollView.frame.width
-                following.frame.origin.x -= self.scrollView.frame.width
+                extra.frame.origin.x -= strongSelf.scrollView.frame.width
+                presented.frame.origin.x -= strongSelf.scrollView.frame.width
+                following.frame.origin.x -= strongSelf.scrollView.frame.width
 
-                self.replaceWeekView(presented, withIdentifier: self.previous, animatable: false)
-                self.replaceWeekView(following, withIdentifier: self.presented, animatable: false)
-            }) { _ in
+                strongSelf.replaceWeekView(presented, withIdentifier: strongSelf.previous, animatable: false)
+                strongSelf.replaceWeekView(following, withIdentifier: strongSelf.presented, animatable: false)
+            }) { [weak self] _ in
+                guard let strongSelf = self else {
+                    return
+                }
+                
                 extra.removeFromSuperview()
-                self.insertWeekView(self.getFollowingWeek(following),
-                                    withIdentifier: self.following)
-                self.updateSelection()
-                self.presentationEnabled = true
+                strongSelf.insertWeekView(strongSelf.getFollowingWeek(following), withIdentifier: strongSelf.following)
+                strongSelf.updateSelection()
+                strongSelf.presentationEnabled = true
 
-                for weekView in self.weekViews.values {
-                    self.prepareTopMarkersOnWeekView(weekView, hidden: false)
+                for weekView in strongSelf.weekViews.values {
+                    strongSelf.prepareTopMarkersOnWeekView(weekView, hidden: false)
                 }
             }
         }
 
     }
 
-    public override func updateDayViews(_ hidden: Bool) {
-        setDayOutViewsVisible(hidden)
+    public override func updateDayViews(shouldShow: Bool) {
+      setDayOutViewsVisible(monthViews: monthViews, visible: shouldShow)
     }
 
     fileprivate var togglingBlocked = false
     public override func togglePresentedDate(_ date: Foundation.Date) {
-        let presentedDate = CVDate(date: date)
+        let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
+        
+        let presentedDate = CVDate(date: date, calendar: calendar)
         guard let _ = monthViews[presented],
-            let presentedWeekView = weekViews[presented],
-            let selectedDate = calendarView.coordinator.selectedDayView?.date else {
-                return
+          let presentedWeekView = weekViews[presented] else {
+            return
         }
-
-        if !matchedDays(selectedDate, CVDate(date: date)) && !togglingBlocked {
-            if !matchedWeeks(presentedDate, selectedDate) {
+      
+        var isMatchedDays = false
+        var isMatchedWeeks = false
+      
+        // selectedDayView would be nil if shouldAutoSelectDayOnMonthChange returns false
+        // we want to still allow the user to toggle to a date even if there is nothing selected
+        if let selectedDate = calendarView.coordinator.selectedDayView?.date {
+          isMatchedDays = matchedDays(selectedDate, presentedDate)
+          isMatchedWeeks = matchedWeeks(presentedDate, selectedDate)
+        }
+      
+        if !isMatchedDays && !togglingBlocked {
+          if !isMatchedWeeks {
                 togglingBlocked = true
 
                 weekViews[previous]?.removeFromSuperview()
@@ -242,7 +257,7 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
                 monthViews[previous] = getPreviousMonth(date)
                 monthViews[following] = getFollowingMonth(date)
 
-                let currentDate = CVDate(date: date)
+                let currentDate = CVDate(date: date, calendar: calendar)
                 calendarView.presentedDate = currentDate
 
                 var currentWeekView: WeekView!
@@ -259,15 +274,15 @@ public final class CVCalendarWeekContentViewController: CVCalendarContentViewCon
                 insertWeekView(currentWeekView, withIdentifier: presented)
                 insertWeekView(getFollowingWeek(currentWeekView), withIdentifier: following)
 
-                UIView.animate(withDuration: 0.8, delay: 0,
-                                           options: UIViewAnimationOptions(),
+                UIView.animate(withDuration: toggleDateAnimationDuration, delay: 0,
+                                           options: UIView.AnimationOptions(),
                                            animations: {
                     presentedWeekView.alpha = 0
                     currentWeekView.alpha = 1
-                }) {  _ in
+                }) { [weak self]  _ in
                     presentedWeekView.removeFromSuperview()
-                    self.selectDayViewWithDay(currentDate.day, inWeekView: currentWeekView)
-                    self.togglingBlocked = false
+                    self?.selectDayViewWithDay(currentDate.day, inWeekView: currentWeekView)
+                    self?.togglingBlocked = false
                 }
             } else {
                 if let currentWeekView = weekViews[presented] {
@@ -294,17 +309,18 @@ extension CVCalendarWeekContentViewController {
         if let presentedMonthView = monthViews[presented],
             let previousMonthView = monthViews[previous] ,
             presentedWeekView.monthView == presentedMonthView {
-                for weekView in presentedMonthView.weekViews {
-                    if weekView.index == presentedWeekView.index - 1 {
-                        return weekView
-                    }
+                if presentedWeekView.index - 1 >= 0 {
+                    return presentedMonthView.weekViews[presentedWeekView.index - 1]
                 }
 
-                for weekView in previousMonthView.weekViews {
-                    if weekView.index == previousMonthView.weekViews.count - 1 {
-                        return weekView
-                    }
+                var expectedWeekIndex = previousMonthView.weekViews.count - 1
+                let weekView = previousMonthView.weekViews[expectedWeekIndex]
+                //Check if the last week has weekdaysOut, otherwise, take next week to avoid showing duplicates
+                if weekView.weekdaysOut != nil {
+                  expectedWeekIndex -= 1
+                  return previousMonthView.weekViews[expectedWeekIndex]
                 }
+                return weekView
         } else if let previousMonthView = monthViews[previous] {
             monthViews[following] = monthViews[presented]
             monthViews[presented] = monthViews[previous]
@@ -320,17 +336,17 @@ extension CVCalendarWeekContentViewController {
         if let presentedMonthView = monthViews[presented],
             let followingMonthView = monthViews[following] ,
             presentedWeekView.monthView == presentedMonthView {
-                for weekView in presentedMonthView.weekViews {
-                    if weekView.index == presentedWeekView.index + 1 {
-                        return weekView
-                    }
+                if presentedMonthView.weekViews.count > presentedWeekView.index + 1 {
+                    return presentedMonthView.weekViews[presentedWeekView.index + 1]
                 }
-
-                for weekView in followingMonthView.weekViews {
-                    if weekView.index == 0 {
-                        return weekView
-                    }
+                var expectedWeekIndex = 0
+                let weekView = followingMonthView.weekViews[expectedWeekIndex]
+                //Check if the first week has weekdaysOut, otherwise, take next week to avoid showing duplicates
+                if weekView.weekdaysOut != nil {
+                  expectedWeekIndex += 1
+                  return followingMonthView.weekViews[expectedWeekIndex]
                 }
+                return weekView
         } else if let followingMonthView = monthViews[following] {
             monthViews[previous] = monthViews[presented]
             monthViews[presented] = monthViews[following]
@@ -349,11 +365,12 @@ extension CVCalendarWeekContentViewController {
     public func getFollowingMonth(_ date: Foundation.Date) -> MonthView {
         let calendarManager = calendarView.manager
         let firstDate = calendarManager?.monthDateRange(date).monthStartDate
-        var components = Manager.componentsForDate(firstDate!)
+        let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
+        var components = Manager.componentsForDate(firstDate!, calendar: calendar)
 
         components.month! += 1
 
-        let newDate = Calendar.current.date(from: components)!
+        let newDate = calendar.date(from: components)!
         let monthView = MonthView(calendarView: calendarView, date: newDate)
         let frame = CGRect(x: 0, y: 0, width: scrollView.bounds.width,
                            height: scrollView.bounds.height)
@@ -365,11 +382,12 @@ extension CVCalendarWeekContentViewController {
 
     public func getPreviousMonth(_ date: Foundation.Date) -> MonthView {
         let firstDate = calendarView.manager.monthDateRange(date).monthStartDate
-        var components = Manager.componentsForDate(firstDate)
+        let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
+        var components = Manager.componentsForDate(firstDate, calendar: calendar)
 
         components.month! -= 1
 
-        let newDate = Calendar.current.date(from: components)!
+        let newDate = calendar.date(from: components)!
         let monthView = MonthView(calendarView: calendarView, date: newDate)
         let frame = CGRect(x: 0, y: 0, width: scrollView.bounds.width,
                            height: scrollView.bounds.height)
@@ -390,34 +408,6 @@ extension CVCalendarWeekContentViewController {
         }
     }
 
-    public func setDayOutViewsVisible(_ visible: Bool) {
-        for monthView in monthViews.values {
-            monthView.mapDayViews { dayView in
-                if dayView.isOut {
-                    if !visible {
-                        dayView.alpha = 0
-                        dayView.isHidden = false
-                    }
-
-                    UIView.animate(withDuration: 0.5, delay: 0,
-                        options: UIViewAnimationOptions(),
-                        animations: {
-                            dayView.alpha = visible ? 0 : 1
-                            },
-                        completion: { _ in
-                            if visible {
-                                dayView.alpha = 1
-                                dayView.isHidden = true
-                                dayView.isUserInteractionEnabled = false
-                            } else {
-                                dayView.isUserInteractionEnabled = true
-                            }
-                    })
-                }
-            }
-        }
-    }
-
     public func updateSelection() {
         let coordinator = calendarView.coordinator
         if let selected = coordinator?.selectedDayView {
@@ -432,11 +422,13 @@ extension CVCalendarWeekContentViewController {
                 }
             }
         }
+        
+        let calendar = self.calendarView.delegate?.calendar?() ?? Calendar.current
 
         if let presentedWeekView = weekViews[presented],
             let presentedMonthView = monthViews[presented] {
                 self.presentedMonthView = presentedMonthView
-                calendarView.presentedDate = CVDate(date: presentedMonthView.date)
+            calendarView.presentedDate = CVDate(date: presentedMonthView.date, calendar: calendar)
 
                 var presentedDate: CVDate!
                 for dayView in presentedWeekView.dayViews {
@@ -449,7 +441,7 @@ extension CVCalendarWeekContentViewController {
                 if let selected = coordinator?.selectedDayView ,
                     !matchedWeeks(selected.date, presentedDate) &&
                         calendarView.shouldAutoSelectDayOnWeekChange {
-                            let current = CVDate(date: Foundation.Date())
+                    let current = CVDate(date: Foundation.Date(), calendar: calendar)
 
                             if matchedWeeks(current, presentedDate) {
                                 selectDayViewWithDay(current.day, inWeekView: presentedWeekView)

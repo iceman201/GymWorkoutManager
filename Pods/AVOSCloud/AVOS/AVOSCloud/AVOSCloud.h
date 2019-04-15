@@ -56,32 +56,16 @@
 #import "AVACL.h"
 #import "AVRole.h"
 
-#if AV_IOS_ONLY && !TARGET_OS_WATCH
-// IM 1.0
-#import "AVSession.h"
-#import "AVSignature.h"
-#import "AVMessage.h"
-#import "AVGroup.h"
-#import "AVHistoryMessage.h"
-#import "AVHistoryMessageQuery.h"
-#endif
+#import "AVCaptcha.h"
+#import "AVSMS.h"
 
-#if AV_IOS_ONLY && !TARGET_OS_WATCH
+// Router
+#import "LCRouter.h"
+
+#if TARGET_OS_IOS && !TARGET_OS_WATCH
 // Analytics
 #import "AVAnalytics.h"
 #endif
-
-/**
- *  Storage Type
- */
-typedef NS_ENUM(NSInteger, AVStorageType) {
-    AVStorageTypeQiniu = 0,
-    AVStorageTypeParse,
-    AVStorageTypeS3,
-    AVStorageTypeQCloud,
-    /* Default service region */
-    AVStorageTypeDefault = AVStorageTypeQiniu
-} ;
 
 typedef enum AVLogLevel : NSUInteger {
     AVLogLevelNone      = 0,
@@ -92,21 +76,30 @@ typedef enum AVLogLevel : NSUInteger {
     AVLogLevelDefault   = AVLogLevelError | AVLogLevelWarning
 } AVLogLevel;
 
-typedef NS_ENUM(NSInteger, AVServiceRegion) {
-    AVServiceRegionCN = 1,
-    AVServiceRegionUS,
-    AVServiceRegionUrulu AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.3. You should not use this value."),
-
-    /* Default service region */
-    AVServiceRegionDefault = AVServiceRegionCN
+typedef NS_ENUM(NSInteger, AVServiceModule) {
+    AVServiceModuleAPI = 1,
+    AVServiceModuleEngine,
+    AVServiceModulePush,
+    AVServiceModuleRTM,
+    AVServiceModuleStatistics
 };
 
 #define kAVDefaultNetworkTimeoutInterval 10.0
+
+NS_ASSUME_NONNULL_BEGIN
 
 /**
  *  AVOSCloud is the main Class for AVOSCloud SDK
  */
 @interface AVOSCloud : NSObject
+
+/**
+ A switch of SSL Pinning for all LeanCloud's HTTPS Requests.
+ Default is False.
+ 
+ @param enabled Set whatever you want if you master SSL & SSL Pinning.
+ */
++ (void)setSSLPinningEnabled:(BOOL)enabled;
 
 /*!
  * Enable logs of all levels and domains. When define DEBUG macro, it's enabled, otherwise, it's not enabled. This is recommended. But you can set it NO, and call AVLogger's methods to control which domains' log should be output.
@@ -143,7 +136,6 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
  */
 + (NSString *)getClientKey;
 
-
 /**
  *  开启LastModify支持, 减少流量消耗。默认关闭。
  *  @param enabled 开启
@@ -159,19 +151,15 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
 /**
  *  清空LastModify缓存
  */
-+(void)clearLastModifyCache;
++ (void)clearLastModifyCache;
 
 /**
- *  Set third party file storage service. If uses China server, you can use QCloud or Qiniu, the default is Qiniu, if uses US server, the default is AWS S3.
- *  @param type Qiniu, QCloud or AWS S3.
- */
-+ (void)setStorageType:(AVStorageType)type;
+ Custom server URL for specific service module.
 
-/**
- * Use specified region.
- * If not specified, AVServiceRegionCN will be used.
+ @param URLString     The URL string of service module.
+ @param serviceModule The service module which you want to customize.
  */
-+ (void)setServiceRegion:(AVServiceRegion)region;
++ (void)setServerURLString:(NSString * _Nullable)URLString forServiceModule:(AVServiceModule)serviceModule;
 
 /**
  *  Get the timeout interval for network requests. Default is kAVDefaultNetworkTimeoutInterval (10 seconds)
@@ -214,60 +202,12 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
  */
 + (NSInteger)fileCacheExpiredDays;
 
-
 /**
  *  set File Cache Expired Days, default is 30 days
  *
  *  @param days the days you want to set
  */
 + (void)setFileCacheExpiredDays:(NSInteger)days;
-
-/*!
- *  请求短信验证码，需要开启手机短信验证 API 选项。
- *  发送短信到指定的手机上，发送短信到指定的手机上，获取6位数字验证码。
- *  @param phoneNumber 11位电话号码
- *  @param callback 回调结果
- */
-+(void)requestSmsCodeWithPhoneNumber:(NSString *)phoneNumber
-                            callback:(AVBooleanResultBlock)callback;
-/*!
- *  请求短信验证码，需要开启手机短信验证 API 选项。
- *  发送短信到指定的手机上，获取6位数字验证码。
- *  @param phoneNumber 11位电话号码
- *  @param appName 应用名称，传nil为默认值您的应用名称
- *  @param operation 操作名称，传nil为默认值"短信认证"
- *  @param ttl 短信过期时间，单位分钟，传0为默认值10分钟
- *  @param callback 回调结果
- */
-+(void)requestSmsCodeWithPhoneNumber:(NSString *)phoneNumber
-                             appName:(NSString *)appName
-                           operation:(NSString *)operation
-                          timeToLive:(NSUInteger)ttl
-                            callback:(AVBooleanResultBlock)callback;
-
-/*!
- *  请求短信验证码，需要开启手机短信验证 API 选项。
- *  发送短信到指定的手机上，获取6位数字验证码。
- *  @param phoneNumber 11位电话号码
- *  @param templateName 模板名称，传nil为默认模板
- *  @param variables 模板中使用的变量
- *  @param callback 回调结果
- */
-+(void)requestSmsCodeWithPhoneNumber:(NSString *)phoneNumber
-                        templateName:(NSString *)templateName
-                           variables:(NSDictionary *)variables
-                            callback:(AVBooleanResultBlock)callback;
-
-/*!
- * 请求语音短信验证码，需要开启手机短信验证 API 选项
- * 发送语音短信到指定手机上
- * @param phoneNumber 11 位电话号码
- * @param IDD 号码的所在地国家代码，如果传 nil，默认为 "+86"
- * @param callback 回调结果
- */
-+(void)requestVoiceCodeWithPhoneNumber:(NSString *)phoneNumber
-                                   IDD:(NSString *)IDD
-                              callback:(AVBooleanResultBlock)callback;
 
 /*!
  *  验证短信验证码，需要开启手机短信验证 API 选项。
@@ -281,20 +221,156 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
 /*!
  * 获取服务端时间。
  */
-+ (NSDate *)getServerDate:(NSError **)error;
++ (nullable NSDate *)getServerDate:(NSError **)error;
+
+/*!
+ An alias of `+[AVOSCloud getServerDate:]` methods that supports Swift exception.
+ @seealso `+[AVPush getServerDate:]`
+ */
++ (nullable NSDate *)getServerDateAndThrowsWithError:(NSError **)error;
+
+/**
+ Set a time zone offset from Greenwich Mean Time by a given number of seconds.
+ 
+ @param seconds Default is 0.
+ */
++ (void)setTimeZoneForSecondsFromGMT:(NSInteger)seconds;
 
 /*!
  * 异步地获取服务端时间。
  * @param block 回调结果。
  */
-+ (void)getServerDateWithBlock:(void(^)(NSDate *date, NSError *error))block;
++ (void)getServerDateWithBlock:(void(^)(NSDate * _Nullable date, NSError * _Nullable error))block;
 
 #pragma mark - Push Notification
 
 /**
+ Handle device token registered from APNs.
+ This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
+
+ @param deviceToken Device token issued by APNs.
+ */
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+
+/**
+ Handle device token registered from APNs, with a team ID.
+ This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
+
+ @param deviceToken Device token issued by APNs.
+ @param teamId Team ID.
+ */
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+                                          teamId:(NSString * _Nullable)teamId;
+
+/**
+ Handle device token registered from APNs.
+ This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
+
+ @param deviceToken Device token issued by APNs.
+ @param block Constructing block of [AVInstallation defaultInstallation].
+ */
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+               constructingInstallationWithBlock:(void(^ _Nullable)(AVInstallation *currentInstallation))block;
+
+/**
+ Handle device token registered from APNs, with a team ID.
+ This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
+
+ @param deviceToken Device token issued by APNs.
+ @param teamId Team ID.
+ @param block Constructing block of [AVInstallation defaultInstallation].
+ */
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+                                          teamId:(NSString * _Nullable)teamId
+               constructingInstallationWithBlock:(void(^ _Nullable)(AVInstallation *))block;
+
+@end
+
+#pragma mark - Deprecated API
+
+typedef NS_ENUM(NSInteger, AVStorageType) {
+    AVStorageTypeQiniu = 0,
+    AVStorageTypeParse,
+    AVStorageTypeS3,
+    AVStorageTypeQCloud,
+    /* Default service region */
+    AVStorageTypeDefault = AVStorageTypeQiniu
+} __deprecated;
+
+typedef NS_ENUM(NSInteger, AVServiceRegion) {
+    AVServiceRegionCN = 1,
+    AVServiceRegionUS,
+    
+    /* Default service region */
+    AVServiceRegionDefault = AVServiceRegionCN
+} __deprecated;
+
+@interface AVOSCloud (AVDeprecated)
+
+/**
+ *  Set third party file storage service. If uses China server, you can use QCloud or Qiniu, the default is Qiniu, if uses US server, the default is AWS S3.
+ *  @param type Qiniu, QCloud or AWS S3.
+ */
++ (void)setStorageType:(AVStorageType)type __deprecated;
+
+/**
+ * Use specified region.
+ * If not specified, AVServiceRegionCN will be used.
+ */
++ (void)setServiceRegion:(AVServiceRegion)region __deprecated;
+
+/*!
+ *  请求短信验证码，需要开启手机短信验证 API 选项。
+ *  发送短信到指定的手机上，发送短信到指定的手机上，获取6位数字验证码。
+ *  @param phoneNumber 11位电话号码
+ *  @param callback 回调结果
+ */
++(void)requestSmsCodeWithPhoneNumber:(NSString *)phoneNumber
+                            callback:(AVBooleanResultBlock)callback AV_DEPRECATED("Deprecated in AVOSCloud SDK 4.5.0. Use +[AVSMS requestShortMessageForPhoneNumber:options:callback:] instead.");
+
+/*!
+ *  请求短信验证码，需要开启手机短信验证 API 选项。
+ *  发送短信到指定的手机上，获取6位数字验证码。
+ *  @param phoneNumber 11位电话号码
+ *  @param appName 应用名称，传nil为默认值您的应用名称
+ *  @param operation 操作名称，传nil为默认值"短信认证"
+ *  @param ttl 短信过期时间，单位分钟，传0为默认值10分钟
+ *  @param callback 回调结果
+ */
++(void)requestSmsCodeWithPhoneNumber:(NSString *)phoneNumber
+                             appName:(nullable NSString *)appName
+                           operation:(nullable NSString *)operation
+                          timeToLive:(NSUInteger)ttl
+                            callback:(AVBooleanResultBlock)callback AV_DEPRECATED("Deprecated in AVOSCloud SDK 4.5.0. Use +[AVSMS requestShortMessageForPhoneNumber:options:callback:] instead.");
+
+/*!
+ *  请求短信验证码，需要开启手机短信验证 API 选项。
+ *  发送短信到指定的手机上，获取6位数字验证码。
+ *  @param phoneNumber 11位电话号码
+ *  @param templateName 模板名称，传nil为默认模板
+ *  @param variables 模板中使用的变量
+ *  @param callback 回调结果
+ */
++(void)requestSmsCodeWithPhoneNumber:(NSString *)phoneNumber
+                        templateName:(nullable NSString *)templateName
+                           variables:(nullable NSDictionary *)variables
+                            callback:(AVBooleanResultBlock)callback AV_DEPRECATED("Deprecated in AVOSCloud SDK 4.5.0. Use +[AVSMS requestShortMessageForPhoneNumber:options:callback:] instead.");
+
+/*!
+ * 请求语音短信验证码，需要开启手机短信验证 API 选项
+ * 发送语音短信到指定手机上
+ * @param phoneNumber 11 位电话号码
+ * @param IDD 号码的所在地国家代码，如果传 nil，默认为 "+86"
+ * @param callback 回调结果
+ */
++(void)requestVoiceCodeWithPhoneNumber:(NSString *)phoneNumber
+                                   IDD:(nullable NSString *)IDD
+                              callback:(AVBooleanResultBlock)callback AV_DEPRECATED("Deprecated in AVOSCloud SDK 4.5.0. Use +[AVSMS requestShortMessageForPhoneNumber:options:callback:] instead.");
+
+/**
  * Register remote notification with all types (badge, alert, sound) and empty categories.
  */
-+ (void)registerForRemoteNotification AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE;
++ (void)registerForRemoteNotification AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.5.0. It will be removed in future.");
 
 /**
  * Register remote notification with types.
@@ -302,39 +378,8 @@ typedef NS_ENUM(NSInteger, AVServiceRegion) {
  * @param categories A set of UIUserNotificationCategory objects that define the groups of actions a notification may include.
  * NOTE: categories only supported by iOS 8 and later. If application run below iOS 8, categories will be ignored.
  */
-+ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(NSSet *)categories AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE;
-
-/**
- * Handle device token registered from APNs.
- * @param deviceToken Device token issued by APNs.
- * This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
- */
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
-
-/**
- * Handle device token registered from APNs.
- * @param deviceToken Device token issued by APNs.
- * @param block       Constructing block of [AVInstallation currentInstallation].
- * This method should be called in -[UIApplication application:didRegisterForRemoteNotificationsWithDeviceToken:].
- */
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken constructingInstallationWithBlock:(void (^)(AVInstallation *currentInstallation))block;
++ (void)registerForRemoteNotificationTypes:(NSUInteger)types categories:(nullable NSSet *)categories AV_TV_UNAVAILABLE AV_WATCH_UNAVAILABLE AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.5.0. It will be removed in future.");
 
 @end
 
-#pragma mark - Deprecated API
-
-@interface AVOSCloud (AVDeprecated)
-
-+ (void)useAVCloud AV_DEPRECATED("Deprecated in AVOSCloud SDK 2.3.3.");
-
-/**
- * Use LeanCloud US server.
- */
-+ (void)useAVCloudUS AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.3. Use +[AVOSCloud setServiceRegion:] instead.");
-
-/**
- * Use LeanCloud China Sever. Default option.
- */
-+ (void)useAVCloudCN AV_DEPRECATED("Deprecated in AVOSCloud SDK 3.2.3. Use +[AVOSCloud setServiceRegion:] instead.");
-
-@end
+NS_ASSUME_NONNULL_END

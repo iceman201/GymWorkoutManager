@@ -9,5 +9,16 @@
 #import "AVIMMessageObject.h"
 
 @implementation AVIMMessageObject
-@dynamic ioType, status, messageId, clientId, conversationId, content, sendTimestamp, deliveredTimestamp;
+
+LC_FORWARD_PROPERTY_ACCESSOR_NUMBER         (ioType,                setIoType,              AVIMMessageIOType)
+LC_FORWARD_PROPERTY_ACCESSOR_NUMBER         (status,                setStatus,              AVIMMessageStatus)
+LC_FORWARD_PROPERTY_ACCESSOR_OBJECT_COPY    (messageId,             setMessageId)
+LC_FORWARD_PROPERTY_ACCESSOR_OBJECT_COPY    (clientId,              setClientId)
+LC_FORWARD_PROPERTY_ACCESSOR_OBJECT_COPY    (conversationId,        setConversationId)
+LC_FORWARD_PROPERTY_ACCESSOR_OBJECT_COPY    (content,               setContent)
+LC_FORWARD_PROPERTY_ACCESSOR_NUMBER         (sendTimestamp,         setSendTimestamp,       int64_t)
+LC_FORWARD_PROPERTY_ACCESSOR_NUMBER         (deliveredTimestamp,    setDeliveredTimestamp,  int64_t)
+LC_FORWARD_PROPERTY_ACCESSOR_NUMBER         (readTimestamp,         setReadTimestamp,       int64_t)
+LC_FORWARD_PROPERTY_ACCESSOR_OBJECT_COPY    (updatedAt,             setUpdatedAt)
+
 @end

@@ -9,7 +9,7 @@
 import UIKit
 import ScrollableGraphView
 
-class AnalysisGraphViewController: UIViewController {
+class AnalysisGraphViewController: UIViewController, ScrollableGraphViewDataSource {
     @IBOutlet var graphView: ScrollableGraphView!
     let numberOfDataItems = 29
 
@@ -18,13 +18,10 @@ class AnalysisGraphViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard let data = data, let labels = labels else {
-            return
-        }
         self.title = "History"
-        graphView?.setData(data, withLabels: formatingDate(labels))
-        graphView.referenceLineLabelFont = UIFont(name: "HelveticaNeue", size: 12)!
+        self.graphView.dataSource = self
+//        graphView.setData(data, withLabels: formatingDate(labels))
+//        graphView.referenceLineLabelFont = UIFont(name: "HelveticaNeue", size: 12)!
     }
     
     fileprivate func formatingDate(_ dates:[String]) -> [String] {
@@ -33,5 +30,19 @@ class AnalysisGraphViewController: UIViewController {
             result.append(eachDate.replacingOccurrences(of: " ", with: "-"))
         }
         return result
+    }
+    
+    func value(forPlot plot: Plot, atIndex pointIndex: Int) -> Double {
+        guard let data = data else { return 0.0 }
+        return data[pointIndex]
+    }
+    
+    func label(atIndex pointIndex: Int) -> String {
+        guard let label = labels else { return "" }
+        return label[pointIndex]
+    }
+    
+    func numberOfPoints() -> Int {
+        return data?.count ?? 0
     }
 }

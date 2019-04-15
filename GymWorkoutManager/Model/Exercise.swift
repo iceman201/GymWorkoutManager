@@ -9,10 +9,10 @@
 import RealmSwift
 
 class Exercise: Object {
-    dynamic var exerciseName = ""
-    dynamic var times = ""
-    dynamic var reps = ""
-    dynamic var set = ""
-    dynamic var date = ""
-    dynamic var workoutType = -1
+    @objc dynamic var exerciseName = ""
+    @objc dynamic var times = ""
+    @objc dynamic var reps = ""
+    @objc dynamic var set = ""
+    @objc dynamic var date = ""
+    @objc dynamic var workoutType = -1
 }

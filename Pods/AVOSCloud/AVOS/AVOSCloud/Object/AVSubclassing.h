@@ -10,6 +10,8 @@
 
 @class AVQuery;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  If a subclass of AVObject conforms to AVSubclassing and calls registerSubclass, LeanCloud will be able to use that class as the native class for a LeanCloud object.
 
@@ -23,16 +25,6 @@
 + (NSString *)parseClassName;
 
 /*!
- Constructs an object of the most specific class known to implement parseClassName.
- This method takes care to help AVObject subclasses be subclassed themselves.
- For example, [AVUser object] returns a AVUser by default but will return an
- object of a registered subclass instead if one is known.
- A default implementation is provided by AVObject which should always be sufficient.
- @return the object that is instantiated.
- */
-+ (instancetype)object;
-
-/*!
  Creates a reference to an existing AVObject for use in creating associations between AVObjects.  Calling isDataAvailable on this
  object will return NO until fetchIfNeeded or refresh has been called.  No network request will be made.
  A default implementation is provided by AVObject which should always be sufficient.
@@ -40,8 +32,6 @@
  @return A AVObject without data.
  */
 + (instancetype)objectWithoutDataWithObjectId:(NSString *)objectId;
-
-
 
 /*!
  Create a query which returns objects of this type.
@@ -56,3 +46,5 @@
 + (void)registerSubclass;
 
 @end
+
+NS_ASSUME_NONNULL_END

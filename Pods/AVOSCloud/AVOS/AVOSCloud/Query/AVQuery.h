@@ -5,10 +5,12 @@
 #import "AVGeoPoint.h"
 #import "AVObject.h"
 #import "AVCloudQueryResult.h"
+
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
-  A class that defines a query that is used to query for AVObjects.
+ A class that defines a query that is used to query for AVObjects.
  */
-@class AVRequestOperation;
 @interface AVQuery : NSObject
 
 /*!
@@ -32,33 +34,11 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
 + (instancetype)queryWithClassName:(NSString *)className;
 
 /*!
- Creates a AVQuery with the constraints given by predicate.
- 
- The following types of predicates are supported:
- * Simple comparisons such as =, !=, <, >, <=, >=, and BETWEEN with a key and a constant.
- * Containment predicates, such as "x IN {1, 2, 3}".
- * Key-existence predicates, such as "x IN SELF".
- * BEGINSWITH expressions.
- * Compound predicates with AND, OR, and NOT.
- * SubQueries with "key IN %@", subquery.
- 
- The following types of predicates are NOT supported:
- * Aggregate operations, such as ANY, SOME, ALL, or NONE.
- * Regular expressions, such as LIKE, MATCHES, CONTAINS, or ENDSWITH.
- * Predicates comparing one key to another.
- * Complex predicates with many ORed clauses.
- 
- @param className the class name
- @param predicate the predicates
- */
-+ (instancetype)queryWithClassName:(NSString *)className predicate:(NSPredicate *)predicate;
-
-/*!
  *  使用 CQL 查询
  *  @param cql CQL 字符串
  *  @return 查询结果
  */
-+ (AVCloudQueryResult *)doCloudQueryWithCQL:(NSString *)cql;
++ (nullable AVCloudQueryResult *)doCloudQueryWithCQL:(NSString *)cql;
 
 /*!
  *  使用 CQL 查询
@@ -66,7 +46,7 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  *  @param error 用于返回错误结果
  *  @return 查询结果
  */
-+ (AVCloudQueryResult *)doCloudQueryWithCQL:(NSString *)cql error:(NSError **)error;
++ (nullable AVCloudQueryResult *)doCloudQueryWithCQL:(NSString *)cql error:(NSError **)error;
 
 /*!
  *  使用 CQL 查询
@@ -75,7 +55,7 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  *  @param error 用于返回错误结果
  *  @return 查询结果
  */
-+ (AVCloudQueryResult *)doCloudQueryWithCQL:(NSString *)cql pvalues:(NSArray *)pvalues error:(NSError **)error;
++ (nullable AVCloudQueryResult *)doCloudQueryWithCQL:(NSString *)cql pvalues:(nullable NSArray *)pvalues error:(NSError **)error;
 
 /*!
  *  使用 CQL 异步查询
@@ -90,13 +70,13 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  *  @param pvalues 参数列表
  *  @param callback 查询结果回调
  */
-+ (void)doCloudQueryInBackgroundWithCQL:(NSString *)cql pvalues:(NSArray *)pvalues callback:(AVCloudQueryCallback)callback;
++ (void)doCloudQueryInBackgroundWithCQL:(NSString *)cql pvalues:(nullable NSArray *)pvalues callback:(AVCloudQueryCallback)callback;
 
 /*!
  Initializes the query with a class name.
  @param newClassName The class name.
  */
-- (id)initWithClassName:(NSString *)newClassName;
+- (instancetype)initWithClassName:(NSString *)newClassName;
 
 /*!
   The class name to query for
@@ -296,7 +276,7 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param regex The regular expression pattern to match.
  @param modifiers Any of the following supported PCRE modifiers:<br><code>i</code> - Case insensitive search<br><code>m</code> - Search across multiple lines of input
  */
-- (void)whereKey:(NSString *)key matchesRegex:(NSString *)regex modifiers:(NSString *)modifiers;
+- (void)whereKey:(NSString *)key matchesRegex:(NSString *)regex modifiers:(nullable NSString *)modifiers;
 
 /*!
  Add a constraint for finding string values that contain a provided substring.
@@ -433,8 +413,8 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param objectId The id of the object that is being requested.
  @return The AVObject if found. Returns nil if the object isn't found, or if there was an error.
  */
-+ (AVObject *)getObjectOfClass:(NSString *)objectClass
-                      objectId:(NSString *)objectId;
++ (nullable AVObject *)getObjectOfClass:(NSString *)objectClass
+                               objectId:(NSString *)objectId;
 
 /*!
  Returns a AVObject with a given class and id and sets an error if necessary.
@@ -443,9 +423,9 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param error Pointer to an NSError that will be set if necessary.
  @return The AVObject if found. Returns nil if the object isn't found, or if there was an error.
  */
-+ (AVObject *)getObjectOfClass:(NSString *)objectClass
-                      objectId:(NSString *)objectId
-                         error:(NSError **)error;
++ (nullable AVObject *)getObjectOfClass:(NSString *)objectClass
+                               objectId:(NSString *)objectId
+                                  error:(NSError **)error;
 
 /*!
  Returns a AVObject with the given id.
@@ -455,7 +435,7 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param objectId The id of the object that is being requested.
  @return The AVObject if found. Returns nil if the object isn't found, or if there was an error.
  */
-- (AVObject *)getObjectWithId:(NSString *)objectId;
+- (nullable AVObject *)getObjectWithId:(NSString *)objectId;
 
 /*!
  Returns a AVObject with the given id and sets an error if necessary.
@@ -466,7 +446,7 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param error Pointer to an NSError that will be set if necessary.
  @return The AVObject if found. Returns nil if the object isn't found, or if there was an error.
  */
-- (AVObject *)getObjectWithId:(NSString *)objectId error:(NSError **)error;
+- (nullable AVObject *)getObjectWithId:(NSString *)objectId error:(NSError **)error;
 
 /*!
  Gets a AVObject asynchronously and calls the given block with the result. 
@@ -501,7 +481,7 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param objectId The id of the object that is being requested.
  @return The AVUser if found. Returns nil if the object isn't found, or if there was an error.
  */
-+ (AVUser *)getUserObjectWithId:(NSString *)objectId;
++ (nullable AVUser *)getUserObjectWithId:(NSString *)objectId;
 
 /*!
  Returns a AVUser with a given class and id and sets an error if necessary.
@@ -510,13 +490,13 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param error Pointer to an NSError that will be set if necessary.
  @return The AVUser if found. Returns nil if the object isn't found, or if there was an error.
  */
-+ (AVUser *)getUserObjectWithId:(NSString *)objectId
-                          error:(NSError **)error;
++ (nullable AVUser *)getUserObjectWithId:(NSString *)objectId
+                                   error:(NSError **)error;
 
 /*!
  Deprecated.  Please use [AVUser query] instead.
  */
-+ (AVQuery *)queryForUser __attribute__ ((deprecated));
++ (instancetype)queryForUser AV_DEPRECATED("Use +[AVUser query] instead.");
 
 #pragma mark -
 #pragma mark Find methods
@@ -527,14 +507,20 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  Finds objects based on the constructed query.
  @return an array of AVObjects that were found.
  */
-- (NSArray *)findObjects;
+- (nullable NSArray *)findObjects;
 
 /*!
  Finds objects based on the constructed query and sets an error if there was one.
  @param error Pointer to an NSError that will be set if necessary.
  @return an array of AVObjects that were found.
  */
-- (NSArray *)findObjects:(NSError **)error;
+- (nullable NSArray *)findObjects:(NSError **)error;
+
+/*!
+ An alias of `-[AVQuery findObjects:]` methods that supports Swift exception.
+ @seealso `-[AVQuery findObjects:]`
+ */
+- (nullable NSArray *)findObjectsAndThrowsWithError:(NSError **)error;
 
 /*!
  Finds objects asynchronously and calls the given block with the results.
@@ -566,7 +552,7 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  
  @return a AVObject, or nil if none was found.
  */
-- (AVObject *)getFirstObject;
+- (nullable AVObject *)getFirstObject;
 
 /*!
  Gets an object based on the constructed query and sets an error if any occurred.
@@ -576,7 +562,13 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
  @param error Pointer to an NSError that will be set if necessary.
  @return a AVObject, or nil if none was found.
  */
-- (AVObject *)getFirstObject:(NSError **)error;
+- (nullable AVObject *)getFirstObject:(NSError **)error;
+
+/*!
+ An alias of `-[AVQuery getFirstObject:]` methods that supports Swift exception.
+ @seealso `-[AVQuery getFirstObject:]`
+ */
+- (nullable AVObject *)getFirstObjectAndThrowsWithError:(NSError **)error;
 
 /*!
  Gets an object asynchronously and calls the given block with the result.
@@ -616,6 +608,12 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
 - (NSInteger)countObjects:(NSError **)error;
 
 /*!
+ An alias of `-[AVQuery countObjects:]` methods that supports Swift exception.
+ @seealso `-[AVQuery countObjects:]`
+ */
+- (NSInteger)countObjectsAndThrowsWithError:(NSError **)error;
+
+/*!
  Counts objects asynchronously and calls the given block with the counts.
  @param block The block to execute. The block should have the following argument signature:
  (int count, NSError *error) 
@@ -646,12 +644,17 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
 /*!
  A limit on the number of objects to return.  Note: If you are calling findObject with limit=1, you may find it easier to use getFirst instead.
  */
-@property (nonatomic) NSInteger limit;
+@property (nonatomic, assign) NSInteger limit;
 
 /*!
  The number of objects to skip before returning any.
  */
-@property (nonatomic) NSInteger skip;
+@property (nonatomic, assign) NSInteger skip;
+
+/**
+ Include ACL for object.
+ */
+@property (nonatomic, assign) BOOL includeACL;
 
 #pragma mark -
 #pragma mark Cache methods
@@ -696,3 +699,5 @@ typedef NS_ENUM(NSInteger, AVQueryDistanceUnit) {
 
 
 @end
+
+NS_ASSUME_NONNULL_END

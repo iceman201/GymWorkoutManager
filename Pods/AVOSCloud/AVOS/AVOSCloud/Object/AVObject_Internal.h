@@ -34,26 +34,27 @@ NSString *request_object_id(NSDictionary *request) {
 
 @interface AVObject ()
 
-@property (nonatomic, retain, readwrite) NSString *objectId;
-@property (nonatomic, retain, readwrite) NSDate *updatedAt;
-@property (nonatomic, retain, readwrite) NSDate *createdAt;
+@property (nonatomic,   copy) NSString *objectId;
+@property (nonatomic,   copy) NSString *className;
+@property (nonatomic, strong) NSDate *updatedAt;
+@property (nonatomic, strong) NSDate *createdAt;
 
+@property (nonatomic, strong) NSMutableDictionary *_localData;
+@property (nonatomic, strong) NSMutableDictionary *_estimatedData;
+@property (nonatomic, strong) NSMutableDictionary *_relationData;
 
-@property (readwrite) NSString * className;
-@property (nonatomic, readwrite, strong) NSMutableDictionary * localData;
-@property (nonatomic, readwrite, strong) NSMutableDictionary * estimatedData;
-@property (nonatomic, readwrite, strong) NSMutableDictionary * relationData;
+@property (nonatomic,   copy) NSString *_uuid;
+@property (nonatomic, assign) BOOL _isPointer;
+@property (nonatomic, assign) BOOL _running;
+@property (nonatomic, strong) AVRequestOperationQueue *_operationQueue;
+@property (nonatomic, strong) AVRequestManager *_requestManager;
 
-@property (nonatomic, readonly, strong) NSString *uuid;
-@property (nonatomic, readwrite) BOOL isPointer;
-@property (nonatomic, readwrite) BOOL running;
-@property (nonatomic, readwrite, strong) AVRequestOperationQueue *operationQueue;
-@property (nonatomic, readwrite, strong) AVRequestManager * requestManager;
+@property (nonatomic, assign) BOOL _submit;
+@property (nonatomic, assign) BOOL _inSetter;
+@property (nonatomic, assign) BOOL _hasDataForCloud;
+@property (nonatomic, assign) BOOL _hasDataForInitial;
 
-@property (nonatomic, readwrite) BOOL submit;
-@property (nonatomic, readwrite) BOOL inSetter;
-@property (nonatomic, readwrite) BOOL hasDataForCloud;
-@property (nonatomic, readwrite) BOOL hasDataForInitial;
+- (void)internalSyncLock:(void (^)(void))block;
 
 -(NSMutableArray *)findArrayForKey:(NSString *)key
                 inDictionary:(NSMutableDictionary *)dict

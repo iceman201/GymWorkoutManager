@@ -7,6 +7,8 @@
 #import "AVConstants.h"
 #import "AVQuery.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 extern NSString *const kAVPushTargetPlatformIOS;
 extern NSString *const kAVPushTargetPlatformAndroid;
 extern NSString *const kAVPushTargetPlatformWindowsPhone;
@@ -38,6 +40,13 @@ extern NSString *const kAVPushTargetPlatformWindowsPhone;
  *  @param isProduction the production mode or test mode
  */
 + (void)setProductionMode:(BOOL)isProduction;
+
+/**
+ Default is false, if set true, AVPush will remove 'prod' Key-Value.
+
+ @param isIgnoreProd trigger.
+ */
++ (void)setIgnoreProdParameterEnabled:(BOOL)isIgnoreProd;
 
 /*! @name Configuring a Push Notification */
 
@@ -230,6 +239,12 @@ extern NSString *const kAVPushTargetPlatformWindowsPhone;
 - (BOOL)sendPush:(NSError **)error;
 
 /*!
+ An alias of `-[AVPush sendPush:]` methods that supports Swift exception.
+ @seealso `-[AVPush sendPush:]`
+ */
+- (BOOL)sendPushAndThrowsWithError:(NSError **)error;
+
+/*!
  Asynchronously send this push message.
  */
 - (void)sendPushInBackground;
@@ -331,7 +346,13 @@ extern NSString *const kAVPushTargetPlatformWindowsPhone;
  @param error Pointer to an NSError that will be set if necessary.
  @return an NSSet containing all the channel names this device is subscribed to.
  */
-+ (NSSet *)getSubscribedChannels:(NSError **)error;
++ (nullable NSSet *)getSubscribedChannels:(NSError **)error;
+
+/*!
+ An alias of `-[AVPush getSubscribedChannels:]` methods that supports Swift exception.
+ @seealso `-[AVPush getSubscribedChannels:]`
+ */
++ (nullable NSSet *)getSubscribedChannelsAndThrowsWithError:(NSError **)error;
 
 /*!
  Get all the channels that this device is subscribed to.
@@ -343,7 +364,6 @@ extern NSString *const kAVPushTargetPlatformWindowsPhone;
  Asynchronously get all the channels that this device is subscribed to.
  @param target The object to call selector on.
  @param selector The selector to call. It should have the following signature: (void)callbackWithResult:(NSSet *)result error:(NSError *)error. error will be nil on success and set if there was an error.
- @return an NSSet containing all the channel names this device is subscribed to.
  */
 + (void)getSubscribedChannelsInBackgroundWithTarget:(id)target
                                            selector:(SEL)selector;
@@ -418,3 +438,5 @@ extern NSString *const kAVPushTargetPlatformWindowsPhone;
                                   selector:(SEL)selector;
 
 @end
+
+NS_ASSUME_NONNULL_END

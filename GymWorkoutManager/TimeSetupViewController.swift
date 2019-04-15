@@ -70,13 +70,13 @@ class TimeSetupViewController: UIViewController, UIPickerViewDelegate,UIPickerVi
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let attributedString : NSAttributedString
         if component == 0 {
-            attributedString = NSAttributedString(string: "Mins", attributes: [NSForegroundColorAttributeName : UIColor.white])
+            attributedString = NSAttributedString(string: "Mins", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         } else if component == 1 {
-            attributedString = NSAttributedString(string: String(minutes[row]), attributes: [NSForegroundColorAttributeName : UIColor.white])
+            attributedString = NSAttributedString(string: String(minutes[row]), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         } else if component == 2 {
-            attributedString = NSAttributedString(string: "Sec", attributes: [NSForegroundColorAttributeName : UIColor.white])
+            attributedString = NSAttributedString(string: "Sec", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         } else {
-            attributedString = NSAttributedString(string: String(seconds[row]), attributes: [NSForegroundColorAttributeName : UIColor.white])
+            attributedString = NSAttributedString(string: String(seconds[row]), attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
         }
         return attributedString
     }

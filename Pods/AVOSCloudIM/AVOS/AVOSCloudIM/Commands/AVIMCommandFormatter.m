@@ -16,7 +16,7 @@ const NSInteger LCIMErrorCodeSessionTokenExpired = 4112;
 @implementation AVIMCommandFormatter
 
 + (NSString *)commandType:(AVIMCommandType)commandType {
-    NSString *commandTypeString;
+    NSString *commandTypeString = nil;
     switch (commandType) {
         case AVIMCommandType_Session:
             commandTypeString = @"Session";
@@ -73,42 +73,11 @@ const NSInteger LCIMErrorCodeSessionTokenExpired = 4112;
         case AVIMCommandType_Report:
             commandTypeString = @"Report";
             break;
-    }
-    return commandTypeString;
-}
-
-+ (NSString *)signatureActionForKey:(AVIMOpType)action {
-    //FIXME:查看一下有哪些地方会触发签名，都可以加上去。
-    NSString *actionStr;
-    switch (action) {
-            
-            // AVIMOpType_Add = 2,
-        case AVIMOpType_Add:
-            actionStr = @"invite";
-            break;
-            
-            // AVIMOpType_Remove = 3,
-        case AVIMOpType_Remove:
-            actionStr = @"kick";
-            break;
-            
-            // AVIMOpType_Open = 1,
-            // 登陆
-        case AVIMOpType_Open:
-            actionStr = @"open";
-            break;
-            
-            // AVIMOpType_Start = 30,
-            // 创建对话
-        case AVIMOpType_Start:
-            actionStr = @"start";
-            break;
             
         default:
             break;
     }
-    
-    return actionStr;
+    return commandTypeString;
 }
 
 + (AVIMJsonObjectMessage *)JSONObjectWithDictionary:(NSDictionary *)dictionary {

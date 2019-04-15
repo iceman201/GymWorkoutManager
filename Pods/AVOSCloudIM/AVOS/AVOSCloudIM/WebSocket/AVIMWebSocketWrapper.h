@@ -7,41 +7,49 @@
 //
 
 #import "AVIMCommon.h"
-#import "AVIMCommandCommon.h"
+#import "MessagesProtoOrig.pbobjc.h"
 
-#define PUSH_GROUP_CN @"g0"
-#define PUSH_GROUP_US @"a0"
-#define USE_DEBUG_SERVER 0
-#define DEBUG_SERVER @"ws://puppet.leancloud.cn:5779/"
+@class AVIMWebSocketWrapper;
+@class LCIMProtobufCommandWrapper;
 
-#define AVIM_NOTIFICATION_WEBSOCKET_ERROR @"AVIM_NOTIFICATION_WEBSOCKET_ERROR"
-#define AVIM_NOTIFICATION_WEBSOCKET_OPENED @"AVIM_NOTIFICATION_WEBSOCKET_OPENED"
-#define AVIM_NOTIFICATION_WEBSOCKET_CLOSED @"AVIM_NOTIFICATION_WEBSOCKET_CLOSED"
-#define AVIM_NOTIFICATION_WEBSOCKET_RECONNECT @"AVIM_NOTIFICATION_WEBSOCKET_RECONNECT"
-#define AVIM_NOTIFICATION_WEBSOCKET_COMMAND @"AVIM_NOTIFICATION_WEBSOCKET_COMMAND"
+// MARK: - Delegate Protocol
 
-FOUNDATION_EXPORT NSString *const AVIMProtocolJSON1;
-FOUNDATION_EXPORT NSString *const AVIMProtocolJSON2;
-FOUNDATION_EXPORT NSString *const AVIMProtocolPROTOBUF1;
-FOUNDATION_EXPORT NSString *const AVIMProtocolPROTOBUF2;
+@protocol AVIMWebSocketWrapperDelegate <NSObject>
+
+- (void)webSocketWrapper:(AVIMWebSocketWrapper *)socketWrapper didReceiveCommandCallback:(LCIMProtobufCommandWrapper *)commandWrapper;
+- (void)webSocketWrapper:(AVIMWebSocketWrapper *)socketWrapper didReceiveCommand:(LCIMProtobufCommandWrapper *)commandWrapper;
+- (void)webSocketWrapper:(AVIMWebSocketWrapper *)socketWrapper didCommandEncounterError:(LCIMProtobufCommandWrapper *)commandWrapper;
+@optional
+- (void)webSocketWrapperInReconnecting:(AVIMWebSocketWrapper *)socketWrapper;
+- (void)webSocketWrapperDidReopen:(AVIMWebSocketWrapper *)socketWrapper;
+- (void)webSocketWrapperDidPause:(AVIMWebSocketWrapper *)socketWrapper;
+- (void)webSocketWrapper:(AVIMWebSocketWrapper *)socketWrapper didCloseWithError:(NSError *)error;
+
+@end
+
+// MARK: - Socket Wrapper
 
 @interface AVIMWebSocketWrapper : NSObject
 
-@property(nonatomic, assign) CGFloat timeout;
-
-+ (instancetype)sharedInstance;
-+ (instancetype)sharedSecurityInstance;
 + (void)setTimeoutIntervalInSeconds:(NSTimeInterval)seconds;
-- (void)increaseObserverCount;
-- (void)decreaseObserverCount;
-- (void)openWebSocketConnection;
-- (void)openWebSocketConnectionWithCallback:(AVIMBooleanResultBlock)callback;
-- (void)closeWebSocketConnection;
-- (void)closeWebSocketConnectionRetry:(BOOL)retry;
-- (void)sendCommand:(AVIMGenericCommand *)genericCommand;
-//- (void)sendMessage:(id)data;
-- (void)sendPing;
-- (BOOL)isConnectionOpen;
-- (BOOL)messageIdExists:(NSString *)messageId;
-- (void)addMessageId:(NSString *)messageId;
+- (instancetype)initWithDelegate:(id<AVIMWebSocketWrapperDelegate>)delegate;
+- (void)openWithCallback:(void (^)(BOOL succeeded, NSError *error))callback;
+- (void)setActivatingReconnectionEnabled:(BOOL)enabled;
+- (void)close;
+- (void)sendCommandWrapper:(LCIMProtobufCommandWrapper *)commandWrapper;
+
+@end
+
+// MARK: - Data Wrapper
+
+@interface LCIMProtobufCommandWrapper : NSObject
+
+@property (nonatomic, strong) AVIMGenericCommand *outCommand;
+@property (nonatomic, strong) AVIMGenericCommand *inCommand;
+@property (nonatomic, strong) NSError *error;
+
+- (void)setCallback:(void (^)(LCIMProtobufCommandWrapper *commandWrapper))callback;
+- (BOOL)hasCallback;
+- (void)executeCallbackAndSetItToNil;
+
 @end

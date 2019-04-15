@@ -12,28 +12,36 @@
 #import "AVPaasClient.h"
 #import "AVUtils.h"
 #import <libkern/OSAtomic.h>
+#import "EXTScope.h"
 
 #define LC_INTERVAL_HALF_AN_HOUR 30 * 60
 
 static NSTimeInterval LCNetworkStatisticsCheckInterval  = 60; // A minute
 static NSTimeInterval LCNetworkStatisticsUploadInterval = 24 * 60 * 60; // A day
 
-static NSString *LCNetworkStatisticsInfoKey = @"LCNetworkStatisticsInfoKey";
+//After v3.7.0, SDK use millisecond instead of second as time unit in networking performance.
+static NSString *LCNetworkStatisticsInfoKey       = @"LCNetworkStatisticsInfoKey" @"-" @"v1.0";
 static NSString *LCNetworkStatisticsLastUpdateKey = @"LCNetworkStatisticsLastUpdateKey";
-static NSInteger LCNetworkStatisticsMaxCount = 100;
-static NSInteger LCNetworkStatisticsCacheSize = 20;
+static NSInteger LCNetworkStatisticsMaxCount      = 10;
+static NSInteger LCNetworkStatisticsCacheSize     = 20;
 
 @interface LCNetworkStatistics ()
 
-@property (atomic, assign) BOOL enable;
-@property (atomic, strong) NSMutableDictionary *cachedStatisticDict;
-@property (atomic, assign) NSTimeInterval cachedLastUpdatedAt;
+@property (nonatomic, assign) BOOL                 enable;
+@property (nonatomic, strong) NSMutableDictionary *cachedStatisticDict;
+@property (nonatomic, strong) NSRecursiveLock     *cachedStatisticDictLock;
+@property (nonatomic, assign) NSTimeInterval       cachedLastUpdatedAt;
 
 @end
 
-@implementation LCNetworkStatistics {
-    OSSpinLock _statisticDataLock;
-}
+#define LOCK_CACHED_STATISTIC_DICT()            \
+    [self.cachedStatisticDictLock lock];        \
+                                                \
+    @onExit {                                   \
+        [self.cachedStatisticDictLock unlock];  \
+    }
+
+@implementation LCNetworkStatistics
 
 + (instancetype)sharedInstance {
     static LCNetworkStatistics *instance = nil;
@@ -50,13 +58,16 @@ static NSInteger LCNetworkStatisticsCacheSize = 20;
     self = [super init];
 
     if (self) {
-        _statisticDataLock = OS_SPINLOCK_INIT;
+        _cachedStatisticDictLock = [[NSRecursiveLock alloc] init];
+        _ignoreAlwaysCollectIfCustomedService = false;
     }
 
     return self;
 }
 
 - (NSMutableDictionary *)statisticsInfo {
+    LOCK_CACHED_STATISTIC_DICT();
+
     if (self.cachedStatisticDict) {
         return self.cachedStatisticDict;
     }
@@ -77,10 +88,14 @@ static NSInteger LCNetworkStatisticsCacheSize = 20;
 }
 
 - (void)saveStatisticsDict:(NSDictionary *)statisticsDict {
+    LOCK_CACHED_STATISTIC_DICT();
+
     self.cachedStatisticDict = [statisticsDict mutableCopy];
 }
 
 - (void)writeCachedStatisticsDict {
+    LOCK_CACHED_STATISTIC_DICT();
+
     if (!self.cachedStatisticDict) return;
 
     LCKeyValueStore *store = [LCKeyValueStore sharedInstance];
@@ -91,7 +106,7 @@ static NSInteger LCNetworkStatisticsCacheSize = 20;
 }
 
 - (void)addIncrementalAttribute:(NSInteger)amount forKey:(NSString *)key {
-    OSSpinLockLock(&_statisticDataLock);
+    LOCK_CACHED_STATISTIC_DICT();
 
     NSMutableDictionary *statisticsInfo = [self statisticsInfo];
 
@@ -104,12 +119,10 @@ static NSInteger LCNetworkStatisticsCacheSize = 20;
     }
 
     [self saveStatisticsDict:statisticsInfo];
-
-    OSSpinLockUnlock(&_statisticDataLock);
 }
 
 - (void)addAverageAttribute:(double)amount forKey:(NSString *)key {
-    OSSpinLockLock(&_statisticDataLock);
+    LOCK_CACHED_STATISTIC_DICT();
 
     NSMutableDictionary *statisticsInfo = [self statisticsInfo];
 
@@ -122,45 +135,61 @@ static NSInteger LCNetworkStatisticsCacheSize = 20;
     }
 
     [self saveStatisticsDict:statisticsInfo];
-
-    OSSpinLockUnlock(&_statisticDataLock);
 }
 
-- (void)uploadStatisticsInfo:(NSDictionary *)statisticsInfo {
+- (void)uploadStatisticsInfo:(NSDictionary *)statisticsInfo
+{
+    NSMutableDictionary *payloadDic = [NSMutableDictionary dictionaryWithCapacity:2];
+    
+    if (statisticsInfo) { payloadDic[@"attributes"] = statisticsInfo; }
+    
+    NSMutableDictionary *clientDic = [NSMutableDictionary dictionaryWithCapacity:4];
+    
     NSDictionary *deviceInfo = [AVAnalyticsUtils deviceInfo];
-    NSDictionary *payload = @{
-        @"attributes": statisticsInfo,
-        @"client": @{
+    
 #if !TARGET_OS_WATCH
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
-            @"id": deviceInfo[@"device_id"],
+    id deviceId = deviceInfo[@"device_id"];
+    if (deviceId) { clientDic[@"id"] = deviceId; }
 #endif
 #endif
-            @"platform": deviceInfo[@"os"],
-            @"app_version": deviceInfo[@"app_version"],
-            @"sdk_version": deviceInfo[@"sdk_version"]
-        }
-    };
+    
+    id platform = deviceInfo[@"os"];
+    if (platform) { clientDic[@"platform"] = platform; }
+    
+    id appVersion = deviceInfo[@"app_version"];
+    if (appVersion) { clientDic[@"app_version"] = appVersion; }
+    
+    id sdkVersion = deviceInfo[@"sdk_version"];
+    if (sdkVersion) { clientDic[@"sdk_version"] = sdkVersion; }
+    
+    payloadDic[@"client"] = clientDic;
 
     AVPaasClient *client = [AVPaasClient sharedInstance];
-    NSURLRequest *request = [client requestWithPath:@"always_collect" method:@"POST" headers:nil parameters:payload];
+    NSURLRequest *request = [client requestWithPath:@"always_collect" method:@"POST" headers:nil parameters:payloadDic];
 
     [client
      performRequest:request
      success:^(NSHTTPURLResponse *response, id responseObject) {
-         // Reset network statistics data
-         LCKeyValueStore *store = [LCKeyValueStore sharedInstance];
-         [store deleteKey:LCNetworkStatisticsInfoKey];
-
-         // Clean cached statistic dict
-         self.cachedStatisticDict = nil;
-
-         // Increase check interval to save CPU time
-         LCNetworkStatisticsCheckInterval = LC_INTERVAL_HALF_AN_HOUR;
-
-         [self updateLastUpdateAt];
+         [self statisticsInfoDidUpload];
      }
      failure:nil];
+}
+
+- (void)statisticsInfoDidUpload {
+    LOCK_CACHED_STATISTIC_DICT();
+
+    // Reset network statistics data
+    LCKeyValueStore *store = [LCKeyValueStore sharedInstance];
+    [store deleteKey:LCNetworkStatisticsInfoKey];
+
+    // Clean cached statistic dict
+    [self.cachedStatisticDict removeAllObjects];
+
+    // Increase check interval to save CPU time
+    LCNetworkStatisticsCheckInterval = LC_INTERVAL_HALF_AN_HOUR;
+
+    [self updateLastUpdateAt];
 }
 
 - (void)updateLastUpdateAt {
@@ -210,11 +239,17 @@ static NSInteger LCNetworkStatisticsCacheSize = 20;
     }
 }
 
-- (void)startInBackground {
+- (void)startInBackground
+{
+    if (self.ignoreAlwaysCollectIfCustomedService) {
+        
+        return;
+    }
+    
     NSAssert(![NSThread isMainThread], @"This method must run in background.");
 
     AV_WAIT_WITH_ROUTINE_TIL_TRUE(!self.enable, LCNetworkStatisticsCheckInterval, ({
-        NSMutableDictionary *statisticsInfo = [self statisticsInfo];
+        NSDictionary *statisticsInfo = [[self statisticsInfo] copy];
 
         NSInteger total = [statisticsInfo[@"total"] integerValue];
 

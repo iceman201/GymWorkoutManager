@@ -178,7 +178,7 @@ typedef void (^data_callback)(AVIMWebSocket *webSocket,  NSData *data);
 
 @interface AVIMWebSocket ()  <NSStreamDelegate>
 
-@property (nonatomic) AVIMReadyState readyState;
+@property (nonatomic) AVIMWebSocketState readyState;
 
 @property (nonatomic) NSOperationQueue *delegateOperationQueue;
 @property (nonatomic) dispatch_queue_t delegateDispatchQueue;
@@ -235,7 +235,7 @@ typedef void (^data_callback)(AVIMWebSocket *webSocket,  NSData *data);
     NSURLRequest *_urlRequest;
 
     BOOL _sentClose;
-    BOOL _didFail;
+
     int _closeCode;
     
     BOOL _isPumping;
@@ -315,11 +315,11 @@ static __strong NSData *CRLFCRLF;
         _secure = YES;
     }
     
-    _readyState = AVIM_CONNECTING;
+    _readyState = AVIMWebSocketStateNone;
     _consumerStopped = YES;
     _webSocketVersion = 13;
     
-    _workQueue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
+    _workQueue = dispatch_queue_create("AVIMWebSocket._workQueue", DISPATCH_QUEUE_SERIAL);
     
     // Going to set a specific on the queue so we can validate we're on the work queue
     dispatch_queue_set_specific(_workQueue, (__bridge void *)self, maybe_bridge(_workQueue), NULL);
@@ -374,11 +374,15 @@ static __strong NSData *CRLFCRLF;
 
 #ifndef NDEBUG
 
-- (void)setReadyState:(AVIMReadyState)aReadyState;
+- (void)setReadyState:(AVIMWebSocketState)aReadyState;
 {
+    NSAssert(aReadyState > _readyState,
+             @"Error in change state");
+    
     [self willChangeValueForKey:@"readyState"];
-    assert(aReadyState > _readyState);
+    
     _readyState = aReadyState;
+    
     [self didChangeValueForKey:@"readyState"];
 }
 
@@ -387,7 +391,9 @@ static __strong NSData *CRLFCRLF;
 - (void)open;
 {
     assert(_url);
-    NSAssert(_readyState == AVIM_CONNECTING, @"Cannot call -(void)open on AVIMWebSocket more than once");
+    NSAssert(_readyState == AVIMWebSocketStateNone, @"Cannot call -(void)open on AVIMWebSocket more than once");
+    
+    [self setReadyState:AVIMWebSocketStateConnecting];
 
     _selfRetain = self;
     
@@ -458,15 +464,14 @@ static __strong NSData *CRLFCRLF;
         _protocol = negotiatedProtocol;
     }
     
-    self.readyState = AVIM_OPEN;
+    [self setReadyState:AVIMWebSocketStateConnected];
     
-    if (!_didFail) {
-        [self _readFrameNew];
-    }
+    [self _readFrameNew];
 
     [self _performDelegateBlock:^{
-        if ([self.delegate respondsToSelector:@selector(webSocketDidOpen:)]) {
-            [self.delegate webSocketDidOpen:self];
+        id <AVIMWebSocketDelegate> delegate = self.delegate;
+        if (delegate && [delegate respondsToSelector:@selector(webSocketDidOpen:)]) {
+            [delegate webSocketDidOpen:self];
         };
     }];
 }
@@ -499,7 +504,11 @@ static __strong NSData *CRLFCRLF;
     CFHTTPMessageSetHeaderFieldValue(request, CFSTR("Host"), (__bridge CFStringRef)(_url.port ? [NSString stringWithFormat:@"%@:%@", _url.host, _url.port] : _url.host));
         
     NSMutableData *keyBytes = [[NSMutableData alloc] initWithLength:16];
+    
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-result"
     SecRandomCopyBytes(kSecRandomDefault, keyBytes.length, keyBytes.mutableBytes);
+#pragma clang diagnostic pop
     
     if ([keyBytes respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
         _secKey = [keyBytes base64EncodedStringWithOptions:0];
@@ -646,13 +655,13 @@ static __strong NSData *CRLFCRLF;
 {
     assert(code);
     dispatch_async(_workQueue, ^{
-        if (self.readyState == AVIM_CLOSING || self.readyState == AVIM_CLOSED) {
+        if (self.readyState == AVIMWebSocketStateClosing || self.readyState == AVIMWebSocketStateClosed) {
             return;
         }
         
-        BOOL wasConnecting = self.readyState == AVIM_CONNECTING;
+        BOOL wasConnecting = self.readyState == AVIMWebSocketStateConnecting;
         
-        self.readyState = AVIM_CLOSING;
+        [self setReadyState:AVIMWebSocketStateClosing];
         
         AVIMFastLog(@"Closing with code %d reason %@", code, reason);
         
@@ -702,15 +711,20 @@ static __strong NSData *CRLFCRLF;
 - (void)_failWithError:(NSError *)error;
 {
     dispatch_async(_workQueue, ^{
-        if (self.readyState != AVIM_CLOSED) {
+        
+        if (self.readyState != AVIMWebSocketStateClosed) {
+            
+            [self setReadyState:AVIMWebSocketStateClosed];
+            
             _failed = YES;
+            
             [self _performDelegateBlock:^{
-                if ([self.delegate respondsToSelector:@selector(webSocket:didFailWithError:)]) {
-                    [self.delegate webSocket:self didFailWithError:error];
+                id <AVIMWebSocketDelegate> delegate = self.delegate;
+                if (delegate && [delegate respondsToSelector:@selector(webSocket:didFailWithError:)]) {
+                    [delegate webSocket:self didFailWithError:error];
                 }
             }];
 
-            self.readyState = AVIM_CLOSED;
             _selfRetain = nil;
 
             AVIMFastLog(@"Failing with error %@", error.localizedDescription);
@@ -733,7 +747,9 @@ static __strong NSData *CRLFCRLF;
 
 - (void)send:(id)data;
 {
-    NSAssert(self.readyState != AVIM_CONNECTING, @"Invalid State: Cannot call send: until connection is open");
+    NSAssert((self.readyState != AVIMWebSocketStateConnecting) &&
+             (self.readyState != AVIMWebSocketStateNone),
+             @"Invalid State: Cannot call send: until connection is open");
     // TODO: maybe not copy this for performance
     data = [data copy];
     dispatch_async(_workQueue, ^{
@@ -751,7 +767,9 @@ static __strong NSData *CRLFCRLF;
 
 - (void)sendPing:(NSData *)data;
 {
-    NSAssert(self.readyState == AVIM_OPEN, @"Invalid State: Cannot call send: until connection is open");
+    NSAssert((self.readyState != AVIMWebSocketStateConnecting) &&
+             (self.readyState != AVIMWebSocketStateNone),
+             @"Invalid State: Cannot call send: until connection is open");
     // TODO: maybe not copy this for performance
     data = [data copy] ?: [NSData data]; // It's okay for a ping to be empty
     dispatch_async(_workQueue, ^{
@@ -773,8 +791,9 @@ static __strong NSData *CRLFCRLF;
 {
     AVIMFastLog(@"Received pong");
     [self _performDelegateBlock:^{
-        if ([self.delegate respondsToSelector:@selector(webSocket:didReceivePong:)]) {
-            [self.delegate webSocket:self didReceivePong:pongData];
+        id <AVIMWebSocketDelegate> delegate = self.delegate;
+        if (delegate && [delegate respondsToSelector:@selector(webSocket:didReceivePong:)]) {
+            [delegate webSocket:self didReceivePong:pongData];
         }
     }];
 }
@@ -783,7 +802,10 @@ static __strong NSData *CRLFCRLF;
 {
     AVIMFastLog(@"Received message");
     [self _performDelegateBlock:^{
-        [self.delegate webSocket:self didReceiveMessage:message];
+        id <AVIMWebSocketDelegate> delegate = self.delegate;
+        if (delegate) {
+            [delegate webSocket:self didReceiveMessage:message];
+        }
     }];
 }
 
@@ -853,7 +875,7 @@ static inline BOOL closeCodeIsValid(int closeCode) {
     
     [self assertOnWorkQueue];
     
-    if (self.readyState == AVIM_OPEN) {
+    if (self.readyState == AVIMWebSocketStateConnected) {
         [self closeWithCode:1000 reason:nil];
     }
     dispatch_async(_workQueue, ^{
@@ -919,7 +941,7 @@ static inline BOOL closeCodeIsValid(int closeCode) {
 {
     assert(frame_header.opcode != 0);
     
-    if (self.readyState != AVIM_OPEN) {
+    if (self.readyState != AVIMWebSocketStateConnected) {
         return;
     }
     
@@ -1134,9 +1156,11 @@ static const uint8_t AVIMPayloadLenMask   = 0x7F;
         }
         
         if (!_failed) {
+            [self setReadyState:AVIMWebSocketStateClosed];
             [self _performDelegateBlock:^{
-                if ([self.delegate respondsToSelector:@selector(webSocket:didCloseWithCode:reason:wasClean:)]) {
-                    [self.delegate webSocket:self didCloseWithCode:_closeCode reason:_closeReason wasClean:YES];
+                id <AVIMWebSocketDelegate> delegate = self.delegate;
+                if (delegate && [delegate respondsToSelector:@selector(webSocket:didCloseWithCode:reason:wasClean:)]) {
+                    [delegate webSocket:self didCloseWithCode:_closeCode reason:_closeReason wasClean:YES];
                 }
             }];
         }
@@ -1206,7 +1230,7 @@ static const char CRLFCRLFBytes[] = {'\r', '\n', '\r', '\n'};
     
     BOOL didWork = NO;
     
-    if (self.readyState >= AVIM_CLOSING) {
+    if (self.readyState >= AVIMWebSocketStateClosing) {
         return didWork;
     }
     
@@ -1391,7 +1415,12 @@ static const size_t AVIMFrameHeaderOverhead = 32;
         }
     } else {
         uint8_t *mask_key = frame_buffer + frame_buffer_size;
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-result"
         SecRandomCopyBytes(kSecRandomDefault, sizeof(uint32_t), (uint8_t *)mask_key);
+#pragma clang diagnostic pop
+
         frame_buffer_size += sizeof(uint32_t);
         
         // TODO: could probably optimize this with SIMD
@@ -1437,7 +1466,8 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert);
  * @param certs Certificate array, it should be an array of SecCertificateRef.
  * @return An array of public keys.
  */
-- (NSArray *)publicKeysFromCerts:(NSArray *)certs {
+NS_INLINE
+NSArray *LCPublicKeysFromCerts(NSArray *certs) {
     NSMutableArray *publicKeys = [NSMutableArray array];
     
     for (id cert in certs) {
@@ -1459,7 +1489,7 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert);
     
     SecPolicyRef policy = SecPolicyCreateBasicX509();
     NSInteger numCerts = SecTrustGetCertificateCount(secTrust);
-    NSArray *pinnedPublicKeys = [self publicKeysFromCerts:sslCerts];
+    NSArray *pinnedPublicKeys = LCPublicKeysFromCerts(sslCerts);
     
     for (NSInteger i = 0; i < numCerts; i++) {
         SecCertificateRef cert = SecTrustGetCertificateAtIndex(secTrust, i);
@@ -1492,9 +1522,14 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert);
         if (result)
             break;
     }
+
+    if (policy)
+        CFRelease(policy);
     
     return result;
 }
+
+// MARK: - NSStreamDelegate
 
 - (void)stream:(NSStream *)aStream handleEvent:(NSStreamEvent)eventCode;
 {
@@ -1516,9 +1551,7 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert);
             }
             
             if (!_pinnedCertFound) {
-                dispatch_async(_workQueue, ^{
-                    [self _failWithError:[NSError errorWithDomain:AVIMWebSocketErrorDomain code:23556 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Invalid server cert"] forKey:NSLocalizedDescriptionKey]]];
-                });
+                [self _failWithError:[NSError errorWithDomain:AVIMWebSocketErrorDomain code:23556 userInfo:[NSDictionary dictionaryWithObject:[NSString stringWithFormat:@"Invalid server cert"] forKey:NSLocalizedDescriptionKey]]];
                 return;
             }
             
@@ -1534,12 +1567,14 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert);
         switch (eventCode) {
             case NSStreamEventOpenCompleted: {
                 AVIMFastLog(@"NSStreamEventOpenCompleted %@", aStream);
-                if (self.readyState >= AVIM_CLOSING) {
+                if (self.readyState >= AVIMWebSocketStateClosing) {
                     return;
                 }
                 assert(_readBuffer);
                 
-                if (!_secure && self.readyState == AVIM_CONNECTING && aStream == _inputStream) {
+                // didConnect fires after certificate verification if we're using pinned certificates.
+                BOOL usingPinnedCerts = [[_urlRequest AVIM_SSLPinnedCertificates] count] > 0;
+                if ((!_secure || !usingPinnedCerts) && self.readyState == AVIMWebSocketStateConnecting && aStream == _inputStream) {
                     [self didConnect];
                 }
                 [self _pumpWriting];
@@ -1564,20 +1599,21 @@ SecKeyRef LCGetPublicKeyFromCertificate(SecCertificateRef cert);
                     [self _failWithError:aStream.streamError];
                 } else {
                     dispatch_async(_workQueue, ^{
-                        if (self.readyState != AVIM_CLOSED) {
-                            self.readyState = AVIM_CLOSED;
+                        if (self.readyState != AVIMWebSocketStateClosed) {
+                            [self setReadyState:AVIMWebSocketStateClosed];
                             _selfRetain = nil;
                         }
-
-                    if (!_sentClose && !_failed) {
-                        _sentClose = YES;
-                        // If we get closed in this state it's probably not clean because we should be sending this when we send messages
-                        [self _performDelegateBlock:^{
-                            if ([self.delegate respondsToSelector:@selector(webSocket:didCloseWithCode:reason:wasClean:)]) {
-                                [self.delegate webSocket:self didCloseWithCode:AVIMStatusCodeGoingAway reason:@"Stream end encountered" wasClean:NO];
-                            }
-                        }];
-                    }
+                        
+                        if (!_sentClose && !_failed) {
+                            _sentClose = YES;
+                            // If we get closed in this state it's probably not clean because we should be sending this when we send messages
+                            [self _performDelegateBlock:^{
+                                id <AVIMWebSocketDelegate> delegate = self.delegate;
+                                if (delegate && [delegate respondsToSelector:@selector(webSocket:didCloseWithCode:reason:wasClean:)]) {
+                                    [delegate webSocket:self didCloseWithCode:AVIMStatusCodeGoingAway reason:@"Stream end encountered" wasClean:NO];
+                                }
+                            }];
+                        }
                     });
                 }
                 

@@ -7,38 +7,31 @@
 //
 
 #import "AVIMErrorUtil.h"
-#import "AVIMCommon.h"
 
-NSString *AVOSCloudIMErrorDomain = @"AVOSCloudIMErrorDomain";
-
-NSInteger const kAVIMErrorInvalidCommand = 1;
-NSInteger const kAVIMErrorInvalidArguments = 2;
-NSInteger const kAVIMErrorConversationNotFound = 3;
-NSInteger const kAVIMErrorTimeout = 4;
-NSInteger const kAVIMErrorConnectionLost = 5;
-NSInteger const kAVIMErrorInvalidData = 6;
-NSInteger const kAVIMErrorMessageTooLong = 7;
-NSInteger const kAVIMErrorClientNotOpen = 8;
-
-//NSInteger const kAVErrorObjectNotFound = 101;
-//NSInteger const kAVErrorInvalidQuery = 102;
-//NSInteger const kAVErrorInvalidClassName = 103;
-//NSInteger const kAVErrorMissingObjectId = 104;
-//NSInteger const kAVErrorInvalidKeyName = 105;
-//NSInteger const kAVErrorInvalidPointer = 106;
-//NSInteger const kAVErrorInvalidJSON = 107;
-
-@implementation AVIMErrorUtil
-+ (NSError *)errorWithCode:(NSInteger)code reason:(NSString *)reason {
-    NSMutableDictionary *dict = nil;
-    if (reason) {
-        dict = [[NSMutableDictionary alloc] init];
-        [dict setObject:reason forKey:@"reason"];
-        [dict setObject:NSLocalizedString(reason, nil) forKey:NSLocalizedFailureReasonErrorKey];
+NSString *AVIMErrorMessage(AVIMErrorCode code)
+{
+    switch (code) {
+            // 90xx
+        case AVIMErrorCodeCommandTimeout:
+            return @"Web Socket command timeout.";
+        case AVIMErrorCodeConnectionLost:
+            return @"Web Socket connection lost.";
+        case AVIMErrorCodeClientNotOpen:
+            return @"IM client not open.";
+        case AVIMErrorCodeInvalidCommand:
+            return @"Web Socket command received from server is invalid.";
+        case AVIMErrorCodeCommandDataLengthTooLong:
+            return @"Web socket command data length is too long.";
+            // 91XX
+        case AVIMErrorCodeConversationNotFound:
+            return @"Conversation not found.";
+        case AVIMErrorCodeUpdatingMessageNotAllowed:
+            return @"Updating message from others is not allowed.";
+        case AVIMErrorCodeUpdatingMessageNotSent:
+            return @"Message is not sent.";
+        case AVIMErrorCodeOwnerPromotionNotAllowed:
+            return @"Updating a member's role to owner is not allowed.";
+        default:
+            return nil;
     }
-    NSError *error = [NSError errorWithDomain:AVOSCloudIMErrorDomain
-                                         code:code
-                                     userInfo:dict];
-    return error;
 }
-@end

@@ -10,12 +10,14 @@
 
 @class AVGeoPoint;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /*!
  *  应用搜索的排序对象产生器
  */
 @interface AVSearchSortBuilder : NSObject
 
-@property (nonatomic, readonly) NSMutableArray *sortFields;
+@property (nonatomic, strong, readonly) NSMutableArray *sortFields;
 
 /*!
  *  新建 AVSearchSortBuilder 实例
@@ -33,14 +35,11 @@
 
 /*!
  *  @see orderByAscending:withMode:andMissing:
- *  @param key
- *  @param mode
  */
 - (void)orderByAscending:(NSString *)key withMode:(NSString *)mode;
 
 /*!
  *  @see orderByAscending:withMode:andMissing:
- *  @param key
  */
 - (void)orderByAscending:(NSString *)key;
 
@@ -55,14 +54,11 @@
 
 /*!
  *  @see orderByDescending:withMode:andMissing:
- *  @param key
- *  @param mode
  */
 - (void)orderByDescending:(NSString *)key withMode:(NSString *)mode;
 
 /*!
  *  @see orderByDescending:withMode:andMissing:
- *  @param key
  */
 - (void)orderByDescending:(NSString *)key;
 
@@ -79,17 +75,14 @@
 
 /*!
  *  @see whereNear:point:inOrder:withMode:andUnit
- *  @param key
- *  @param point
- *  @param order
  */
 - (void)whereNear:(NSString *)key point:(AVGeoPoint *)point inOrder:(NSString *)order;
 
 /*!
  *  @see whereNear:point:inOrder:withMode:andUnit
- *  @param key
- *  @param point
  */
 - (void)whereNear:(NSString *)key point:(AVGeoPoint *)point;
 
 @end
+
+NS_ASSUME_NONNULL_END

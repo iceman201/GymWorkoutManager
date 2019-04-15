@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class AVIMClient;
 @class AVIMConversation;
 @class AVIMConversationOutCommand;
 
 @interface LCIMConversationCache : NSObject
 
+@property (nonatomic, weak) AVIMClient *client;
 @property (nonatomic, copy, readonly) NSString *clientId;
 
 - (instancetype)initWithClientId:(NSString *)clientId;
@@ -55,5 +57,10 @@
  * Clean all expired conversations.
  */
 - (void)cleanAllExpiredConversations;
+
+/*!
+ * update conversation lastMessageAt.
+ */
+- (void)updateConversationForLastMessageAt:(NSDate *)lastMessageAt conversationId:(NSString *)conversationId;
 
 @end

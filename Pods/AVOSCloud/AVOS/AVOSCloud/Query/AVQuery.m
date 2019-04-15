@@ -66,12 +66,6 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     return query;
 }
 
-+ (instancetype)queryWithClassName:(NSString *)className predicate:(NSPredicate *)predicate
-{
-    AVQuery * query = [[[self class] alloc] initWithClassName:className];
-    return query;
-}
-
 + (AVCloudQueryResult *)doCloudQueryWithCQL:(NSString *)cql {
     return [self doCloudQueryWithCQL:cql error:NULL];
 }
@@ -93,7 +87,7 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
 
 + (AVCloudQueryResult *)cloudQueryWithCQL:(NSString *)cql pvalues:(NSArray *)pvalues callback:(AVCloudQueryCallback)callback waitUntilDone:(BOOL)wait error:(NSError **)error{
     if (!cql) {
-        NSError *err = [AVErrorUtils errorWithCode:kAVErrorInvalidQuery errorText:@"cql can not be nil"];
+        NSError *err = LCError(kAVErrorInvalidQuery, @"cql can not be nil", nil);
         if (error) {
             *error = err;
         }
@@ -234,14 +228,29 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     [self addWhereItem:dict forKey:key];
 }
 
+- (id)valueForEqualityTesting:(id)object {
+    if (!object) {
+        return [NSNull null];
+    } else if ([object isKindOfClass:[AVObject class]]) {
+        NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:@"Pointer" forKey:@"__type"];
+        [dict setObject:[object internalClassName] forKey:classNameTag];
+        if ([object hasValidObjectId])
+        {
+            [dict setObject:((AVObject *)object).objectId forKey:@"objectId"];
+            return dict;
+        } else {
+            return NSNull.null;
+        }
+    } else {
+        return object;
+    }
+}
+
 - (void)whereKey:(NSString *)key equalTo:(id)object
 {
-    if ([object isKindOfClass:[AVObject class]]) {
-        [self addWhereItem:@{@"$eq":[AVObjectUtils dictionaryFromAVObjectPointer:(AVObject *)object]}
-                    forKey:key];
-    } else {
-        [self addWhereItem:@{@"$eq":object} forKey:key];
-    }
+    NSDictionary * dict = @{@"$eq": [self valueForEqualityTesting:object]};
+    [self addWhereItem:dict forKey:key];
 }
 
 - (void)whereKey:(NSString *)key sizeEqualTo:(NSUInteger)count
@@ -276,7 +285,7 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
 
 - (void)whereKey:(NSString *)key notEqualTo:(id)object
 {
-    NSDictionary * dict = @{@"$ne": object};
+    NSDictionary * dict = @{@"$ne": [self valueForEqualityTesting:object]};
     [self addWhereItem:dict forKey:key];
 }
 
@@ -618,7 +627,7 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
         }
         
         if (error == nil && [dict allKeys].count == 0) {
-            error = [AVErrorUtils errorWithCode:kAVErrorObjectNotFound errorText:[NSString stringWithFormat:@"No object with that objectId %@ was found.", objectId]];
+            error = LCError(kAVErrorObjectNotFound, [NSString stringWithFormat:@"No object with that objectId %@ was found.", objectId], nil);
         }
         if (block) {
             block(object, error);
@@ -680,7 +689,7 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
  */
 + (AVQuery *)queryForUser __attribute__ ((deprecated))
 {
-    return nil;
+    return [AVUser query];
 }
 
 #pragma mark -
@@ -705,6 +714,10 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
 - (NSArray *)findObjects:(NSError **)error
 {
     return [self findObjectsWithBlock:NULL waitUntilDone:YES error:error];
+}
+
+- (NSArray *)findObjectsAndThrowsWithError:(NSError * _Nullable __autoreleasing *)error {
+    return [self findObjects:error];
 }
 
 -(void)queryWithBlock:(NSString *)path
@@ -835,6 +848,10 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     return [self getFirstObjectWithBlock:NULL waitUntilDone:YES error:error];
 }
 
+- (AVObject *)getFirstObjectAndThrowsWithError:(NSError * _Nullable __autoreleasing *)error {
+    return [self getFirstObject:error];
+}
+
 /*!
  Gets an object asynchronously and calls the given block with the result.
 
@@ -869,7 +886,7 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
         if (error) {
             [AVUtils callObjectResultBlock:resultBlock object:nil error:error];
         } else if (results.count == 0) {
-            wrappedError = [AVErrorUtils errorWithCode:kAVErrorObjectNotFound errorText:@"no results matched the query"];
+            wrappedError = LCError(kAVErrorObjectNotFound, @"no results matched the query", nil);
             [AVUtils callObjectResultBlock:resultBlock object:nil error:wrappedError];
         } else {
             NSMutableArray * array = [self processResults:results className:className];
@@ -932,6 +949,10 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
 - (NSInteger)countObjects:(NSError **)error
 {
     return [self countObjectsWithBlock:NULL waitUntilDone:YES error:error];
+}
+
+- (NSInteger)countObjectsAndThrowsWithError:(NSError * _Nullable __autoreleasing *)error {
+    return [self countObjects:error];
 }
 
 /*!
@@ -1079,6 +1100,10 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
         NSString * keys = [[self.selectedKeys allObjects] componentsJoinedByString:@","];
         [self.parameters setObject:keys forKey:@"keys"];
     }
+    if (self.includeACL)
+    {
+        [self.parameters setObject:@"true" forKey:@"returnACL"];
+    }
     if ([self.extraParameters allKeys].count > 0) {
         [self.parameters addEntriesFromDictionary:self.extraParameters];
     }
@@ -1089,6 +1114,12 @@ NSString *LCStringFromDistanceUnit(AVQueryDistanceUnit unit) {
     NSDictionary *dic = [AVObjectUtils dictionaryFromDictionary:self.where];
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:NULL];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+- (NSDictionary *)whereJSONDictionary {
+    NSData *data = [[self whereString] dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
+    return dictionary;
 }
 
 #pragma mark - Util methods

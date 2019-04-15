@@ -8,18 +8,18 @@
 import RealmSwift
 
 class Person: Object {
-    dynamic var id = ""
-    dynamic var name = ""
-    dynamic var sex = ""
-    dynamic var age : NSNumber = 0
-    dynamic var BMI = ""
-    dynamic var height = ""
-    dynamic var weight = ""
-    dynamic var bodyFat : NSNumber = 0
-    dynamic var profilePicture : Data?
-    dynamic var activedDays : NSNumber = 0
-    dynamic var lastTimeUseApp : Date?
-    dynamic var isProfileDetailsExist : Bool = false
+    @objc dynamic var id = ""
+    @objc dynamic var name = ""
+    @objc dynamic var sex = ""
+    @objc dynamic var age : NSNumber = 0
+    @objc dynamic var BMI = ""
+    @objc dynamic var height = ""
+    @objc dynamic var weight = ""
+    @objc dynamic var bodyFat : NSNumber = 0
+    @objc dynamic var profilePicture : Data?
+    @objc dynamic var activedDays : NSNumber = 0
+    @objc dynamic var lastTimeUseApp : Date?
+    @objc dynamic var isProfileDetailsExist : Bool = false
     
     let exercise = List<Exercise>()
     let plans = List<Plan>()

@@ -59,7 +59,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
         }
         
         if startButton.currentTitle != "Stop" {
-            startButton.setTitle("Stop", for: UIControlState())
+            startButton.setTitle("Stop", for: UIControl.State())
             timerCountdown = Timer.scheduledTimer(timeInterval: MILLI_SECOND, target: self, selector: #selector(TimerViewController.timeCountdown), userInfo: nil, repeats: true)
         } else {
             stopTimeCountDown()
@@ -149,7 +149,7 @@ class TimerViewController: UIViewController, TimeSetupViewControllerDelegate {
     }
     
     fileprivate func stopTimeCountDown(){
-        startButton.setTitle("GO!", for: UIControlState())
+        startButton.setTitle("GO!", for: UIControl.State())
         timerCountdown.invalidate()
     }
     

@@ -8,7 +8,6 @@
 
 @import Foundation;
 #import "AVIMCommandCommon.h"
-#import "AVIMSignature.h"
 
 FOUNDATION_EXPORT const NSInteger LCIMErrorCodeSessionTokenExpired;
 
@@ -20,13 +19,6 @@ FOUNDATION_EXPORT const NSInteger LCIMErrorCodeSessionTokenExpired;
  @return 消息类型的字符串表示
  */
 + (NSString *)commandType:(AVIMCommandType)commandType;
-
-/*!
- 判断消息AVIMOpType类型转化为字符串类型
- @param action - 消息操作类型枚举：AVIMOpType类型
- @return AVIMOpType类型转化的字符串类型
- */
-+ (NSString *)signatureActionForKey:(AVIMOpType)action;
 
 /*!
  字典转 protobuf 对象

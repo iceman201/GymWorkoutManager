@@ -8,18 +8,11 @@
 
 #import "AVIMMessage.h"
 
-typedef int8_t AVIMMessageMediaType;
+@class AVFile;
+@class AVGeoPoint;
 
-//SDK定义的消息类型，自定义类型使用大于0的值
-enum : AVIMMessageMediaType {
-    kAVIMMessageMediaTypeNone = 0,
-    kAVIMMessageMediaTypeText = -1,
-    kAVIMMessageMediaTypeImage = -2,
-    kAVIMMessageMediaTypeAudio = -3,
-    kAVIMMessageMediaTypeVideo = -4,
-    kAVIMMessageMediaTypeLocation = -5,
-    kAVIMMessageMediaTypeFile = -6
-};
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol AVIMTypedMessageSubclassing <NSObject>
 @required
 /*!
@@ -29,18 +22,15 @@ enum : AVIMMessageMediaType {
 + (AVIMMessageMediaType)classMediaType;
 @end
 
-@class AVFile;
-@class AVGeoPoint;
-
 /**
  *  Base class for rich media message.
  */
 @interface AVIMTypedMessage : AVIMMessage
-@property(nonatomic)AVIMMessageMediaType mediaType;           //消息类型，可自定义
-@property(nonatomic, strong)NSString *text;        // 消息文本
-@property(nonatomic, strong)NSDictionary *attributes;  // 自定义属性
-@property(nonatomic, strong, readonly)AVFile *file;  // 附件
-@property(nonatomic, strong, readonly)AVGeoPoint *location;  // 位置
+
+@property (nonatomic,   copy, nullable)           NSString             *text;       // 消息文本
+@property (nonatomic, strong, nullable)           NSDictionary         *attributes; // 自定义属性
+@property (nonatomic, strong, readonly, nullable) AVFile               *file;       // 附件
+@property (nonatomic, strong, readonly, nullable) AVGeoPoint           *location;   // 位置
 
 /**
  * Add custom property for message.
@@ -48,7 +38,15 @@ enum : AVIMMessageMediaType {
  * @param object The property value.
  * @param key    The property name.
  */
-- (void)setObject:(id)object forKey:(NSString *)key;
+- (void)setObject:(nullable id)object forKey:(NSString *)key;
+
+/**
+ Get a user-defiend property for a key.
+
+ @param key The key of property that you want to get.
+ @return The value for key.
+ */
+- (nullable id)objectForKey:(NSString *)key;
 
 /**
  *  子类调用此方法进行注册，一般可在子类的 [+(void)load] 方法里面调用
@@ -61,9 +59,9 @@ enum : AVIMMessageMediaType {
  @param attachedFilePath － 本地文件路径。
  @param attributes － 用户附加属性。
  */
-+ (instancetype)messageWithText:(NSString *)text
++ (instancetype)messageWithText:(nullable NSString *)text
                attachedFilePath:(NSString *)attachedFilePath
-                     attributes:(NSDictionary *)attributes;
+                     attributes:(nullable NSDictionary *)attributes;
 
 /*!
  使用 AVFile，创建消息。
@@ -71,8 +69,10 @@ enum : AVIMMessageMediaType {
  @param file － AVFile 对象。
  @param attributes － 用户附加属性。
  */
-+ (instancetype)messageWithText:(NSString *)text
++ (instancetype)messageWithText:(nullable NSString *)text
                            file:(AVFile *)file
-                     attributes:(NSDictionary *)attributes;
+                     attributes:(nullable NSDictionary *)attributes;
 
 @end
+
+NS_ASSUME_NONNULL_END

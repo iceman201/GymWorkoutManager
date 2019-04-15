@@ -10,6 +10,9 @@
 #endif
 #endif
 
+#import "AVCaptcha.h"
+#import "AVDynamicObject.h"
+#import "AVSMS.h"
 #import "AVACL.h"
 #import "AVRole.h"
 #import "AVSaveOption.h"
@@ -19,12 +22,6 @@
 #import "AVCloud.h"
 #import "AVFile.h"
 #import "AVGeoPoint.h"
-#import "AVGroup.h"
-#import "AVHistoryMessage.h"
-#import "AVHistoryMessageQuery.h"
-#import "AVMessage.h"
-#import "AVSession.h"
-#import "AVSignature.h"
 #import "AVObject+Subclass.h"
 #import "AVObject.h"
 #import "AVRelation.h"
@@ -40,6 +37,7 @@
 #import "AVAnonymousUtils.h"
 #import "AVUser.h"
 #import "AVLogger.h"
+#import "LCRouter.h"
 #import "AVAvailability.h"
 
 FOUNDATION_EXPORT double AVOSCloudVersionNumber;
