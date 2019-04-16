@@ -3,6 +3,10 @@ osx_image: xcode10.2
 xcode_project: GymWorkoutManager.xcworkspace
 xcode_scheme: GymWorkoutManager
 xcode_sdk: iphonesimulator12.2
+podfile: Podfile
+branches:
+  only:
+    - master
 after_success:
 - curl -o /tmp/travis-automerge https://raw.githubusercontent.com/cdown/travis-automerge/master/travis-automerge
 - chmod a+x /tmp/travis-automerge
