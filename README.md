@@ -1,9 +1,8 @@
 # GymWorkoutManager V1.0
-[![Build status](https://build.appcenter.ms/v0.1/apps/03ead9b1-5ea6-4bbd-aec6-2fff2bc41546/branches/master/badge)](https://appcenter.ms) 
+[![Build status](https://build.appcenter.ms/v0.1/apps/03ead9b1-5ea6-4bbd-aec6-2fff2bc41546/branches/master/badge)](https://appcenter.ms)
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action) 
 [![Xcode 10.2](https://img.shields.io/badge/Xcode-10.2-blue.svg)](https://developer.apple.com/xcode/)
 [![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/) 
-[![Build Status](https://travis-ci.org/NZSwift/GymWorkoutManager.svg?branch=master)](https://travis-ci.org/NZSwift/GymWorkoutManager)
 [![codebeat badge](https://codebeat.co/badges/74638e53-fc92-4a28-bf68-2f7f883e011d)](https://codebeat.co/projects/github-com-nzswift-gymworkoutmanager) [![Issues](https://img.shields.io/github/issues/NZSwift/GymWorkoutManager.svg?style=flat
 )](https://github.com/NZSwift/GymWorkoutManager/issues?state=open) [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg?style=flat)](http://mit-license.org)
 
