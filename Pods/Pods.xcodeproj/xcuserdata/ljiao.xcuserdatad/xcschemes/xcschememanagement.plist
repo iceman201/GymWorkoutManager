@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>AVOSCloud.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>18</integer>
+		</dict>
+		<key>AVOSCloudIM.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>19</integer>
+		</dict>
+		<key>AppCenter.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>17</integer>
+		</dict>
+		<key>CVCalendar.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>Charts.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>20</integer>
+		</dict>
+		<key>ChartsRealm.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
+		<key>CircleMenu 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>CircleMenu.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>Graphs 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>Graphs.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>JVFloatLabeledTextField.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Pods-GymWorkoutManager 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Pods-GymWorkoutManager.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-GymWorkoutManagerTests 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>Pods-GymWorkoutManagerTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>Pods-GymWorkoutManagerUITests 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>Pods-GymWorkoutManagerUITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>Realm 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>Realm.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>RealmSwift 2.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
+		<key>RealmSwift.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
+		<key>ScrollableGraphView.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>22</integer>
+		</dict>
+	</dict>
+</dict>
+</plist>
