@@ -3,6 +3,7 @@
 [![Platform](http://img.shields.io/badge/platform-ios-blue.svg?style=flat)](https://developer.apple.com/iphone/index.action) 
 [![Xcode 10.2](https://img.shields.io/badge/Xcode-10.2-blue.svg)](https://developer.apple.com/xcode/)
 [![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat)](https://developer.apple.com/swift/) 
+![GitHub top language](https://img.shields.io/github/languages/top/iceman201/GymWorkoutManager.svg)
 [![codebeat badge](https://codebeat.co/badges/74638e53-fc92-4a28-bf68-2f7f883e011d)](https://codebeat.co/projects/github-com-nzswift-gymworkoutmanager)
 ![GitHub issues](https://img.shields.io/github/issues/iceman201/GymWorkoutManager.svg)
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/iceman201/GymWorkoutManager.svg)
